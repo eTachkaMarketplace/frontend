@@ -11,7 +11,7 @@ export const Form = styled(FormikForm)`
   flex-direction: column;
   padding: 40px 24px;
 
-  background-color: var(--white);
+  background-color: white;
   border-radius: 8px;
 
   @media screen and (max-width: 345px) {
@@ -33,7 +33,7 @@ export const Title = styled.p`
   font-size: 18px;
   line-height: 1.33;
 
-  color: var(--blue);
+  color: black;
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
@@ -78,8 +78,8 @@ export const Label = styled.label`
     padding: 0;
     margin-top: 8px;
     margin-left: 18px;
-    color: green};
-  }
+    color: green}
+  
 
   & .error-success {
     position: absolute;
@@ -98,7 +98,7 @@ export const Field = styled(FormikField)`
   font-weight: 600;
   line-height: 1.29px;
 
-  color: var(--primary-text-color);
+  color: black;
   outline: none;
   border: 1px solid rgba(17, 17, 17, 0.15);
   border-radius: 8px;
@@ -125,7 +125,7 @@ export const Field = styled(FormikField)`
 
   &:hover,
   &:focus {
-    border: 1px solid var(--primary-text-color);
+    border: 1px solid black;
   }
 
   &.is-valid {
@@ -167,8 +167,8 @@ export const Button = styled.button`
   border-radius: 16px;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
 
-  color: var(--white);
-  background-color: var(--blue);
+  color: white;
+  background-color: #1e86ff;
   cursor: pointer;
   transition: var(--transition);
 
@@ -181,10 +181,10 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    background-color: var(--hover);
+    background-color: blue;
     transition: var(--transition);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-btn);
+    box-shadow: black;
   }
 `;
 
@@ -196,7 +196,7 @@ export const ErrorMessage = styled(FormikErrorMessage)`
 `;
 
 export const HidePassword = styled.span`
-  color: var(--black);
+  color: black;
   position: absolute;
   right: 12px;
   top: 18px;

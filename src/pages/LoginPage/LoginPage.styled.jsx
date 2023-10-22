@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #f5f5f5;
+  background-color: #dcebf7;
 `;
 
 export const FormBox = styled.div`
