@@ -1,36 +1,46 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Login from "../components/Login/Login";
-import SignUp from "../components/SignUp/SignUp"; 
+import { lazy, useEffect, Suspense } from 'react';
+import { refresh } from '../redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { selectToken } from '../redux/auth/selectors';
+import { Container } from './App.styled.jsx';
+import Spinner from './Spinner/spinner';
 
-const App = () => {
+import { PublicRoute } from '../components/PublicRoute';
+import { PrivateRoute } from '../components/PrivateRoute';
+
+const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+const MainLayout = lazy(() => import('./MainLayout/MainLayout'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+
+export function App() {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch, token]);
+
   return (
-    <Router>
-      <div>
-      <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            {/* <li>
-              <Link to="/reset">Reset</Link>
-            </li> */}
-            <li>
-              <Link to="/signup">SignUp</Link>
-            </li>
-          </ul>
-        </nav>
+    <Container>
+      <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/"  />
-        </Routes>
-      </div>
-    </Router>
-  );
-};
+          <Route element={<PublicRoute />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+          </Route>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<MainLayout />}>
+              
+              
+            </Route>
+          </Route>
 
-export default App;
+          
+        </Routes>
+        </Suspense>
+
+    </Container>
+  );
+}
