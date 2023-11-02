@@ -1,5 +1,8 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
+import { StyledSVG } from './CarouselCar.styled.jsx';
+import { FordSVG, HondaSVG, InfinitiSVG, KiaSVG, MazdaSVG,RenaultSVG,VolvoSVG } from './SVGCar';
+
 
 export const CarouselCar = () => (
   <Carousel autoPlay>
