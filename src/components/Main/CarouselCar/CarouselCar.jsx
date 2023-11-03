@@ -1,26 +1,108 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+import './Carousel.css'
 
-export const CarouselCar = () => (
-  <Carousel autoPlay>
-    <div>
-      <img alt="1" src="https://randomwordgenerator.com/img/picture-generator/52e3d2424355ac14f1dc8460962e33791c3ad6e04e507440762e79d09548c6_640.jpg" />
-    </div>
-    <div>
-      <img alt="2" src="https://randomwordgenerator.com/img/picture-generator/57e3d6424351ad14f1dc8460962e33791c3ad6e04e507440772d7cdd9144c4_640.jpg" />
-      
-    </div>
-    <div>
-      <img alt="3" src="https://randomwordgenerator.com/img/picture-generator/54e7d2424352b10ff3d8992cc12c30771037dbf85254794175297ad4944d_640.jpg" />
-      
-    </div>
-    <div>
-      <img alt="4" src="https://randomwordgenerator.com/img/picture-generator/55e2d2454b54a414f1dc8460962e33791c3ad6e04e50744172277fd09345c7_640.jpg" />
-      
-    </div>
-    <div>
-      <img alt="5" src="https://randomwordgenerator.com/img/picture-generator/55e8d14b4952ab14f1dc8460962e33791c3ad6e04e5074417c2e7dd3974ec4_640.jpg" />
-      
-    </div>
-    </Carousel>
+import {StyledWrapper, StyledFordSVG, StyledHondaSVG, StyledInfinitiSVG, StyledKiaSVG, StyledMazdaSVG,StyledRenaultSVG,StyledVolvoSVG } from './CarouselCar.styled.jsx';
+
+export const CarouselCar =() => {
+  
+  return (
+<Splide className="splide-container" aria-label="Car logo carousel"  tag="section"  options={ {
+    rewind: true,
+    width : 1080,
+    perPage: 7,
+    focus  : "center",
+    perMove: 1,
+    omitEnd: false,
+} }
+>
+  <SplideSlide className="container">
+   <StyledFordSVG />
+   <StyledWrapper>
+    Ford
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledHondaSVG />
+  <StyledWrapper>
+  Honda
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledInfinitiSVG />
+  <StyledWrapper>
+  Infiniti
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledKiaSVG />
+  <StyledWrapper>
+  Kia
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledMazdaSVG />
+  <StyledWrapper>
+  Mazda
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledRenaultSVG />
+  <StyledWrapper>
+  Renault
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledVolvoSVG />
+  <StyledWrapper>
+  Volvo
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+   <StyledFordSVG />
+   <StyledWrapper>
+    Ford
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledHondaSVG />
+  <StyledWrapper>
+  Honda
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledInfinitiSVG />
+  <StyledWrapper>
+  Infiniti
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledKiaSVG />
+  <StyledWrapper>
+  Kia
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledMazdaSVG />
+  <StyledWrapper>
+  Mazda
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledRenaultSVG />
+  <StyledWrapper>
+  Renault
+   </StyledWrapper>
+  </SplideSlide>
+  <SplideSlide className="container">
+  <StyledVolvoSVG />
+  <StyledWrapper>
+  Volvo
+   </StyledWrapper>
+  </SplideSlide>
+
+</Splide>
+
 );
+}

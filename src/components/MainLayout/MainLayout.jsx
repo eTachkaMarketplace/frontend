@@ -1,4 +1,4 @@
-import { Container } from 'components/App.styled';
+import { Container } from './MainLayout.styled';
 // import { Outlet } from 'react-router';
 import Header from '../Header/Header'
 import Main from '../Main/Main'
