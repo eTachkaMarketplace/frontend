@@ -1,7 +1,9 @@
 import React from 'react';
-import {MainWrapper, } from './Main.styled';
+import {MainWrapper } from './Main.styled';
+// import { Splide, SplideSlide } from '@splidejs/react-splide';
+
 import {CarouselCar} from './CarouselCar/CarouselCar';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 
 const Main = () => {

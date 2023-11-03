@@ -6,6 +6,29 @@ import { ReactComponent as KiaSVG } from '../../../images/SliderCar/Kia.svg';
 import { ReactComponent as MazdaSVG } from '../../../images/SliderCar/Mazda.svg';
 import { ReactComponent as RenaultSVG } from '../../../images/SliderCar/Renault.svg';
 import { ReactComponent as VolvoSVG } from '../../../images/SliderCar/Volvo.svg';
+// import { ReactComponent as ArrowSVG } from '../../../images/SliderCar/ArrowRighrSVG.svg';
+
+// export const StyledArrowSVG = styled(ArrowSVG)`
+//   fill: black;
+//   transition: fill 0.3s;
+
+//   &:hover, &:focus {
+//     fill: blue;
+//   }
+// `;
+
+export const StyledWrapper = styled.p`
+  color:  #141414;
+  font-family: Inter;
+  font-size: 18px;
+  /* padding-left: 15px; */
+
+  /* &:hover, &:focus {
+    color: blue;
+  } */
+
+
+`;
 
 export const StyledFordSVG = styled(FordSVG)`
   transition: fill 0.3s;
@@ -62,3 +85,4 @@ export const StyledVolvoSVG = styled(VolvoSVG)`
     fill: blue;
   }
 `;
+

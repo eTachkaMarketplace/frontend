@@ -5,6 +5,7 @@
   "homepage": "https://Yura-Platonov.github.io/Car-Trade_Marketplace/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
