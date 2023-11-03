@@ -16,14 +16,14 @@ const Header = () => {
                 </ul>
             </Navigation>
             <User>
-                <UserIcon>
-                    <StyledHeartSVG/>
-                    <StyledUserSVG/>
-                </UserIcon>
                 <ButtonSale>
                     <StyledAddSVG/>
                     <ButtonText>Продати</ButtonText>
                 </ButtonSale>
+                <UserIcon>
+                    <StyledHeartSVG/>
+                    <StyledUserSVG/>
+                </UserIcon>
             </User>
         </HeaderWrapper>
     );

@@ -5,12 +5,16 @@ import { ReactComponent as HeartSVG } from '../../images/Header/HeartSVG.svg';
 import { ReactComponent as AddSVG } from '../../images/Header/AddSVG.svg';
 
 export const HeaderWrapper = styled.header`
-  background-color: transparent;
-  color: #141414;
-  padding: 20px 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* max-width: 1280px; */
+  /* width: 100%; */
+  padding: 20px 80px;
+  /* padding: 20px 0; */
+  background-color: rgba(0.5, 0.5, 0.5, 0.5);
+
 `;
 
 export const Logo = styled.div`
@@ -30,31 +34,31 @@ export const Navigation = styled.nav`
 }
 `;
 export const StyledLink = styled(Link)`
-    color: #141414;
-    font-family: Tektur;
-    font-size: 24px;
-    font-weight: 500;
+    color: #fff;
+    font-family:  Work Sans;
+    font-size: 20px;
+    font-weight: 700;
 
   &:hover {
-    color: #9747FF;
-    text-decoration: underline;
+    color: #0141BD;
+   
   }
 `;
 
-export const StyledImage = styled.img`
-  width: 38px;
-  height: 38px;
+// export const StyledImage = styled.img`
+//   width: 38px;
+//   height: 38px;
   
-  &:hover {
-    fill: #9747FF;
-    }
-`;
+//   &:hover {
+//     fill: #9747FF;
+//     }
+// `;
 
 
 export const User = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 32px;
   
   `;
 
@@ -65,16 +69,16 @@ gap: 8px;
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
-  fill: #141414;
+  fill: #fff;
   &:hover {
-    fill: #9747FF;
+    fill: #0141BD;
     }
 `;
 
 export const StyledHeartSVG = styled(HeartSVG)`
-  fill: #141414;
+  fill: #fff;
   &:hover {
-    fill: #9747FF;
+    fill: #0141BD;
     }
 `;
 
@@ -90,7 +94,7 @@ export const ButtonSale= styled.button`
     align-items: center;
     gap: 4px;
 
-    background-color: #9747FF;
+    background: linear-gradient(144deg, #0040BD 19.1%, #19015B 78.89%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -98,7 +102,12 @@ export const ButtonSale= styled.button`
     transition: background-color 0.2s;
 
     &:hover {
-        background-color: blue;
+      background: linear-gradient(144deg, #0040BD 19.1%, #195B01 78.89%);
+    }
+
+    &:active {
+      background: linear-gradient(144deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
+      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
     }
 `;
 
@@ -111,8 +120,8 @@ export const StyledAddSVG = styled(AddSVG)`
 
 export const ButtonText = styled.div`
     color: #FFF;
-    font-family: Tektur;
-    font-size: 24px;
+    font-family: Work Sans;
+    font-size: 22px;
     font-weight: 500;
     
   `;

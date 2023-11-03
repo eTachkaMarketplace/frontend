@@ -1,7 +1,6 @@
 import React from 'react';
 import {MainWrapper } from './Main.styled';
-// import { Splide, SplideSlide } from '@splidejs/react-splide';
-
+import  HeroSection  from './HeroSection/HeroSection';
 import {CarouselCar} from './CarouselCar/CarouselCar';
 
 
@@ -9,6 +8,7 @@ import {CarouselCar} from './CarouselCar/CarouselCar';
 const Main = () => {
   return (
     <MainWrapper>
+        <HeroSection/>
         <CarouselCar/>
     </MainWrapper>
   );

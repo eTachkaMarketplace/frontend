@@ -3,7 +3,7 @@ import { refresh } from '../redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { selectToken } from '../redux/auth/selectors';
-import { Container } from './App.styled.jsx';
+// import { Container } from './App.styled.jsx';
 import Spinner from './Spinner/spinner';
 import { MainLayout } from './MainLayout/MainLayout';
 import LoginPage from '../pages/LoginPage/LoginPage'
@@ -20,7 +20,7 @@ export function App() {
   }, [dispatch, token]);
 
   return (
-    <Container>
+    
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route element={<PublicRoute />}>
@@ -34,6 +34,6 @@ export function App() {
         </Routes>
         </Suspense>
 
-    </Container>
+    
   );
 }
