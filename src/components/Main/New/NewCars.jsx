@@ -17,48 +17,53 @@ const NewCars = () => {
   }, [dispatch]);
 
   return (
-    <SectionCar>
-      <h2 className="carTitle">Нові оголошення</h2>
-      <ul className="carList">
-        {cars
-          ? cars.map(car => {
-              const addressParts = car.address.split(',');
-              const City = addressParts[1] ? addressParts[1].trim() : '';
-              return (
-                <li className="carItem" key={car.id}>
-                  <img className="imgCar" src={car.img} alt="Car view" />
-                  <h3 className="blackTitle ">
-                    {car.make} {car.model} {car.year}
-                  </h3>
-                  <ul className="carDescrList">
-                    <li>
-                      <p className="carDescrPrice">{car.rentalPrice}</p>
-                    </li>
-                    <li className="cityRight">
-                      <p className="carDescrCity">{City}</p>
-                    </li>
-                  </ul>
+    
+      <pagDiv>
+        <SectionCar>
+          <h2 className="carTitle">Нові оголошення</h2>
+          <ul className="carList">
+            {cars
+              ? cars.map(car => {
+                  const addressParts = car.address.split(',');
+                  const City = addressParts[1] ? addressParts[1].trim() : '';
+                  return (
+                    <li className="carItem" key={car.id}>
+                      <img className="imgCar" src={car.img} alt="Car view" />
+                      <h3 className="blackTitle ">
+                        {car.make} {car.model} {car.year}
+                      </h3>
+                      <ul className="carDescrList">
+                        <li>
+                          <p className="carDescrPrice">{car.rentalPrice}</p>
+                        </li>
+                        <li className="cityRight">
+                          <p className="carDescrCity">{City}</p>
+                        </li>
+                      </ul>
 
-                  <button
-                    // onClick={() => {
-                    //   if (isCarInFav(car.id)) {
-                    //     removeFromFav(car.id);
-                    //   } else {
-                    //     addFavorite(car.id);
-                    //   }
-                    // }}
-                    className="svg"
-                    type="button"
-                  >
-                    {heartSvg1}
-                    {/* {isCarInFav(car.id) ? heartSvg2 : heartSvg1}  */}
-                  </button>
-                </li>
-              );
-            })
-          : null}
-      </ul>
-    </SectionCar>
+                      <button
+                        // onClick={() => {
+                        //   if (isCarInFav(car.id)) {
+                        //     removeFromFav(car.id);
+                        //   } else {
+                        //     addFavorite(car.id);
+                        //   }
+                        // }}
+                        className="svg"
+                        type="button"
+                      >
+                        {heartSvg1}
+                        {/* {isCarInFav(car.id) ? heartSvg2 : heartSvg1}  */}
+                      </button>
+                    </li>
+                  );
+                })
+              : null}
+          </ul>
+      </SectionCar>
+      <div></div>
+      </pagDiv>
+    
   );
 };
 export default NewCars;
