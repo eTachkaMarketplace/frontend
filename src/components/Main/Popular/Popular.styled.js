@@ -85,3 +85,11 @@ export const SectionCar = styled.section`
     top: 35px;
   }
 `;
+
+
+export const pagDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
