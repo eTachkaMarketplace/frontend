@@ -32,7 +32,7 @@ export const Navigation = styled.nav`
 `;
 export const StyledLink = styled(Link)`
     color: #fff;
-    font-family:  Work Sans;
+    font-family: Work Sans;
     font-size: 20px;
     font-weight: 700;
 

@@ -15,6 +15,7 @@ export const CarouselCar =() => {
     focus  : "center",
     perMove: 1,
     omitEnd: false,
+    autoplay: true,
 } }
 >
   <SplideSlide className="container">

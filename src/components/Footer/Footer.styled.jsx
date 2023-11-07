@@ -19,8 +19,7 @@ export const FooterWrapper = styled.div`
     font-family: Roboto;
     font-size: 16px;
     font-weight: 400;
-    text-transform: capitalize;
-  }
+      }
 
   .footer-contact_title{
     color: #F1F1F1;
@@ -63,8 +62,8 @@ export const FooterWrapper = styled.div`
 export const FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  /* align-items: baseline; */
+  /* align-items: center; */
+  align-items: baseline;
 `;
 
 export const ListContainer = styled.ul`
