@@ -8,13 +8,10 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* max-width: 1280px; */
-  /* width: 100%; */
+  
   padding: 20px 80px;
-  /* padding: 20px 0; */
+  
   background-color: rgba(0.5, 0.5, 0.5, 0.5);
-
 `;
 
 export const Logo = styled.div`
@@ -35,7 +32,7 @@ export const Navigation = styled.nav`
 `;
 export const StyledLink = styled(Link)`
     color: #fff;
-    font-family:  Work Sans;
+    font-family: Work Sans;
     font-size: 20px;
     font-weight: 700;
 

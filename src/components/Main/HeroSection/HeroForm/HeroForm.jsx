@@ -16,31 +16,31 @@ const HeroForm = () => {
         <FormTitle>Знайти автомобіль</FormTitle>
         <InputContainer>
           <InputSelect>
-            <option value="" disabled selected >Марка</option>
+            <option value=""  >Марка</option>
             {/* Ваш выпадающий список для Марки */}
           </InputSelect>
         </InputContainer>
         <InputContainer>
           <InputSelect>
-            <option value="" disabled selected >Модель</option>
+            <option value=""  >Модель</option>
             {/* Ваш выпадающий список для Модели */}
           </InputSelect>
         </InputContainer>
         <InputContainer>
           <InputSelect>
-            <option value="" disabled selected >Область</option>
+            <option value=""  >Область</option>
             {/* Ваш выпадающий список для Области */}
           </InputSelect>
         </InputContainer>
         <InputContainer>
           <InputSelect>
-            <option value="" disabled selected >Рік випуску</option>
+            <option value=""  >Рік випуску</option>
             {/* Ваш выпадающий список для Року випуску */}
           </InputSelect>
         </InputContainer>
         <InputContainer>
           <InputSelect>
-            <option value="" disabled selected >Ціна</option>
+            <option value=""   >Ціна</option>
             {/* Ваш выпадающий список для Ціни */}
           </InputSelect>
         </InputContainer>
