@@ -39,4 +39,43 @@ a {
 
 body {
   margin: 0;
+  /* font-family: 'Work Sans', sans-serif; */
+
 }
+
+
+@font-face {
+  font-family: Work Sans;
+  font-weight: 400;
+  font-style: normal;
+  src: url('./fonts/WorkSans/WorkSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: Work Sans;
+  font-weight: 500;
+  font-style: normal;
+  src: url('./fonts/WorkSans/WorkSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: Work Sans;
+  font-weight: 700;
+  font-style: normal;
+  src: url('./fonts/WorkSans/WorkSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: normal;
+  src: url('./fonts/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  font-style: normal;
+  src: url('./fonts/Roboto/Roboto-Medium.ttf');
+}
+
