@@ -3,7 +3,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import './Carousel.css'
 
-import {StyledWrapper, StyledFordSVG, StyledHondaSVG, StyledInfinitiSVG, StyledKiaSVG, StyledMazdaSVG,StyledRenaultSVG,StyledVolvoSVG } from './CarouselCar.styled.jsx';
+import {StyledWrapper, StyledFordSVG, StyledHondaSVG, StyledInfinitiSVG, StyledKiaSVG, StyledMazdaSVG,StyledRenaultSVG,StyledVolvoSVG} from './CarouselCar.styled.jsx';
 
 export const CarouselCar =() => {
   
@@ -16,6 +16,8 @@ export const CarouselCar =() => {
     perMove: 1,
     omitEnd: false,
     autoplay: true,
+    pagination: false,
+    type: 'loop',
 } }
 >
   <SplideSlide className="container">
@@ -102,6 +104,10 @@ export const CarouselCar =() => {
   Volvo
    </StyledWrapper>
   </SplideSlide>
+   {/* <div className="splide__arrows">
+    <button className="splide__arrow splide__arrow--prev"><StyledPrev/></button>
+    <button className="splide__arrow splide__arrow--next"><StyledNext/></button>
+  </div> */}
 
 </Splide>
 

@@ -16,14 +16,14 @@ export const FooterWrapper = styled.div`
 
   .footer_item{
     color: #F1F1F1;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 400;
       }
 
   .footer-contact_title{
     color: #F1F1F1;
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
   }
@@ -44,17 +44,20 @@ export const FooterWrapper = styled.div`
   }
 
   .footer-contact_link{
+    font-family: 'Roboto', sans-serif;
     color:  #F1F1F1;
+    text-decoration: underline;
+
   }
 
   .footer-contact_link:hover{
     color: #0141BD;
-    text-decoration: underline;
+    
   }
 
   .footer-contact_link:active{
     color: #00308D;
-    text-decoration: underline;
+   
   }
 
 `;

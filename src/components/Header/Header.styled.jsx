@@ -15,8 +15,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const Logo = styled.div`
- 
-  
+   
 `;
 
 export const Navigation = styled.nav`
@@ -32,7 +31,7 @@ export const Navigation = styled.nav`
 `;
 export const StyledLink = styled(Link)`
     color: #fff;
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-size: 20px;
     font-weight: 700;
 
@@ -41,16 +40,6 @@ export const StyledLink = styled(Link)`
    
   }
 `;
-
-// export const StyledImage = styled.img`
-//   width: 38px;
-//   height: 38px;
-  
-//   &:hover {
-//     fill: #9747FF;
-//     }
-// `;
-
 
 export const User = styled.div`
   display: flex;
@@ -89,6 +78,7 @@ export const ButtonSale= styled.button`
     height: 56px;
     padding: 14px 24px;
     align-items: center;
+    justify-content: center;
     gap: 4px;
 
     background: linear-gradient(144deg, #0040BD 19.1%, #19015B 78.89%);
@@ -117,7 +107,7 @@ export const StyledAddSVG = styled(AddSVG)`
 
 export const ButtonText = styled.div`
     color: #FFF;
-    font-family: Work Sans;
+    font-family:  'Work Sans', sans-serif;
     font-size: 22px;
     font-weight: 500;
     

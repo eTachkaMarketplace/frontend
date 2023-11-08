@@ -1,15 +1,14 @@
 
 .splide__arrow--prev {
-    left: -1em ;
+    left: -40px ;
   }
 
   .splide__arrow--next {
-    right: -1em ;
+    right: -40px ;
   }
   
 .splide-container{
-  padding-top: 30px;
-  padding-bottom: 30px;
+  margin-top: 80px;
 }
 
 .container{
@@ -19,3 +18,9 @@ justify-content: space-between;
 align-items: center;
 
 }
+
+.container:hover{
+  fill: blue;
+  color: blue;
+ 
+  }
