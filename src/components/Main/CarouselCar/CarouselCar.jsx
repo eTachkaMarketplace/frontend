@@ -16,6 +16,8 @@ export const CarouselCar =() => {
     perMove: 1,
     omitEnd: false,
     autoplay: true,
+    pagination: false,
+    type: 'loop',
 } }
 >
   <SplideSlide className="container">

@@ -18,7 +18,7 @@ import { ReactComponent as VolvoSVG } from '../../../images/SliderCar/Volvo.svg'
 // `;
 
 export const StyledWrapper = styled.p`
-  color:  #141414;
+  color:  inherit;
   font-family: Inter;
   font-size: 18px;
   /* padding-left: 15px; */
@@ -33,56 +33,56 @@ export const StyledWrapper = styled.p`
 export const StyledFordSVG = styled(FordSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledHondaSVG = styled(HondaSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledInfinitiSVG = styled(InfinitiSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledKiaSVG = styled(KiaSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledMazdaSVG = styled(MazdaSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledRenaultSVG = styled(RenaultSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
 export const StyledVolvoSVG = styled(VolvoSVG)`
   transition: fill 0.3s;
 
-  &:hover, &:focus {
+  /* &:hover, &:focus {
     fill: blue;
-  }
+  } */
 `;
 
