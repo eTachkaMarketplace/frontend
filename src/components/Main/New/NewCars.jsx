@@ -82,8 +82,9 @@ const NewCars = () => {
       </SectionCar>
       <div className="paginDiv">
         <button
-          className={`pagination-button ${page === 1 ? 'hidden' : ''}`}
+          className={`pagination-button-arrow `}
           onClick={prevPage}
+          disabled={page === 1}
         >
           {leftArrow}
         </button>
@@ -97,8 +98,9 @@ const NewCars = () => {
           </button>
         ))}
         <button
-          className={`pagination-button ${page === totalPages ? 'hidden' : ''}`}
+          className={`pagination-button-arrow`}
           onClick={nextPage}
+          disabled={page === totalPages}
         >
           {rightArrow}
         </button>
