@@ -9,62 +9,47 @@ import {
 export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
-  padding: 40px 24px;
+  width: 454px;
 
   background-color: white;
   border-radius: 8px;
+  margin-top: 24px;
 
-  @media screen and (max-width: 345px) {
-    margin-left: 5px;
-    margin-right: 5px;
+  .remPassBtn {
+    color: #0d0c0c;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #000;
+    margin-bottom: 64px;
+    width: 127px;
   }
-
-  @media screen and (min-width: 768px) {
-    padding: 40px;
+  .checkLab {
+    color: rgba(13, 12, 12, 0.7);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 357px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .marg24 {
+    margin-bottom: 24px;
+  }
+  .marg8 {
+    margin-bottom: 8px;
   }
 `;
 
-export const Title = styled.p`
-  margin-top: 0;
-  margin-bottom: 32px;
-
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.33;
-
-  color: black;
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
-    font-size: 24px;
-    line-height: 1;
-  }
-`;
 
 export const Label = styled.label`
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.25;
-
-  color: var(--primary-text-color);
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.21;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 24px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 18px;
-    }
-  }
-
   &.is-valid {
     color: green;
   }
@@ -78,8 +63,8 @@ export const Label = styled.label`
     padding: 0;
     margin-top: 8px;
     margin-left: 18px;
-    color: green}
-  
+    color: green;
+  }
 
   & .error-success {
     position: absolute;
@@ -92,35 +77,28 @@ export const Label = styled.label`
 export const Field = styled(FormikField)`
   box-sizing: border-box;
   width: 100%;
-  padding: 14px;
-
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.29px;
-
-  color: black;
+  padding: 16px;
   outline: none;
-  border: 1px solid rgba(17, 17, 17, 0.15);
+  color: rgba(13, 12, 12, 0.5);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   border-radius: 8px;
+  border: 1px solid rgba(13, 12, 12, 0.3);
+
+  background: #fff;
 
   transition: var(--transition);
 
-  @media screen and (min-width: 768px) {
-    padding: 18px;
-    font-size: 16px;
-    line-height: 1.12;
-  }
-
   &::placeholder {
-    font-family: Inter;
+    font-family: "Roboto",sans-serif;
     font-size: 14px;
-    line-height: 1.29;
-    color: rgba(17, 17, 17, 0.15);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-    @media screen and (min-width: 768px) {
-      font-size: 16px;
-      line-height: 1.12;
-    }
   }
 
   &:hover,
@@ -147,44 +125,33 @@ export const Input = styled.div`
   position: relative;
   margin-top: 8px;
   transition: var(--transition);
+  
 `;
 
 export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  color: #fff;
 
-  font-family: Inter;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.28px;
-  letter-spacing: -0.02em;
-
-  border: none;
-  border-radius: 16px;
-  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
-
-  color: white;
-  background-color: #1e86ff;
-  cursor: pointer;
-  transition: var(--transition);
-
-  @media screen and (min-width: 768px) {
-    font-size: 18px;
-    line-height: 1.33;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 454px;
+  height: 56px;
+  padding: 14px 24px;
+  gap: 4px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   &:hover,
   &:focus {
-    background-color: blue;
-    transition: var(--transition);
-    transform: translateY(-2px);
-    box-shadow: black;
+    background: linear-gradient(144deg, #19015b 19.1%, #0040bd 78.89%);
   }
 `;
 
@@ -201,4 +168,50 @@ export const HidePassword = styled.span`
   right: 12px;
   top: 18px;
   cursor: pointer;
+`;
+
+export const StrDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 454px;
+  justify-content: space-between;
+  .strange {
+    background: rgba(13, 12, 12, 0.3);
+    width: 164px;
+    height: 1px;
+  }
+  .and {
+    color: #0d0c0c;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+`;
+
+export const GBtn = styled.button`
+  height: 56px;
+  padding: 14px 24px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 2px solid #0040bd;
+  background-color: transparent;
+  margin-top: 24px;
+  .Gdiv {
+    gap: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Gtext {
+    color: #0d0c0c;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 `;
