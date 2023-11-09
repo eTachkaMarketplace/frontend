@@ -33,4 +33,8 @@ export const PagDiv = styled.div`
   .hidden {
     display: none;
   }
+  .pagination-button-arrow {
+    display: flex;
+    border: 0;
+    background-color: transparent;  }
 `;

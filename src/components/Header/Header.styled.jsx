@@ -52,6 +52,10 @@ export const UserIcon = styled.div`
 display: flex;
 align-items: center;
 gap: 8px; 
+.userBtn{
+  border: 0;
+  background-color: transparent;
+}
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
