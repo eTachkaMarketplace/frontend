@@ -1,12 +1,13 @@
 import React from 'react';
 import { ReactComponent as LogoSVG } from '../../images/Header/LogoSVG.svg';
 
-import {HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
+import {Container,HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
 import { NavLink } from 'react-router-dom';
 
 
 const Header = () => {
     return (
+      <Container>
       <HeaderWrapper>
         <NavLink to={'/autorithation'}>
         <LogoSVG />
@@ -40,6 +41,7 @@ const Header = () => {
           </UserIcon>
         </User>
       </HeaderWrapper>
+      </Container>
     );
 };
 

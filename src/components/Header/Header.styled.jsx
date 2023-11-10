@@ -4,12 +4,18 @@ import { ReactComponent as UserSVG } from '../../images/Header/UserSVG.svg';
 import { ReactComponent as HeartSVG } from '../../images/Header/HeartSVG.svg';
 import { ReactComponent as AddSVG } from '../../images/Header/AddSVG.svg';
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  max-width: 1440px;
   padding: 20px 80px;
+  margin-left: auto;
+  margin-right: auto;
+  
+`;
+
+export const Container = styled.header`
   border-bottom: 1px solid #D0D0D0;
   
 `;

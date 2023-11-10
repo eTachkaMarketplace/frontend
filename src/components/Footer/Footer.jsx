@@ -1,9 +1,10 @@
 import React from 'react';
-import { FooterWrapper, FooterContainer,ListContainer, StyledYoutubeSVG, StyledInstagramSVG, StyledFacebookSVG } from './Footer.styled';
+import {Container, FooterWrapper, FooterContainer,ListContainer, StyledYoutubeSVG, StyledInstagramSVG, StyledFacebookSVG } from './Footer.styled';
 import { ReactComponent as LogoSVG } from '../../images/Header/LogoSVG.svg';
 
 const Footer = () => {
   return (
+    <Container>
         <FooterWrapper>
           <LogoSVG/>
           <FooterContainer>
@@ -37,6 +38,7 @@ const Footer = () => {
             </ul>
           </FooterContainer>
         </FooterWrapper>
+        </Container>
   );
 };
 
