@@ -7,7 +7,7 @@ export const HeroSection = styled.section`
   background-image: url('${HeroBgImg}'); 
   background-size: cover;
   background-position: center;
-  position: relative;
 
-  
+  padding: 40px 80px 0 80px;
+   
 `;
