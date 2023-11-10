@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://marketplace-fi3l.onrender.com/';
 
 
 const setToken = token => {
@@ -17,7 +17,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/auth/register', credentials);
+      const response = await axios.post('api/auth/signup', credentials);
       setToken(response.data.token);
       Notify.success(`Welcome!!!`);
       return response.data;
