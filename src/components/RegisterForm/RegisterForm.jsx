@@ -23,8 +23,8 @@ import { Box1, Box2, GogleSVG } from 'components/LoginForm/chackBox';
 
 const userSchema = Yup.object().shape({
   name: Yup.string()
-    .required('Name is required')
-    .matches(/^\S[\S\s]{0,28}\S$/, 'Name must be between 3 and 30 characters')
+    .required("Введіть ім'я")
+    .matches(/^\S[\S\s]{0,28}\S$/, "Ім'я повино бути від 3 до 30 Симловлів")
     .test(
       'name-validation',
       'Name must be at least 3 characters long',
@@ -33,11 +33,11 @@ const userSchema = Yup.object().shape({
       }
     ),
   email: Yup.string()
-    .email('This is an ERROR email')
-    .matches(/^[a-zA-Z0-9@.]+$/, 'Email must contain only Latin characters')
+    .email('Введіть Email')
+    .matches(/^[a-zA-Z0-9@.]+$/, 'Email повинен містити латинські літери та цифри')
     .required('Email is required'),
   password: Yup.string()
-    .required('Password is required')
+    .required('Введіть пароль')
     .min(6, 'Password must be at least 6 characters long')
     .matches(/^\S*$/, 'Password must not contain spaces'),
   acceptTerms: Yup.boolean().oneOf(
@@ -99,14 +99,11 @@ export const RegisterForm = () => {
                   className={isValid('email')}
                   type="email"
                   name="email"
-                  placeholder="Електрону пошту або телефон"
+                  placeholder="Електрону пошту "
                   title="Email must be in the format username@domain.com"
                   value={values.email}
                 />
               </Input>
-              {isValid('email') === 'is-valid' && (
-                <p>This is a CORRECT email</p>
-              )}
               <ErrorMessage name="email" component="div" />
             </Label>
             <Label className={`${isValid('password')} marg8`}>
@@ -122,9 +119,6 @@ export const RegisterForm = () => {
                   {showPassword ? <ShowIcon /> : <HideIcon />}
                 </HidePassword>
               </PasswordInput>
-              {isValid('password') === 'is-valid' && (
-                <p>This is a CORRECT password</p>
-              )}
               <ErrorMessage name="password" component="div" />
             </Label>
             <label className="checkLab">
