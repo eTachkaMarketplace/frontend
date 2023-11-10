@@ -3,9 +3,18 @@ import { ReactComponent as YoutubeSVG } from '../../images/Footer/youtube.svg';
 import { ReactComponent as InstagramSVG } from '../../images/Footer/instagram.svg';
 import { ReactComponent as FacebookSVG } from '../../images/Footer/facebook.svg';
 
+
+export const Container = styled.footer`
+    background: #141414;
+
+  
+`;
+
 export const FooterWrapper = styled.div`
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 40px 80px 100px 80px;
-  background: #141414;
 
   .footer_list{
     display: flex;
