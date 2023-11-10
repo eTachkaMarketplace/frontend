@@ -2,54 +2,54 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.form`
   display: flex;
-  width: 518px;
-  height: 595px;
-  padding: 32px;
+  width: 520px;
+  /* height: 590px; */
+  padding: 30px;
   box-sizing: border-box;
 
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
+  gap: 25px;
   border-radius: 16px;
   background: rgba(20, 20, 20, 0.70);
 `;
 
 export const FormTitle = styled.h2`
   color: #FFF;
-  font-family: Work Sans;
+  font-family: 'Work Sans', sans-serif;
   font-size: 24px;
   font-weight: 500;
-`;
+  padding-bottom: 5px;
+  `;
 
 export const InputContainer = styled.div`
 width: 100%;
 `;
 
-export const InputLabel = styled.label`
-  color: #FFF;
-  font-family: Work Sans;
-  font-size: 16px;
-  font-weight: 500;
-`;
+// export const InputLabel = styled.label`
+//   color: #B9B9B9;
+//   font-family:'Roboto', sans-serif;
+//   font-size: 16px;
+//   font-weight: 500;
+// `;
 
 export const InputSelect = styled.select`
   width: 100%;
-  height: 40px;
+  height: 56px;
   padding: 8px;
-  border: 1px solid #FFF;
-  background: transparent;
-  color: #FFF;
-  font-family: Work Sans;
-  font-size: 16px;
+  /* border: 1px solid #FFF; */
+  color: #B9B9B9;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
   border-radius: 4px;
+  background: rgba(255, 255, 255, 0.13);
+  border: none;
 `;
 
 export const ExtendedSearchLink = styled.a`
   color: #FFF;
   text-decoration: underline;
   cursor: pointer;
-  font-family: Work Sans;
+  font-family:'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 500;
 `;
@@ -81,19 +81,20 @@ export const DivContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-top: 5px;
 `;
 
-export const InputPlaceholder = styled.input`
-  width: 100%;
-  height: 40px;
-  padding: 8px;
-  border: 1px solid #FFF;
-  background: transparent;
-  color: #FFF;
-  font-family: Work Sans;
-  font-size: 16px;
-  border-radius: 4px;
-  &::placeholder {
-    color: #B9B9B9;
-  }
-`;
+// export const InputPlaceholder = styled.input`
+//   width: 100%;
+//   height: 40px;
+//   padding: 8px;
+//   /* border: 1px solid #FFF; */
+//   background: transparent;
+//   color :#B9B9B9;
+//   font-family: 'Roboto', sans-serif;
+//   font-size: 16px;
+//   border-radius: 4px;
+//   &::placeholder {
+//     color: #B9B9B9;
+//   }
+// `;

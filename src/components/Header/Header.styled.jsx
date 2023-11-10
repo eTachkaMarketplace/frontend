@@ -10,8 +10,8 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   
   padding: 20px 80px;
+  border-bottom: 1px solid #D0D0D0;
   
-  background-color: rgba(0.5, 0.5, 0.5, 0.5);
 `;
 
 export const Logo = styled.div`
@@ -30,10 +30,10 @@ export const Navigation = styled.nav`
 }
 `;
 export const StyledLink = styled(Link)`
-    color: #fff;
-    font-family: 'Work Sans', sans-serif;
+    color: #0D0C0C;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
 
   &:hover {
     color: #0141BD;
@@ -59,14 +59,14 @@ gap: 8px;
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
-  fill: #fff;
+  fill: #000;
   &:hover {
     fill: #0141BD;
     }
 `;
 
 export const StyledHeartSVG = styled(HeartSVG)`
-  fill: #fff;
+  fill: #000;
   &:hover {
     fill: #0141BD;
     }

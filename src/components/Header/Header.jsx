@@ -8,8 +8,10 @@ import { NavLink } from 'react-router-dom';
 const Header = () => {
     return (
       <HeaderWrapper>
+        <NavLink to={'/autorithation'}>
         <LogoSVG />
-        <Navigation>
+            </NavLink>
+          <Navigation>
           <ul>
             <li>
               <StyledLink to="/">Нові</StyledLink>
