@@ -91,7 +91,7 @@ export const ButtonSale= styled.button`
     justify-content: center;
     gap: 4px;
 
-    background: linear-gradient(144deg, #0040BD 19.1%, #19015B 78.89%);
+    background: linear-gradient(180deg, #0040BD 19.1%, #19015B 78.89%);
     color: #fff;
     border: none;
     border-radius: 8px;
