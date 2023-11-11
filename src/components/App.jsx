@@ -13,11 +13,11 @@ import Main from './Main/Main';
 import Authentication from 'pages/Autorithation/Authentication';
 
 export function App() {
-  const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch, token]);
+  // const dispatch = useDispatch();
+  // const token = useSelector(selectToken);
+  // useEffect(() => {
+  //   dispatch(refresh());
+  // }, [dispatch, token]);
 
   return (
     <Suspense fallback={<Spinner />}>
@@ -28,7 +28,9 @@ export function App() {
           <Route path="/" element={<Main />} />
           <Route path="/autorithation" element={<Authentication />} />
         </Route>
-        <Route path="/" element={<PrivateRoute />}></Route>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/" element={<Main />} />
+        </Route>
       </Routes>
       <Footer />
     </Suspense>

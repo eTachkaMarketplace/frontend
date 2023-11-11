@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   user: {},
-  token: '',
+  refToken: '',
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -22,7 +22,6 @@ export const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
         state.token = payload.token;
-        state.user = payload.user;
         state.isLoggedIn = true;
         state.isLoading = false;
         state.error = null;
@@ -36,8 +35,7 @@ export const authSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
-        state.user = payload.user;
+        state.refToken = payload.jwtRefreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
         state.error = null;
@@ -48,7 +46,7 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.error = payload.error;
+        state.error = payload;
       })
 
      .addCase(logout.fulfilled, state => {

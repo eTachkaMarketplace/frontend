@@ -17,16 +17,16 @@ export const Form = styled(FormikForm)`
 
   .remPassBtn {
     color: #0d0c0c;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #000;
     margin-bottom: 64px;
-    width: 127px;
+    width: 119px;
   }
   .checkLab {
     color: rgba(13, 12, 12, 0.7);
@@ -45,6 +45,25 @@ export const Form = styled(FormikForm)`
   }
   .marg8 {
     margin-bottom: 8px;
+  }
+  .errorMes {
+    color: red;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 8px;
+  }
+  .errorSVG {
+    position: absolute;
+    right: 48px;
+    top: 16px;
+  }
+  .errorSVGemail {
+    position: absolute;
+    right: 16px;
+    top: 16px;
   }
 `;
 
@@ -78,6 +97,7 @@ export const Field = styled(FormikField)`
   box-sizing: border-box;
   width: 100%;
   padding: 16px;
+  height: 56px;
   outline: none;
   color: rgba(13, 12, 12, 0.5);
   font-family: 'Roboto', sans-serif;
@@ -132,7 +152,6 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 16px;
   margin-bottom: 24px;
   color: #fff;
 
@@ -151,7 +170,7 @@ export const Button = styled.button`
   background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   &:hover,
   &:focus {
-    background: linear-gradient(144deg, #19015b 19.1%, #0040bd 78.89%);
+    background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
   }
 `;
 
@@ -162,11 +181,13 @@ export const ErrorMessage = styled(FormikErrorMessage)`
   color: red;
 `;
 
-export const HidePassword = styled.span`
+export const HidePassword = styled.button`
+border: 0;
+background-color: transparent;
   color: black;
   position: absolute;
-  right: 12px;
-  top: 18px;
+  right: 16px;
+  top: 16px;
   cursor: pointer;
 `;
 

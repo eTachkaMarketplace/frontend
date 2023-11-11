@@ -9,6 +9,6 @@ export const PublicRoute = () => {
   return !IsLoggedIn ? (
     <Outlet />
   ) : (
-    <Navigate to={location?.state?.from ?? '/calendar'} replace />
+    <Navigate to={location?.state?.from ?? '/'} replace />
   );
 };

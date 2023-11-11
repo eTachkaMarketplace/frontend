@@ -1,10 +1,7 @@
-import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { ReactComponent as HideIcon } from '../../images/eye-slash.svg';
-import { ReactComponent as ShowIcon } from '../../images/eye.svg';
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 
 import {
@@ -19,27 +16,14 @@ import {
   StrDiv,
   GBtn,
 } from './LoginForm.styled';
-import { Box1, Box2, GogleSVG } from './chackBox';
-
-const userSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('This is an ERROR email')
-    .matches(/^[a-zA-Z0-9@.]+$/, 'Email must contain only Latin characters')
-    .required('Email is required'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters long')
-    .matches(/^\S*$/, 'Password must not contain spaces'),
-  acceptTerms: Yup.boolean().oneOf(
-    [true],
-    'You must accept the terms and conditions'
-  ),
-});
+import { ErrorSVG, GogleSVG, ViewSVG } from './chackBox';
+import { selectError } from 'redux/auth/selectors';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [refError, setRefError] = useState(false);
+  const requestError = useSelector(selectError);
   const handleSubmit = e => {
     e.preventDefault();
     const {
@@ -55,81 +39,65 @@ export const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
+  useEffect(() => {
+    if (requestError) setRefError(true);
+  }, [requestError]);
+
   return (
-    <Formik
-      initialValues={{ email: '', password: '', acceptTerms: false }}
-      validationSchema={userSchema}
-    >
+    <Formik initialValues={{ email: '', password: '' }}>
       {({ values, errors, touched, setFieldValue }) => {
-        const isValid = field =>
-          touched[field] && errors[field]
-            ? 'is-invalid'
-            : touched[field]
-            ? 'is-valid'
-            : '';
+        // const isValid = field =>
+        //   touched[field] && errors[field]
+        //     ? 'is-invalid'
+        //     : touched[field]
+        //     ? 'is-valid'
+        //     : '';
 
         return (
           <>
             <Form onSubmit={handleSubmit}>
-              <Label className={`${isValid('email')} marg24`}>
+              {/* <Label className={`${isValid('email')} marg24`}> */}
+              <Label className={` marg24`}>
                 <Input>
                   <Field
-                    className={isValid('email')}
+                    className={refError ? 'is-invalid' : ''}
                     type="email"
                     name="email"
-                    placeholder="Електрону пошту або телефон"
+                    placeholder="Електрону пошту"
                     value={values.email}
                   />
+                  <span className="errorSVGemail">
+                    {refError ? <ErrorSVG /> : null}
+                  </span>
                 </Input>
-                {isValid('email') === 'is-valid' && (
-                  <p>This is a CORRECT email</p>
-                )}
                 <ErrorMessage name="email" component="div" />
               </Label>
-              <Label className={`${isValid('password')} marg8`}>
+              <Label className={` marg8`}>
+                {/* <Label className={`${isValid('password')} marg8`}> */}
                 <PasswordInput>
                   <Field
                     type={showPassword ? 'text' : 'password'}
-                    className={isValid('password')}
+                    className={refError ? 'is-invalid' : ''}
+                    // className={isValid('password')}
                     name="password"
                     placeholder="Пароль"
                     value={values.password}
                   />
+                  <span className="errorSVG">
+                    {refError ? <ErrorSVG /> : null}
+                  </span>
                   <HidePassword type="button" onClick={handleShowPassword}>
-                    {showPassword ? <ShowIcon /> : <HideIcon />}
+                    <ViewSVG />
                   </HidePassword>
                 </PasswordInput>
-                {isValid('password') === 'is-valid' && (
-                  <p>This is a CORRECT password</p>
-                )}
                 <ErrorMessage name="password" component="div" />
               </Label>
+              {refError ? (
+                <p className="errorMes">Недійсна пошта або пароль</p>
+              ) : null}
               <button className="remPassBtn" type="button">
                 Забули пароль?
               </button>
-              <label className="checkLab">
-                <input
-                  type="checkbox"
-                  name="acceptTerms"
-                  value={values.acceptTerms}
-                  checked={values.acceptTerms}
-                  onChange={() =>
-                    setFieldValue('acceptTerms', !values.acceptTerms)
-                  }
-                  style={{ display: 'none' }}
-                />
-                <span
-                  className={`custom-checkbox ${
-                    values.acceptTerms ? 'checked' : ''
-                  }`}
-                  onClick={() =>
-                    setFieldValue('acceptTerms', !values.acceptTerms)
-                  }
-                >
-                  {values.acceptTerms ? <Box2 /> : <Box1 />}
-                </span>
-                Я приймаю умови політики конфіденційності та умови використання
-              </label>
               <Button type="submit">Увійти</Button>
               <StrDiv>
                 <p className="strange"></p>
@@ -139,7 +107,7 @@ export const LoginForm = () => {
               <GBtn type="button">
                 <div className="Gdiv">
                   <GogleSVG />
-                  <span className='Gtext'>Продовжити через Google</span>
+                  <span className="Gtext">Продовжити через Google</span>
                 </div>
               </GBtn>
             </Form>
@@ -149,3 +117,19 @@ export const LoginForm = () => {
     </Formik>
   );
 };
+
+// import * as Yup from 'yup';
+// const userSchema = Yup.object().shape({
+//   email: Yup.string()
+//     .email('This is an ERROR email')
+//     .matches(/^[a-zA-Z0-9@.]+$/, 'Email must contain only Latin characters')
+//     .required('Email is required'),
+//   password: Yup.string()
+//     .required('Password is required')
+//     .min(6, 'Password must be at least 6 characters long')
+//     .matches(/^\S*$/, 'Password must not contain spaces'),
+//   acceptTerms: Yup.boolean().oneOf(
+//     [true],
+//     'You must accept the terms and conditions'
+//   ),
+// });
