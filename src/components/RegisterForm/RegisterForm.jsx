@@ -104,6 +104,9 @@ export const RegisterForm = () => {
                   value={values.email}
                 />
               </Input>
+              {isValid('email') === 'is-valid' && (
+                <p>This is a CORRECT email</p>
+              )}
               <ErrorMessage name="email" component="div" />
             </Label>
             <Label className={`${isValid('password')} marg8`}>
@@ -119,17 +122,17 @@ export const RegisterForm = () => {
                   {showPassword ? <ShowIcon /> : <HideIcon />}
                 </HidePassword>
               </PasswordInput>
+              {isValid('password') === 'is-valid' && (
+                <p>This is a CORRECT password</p>
+              )}
               <ErrorMessage name="password" component="div" />
             </Label>
             <label className="checkLab">
               <input
                 type="checkbox"
                 name="acceptTerms"
-                value={values.acceptTerms}
                 checked={values.acceptTerms}
-                onChange={() =>
-                  setFieldValue('acceptTerms', !values.acceptTerms)
-                }
+                onChange={e => setFieldValue('acceptTerms', e.target.checked)}
                 style={{ display: 'none' }}
               />
               <span

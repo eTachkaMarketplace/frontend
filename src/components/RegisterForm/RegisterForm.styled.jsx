@@ -154,10 +154,10 @@ export const Button = styled.button`
   gap: 4px;
   align-self: stretch;
   border-radius: 8px;
-  background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
+  background: linear-gradient(144deg, #0040bd 19.34%, #19015b 80.66%);
   &:hover,
   &:focus {
-    background: linear-gradient(144deg, #19015b 19.1%, #0040bd 78.89%);
+    background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
   }
 `;
 

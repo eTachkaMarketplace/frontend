@@ -9,7 +9,7 @@ const Header = () => {
     return (
       <Container>
       <HeaderWrapper>
-        <NavLink to={'/autorithation'}>
+        <NavLink to={'/'}>
         <LogoSVG />
             </NavLink>
           <Navigation>

@@ -2,25 +2,27 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://marketplace-fi3l.onrender.com/';
+export const instance = axios.create({
+  baseURL: 'https://marketplace-fi3l.onrender.com',
+});
 
 
-const setToken = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+export const setToken = token => {
+  instance.defaults.headers['Authorization'] = `Bearer ${token}`;
 };
 
-const clearToken = () => {
-  axios.defaults.headers.common.Authorization = '';
+export const clearToken = () => {
+  instance.defaults.headers['Authorization'] = '';
 };
 
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/auth/signup', credentials);
-      setToken(response.data.token);
+      const response = await instance.post('api/auth/signup', credentials);
       Notify.success(`Welcome!!!`);
       return response.data;
+      
     } catch (error) {
       Notify.failure(`This email is already in use`);
       return rejectWithValue(error.message);
@@ -32,8 +34,10 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('api/auth/login', credentials);
-      setToken(response.data.token);
+      const response = await instance.post('api/auth/login', credentials);
+      setToken(response.data.jwtAccessToken);
+      console.log(instance.defaults);
+      console.log(response.data);
       Notify.success(`Welcome back!!!`);
       return response.data;
     } catch (error) {
@@ -48,7 +52,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('api/auth/logout');
+      await instance.post('api/auth/logout');
       clearToken();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,7 +69,7 @@ export const refresh = createAsyncThunk(
     }
     try {
       setToken(token);
-      const { data } = await axios.get('api/auth/current');
+      const { data } = await instance.get('api/auth/current');
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -77,7 +81,7 @@ export const updateUser = createAsyncThunk(
   'auth/update',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('api/auth/update', credentials);
+      const { data } = await instance.patch('api/auth/update', credentials);
       Notify.success(`Your profile has been updated`);
       return data;
     } catch (error) {
