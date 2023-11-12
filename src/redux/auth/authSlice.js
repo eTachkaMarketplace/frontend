@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   login,
   register,
-  logout,
-  refresh,
-  updateUser,
+  // logout,
+  // refresh,
+  // updateUser,
   } from './operations';
 
 const initialState = {
