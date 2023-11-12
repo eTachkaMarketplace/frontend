@@ -49,45 +49,45 @@ export const authSlice = createSlice({
         state.error = payload;
       })
 
-     .addCase(logout.fulfilled, state => {
-        state.user = {};
-        state.token = '';
-        state.isLoggedIn = false;
-        state.isLoading = false;
-      })
-      .addCase(logout.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(logout.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.isLoading = false;
-      })
-      .addCase(refresh.fulfilled, (state, { payload }) => {
-        state.isLoggedIn = true;
-        state.isLoading = false;
-        state.user = payload;
-      })
-      .addCase(refresh.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(refresh.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.isLoggedIn = false;
-        state.error = payload;
-        state.token = null;
-      })
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.isLoading = false;
-      })
-      .addCase(updateUser.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(updateUser.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
+    //  .addCase(logout.fulfilled, state => {
+    //     state.user = {};
+    //     state.token = '';
+    //     state.isLoggedIn = false;
+    //     state.isLoading = false;
+    //   })
+    //   .addCase(logout.pending, state => {
+    //     state.isLoading = true;
+    //   })
+    //   .addCase(logout.rejected, (state, { payload }) => {
+    //     state.error = payload;
+    //     state.isLoading = false;
+    //   })
+    //   .addCase(refresh.fulfilled, (state, { payload }) => {
+    //     state.isLoggedIn = true;
+    //     state.isLoading = false;
+    //     state.user = payload;
+    //   })
+    //   .addCase(refresh.pending, state => {
+    //     state.isLoading = true;
+    //   })
+    //   .addCase(refresh.rejected, (state, { payload }) => {
+    //     state.isLoading = false;
+    //     state.isLoggedIn = false;
+    //     state.error = payload;
+    //     state.token = null;
+    //   })
+    //   .addCase(updateUser.fulfilled, (state, { payload }) => {
+    //     state.user = payload;
+    //     state.isLoading = false;
+    //   })
+    //   .addCase(updateUser.pending, state => {
+    //     state.isLoading = true;
+    //     state.error = null;
+    //   })
+    //   .addCase(updateUser.rejected, (state, { payload }) => {
+    //     state.isLoading = false;
+    //     state.error = payload;
+    //   })
    },
   reducers: {
     logout: state => {

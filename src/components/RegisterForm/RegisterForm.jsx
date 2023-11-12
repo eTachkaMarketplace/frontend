@@ -34,12 +34,18 @@ const userSchema = Yup.object().shape({
     ),
   email: Yup.string()
     .email('Введіть Email')
-    .matches(/^[a-zA-Z0-9@.]+$/, 'Email повинен містити латинські літери та цифри')
+    .matches(
+      /^[a-zA-Z0-9@.]+$/,
+      'Email повинен містити латинські літери та цифри'
+    )
     .required('Email is required'),
   password: Yup.string()
     .required('Введіть пароль')
-    .min(6, 'Password must be at least 6 characters long')
-    .matches(/^\S*$/, 'Password must not contain spaces'),
+    .min(5, 'Password must be at least 6 characters long')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*[а-яА-Я]).{5,}$/,
+      'Password must not contain spaces'
+    ),
   acceptTerms: Yup.boolean().oneOf(
     [true],
     'You must accept the terms and conditions'

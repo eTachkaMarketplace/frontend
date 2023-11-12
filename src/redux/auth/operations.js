@@ -48,44 +48,44 @@ export const login = createAsyncThunk(
 );
 
 
-export const logout = createAsyncThunk(
-  'auth/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      await instance.post('api/auth/logout');
-      clearToken();
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const logout = createAsyncThunk(
+//   'auth/logout',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       await instance.post('api/auth/logout');
+//       clearToken();
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-export const refresh = createAsyncThunk(
-  'auth/refresh/fetchCurrentUser',
-  async (_, { getState, rejectWithValue }) => {
-    const { token } = getState().auth;
-    if (!token) {
-      return rejectWithValue('Oooops... Cannot refresh user');
-    }
-    try {
-      setToken(token);
-      const { data } = await instance.get('api/auth/current');
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const refresh = createAsyncThunk(
+//   'auth/refresh/fetchCurrentUser',
+//   async (_, { getState, rejectWithValue }) => {
+//     const { token } = getState().auth;
+//     if (!token) {
+//       return rejectWithValue('Oooops... Cannot refresh user');
+//     }
+//     try {
+//       setToken(token);
+//       const { data } = await instance.get('api/auth/current');
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-export const updateUser = createAsyncThunk(
-  'auth/update',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await instance.patch('api/auth/update', credentials);
-      Notify.success(`Your profile has been updated`);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const updateUser = createAsyncThunk(
+//   'auth/update',
+//   async (credentials, { rejectWithValue }) => {
+//     try {
+//       const { data } = await instance.patch('api/auth/update', credentials);
+//       Notify.success(`Your profile has been updated`);
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
