@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/operations';
@@ -30,7 +29,6 @@ export const LoginForm = () => {
       email: { value: email },
       password: { value: password },
     } = e.currentTarget;
-
     dispatch(login({ email, password }));
     e.currentTarget.reset();
   };
@@ -44,19 +42,22 @@ export const LoginForm = () => {
   }, [requestError]);
 
   return (
-    <Formik initialValues={{ email: '', password: '' }}>
-      {({ values, errors, touched, setFieldValue }) => {
-        // const isValid = field =>
-        //   touched[field] && errors[field]
-        //     ? 'is-invalid'
-        //     : touched[field]
-        //     ? 'is-valid'
-        //     : '';
-
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validate={values => {
+        const errors = {};
+        if (!values.email || !values.password) {
+          errors.emptyForm = 'Заповніть обидва поля';
+        }
+        console.log(errors.emptyForm);
+        return errors;
+        
+      }}
+    >
+      {({ values, isValid, errors }) => {
         return (
           <>
             <Form onSubmit={handleSubmit}>
-              {/* <Label className={`${isValid('email')} marg24`}> */}
               <Label className={` marg24`}>
                 <Input>
                   <Field
@@ -66,26 +67,31 @@ export const LoginForm = () => {
                     placeholder="Електрону пошту"
                     value={values.email}
                   />
-                  <span className="errorSVGemail">
-                    {refError ? <ErrorSVG /> : null}
-                  </span>
+
+                  {refError ? (
+                    <span className="errorSVGemail">
+                      <ErrorSVG />
+                    </span>
+                  ) : null}
                 </Input>
                 <ErrorMessage name="email" component="div" />
               </Label>
               <Label className={` marg8`}>
-                {/* <Label className={`${isValid('password')} marg8`}> */}
                 <PasswordInput>
                   <Field
                     type={showPassword ? 'text' : 'password'}
                     className={refError ? 'is-invalid' : ''}
-                    // className={isValid('password')}
                     name="password"
                     placeholder="Пароль"
                     value={values.password}
                   />
-                  <span className="errorSVG">
-                    {refError ? <ErrorSVG /> : null}
-                  </span>
+
+                  {refError ? (
+                    <span className="errorSVG">
+                      <ErrorSVG />
+                    </span>
+                  ) : null}
+
                   <HidePassword type="button" onClick={handleShowPassword}>
                     <ViewSVG />
                   </HidePassword>
@@ -95,10 +101,15 @@ export const LoginForm = () => {
               {refError ? (
                 <p className="errorMes">Недійсна пошта або пароль</p>
               ) : null}
+              {errors.emptyForm ? (
+                <p className="errorMes">Заповніть вся поля</p>
+              ) : null}
               <button className="remPassBtn" type="button">
                 Забули пароль?
               </button>
-              <Button type="submit">Увійти</Button>
+              <Button type="submit" disabled={errors.emptyForm}>
+                Увійти
+              </Button>
               <StrDiv>
                 <p className="strange"></p>
                 <p className="and">або</p>

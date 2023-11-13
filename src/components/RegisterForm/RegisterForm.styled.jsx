@@ -30,6 +30,24 @@ export const Form = styled(FormikForm)`
   .marg8 {
     margin-bottom: 8px;
   }
+  .correct {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 0;
+  }
+  .errorSVGemail {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
+  .errorSVGpass {
+    position: absolute;
+    right: 48px;
+    top: 16px;
+  }
 `;
 
 
@@ -83,6 +101,7 @@ export const Label = styled.label`
 export const Field = styled(FormikField)`
   box-sizing: border-box;
   width: 100%;
+  height: 56px;
   padding: 16px;
   outline: none;
   color: rgba(13, 12, 12, 0.5);
@@ -162,7 +181,7 @@ export const Button = styled.button`
 `;
 
 export const ErrorMessage = styled(FormikErrorMessage)`
-  margin-left: 18px;
+  margin-left: 0;
   margin-top: 8px;
   color: red;
 `;
@@ -170,8 +189,8 @@ export const ErrorMessage = styled(FormikErrorMessage)`
 export const HidePassword = styled.span`
   color: black;
   position: absolute;
-  right: 12px;
-  top: 18px;
+  right: 16px;
+  top: 16px;
   cursor: pointer;
 `;
 
