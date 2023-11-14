@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/operations';
+import { PulseLoader } from 'react-spinners';
 
 import {
   Form,
@@ -16,13 +17,14 @@ import {
   GBtn,
 } from './LoginForm.styled';
 import { ErrorSVG, GogleSVG, ViewSVG } from './chackBox';
-import { selectError } from 'redux/auth/selectors';
+import { selectError, selectIsLoading } from 'redux/auth/selectors';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [refError, setRefError] = useState(false);
   const requestError = useSelector(selectError);
+  const loader = useSelector(selectIsLoading);
   const handleSubmit = e => {
     e.preventDefault();
     const {
@@ -107,6 +109,15 @@ export const LoginForm = () => {
               <button className="remPassBtn" type="button">
                 Забули пароль?
               </button>
+              <div className="loader">
+                <PulseLoader
+                  color="#0040bd"
+                  loading={loader}
+                  size={10}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
               <Button type="submit" disabled={errors.emptyForm}>
                 Увійти
               </Button>

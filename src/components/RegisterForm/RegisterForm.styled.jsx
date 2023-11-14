@@ -13,6 +13,7 @@ export const Form = styled(FormikForm)`
   background-color: white;
   margin-top: 24px;
   .checkLab {
+    margin-top:30px;
     color: rgba(13, 12, 12, 0.7);
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -23,6 +24,7 @@ export const Form = styled(FormikForm)`
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    cursor: pointer;
   }
   .marg24 {
     margin-bottom: 24px;
@@ -48,33 +50,19 @@ export const Form = styled(FormikForm)`
     right: 48px;
     top: 16px;
   }
+  .loader{
+    width: 454px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
 `;
 
 
 
 export const Label = styled.label`
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.21;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 24px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 18px;
-    }
-  }
-
-  &:nth-of-type(3) {
-    margin-bottom: 32px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 48px;
-    }
-  }
-
-  &.is-valid {
+   &.is-valid {
     color: green;
   }
 
@@ -157,7 +145,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 10px;
   margin-bottom: 24px;
   color: #fff;
 
