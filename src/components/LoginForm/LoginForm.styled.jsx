@@ -25,20 +25,8 @@ export const Form = styled(FormikForm)`
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #000;
-    margin-bottom: 64px;
+    margin-bottom: 30px;
     width: 119px;
-  }
-  .checkLab {
-    color: rgba(13, 12, 12, 0.7);
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 357px;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
   }
   .marg24 {
     margin-bottom: 24px;
@@ -64,6 +52,14 @@ export const Form = styled(FormikForm)`
     position: absolute;
     right: 16px;
     top: 16px;
+  }
+  .loader {
+    width: 454px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 `;
 

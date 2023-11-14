@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 
 import {
@@ -19,6 +19,8 @@ import {
 } from './RegisterForm.styled';
 import { Box1, Box2, GogleSVG } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
+import { PulseLoader } from 'react-spinners';
+import { selectIsLoading } from 'redux/auth/selectors';
 
 const userSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,13 +29,12 @@ const userSchema = Yup.object().shape({
     .matches(/^[^\d]+$/, "Ім'я не повинно містити цифри")
     .test(
       'name-validation',
-      'Name must be at least 3 characters long',
+      '',
       value => {
-        return value && value.replace(/\s/g, '').length >= 3;
+        return value && value.replace(/\s/g, '').length >= 2;
       }
     ),
   email: Yup.string()
-    .email('Введіть Email')
     .test('is-valid-email', 'Невірна email адреса.', value => {
       return (
         value && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)
@@ -42,7 +43,7 @@ const userSchema = Yup.object().shape({
     .required('Введіть Email'),
   password: Yup.string()
     .required('Введіть пароль')
-    .min(5, 'Password must be at least 6 characters long')
+    .min(5, 'Пароль повинен містити принаймні 6 символів')
     .matches(
       /^[^\u0400-\u04FF]*$/,
       'Пароль не повинен містити кириличні символи'
@@ -66,6 +67,7 @@ const userSchema = Yup.object().shape({
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const loader = useSelector(selectIsLoading);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -120,9 +122,9 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </Input>
-              {isValid('name') === 'is-valid' && (
+              {/* {isValid('name') === 'is-valid' && (
                 <p className="correct">This is a CORRECT name</p>
-              )}
+              )} */}
               <ErrorMessage name="name" component="div" />
             </Label>
             <Label className={`${isValid('email')} marg24`}>
@@ -146,12 +148,12 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </Input>
-              {isValid('email') === 'is-valid' && (
+              {/* {isValid('email') === 'is-valid' && (
                 <p className="correct">This is a CORRECT email</p>
-              )}
+              )} */}
               <ErrorMessage name="email" component="div" />
             </Label>
-            <Label className={`${isValid('password')} marg8`}>
+            <Label className={`${isValid('password')}`}>
               <PasswordInput>
                 <Field
                   type={showPassword ? 'text' : 'password'}
@@ -174,9 +176,9 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </PasswordInput>
-              {isValid('password') === 'is-valid' && (
+              {/* {isValid('password') === 'is-valid' && (
                 <p className="correct">This is a CORRECT password</p>
-              )}
+              )} */}
               <ErrorMessage name="password" component="div" />
             </Label>
             <label className="checkLab">
@@ -185,7 +187,7 @@ export const RegisterForm = () => {
                 name="acceptTerms"
                 checked={values.acceptTerms}
                 onChange={e => setFieldValue('acceptTerms', e.target.checked)}
-                style={{ display: 'none' }}
+                style={{ position: 'absolute', opacity: 0 }}
               />
               <span
                 className={`custom-checkbox ${
@@ -199,6 +201,15 @@ export const RegisterForm = () => {
               </span>
               Я приймаю умови політики конфіденційності та умови використання
             </label>
+            <div className="loader">
+              <PulseLoader
+                color="#0040bd"
+                loading={loader}
+                size={10}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
             <Button type="submit" disabled={!isFormValid}>
               Зареєструватись
             </Button>
