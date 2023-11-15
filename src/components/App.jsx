@@ -25,7 +25,6 @@ export function App() {
       <main>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            {/* <Route path="/" element={<MainPage />} /> */}
             <Route path="/" element={<Main />} />
             <Route
               path="/autorithation"
