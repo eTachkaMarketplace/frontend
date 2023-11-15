@@ -18,7 +18,7 @@ export function App() {
   // useEffect(() => {
   //   dispatch(refresh());
   // }, [dispatch, token]);
-console.log(1)
+console.log(2)
   return (
     <>
       <Header />
