@@ -18,7 +18,7 @@ import { carsReducer } from './cars/carsSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'user'],
+  whitelist: ['token', 'refToken', 'user'],
 };
 
 export const store = configureStore({

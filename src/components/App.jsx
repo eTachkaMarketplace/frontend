@@ -11,6 +11,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
 import Authentication from 'pages/Autorithation/Authentication';
+import AccountPage from '../pages/AccountPage/AccountPage';
 
 export function App() {
   // const dispatch = useDispatch();
@@ -27,13 +28,19 @@ console.log(3)
           <Routes>
             <Route path="/" element={<Main />} />
             <Route
-              path="/autorithation"
+              path="/authorization"
               element={
                 <PrivateRoute>
                   <Authentication/>
                 </PrivateRoute>
               }
             />
+            <Route 
+              path="/account" 
+              element={
+                <PrivateRoute>
+                  <AccountPage />
+                </PrivateRoute>} />
           </Routes>
         </Suspense>
       </main>

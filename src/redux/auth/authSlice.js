@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   login,
   register,
+  // logoutOperation,
   // logout,
   // refresh,
   // updateUser,
@@ -10,6 +11,7 @@ import {
 const initialState = {
   user: {},
   refToken: '',
+  token: '',
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -35,6 +37,7 @@ export const authSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
+        state.token = payload.jwtAccessToken;
         state.refToken = payload.jwtRefreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -49,7 +52,19 @@ export const authSlice = createSlice({
         state.error = payload;
       })
 
-    //  .addCase(logout.fulfilled, state => {
+      // .addCase(logoutOperation.fulfilled, (state) => {
+      //   state.isLoggedIn = false;
+      //   state.token = '';
+      // })
+      // .addCase(logoutOperation.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(logoutOperation.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      //   state.isLoading = false;
+      // })
+      
+    // .addCase(logout.fulfilled, state => {
     //     state.user = {};
     //     state.token = '';
     //     state.isLoggedIn = false;
