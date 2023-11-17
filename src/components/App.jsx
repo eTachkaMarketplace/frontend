@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Spinner from './Spinner/spinner';
-import { PrivateRoute } from '../components/PrivateRoute';
+import { PublickRoute } from './PublickRoute';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
@@ -15,7 +15,7 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-console.log(3)
+  console.log(3);
   return (
     <>
       <Header />
@@ -26,17 +26,12 @@ console.log(3)
             <Route
               path="/authorization"
               element={
-                <PrivateRoute>
-                  <Authentication/>
-                </PrivateRoute>
+                <PublickRoute>
+                  <Authentication />
+                </PublickRoute>
               }
             />
-            <Route 
-              path="/account" 
-              element={
-                <PrivateRoute>
-                  <AccountPage />
-                </PrivateRoute>} />
+            <Route path="/account" element={<AccountPage />} />
           </Routes>
         </Suspense>
       </main>
