@@ -26,6 +26,9 @@ export const authSlice = createSlice({
       state.token = '';
       state.refToken = '';
     },
+    refresh: state => {
+      if (state.token) state.isLoggedIn = true;
+    },
   },
   extraReducers: builder => {
     builder
@@ -66,7 +69,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, refresh } = authSlice.actions;
 
 export default authSlice.reducer;
 
