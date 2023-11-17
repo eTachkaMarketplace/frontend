@@ -4,9 +4,10 @@ import { ReactComponent as LogoSVG } from '../../images/Header/LogoSVG.svg';
 import {Container,LogoutButtonStyled, HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
 import { NavLink } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { logoutOperation  } from '../../redux/auth/operations';
+import {  useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn  } from '../../redux/auth/selectors';
+import { logout } from '../../redux/auth/authSlice';
+// import { logoutOperation  } from '../../redux/auth/operations';
 
 
 const Header = () => {
@@ -15,7 +16,8 @@ const Header = () => {
   console.log('IsLoggedIn:', isLoggedIn);
 
   const handleLogout = () => {
-    dispatch(logoutOperation());
+    dispatch(logout());
+    console.log('logout');
   };
 
     return (
