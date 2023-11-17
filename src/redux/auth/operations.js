@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+
 export const instance = axios.create({
   baseURL: 'https://marketplace-fi3l.onrender.com',
 });
@@ -47,12 +48,25 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logoutOperation = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      // Очистка токена и другие операции, если необходимо
+      clearToken();
+      return true;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 // export const logout = createAsyncThunk(
 //   'auth/logout',
 //   async (_, { rejectWithValue }) => {
 //     try {
-//       await instance.post('api/auth/logout');
+//       await instance.post('auth/logout');
 //       clearToken();
 //     } catch (error) {
 //       return rejectWithValue(error.message);

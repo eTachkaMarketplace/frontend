@@ -1,17 +1,31 @@
 import React from 'react';
 import { ReactComponent as LogoSVG } from '../../images/Header/LogoSVG.svg';
 
-import {Container,HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
+import {Container,LogoutButtonStyled, HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
 import { NavLink } from 'react-router-dom';
+
+import {  useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn  } from '../../redux/auth/selectors';
+import { logout } from '../../redux/auth/authSlice';
+// import { logoutOperation  } from '../../redux/auth/operations';
 
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log('IsLoggedIn:', isLoggedIn);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    console.log('logout');
+  };
+
     return (
       <Container>
       <HeaderWrapper>
         <NavLink to={'/'}>
-        <LogoSVG />
-            </NavLink>
+          <LogoSVG />
+        </NavLink>
           <Navigation>
           <ul>
             <li>
@@ -32,9 +46,12 @@ const Header = () => {
           </ButtonSale>
           <UserIcon>
             <StyledHeartSVG />
-            <NavLink to={'/autorithation'}>
+            <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
               <StyledUserSVG />
             </NavLink>
+            <LogoutButtonStyled onClick={handleLogout}>
+            Logout
+          </LogoutButtonStyled>
             {/* <NavLink to={isLogin ? '/user' : '/login'>
               <StyledUserSVG />
             </NavLink> */}
