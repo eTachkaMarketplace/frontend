@@ -49,9 +49,11 @@ const Header = () => {
             <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
               <StyledUserSVG />
             </NavLink>
-            <LogoutButtonStyled onClick={handleLogout}>
+            {isLoggedIn && (
+          <LogoutButtonStyled onClick={handleLogout}>
             Logout
           </LogoutButtonStyled>
+        )}
             {/* <NavLink to={isLogin ? '/user' : '/login'>
               <StyledUserSVG />
             </NavLink> */}
