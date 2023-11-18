@@ -1,48 +1,44 @@
 import React from 'react';
+import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
+
 
 const AccountPage = () => {
   return (
-    <div>
-      <h2>Особистий кабінет</h2>
-      <div className="container">
-        <div className="user_container">
-          <div className="user-profile_container"></div>
+    <AccountContainer>
+      <Title>Особистий кабінет</Title>
+      <Container>
+        <UserContainer>
+          <div className="user-profile_container">
+            <h3>User Name</h3>
+          </div>
           <nav className="user-nav_container">
             <ul className="user-nav_list">
               <li className="user-nav_item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                  <path d="M22.5 23.75C22.5 20.9886 19.1421 18.75 15 18.75C10.8579 18.75 7.5 20.9886 7.5 23.75M15 15C12.2386 15 10 12.7614 10 10C10 7.23858 12.2386 5 15 5C17.7614 5 20 7.23858 20 10C20 12.7614 17.7614 15 15 15Z" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <StyledUserSVG/>
                 Особистий кабінет</li>
               <li className="user-nav_item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path d="M11.25 21.25H18.75M11.25 17.5H18.75M16.2505 3.75109C16.1311 3.75 15.9967 3.75 15.8434 3.75H10.2502C8.85011 3.75 8.14953 3.75 7.61475 4.02249C7.14434 4.26217 6.76217 4.64434 6.52248 5.11475C6.25 5.64953 6.25 6.35011 6.25 7.75024V22.2502C6.25 23.6504 6.25 24.3501 6.52248 24.8849C6.76217 25.3553 7.14434 25.7381 7.61475 25.9778C8.14901 26.25 8.84875 26.25 10.2462 26.25L19.7539 26.25C21.1513 26.25 21.85 26.25 22.3842 25.9778C22.8546 25.7381 23.2381 25.3553 23.4778 24.8849C23.75 24.3506 23.75 23.6519 23.75 22.2545V11.6571C23.75 11.5038 23.7499 11.3694 23.7488 11.25M16.2505 3.75109C16.6073 3.75434 16.8322 3.76758 17.0477 3.81934C17.3028 3.88058 17.5473 3.98158 17.771 4.11865C18.0232 4.27321 18.2398 4.48977 18.6719 4.92188L22.5787 8.82873C23.0111 9.26111 23.2261 9.4767 23.3807 9.72899C23.5178 9.95267 23.6192 10.1966 23.6804 10.4517C23.7322 10.6672 23.7455 10.8932 23.7488 11.25M16.2505 3.75109L16.25 7.25026C16.25 8.65039 16.25 9.35019 16.5225 9.88497C16.7622 10.3554 17.1443 10.7381 17.6147 10.9778C18.149 11.25 18.8488 11.25 20.2461 11.25H23.7488" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <StyledAnnouncementsSVG/>
                 Мої оголошення</li>
               <li className="user-nav_item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path d="M15 9.61789C12.5 3.74985 3.75 4.37485 3.75 11.8749C3.75 19.3749 15 25.6251 15 25.6251C15 25.6251 26.25 19.3749 26.25 11.8749C26.25 4.37485 17.5 3.74985 15 9.61789Z" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <StyledFavouritesSVG/>
                 Обране</li>
               <li className="user-nav_item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path d="M15 18.75L18.75 15M18.75 15L15 11.25M18.75 15H5M5 9.06003V9.00024C5 7.60011 5 6.89953 5.27248 6.36475C5.51217 5.89434 5.89434 5.51217 6.36475 5.27248C6.89953 5 7.60011 5 9.00024 5H21.0002C22.4004 5 23.0995 5 23.6342 5.27248C24.1046 5.51217 24.4881 5.89434 24.7278 6.36475C25 6.899 25 7.59874 25 8.99614V21.0045C25 22.4019 25 23.1006 24.7278 23.6349C24.4881 24.1053 24.1046 24.4881 23.6342 24.7278C23.1 25 22.4013 25 21.0039 25H8.99614C7.59874 25 6.899 25 6.36475 24.7278C5.89434 24.4881 5.51217 24.1049 5.27248 23.6345C5 23.0997 5 22.4001 5 21V20.9375" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <StyledLogoutSVG/>
                 Вихід з акаунту</li>
             </ul>
           </nav>
-        </div>
+        </UserContainer>
 
-        <div className="announcement_container">
+        <AnnouncementContainer>
 
 
-        </div>
+        </AnnouncementContainer>
 
         
 
 
-      </div>
-    </div>
+      </Container>
+    </AccountContainer>
   );
 };
 

@@ -4,7 +4,6 @@ import HeroSection from './HeroSection/HeroSection';
 import { CarouselCar } from './CarouselCar/CarouselCar';
 import Catalog from './Popular/Popular';
 import NewCars from './New/NewCars';
-import AccPage from '../../pages/AccountPage/AccountPage';
 
 
 const Main = () => {
@@ -14,7 +13,6 @@ const Main = () => {
       <CarouselCar />
       <Catalog />
       <NewCars/>
-      <AccPage/>
     </MainWrapper>
     );
 };
