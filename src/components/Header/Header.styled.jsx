@@ -115,9 +115,6 @@ export const StyledAddSVG = styled(AddSVG)`
     }
 `;
 
-export const LogoutButtonStyled = styled.button`
-  border: solid 1px black;
-`;
 
 export const ButtonText = styled.div`
     color: #FFF;

@@ -50,6 +50,7 @@ export const UserContainer = styled.div`
     
     .user-nav_item{
         display: flex;
+        cursor: pointer;
         padding-left: 15px;
         width: fit-content;
         align-items: center;
@@ -61,20 +62,24 @@ export const UserContainer = styled.div`
     }
 
     .user-nav_item::before {
-    content: ''; /* обязательно укажите content, чтобы псевдоэлемент был видимым */
-    position: absolute; /* используем абсолютное позиционирование */
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    height: 100%; /* высота линии будет равна высоте элемента */
-    width: 3px; /* ширина линии */
-    background-color: #0141BD; /* цвет линии */
-    opacity: 0; /* начальная непрозрачность (линия будет невидимой) */
-    transition: opacity 0.3s ease; /* добавим плавный переход для плавного появления */
+    height: 100%;
+    width: 3px;
+    background-color: #0141BD;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.user-nav_item:hover::before {
-    opacity: 1; /* при наведении устанавливаем полную непрозрачность */
-}
+.user-nav_item.active::before {
+    opacity: 1;
+  }
+
+    .user-nav_item:hover::before {
+        opacity: 1;
+    }
 
     .user-nav_item:hover{
         color:  #0141BD;
@@ -87,6 +92,10 @@ export const UserContainer = styled.div`
         margin-top:30px;
     }
     
+    .active{
+        color:  #0141BD;
+        stroke: #0141BD;
+    }
     
 `;
 
