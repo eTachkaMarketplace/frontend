@@ -150,7 +150,7 @@ export const Button = styled.button`
   color: #fff;
 
   text-align: center;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
@@ -220,7 +220,7 @@ export const GBtn = styled.button`
   .Gtext {
     color: #0d0c0c;
     text-align: center;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
