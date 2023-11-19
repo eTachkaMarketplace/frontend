@@ -49,13 +49,35 @@ export const UserContainer = styled.div`
     }
     
     .user-nav_item{
+        display: flex;
         padding-left: 15px;
         width: fit-content;
+        align-items: center;
+        position: relative;
+
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
     }
+
+    .user-nav_item::before {
+    content: ''; /* обязательно укажите content, чтобы псевдоэлемент был видимым */
+    position: absolute; /* используем абсолютное позиционирование */
+    top: 0;
+    left: 0;
+    height: 100%; /* высота линии будет равна высоте элемента */
+    width: 3px; /* ширина линии */
+    background-color: #0141BD; /* цвет линии */
+    opacity: 0; /* начальная непрозрачность (линия будет невидимой) */
+    transition: opacity 0.3s ease; /* добавим плавный переход для плавного появления */
+}
+
+.user-nav_item:hover::before {
+    opacity: 1; /* при наведении устанавливаем полную непрозрачность */
+}
 
     .user-nav_item:hover{
         color:  #0141BD;
-        border-left: 3px solid #0141BD;
     }
 
     .user-nav_item:not(:last-child){
@@ -77,7 +99,8 @@ export const AnnouncementContainer = styled.div`
 
 
 export const StyledUserSVG = styled(UserSVG)`
-  stroke: #000;
+  stroke: #141414;
+  margin-right: 14px;
   &:hover {
     stroke: #0141BD;
     }
@@ -85,8 +108,9 @@ export const StyledUserSVG = styled(UserSVG)`
 
 
 export const StyledAnnouncementsSVG = styled(AnnouncementsSVG)`
- stroke: #000;
-  transition: stroke 0.3s; /* добавим плавный переход */
+ stroke: #141414;
+ margin-right: 14px;
+  transition: stroke 0.3s; 
 
   &:hover {
     stroke: #0141BD;
@@ -95,17 +119,21 @@ export const StyledAnnouncementsSVG = styled(AnnouncementsSVG)`
 
 
 export const StyledFavouritesSVG = styled(FavouritesSVG)`
-  fill: #000;
+  stroke: #141414;
+  margin-right: 14px;
+
   &:hover {
-    fill: #0141BD;
+    stroke: #0141BD;
     }
 `;
 
 
 export const StyledLogoutSVG = styled(LogoutSVG)`
-  fill: #000;
+  stroke: #141414;
+  margin-right: 14px;
+
   &:hover {
-    fill: #0141BD;
+    stroke: #0141BD;
     }
 `;
 
