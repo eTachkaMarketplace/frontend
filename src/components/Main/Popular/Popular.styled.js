@@ -9,7 +9,7 @@ export const SectionCar = styled.section`
 
   .carTitle {
     color: #141414;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
