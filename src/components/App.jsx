@@ -2,6 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Spinner from './Spinner/spinner';
 import { PublickRoute } from './PublickRoute';
+import { PrivateRoute } from './PrivateRoute';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
@@ -31,7 +32,9 @@ export function App() {
                 </PublickRoute>
               }
             />
+              <Route path="/" element={<PrivateRoute />}>
             <Route path="/account" element={<AccountPage />} />
+            </Route>
           </Routes>
         </Suspense>
       </main>
