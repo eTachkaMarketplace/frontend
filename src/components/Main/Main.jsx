@@ -5,6 +5,7 @@ import { CarouselCar } from './CarouselCar/CarouselCar';
 import Catalog from './Popular/Popular';
 import NewCars from './New/NewCars';
 
+
 const Main = () => {
   return (
     <MainWrapper>
@@ -13,7 +14,7 @@ const Main = () => {
       <Catalog />
       <NewCars/>
     </MainWrapper>
-  );
+    );
 };
 
 export default Main;
