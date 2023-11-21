@@ -1,4 +1,6 @@
+import { SearchListDiv } from "./SearchList.styled";
+
 export const SearchList = () => {
-  return <div></div>;
+  return <SearchListDiv></SearchListDiv>;
 };
 export default SearchList;
