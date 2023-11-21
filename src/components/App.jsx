@@ -27,7 +27,7 @@ export function App() {
             <Route
               path="/authorization"
               element={
-                <PublickRoute>
+                <PublickRoute redirectTo='/account'>
                   <Authentication />
                 </PublickRoute>
               }
