@@ -35,6 +35,7 @@ const AccountPage = () => {
   }, [token]);
 
 
+
   const handleLogout = () => {
     dispatch(logout());
     console.log('logout');
