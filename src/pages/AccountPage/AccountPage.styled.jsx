@@ -13,13 +13,13 @@ export const AccountContainer = styled.section`
   padding: 80px 80px 120px 80px ;
   margin-left: auto;
   margin-right: auto;
-  
+
 `;
 
 export const Container = styled.div`
   display: flex;
   gap: 30px;
-  
+
 `;
 
 
@@ -32,6 +32,8 @@ export const UserContainer = styled.div`
 
     .user-profile_container{
         display: flex;
+        flex-direction: column;
+        gap: 4px ;
         /* align-items: flex-start;
         gap: 14px;
         flex: 1 0 0; */
@@ -41,13 +43,28 @@ export const UserContainer = styled.div`
         background:  #F1F1F1;
     }
 
+    .user-profile_title{
+      color: #141414;
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .user-profile_text{
+      color: #141414;
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+    }
 
     .user-nav_container{
-        padding: 20px 15px 20px 0px;
+        padding: 20px 15px 20px 0;
         border-radius: 8px;
         background:  #F1F1F1;
     }
-    
+
     .user-nav_item{
         display: flex;
         cursor: pointer;
@@ -91,18 +108,18 @@ export const UserContainer = styled.div`
     .user-nav_item:last-child{
         margin-top:30px;
     }
-    
+
     .active{
         color:  #0141BD;
         stroke: #0141BD;
     }
-    
-`;
+
+ `;
 
 
 export const AnnouncementContainer = styled.div`
  width: 840px;
-  
+
 `;
 
 
@@ -119,7 +136,7 @@ export const StyledUserSVG = styled(UserSVG)`
 export const StyledAnnouncementsSVG = styled(AnnouncementsSVG)`
  stroke: #141414;
  margin-right: 14px;
-  transition: stroke 0.3s; 
+  transition: stroke 0.3s;
 
   &:hover {
     stroke: #0141BD;

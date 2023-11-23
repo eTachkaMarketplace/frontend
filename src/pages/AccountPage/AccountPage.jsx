@@ -1,11 +1,38 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
+import axios  from 'axios';
 
 const AccountPage = () => {
   const dispatch = useDispatch();
   const [selectedNavItem, setSelectedNavItem] = useState('personal');
+  const [userInfo, setUserInfo] = useState({
+    firstName: '',
+    email: '',
+  })
+
+  const authState = useSelector((state) => state.auth);
+  const token = authState.token;
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/info', {
+          headers: {
+            'accept': 'application/json',
+            'Authorization': `Bearer ${token.replace(/"/g, '')}`,
+          },
+        });
+        const { firstName, email } = response.data;
+        setUserInfo({ firstName, email });
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, [token]);
 
 
   const handleLogout = () => {
@@ -43,8 +70,8 @@ const AccountPage = () => {
       <Container>
         <UserContainer>
           <div className="user-profile_container">
-            <h3>User Name</h3>
-
+            <h3 className="user-profile_title">{userInfo.firstName}</h3>
+            <p className="user-profile_text">{userInfo.email}</p>
           </div>
           <nav className="user-nav_container">
             <ul className="user-nav_list">
@@ -70,7 +97,7 @@ const AccountPage = () => {
         {renderContent()}
         </AnnouncementContainer>
 
-        
+
 
 
       </Container>
