@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SearchList = styled.div`
+export const SearchListDiv = styled.div`
   width: 844px;
   height: 2000px;
 

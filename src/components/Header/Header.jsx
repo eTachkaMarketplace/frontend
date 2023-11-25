@@ -22,7 +22,7 @@ const Header = () => {
           <Navigation>
           <ul>
             <li>
-              <StyledLink to="/">Нові</StyledLink>
+              <StyledLink to="/search">Нові</StyledLink>
             </li>
             <li>
               <StyledLink to="/">Вживані</StyledLink>

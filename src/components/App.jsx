@@ -10,6 +10,7 @@ import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
+import SearchPage from 'pages/SearchPage/SearchPage';
 
 export function App() {
   const dispatch = useDispatch();
@@ -27,13 +28,14 @@ export function App() {
             <Route
               path="/authorization"
               element={
-                <PublickRoute redirectTo='/account'>
+                <PublickRoute redirectTo="/account">
                   <Authentication />
                 </PublickRoute>
               }
             />
-              <Route path="/" element={<PrivateRoute />}>
-            <Route path="/account" element={<AccountPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/account" element={<AccountPage />} />
             </Route>
           </Routes>
         </Suspense>
