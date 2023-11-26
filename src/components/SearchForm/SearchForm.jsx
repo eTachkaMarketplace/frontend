@@ -1,26 +1,35 @@
 import { Field, Formik, Form } from 'formik';
-import { Search } from "./SearchForm.styled";
+import { Search } from './SearchForm.styled';
 
 export const SearchForm = () => {
-   const initialValues = {
-     status: '',
-     brand: '',
-     model: '',
-     region: '',
-     yearFrom: '',
-     yearTo: '',
-     priceFrom: '',
-     priceTo: '',
+  const initialValues = {
+    status: '',
+    brand: '',
+    model: '',
+    region: '',
+    yearFrom: '',
+    yearTo: '',
+    priceFrom: '',
+    priceTo: '',
+    bodyType: '',
+    fuelType: 'Пальне',
+    engineCapacity: '',
+    mileageFrom: '',
+    mileageTo: '',
+    driveType: '',
+    transmission: '',
+    condition: '',
+    color: '',
   };
   const handleSearch = values => {
-    console.log(values)
+    console.log(values);
   };
   return (
     <Search>
       <Formik initialValues={initialValues} onSubmit={handleSearch}>
         <Form>
           <div className="topWraper">
-            <h3 className="title">Пошук</h3>
+            <h3 className="title">Розширений пошук</h3>
             <label>
               <Field className="fieldLong marg16" as="select" name="status">
                 <option value="">Статус</option>
@@ -82,7 +91,101 @@ export const SearchForm = () => {
               </label>
             </div>
           </div>
-          <button type="submit">Пошук</button>
+          <div className="bottomWraper">
+            <h3 className="titleB">Технічні характеристики</h3>
+            <label>
+              <Field className="fieldLong marg16" as="select" name="bodyType">
+                <option value="">Тип кузова</option>
+                <option value="нові">Тип1</option>
+                <option value="вживані">Тип2</option>
+              </Field>
+            </label>
+            <label>
+              <Field className="fieldLong marg16" as="select" name="fuelType">
+                <option value="">Палево</option>
+                <option value="BMW">Бензин</option>
+                <option value="Mersedes">Дизель</option>
+              </Field>
+            </label>
+            <label>
+              <Field
+                className="fieldLong marg16"
+                as="select"
+                name="engineCapacity"
+              >
+                <option value="">Об'єм двигуна</option>
+                <option value="Щось1">Щось1</option>
+                <option value="Щось2">Щось2</option>
+              </Field>
+            </label>
+            <div className="shortDiv marg16">
+              <label>
+                <Field
+                  className="fieldShort "
+                  as="select"
+                  name="mileageFrom"
+                >
+                  <option value="">Пробіг від</option>
+                  <option value="Щось1">Щось1</option>
+                  <option value="Щось2">Щось2</option>
+                </Field>
+              </label>
+
+              <label>
+                <Field
+                  className="fieldShort "
+                  as="select"
+                  name="mileageTo"
+                >
+                  <option value="">Пробіг до</option>
+                  <option value="Щось1">Щось1</option>
+                  <option value="Щось2">Щось2</option>
+                </Field>
+              </label>
+            </div>
+            <label>
+              <Field className="fieldLong marg16" as="select" name="driveType">
+                <option value="">Привід</option>
+                <option value="Щось1">Щось1</option>
+                <option value="Щось2">Щось2</option>
+              </Field>
+            </label>
+
+            <label>
+              <Field
+                className="fieldLong marg16"
+                as="select"
+                name="transmission"
+              >
+                <option value="">Коробка передач</option>
+                <option value="Щось1">Автомат</option>
+                <option value="Щось2">Ручна</option>
+              </Field>
+            </label>
+            <label>
+              <Field className="fieldLong marg16" as="select" name="condition">
+                <option value="">Технічний стан</option>
+                <option value="Щось1">Щось1</option>
+                <option value="Щось2">Щось2</option>
+              </Field>
+            </label>
+            <label>
+              <Field className="fieldLong" as="select" name="color">
+                <option value="">Колір</option>
+                <option value="Щось1">Щось1</option>
+                <option value="Щось2">Щось2</option>
+              </Field>
+            </label>
+          </div>
+
+          <div className='btnWraper'>
+            <button className="clearButton" type="button">
+              Очистити все
+            </button>
+            <button className="submitButton" type="submit">
+              Пошук
+            </button>
+          </div>
         </Form>
       </Formik>
     </Search>
