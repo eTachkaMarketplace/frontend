@@ -2,7 +2,8 @@ import React,  { useState, useEffect } from 'react';
 import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
-import axios  from 'axios';
+import ProfileForm from './ProfileForm';
+import axios  from 'axios'
 
 const AccountPage = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const AccountPage = () => {
       case 'personal':
         return (
           <div>
-            <p>Мой аккаунт</p>
+            <ProfileForm/>
           </div>
         );
       case 'announcements':

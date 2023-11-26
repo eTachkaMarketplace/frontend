@@ -1,65 +1,68 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import {Container} from './ProfileForm.styled'
 
 const ProfileForm = () => {
   const formik = useFormik({
     initialValues: {
-      field1: '',
-      field2: '',
-      field3: '',
+      surname: '',
+      name: '',
+      phone: '',
     },
     onSubmit: (values) => {
-      // Добавьте здесь код для отправки данных формы, например, на сервер.
+
       console.log('Form values:', values);
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Container>
+    <form onSubmit={formik.handleSubmit} className="profile-form">
       <label>
-        Лейбл 1:
+        Прізвище:
         <input
           type="text"
-          name="field1"
+          name="surname"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.field1}
+          value={formik.values.surname}
         />
       </label>
-      {formik.touched.field1 && formik.errors.field1 ? (
-        <div className="error-message">{formik.errors.field1}</div>
+      {formik.touched.surname && formik.errors.surname ? (
+        <div className="error-message">{formik.errors.surname}</div>
       ) : null}
 
       <label>
-        Лейбл 2:
+        Імʼя:
         <input
           type="text"
-          name="field2"
+          name="name"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.field2}
+          value={formik.values.name}
         />
       </label>
-      {formik.touched.field2 && formik.errors.field2 ? (
-        <div className="error-message">{formik.errors.field2}</div>
+      {formik.touched.name && formik.errors.name ? (
+        <div className="error-message">{formik.errors.name}</div>
       ) : null}
 
       <label>
-        Лейбл 3:
+        Номер телефону:
         <input
-          type="text"
-          name="field3"
+          type="phone"
+          name="phone"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.field3}
+          value={formik.values.phone}
         />
       </label>
-      {formik.touched.field3 && formik.errors.field3 ? (
-        <div className="error-message">{formik.errors.field3}</div>
+      {formik.touched.phone && formik.errors.phone ? (
+        <div className="error-message">{formik.errors.phone}</div>
       ) : null}
 
       <button type="submit">Зберегти</button>
     </form>
+    </Container>
   );
 };
 
