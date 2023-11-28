@@ -1,8 +1,8 @@
 import React,  { useState, useEffect } from 'react';
-import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
+import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title,Subtitle, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
-import ProfileForm from './ProfileForm';
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import axios  from 'axios'
 
 const AccountPage = () => {
@@ -46,6 +46,7 @@ const AccountPage = () => {
       case 'personal':
         return (
           <div>
+            <Subtitle>Основна інформація</Subtitle>
             <ProfileForm/>
           </div>
         );

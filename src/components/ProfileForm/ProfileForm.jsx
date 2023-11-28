@@ -18,9 +18,10 @@ const ProfileForm = () => {
   return (
     <Container>
     <form onSubmit={formik.handleSubmit} className="profile-form">
-      <label>
-        Прізвище:
+      <label className="profile-label">
+        <p className="profile-label-title">Прізвище:</p>
         <input
+          className="profile-input"
           type="text"
           name="surname"
           onChange={formik.handleChange}
@@ -33,8 +34,9 @@ const ProfileForm = () => {
       ) : null}
 
       <label>
-        Імʼя:
+        <p className="profile-label-title">Імʼя:</p>
         <input
+          className="profile-input"
           type="text"
           name="name"
           onChange={formik.handleChange}
@@ -47,8 +49,9 @@ const ProfileForm = () => {
       ) : null}
 
       <label>
-        Номер телефону:
+        <p className="profile-label-title">Номер телефону:</p>
         <input
+          className="profile-input"
           type="phone"
           name="phone"
           onChange={formik.handleChange}
@@ -60,7 +63,7 @@ const ProfileForm = () => {
         <div className="error-message">{formik.errors.phone}</div>
       ) : null}
 
-      <button type="submit">Зберегти</button>
+      <button type="submit" className="profile-btn">Зберегти</button>
     </form>
     </Container>
   );

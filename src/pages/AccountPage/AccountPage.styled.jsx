@@ -19,9 +19,9 @@ export const AccountContainer = styled.section`
 export const Container = styled.div`
   display: flex;
   gap: 30px;
+  width: 100%;
 
 `;
-
 
 export const UserContainer = styled.div`
     display: flex;
@@ -118,7 +118,7 @@ export const UserContainer = styled.div`
 
 
 export const AnnouncementContainer = styled.div`
- width: 840px;
+ width: 100%;
 
 `;
 
@@ -169,5 +169,15 @@ export const Title = styled.h2`
 
     font-family: 'Roboto', sans-serif;
     font-size: 32px;
+    font-weight: 500;
+`
+
+export const Subtitle = styled.h3`
+
+    color: #141414;
+    margin-bottom: 20px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
     font-weight: 500;
 `
