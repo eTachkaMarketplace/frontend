@@ -89,7 +89,7 @@ export const RegisterForm = () => {
     <Formik
       initialValues={{ name: '', email: '', password: '', acceptTerms: false }}
       validationSchema={userSchema}
-      
+
     >
       {({ values, errors, touched, setFieldValue }) => {
         const isValid = field =>
@@ -133,7 +133,7 @@ export const RegisterForm = () => {
                   className={isValid('email')}
                   type="email"
                   name="email"
-                  placeholder="Електрону пошту "
+                  placeholder="Електронна пошта"
                   title="Email must be in the format username@domain.com"
                   value={values.email}
                 />
@@ -211,7 +211,7 @@ export const RegisterForm = () => {
               />
             </div>
             <Button type="submit" disabled={!isFormValid}>
-              Зареєструватись
+              Зареєструватися
             </Button>
             <StrDiv>
               <p className="strange"></p>

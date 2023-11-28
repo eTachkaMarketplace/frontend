@@ -118,7 +118,7 @@ export const StyledAddSVG = styled(AddSVG)`
 
 export const ButtonText = styled.div`
     color: #FFF;
-    font-family:  'Work Sans', sans-serif;
+    font-family:  'Roboto', sans-serif;
     font-size: 22px;
     font-weight: 500;
 
