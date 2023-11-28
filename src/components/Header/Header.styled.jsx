@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { ReactComponent as UserSVG } from '../../images/Header/UserSVG.svg';
 import { ReactComponent as HeartSVG } from '../../images/Header/HeartSVG.svg';
 import { ReactComponent as AddSVG } from '../../images/Header/AddSVG.svg';
@@ -12,16 +12,16 @@ export const HeaderWrapper = styled.div`
   padding: 20px 80px;
   margin-left: auto;
   margin-right: auto;
-  
+
 `;
 
 export const Container = styled.header`
   border-bottom: 1px solid #D0D0D0;
-  
+
 `;
 
 export const Logo = styled.div`
-   
+
 `;
 
 export const Navigation = styled.nav`
@@ -43,7 +43,7 @@ export const StyledLink = styled(Link)`
 
   &:hover {
     color: #0141BD;
-   
+
   }
 `;
 
@@ -51,13 +51,13 @@ export const User = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
-  
+
   `;
 
 export const UserIcon = styled.div`
 display: flex;
 align-items: center;
-gap: 8px; 
+gap: 8px;
 .userBtn{
   border: 0;
   background-color: transparent;
@@ -91,7 +91,7 @@ export const ButtonSale= styled.button`
     justify-content: center;
     gap: 4px;
 
-    background: linear-gradient(-81deg, #0040BD 19.1%, #19015B 78.89%);
+    background: linear-gradient(160deg, #0040BD 19.1%, #19015B 78.89%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -99,12 +99,12 @@ export const ButtonSale= styled.button`
     transition: background-color 0.2s;
 
     &:hover {
-      background: linear-gradient(144deg, #0040BD 19.1%, #195B01 78.89%);
+      background: linear-gradient(160deg, #0040BD 19.1%, #195B01 78.89%);
     }
 
     &:active {
-      background: linear-gradient(144deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
-      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(160deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
     }
 `;
 
@@ -121,5 +121,5 @@ export const ButtonText = styled.div`
     font-family:  'Work Sans', sans-serif;
     font-size: 22px;
     font-weight: 500;
-    
+
   `;
