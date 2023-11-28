@@ -33,6 +33,13 @@ export const Container = styled.div`
   .profile-input{
     width: 100%;
     height: 40px;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #141414;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 
     border-radius: 8px;
     border: 1px solid #B9B9B9;
@@ -46,14 +53,13 @@ export const Container = styled.div`
     padding: 14px 24px;
     align-items: center;
     justify-content: center;
-    color: #FFF;
+    color: #fff;
 
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-weight: 500;
 
     background: linear-gradient(160deg, #0040BD 19.1%, #19015B 78.89%);
-    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
