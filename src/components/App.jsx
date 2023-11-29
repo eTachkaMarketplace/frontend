@@ -17,7 +17,6 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-  console.log(3);
   return (
     <>
       <Header />
