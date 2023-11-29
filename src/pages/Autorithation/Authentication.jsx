@@ -29,7 +29,7 @@ const Authentication = () => {
             className={`authBtn ${!curentPage ? 'active' : ''}`}
             onClick={changePageFalse}
           >
-            Зареєструватись
+            Зареєструватися
           </button>
         </div>
         {curentPage ? <LoginForm /> : <RegisterForm />}
