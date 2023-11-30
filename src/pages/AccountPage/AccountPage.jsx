@@ -19,7 +19,7 @@ const AccountPage = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/info', {
+        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/user', {
           headers: {
             'accept': 'application/json',
             'Authorization': `Bearer ${token.replace(/"/g, '')}`,
