@@ -10,9 +10,6 @@ import { selectIsLoggedIn  } from '../../redux/auth/selectors';
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log('IsLoggedIn:', isLoggedIn);
-
-
     return (
       <Container>
       <HeaderWrapper>

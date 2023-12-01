@@ -1,32 +1,21 @@
 import { Field, Formik, Form } from 'formik';
 import { Search } from './SearchForm.styled';
+import { useEffect, useRef } from 'react';
 
-export const SearchForm = () => {
-  const initialValues = {
-    status: '',
-    brand: '',
-    model: '',
-    region: '',
-    yearFrom: '',
-    yearTo: '',
-    priceFrom: '',
-    priceTo: '',
-    bodyType: '',
-    fuelType: 'Пальне',
-    engineCapacity: '',
-    mileageFrom: '',
-    mileageTo: '',
-    driveType: '',
-    transmission: '',
-    condition: '',
-    color: '',
-  };
-  const handleSearch = values => {
-    console.log(values);
-  };
+export const SearchForm = ({ initialValues, onSubmit }) => {
+  const formikRef = useRef(null);
+   useEffect(() => {
+     if (formikRef.current) {
+       formikRef.current.resetForm({ values: initialValues });
+     }
+   }, [initialValues]);
   return (
     <Search>
-      <Formik initialValues={initialValues} onSubmit={handleSearch}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={values => onSubmit(values)}
+        innerRef={formik => (formikRef.current = formik)}
+      >
         <Form>
           <div className="topWraper">
             <h3 className="title">Розширений пошук</h3>
@@ -107,7 +96,7 @@ export const SearchForm = () => {
                 <option value="Mersedes">Дизель</option>
               </Field>
             </label>
-            <label>
+            {/* <label>
               <Field
                 className="fieldLong marg16"
                 as="select"
@@ -117,15 +106,15 @@ export const SearchForm = () => {
                 <option value="Щось1">Щось1</option>
                 <option value="Щось2">Щось2</option>
               </Field>
-            </label>
+            </label> */}
             <div className="shortDiv marg16">
               <label>
                 <Field
                   className="fieldShort "
                   as="select"
-                  name="mileageFrom"
+                  name="engineCapacityFrom"
                 >
-                  <option value="">Пробіг від</option>
+                  <option value="">Об'єм від</option>
                   <option value="Щось1">Щось1</option>
                   <option value="Щось2">Щось2</option>
                 </Field>
@@ -135,8 +124,25 @@ export const SearchForm = () => {
                 <Field
                   className="fieldShort "
                   as="select"
-                  name="mileageTo"
+                  name="engineCapacityFromTo"
                 >
+                  <option value="">Об'єм до</option>
+                  <option value="Щось1">Щось1</option>
+                  <option value="Щось2">Щось2</option>
+                </Field>
+              </label>
+            </div>
+            <div className="shortDiv marg16">
+              <label>
+                <Field className="fieldShort " as="select" name="mileageFrom">
+                  <option value="">Пробіг від</option>
+                  <option value="Щось1">Щось1</option>
+                  <option value="Щось2">Щось2</option>
+                </Field>
+              </label>
+
+              <label>
+                <Field className="fieldShort " as="select" name="mileageTo">
                   <option value="">Пробіг до</option>
                   <option value="Щось1">Щось1</option>
                   <option value="Щось2">Щось2</option>
@@ -178,7 +184,7 @@ export const SearchForm = () => {
             </label>
           </div>
 
-          <div className='btnWraper'>
+          <div className="btnWraper">
             <button className="clearButton" type="button">
               Очистити все
             </button>
