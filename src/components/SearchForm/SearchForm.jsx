@@ -96,7 +96,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                 <option value="Mersedes">Дизель</option>
               </Field>
             </label>
-            {/* <label>
+            <label>
               <Field
                 className="fieldLong marg16"
                 as="select"
@@ -106,8 +106,8 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                 <option value="Щось1">Щось1</option>
                 <option value="Щось2">Щось2</option>
               </Field>
-            </label> */}
-            <div className="shortDiv marg16">
+            </label>
+            {/* <div className="shortDiv marg16">
               <label>
                 <Field
                   className="fieldShort "
@@ -131,7 +131,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                   <option value="Щось2">Щось2</option>
                 </Field>
               </label>
-            </div>
+            </div> */}
             <div className="shortDiv marg16">
               <label>
                 <Field className="fieldShort " as="select" name="mileageFrom">
