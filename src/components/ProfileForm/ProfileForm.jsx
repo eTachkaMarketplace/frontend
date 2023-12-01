@@ -44,7 +44,7 @@ const ProfileForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.put(
-          `http://localhost:8080/api/users/user`,
+          `https://marketplace-fi3l.onrender.com/api/users/user`,
           {
             firstName: values.firstName,
             lastName: values.lastName,
