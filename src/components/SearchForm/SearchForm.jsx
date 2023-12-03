@@ -22,8 +22,8 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <label>
               <Field className="fieldLong marg16" as="select" name="status">
                 <option value="">Статус</option>
-                <option value="нові">Нові</option>
-                <option value="вживані">Вживані</option>
+                <option value="Нові">Нові</option>
+                <option value="Вживані">Вживані</option>
               </Field>
             </label>
             <label>

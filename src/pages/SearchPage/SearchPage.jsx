@@ -2,9 +2,14 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import SearchList from 'components/SearchList/SearchList';
 import { Wraper } from './SearchPage.styled';
 import SearchListTab from 'components/SearchLIstTAB/SearchListTab';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCarsFil } from 'redux/cars/selectors';
+import { getCarsThunkFiltered } from 'redux/cars/operations';
 
 const SearchPage = () => {
+  const dispatch = useDispatch();
+  const carsFilter = useSelector(selectCarsFil);
   const [valuesGen, setValuesGen] = useState({
     status: '',
     brand: '',
@@ -28,7 +33,12 @@ const SearchPage = () => {
   const handleSearch = values => {
     setValuesGen(values);
   };
+  useEffect(() => {
+    console.log(valuesGen);
+    dispatch(getCarsThunkFiltered(valuesGen));
     
+  }, [dispatch, valuesGen]);
+console.log(carsFilter);
   return (
     <>
       <Wraper>
