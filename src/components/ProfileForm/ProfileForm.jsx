@@ -28,6 +28,7 @@ const ProfileForm = () => {
         const { firstName, lastName, phone } = response.data;
         setUserInfo({firstName, lastName, phone });
       } catch (error) {
+
         console.error('Error fetching user info:', error);
       }
     };
