@@ -174,7 +174,12 @@ export const ErrorMessage = styled(FormikErrorMessage)`
   margin-left: 18px;
   margin-top: 8px;
 
-  color: red;
+  color: #fa6666;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const HidePassword = styled.button`
@@ -201,7 +206,7 @@ export const StrDiv = styled.div`
     color: #0d0c0c;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
