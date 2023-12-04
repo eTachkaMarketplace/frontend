@@ -2,6 +2,7 @@ import React,  { useState, useEffect } from 'react';
 import {AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title,Subtitle, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
+import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement'
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import axios  from 'axios'
 
@@ -53,7 +54,7 @@ const AccountPage = () => {
       case 'announcements':
         return (
           <div>
-            <p>Обьявления</p>
+            <UserAnnouncement/>
           </div>
         );
       case 'favourites':
