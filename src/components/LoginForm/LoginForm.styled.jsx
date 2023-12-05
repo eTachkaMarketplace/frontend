@@ -103,18 +103,18 @@ export const Field = styled(FormikField)`
   line-height: normal;
   border-radius: 8px;
   border: 1px solid rgba(13, 12, 12, 0.3);
-
+  color:  #141414;
   background: #fff;
 
   transition: var(--transition);
 
   &::placeholder {
-    font-family: "Roboto",sans-serif;
+    color: #ababab;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
   }
 
   &:hover,

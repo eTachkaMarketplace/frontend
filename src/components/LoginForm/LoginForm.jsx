@@ -103,9 +103,6 @@ export const LoginForm = () => {
               {refError ? (
                 <p className="errorMes">Недійсна пошта або пароль</p>
               ) : null}
-              {errors.emptyForm ? (
-                <p className="errorMes">Заповніть всі поля</p>
-              ) : null}
               <button className="remPassBtn" type="button">
                 Забули пароль?
               </button>

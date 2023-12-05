@@ -27,13 +27,10 @@ const userSchema = Yup.object().shape({
     .required("Введіть ім'я")
     .min(2, "Ім'я повинно бути принаймні 2 символи")
     .matches(/^[^\d]+$/, "Ім'я не повинно містити цифри")
-    .test(
-      'name-validation',
-      '',
-      value => {
-        return value && value.replace(/\s/g, '').length >= 2;
-      }
-    ),
+    .matches(/^[a-zA-Z\s]*$/, "Ім'я не повинно містити знаки або спецсимволи")
+    .test('name-validation', '', value => {
+      return value && value.replace(/\s/g, '').length >= 2;
+    }),
   email: Yup.string()
     .test('is-valid-email', 'Невірна email адреса.', value => {
       return (
@@ -89,7 +86,6 @@ export const RegisterForm = () => {
     <Formik
       initialValues={{ name: '', email: '', password: '', acceptTerms: false }}
       validationSchema={userSchema}
-      
     >
       {({ values, errors, touched, setFieldValue }) => {
         const isValid = field =>
@@ -97,7 +93,7 @@ export const RegisterForm = () => {
             ? 'is-invalid'
             : touched[field]
             ? 'is-valid'
-              : '';
+            : '';
         const isFormValid =
           Object.keys(errors).length === 0 && Object.keys(touched).length > 0;
 
@@ -122,9 +118,6 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </Input>
-              {/* {isValid('name') === 'is-valid' && (
-                <p className="correct">This is a CORRECT name</p>
-              )} */}
               <ErrorMessage name="name" component="div" />
             </Label>
             <Label className={`${isValid('email')} marg24`}>
@@ -148,9 +141,6 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </Input>
-              {/* {isValid('email') === 'is-valid' && (
-                <p className="correct">This is a CORRECT email</p>
-              )} */}
               <ErrorMessage name="email" component="div" />
             </Label>
             <Label className={`${isValid('password')}`}>
@@ -176,9 +166,6 @@ export const RegisterForm = () => {
                   </span>
                 )}
               </PasswordInput>
-              {/* {isValid('password') === 'is-valid' && (
-                <p className="correct">This is a CORRECT password</p>
-              )} */}
               <ErrorMessage name="password" component="div" />
             </Label>
             <label className="checkLab">
