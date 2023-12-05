@@ -13,7 +13,7 @@ export const Form = styled(FormikForm)`
   background-color: white;
   margin-top: 24px;
   .checkLab {
-    margin-top:30px;
+    margin-top: 30px;
     color: rgba(13, 12, 12, 0.7);
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -25,6 +25,14 @@ export const Form = styled(FormikForm)`
     align-items: flex-start;
     gap: 8px;
     cursor: pointer;
+  }
+  .checked {
+    color: green;
+    fill: green;
+  }
+  .unchecked {
+    color: red;
+    fill: red;
   }
   .marg24 {
     margin-bottom: 24px;
@@ -50,7 +58,7 @@ export const Form = styled(FormikForm)`
     right: 48px;
     top: 16px;
   }
-  .loader{
+  .loader {
     width: 454px;
     display: flex;
     justify-content: center;
@@ -59,10 +67,8 @@ export const Form = styled(FormikForm)`
   }
 `;
 
-
-
 export const Label = styled.label`
-   &.is-valid {
+  &.is-valid {
     color: green;
   }
 
@@ -128,7 +134,6 @@ export const Field = styled(FormikField)`
   }
 `;
 
-
 export const PasswordInput = styled.div`
   position: relative;
   margin-top: 8px;
@@ -140,7 +145,6 @@ export const Input = styled.div`
   margin-top: 8px;
   transition: var(--transition);
 `;
-
 
 export const Button = styled.button`
   display: flex;

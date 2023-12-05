@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 
@@ -64,7 +64,14 @@ const userSchema = Yup.object().shape({
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [showChecked, setShowChecked] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const loader = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    setShowChecked(false);
+    setFormSubmitted(false);
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -72,8 +79,14 @@ export const RegisterForm = () => {
       name: { value: name },
       email: { value: email },
       password: { value: password },
+      acceptTerms,
     } = e.currentTarget;
 
+    if (!acceptTerms) {
+      setShowChecked(false);
+      return;
+    }
+    setShowChecked(true);
     dispatch(register({ name, email, password }));
     e.currentTarget.reset();
   };
@@ -81,11 +94,16 @@ export const RegisterForm = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  const checkedIvent = () => {
+    if (showChecked) setShowChecked(false);
+    else setShowChecked(true);
+  };
 
   return (
     <Formik
       initialValues={{ name: '', email: '', password: '', acceptTerms: false }}
       validationSchema={userSchema}
+      onSubmit={handleSubmit}
     >
       {({ values, errors, touched, setFieldValue }) => {
         const isValid = field =>
@@ -94,11 +112,11 @@ export const RegisterForm = () => {
             : touched[field]
             ? 'is-valid'
             : '';
-        const isFormValid =
-          Object.keys(errors).length === 0 && Object.keys(touched).length > 0;
+        // const isFormValid =
+        //   Object.keys(errors).length === 0 && Object.keys(touched).length > 0;
 
         return (
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Label className={`${isValid('name')} marg24`}>
               <Input>
                 <Field
@@ -168,17 +186,24 @@ export const RegisterForm = () => {
               </PasswordInput>
               <ErrorMessage name="password" component="div" />
             </Label>
-            <label className="checkLab">
+            <label
+              className={`checkLab ${
+                showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
+              }`}
+            >
               <input
                 type="checkbox"
                 name="acceptTerms"
                 checked={values.acceptTerms}
-                onChange={e => setFieldValue('acceptTerms', e.target.checked)}
+                onChange={e => {
+                  setFieldValue('acceptTerms', e.target.checked);
+                  checkedIvent();
+                }}
                 style={{ position: 'absolute', opacity: 0 }}
               />
               <span
                 className={`custom-checkbox ${
-                  values.acceptTerms ? 'checked' : ''
+                  showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
                 }`}
                 onClick={() =>
                   setFieldValue('acceptTerms', !values.acceptTerms)
@@ -197,7 +222,7 @@ export const RegisterForm = () => {
                 data-testid="loader"
               />
             </div>
-            <Button type="submit" disabled={!isFormValid}>
+            <Button type="submit" onClick={() => setFormSubmitted(true)}>
               Зареєструватись
             </Button>
             <StrDiv>
