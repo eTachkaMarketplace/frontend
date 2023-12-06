@@ -7,7 +7,7 @@ import { ReactComponent as FacebookSVG } from '../../images/Footer/facebook.svg'
 export const Container = styled.footer`
     background: #141414;
 
-  
+
 `;
 
 export const FooterWrapper = styled.div`
@@ -32,7 +32,7 @@ export const FooterWrapper = styled.div`
 
   .footer-contact_title{
     color: #F1F1F1;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 500;
   }
@@ -61,12 +61,12 @@ export const FooterWrapper = styled.div`
 
   .footer-contact_link:hover{
     color: #0141BD;
-    
+
   }
 
   .footer-contact_link:active{
     color: #00308D;
-   
+
   }
 
 `;

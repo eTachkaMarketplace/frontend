@@ -144,7 +144,7 @@ export const RegisterForm = () => {
                   className={isValid('email')}
                   type="email"
                   name="email"
-                  placeholder="Електрону пошту "
+                  placeholder="Електронна пошта"
                   title="Email must be in the format username@domain.com"
                   value={values.email}
                 />

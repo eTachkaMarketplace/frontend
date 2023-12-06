@@ -7,8 +7,8 @@ import {
   ExtendedSearchLink,
   SearchButton,
   DivContainer,
-  
-} from './HeroForm.styled'; 
+
+} from './HeroForm.styled';
 
 const HeroForm = () => {
     return (
@@ -32,18 +32,34 @@ const HeroForm = () => {
             {/* Ваш выпадающий список для Области */}
           </InputSelect>
         </InputContainer>
-        <InputContainer>
-          <InputSelect>
-            <option value=""  >Рік випуску</option>
+        <div  className="form-flex">
+          <InputContainer>
+            <InputSelect>
+              <option value=""  >Рік від</option>
             {/* Ваш выпадающий список для Року випуску */}
-          </InputSelect>
-        </InputContainer>
+           </InputSelect>
+          </InputContainer>
+          <InputContainer>
+            <InputSelect>
+              <option value=""  >Рік до</option>
+              {/* Ваш выпадающий список для Року випуску */}
+            </InputSelect>
+          </InputContainer>
+        </div>
+        <div className="form-flex">
         <InputContainer>
           <InputSelect>
-            <option value=""   >Ціна</option>
+            <option value=""   >Ціна від</option>
             {/* Ваш выпадающий список для Ціни */}
           </InputSelect>
         </InputContainer>
+          <InputContainer>
+            <InputSelect>
+              <option value=""   >Ціна до</option>
+              {/* Ваш выпадающий список для Ціни */}
+            </InputSelect>
+          </InputContainer>
+        </div>
         <DivContainer>
           <ExtendedSearchLink to="/">Розширений пошук</ExtendedSearchLink>
           <SearchButton>Пошук</SearchButton>
@@ -51,6 +67,6 @@ const HeroForm = () => {
       </FormContainer>
     );
   };
-  
+
   export default HeroForm;
 

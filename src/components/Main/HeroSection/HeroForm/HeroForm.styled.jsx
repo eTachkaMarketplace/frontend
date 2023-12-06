@@ -11,11 +11,16 @@ export const FormContainer = styled.form`
   gap: 25px;
   border-radius: 16px;
   background: rgba(20, 20, 20, 0.70);
+
+  .form-flex{
+    display: flex;
+    gap: 25px;
+  }
 `;
 
 export const FormTitle = styled.h2`
   color: #FFF;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 24px;
   font-weight: 500;
   padding-bottom: 5px;
@@ -50,7 +55,7 @@ export const ExtendedSearchLink = styled.a`
   text-decoration: underline;
   cursor: pointer;
   font-family:'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 500;
 `;
 
@@ -58,8 +63,11 @@ export const SearchButton = styled.button`
     width: 200px;
     height: 56px;
     padding: 14px 24px;
-        
-    background: linear-gradient(144deg, #0040BD 19.1%, #19015B 78.89%);
+
+    font-size: 22px;
+    font-weight: 500;
+
+    background: linear-gradient(160deg, #0040BD 19.1%, #19015B 78.89%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -67,12 +75,12 @@ export const SearchButton = styled.button`
     transition: background-color 0.2s;
 
     &:hover {
-      background: linear-gradient(144deg, #0040BD 19.1%, #195B01 78.89%);
+      background: linear-gradient(160deg, #0040BD 19.1%, #195B01 78.89%);
     }
 
     &:active {
-      background: linear-gradient(144deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
-      box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+      background: linear-gradient(160deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
     }
 `;
 
