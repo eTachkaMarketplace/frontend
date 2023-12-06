@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import { PulseLoader } from 'react-spinners';
+import * as Yup from 'yup';
 
 import {
   Form,
@@ -18,6 +19,21 @@ import {
 } from './LoginForm.styled';
 import { ErrorSVG, GogleSVG, ViewSVG } from './chackBox';
 import { selectError, selectIsLoading } from 'redux/auth/selectors';
+
+
+const userSchema = Yup.object().shape({
+  email: Yup.string()
+    .test('is-valid-email', 'Невірний формат Email адреси.', value => {
+      return (
+        value && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)
+      );
+    })
+    .required('Введіть Email'),
+  password: Yup.string()
+    .matches(/^\S*$/, 'Password must not contain spaces')
+    .required('Password is required'),
+});
+
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -46,15 +62,8 @@ export const LoginForm = () => {
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      validate={values => {
-        const errors = {};
-        if (!values.email || !values.password) {
-          errors.emptyForm = 'Заповніть обидва поля';
-        }
-        console.log(errors.emptyForm);
-        return errors;
-        
-      }}
+      validationSchema={userSchema}
+      
     >
       {({ values, isValid, errors }) => {
         return (
@@ -103,9 +112,6 @@ export const LoginForm = () => {
               {refError ? (
                 <p className="errorMes">Недійсна пошта або пароль</p>
               ) : null}
-              {errors.emptyForm ? (
-                <p className="errorMes">Заповніть вся поля</p>
-              ) : null}
               <button className="remPassBtn" type="button">
                 Забули пароль?
               </button>
@@ -140,18 +146,12 @@ export const LoginForm = () => {
   );
 };
 
-// import * as Yup from 'yup';
-// const userSchema = Yup.object().shape({
-//   email: Yup.string()
-//     .email('This is an ERROR email')
-//     .matches(/^[a-zA-Z0-9@.]+$/, 'Email must contain only Latin characters')
-//     .required('Email is required'),
-//   password: Yup.string()
-//     .required('Password is required')
-//     .min(6, 'Password must be at least 6 characters long')
-//     .matches(/^\S*$/, 'Password must not contain spaces'),
-//   acceptTerms: Yup.boolean().oneOf(
-//     [true],
-//     'You must accept the terms and conditions'
-//   ),
-// });
+
+// validate={values => {
+//         const errors = {};
+//         if (!values.email || !values.password) {
+//           errors.emptyForm = 'Заповніть обидва поля';
+//         }
+//         console.log(errors.emptyForm);
+//         return errors;
+//       }}

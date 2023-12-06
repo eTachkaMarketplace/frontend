@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCarsThunk, getCarsThunkPopular } from './operations';
+import { getCarsThunk, getCarsThunkFiltered, getCarsThunkPopular } from './operations';
 
 const initialState = {
   cars: null,
   carsPopular: null,
+  carsFiltered: null,
+  carsFavorite: null,
   isLoading: false,
   error: null,
 };
@@ -11,8 +13,7 @@ const initialState = {
 const carsSlice = createSlice({
   name: 'cars',
   initialState,
-  reducers: {}, // Визначте додаткові обробники тут, якщо потрібно
-
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getCarsThunk.pending, state => {
@@ -40,6 +41,19 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.carsPopular = action.payload;
+      })
+      .addCase(getCarsThunkFiltered.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getCarsThunkFiltered.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(getCarsThunkFiltered.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.carsFiltered = action.payload;
       });
   },
 });

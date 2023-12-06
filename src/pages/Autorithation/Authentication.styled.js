@@ -20,7 +20,7 @@ export const AutoDiv = styled.div`
     background-color: transparent;
     width: 227px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #ababab;
   }
   .active {
     padding-bottom: 14px;
