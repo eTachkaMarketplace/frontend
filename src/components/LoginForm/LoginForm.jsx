@@ -63,12 +63,12 @@ export const LoginForm = () => {
     <Formik
       initialValues={{ email: '', password: '' }}
       validationSchema={userSchema}
-      
+      onSubmit={handleSubmit}
     >
       {({ values, isValid, errors }) => {
         return (
           <>
-            <Form onSubmit={handleSubmit}>
+            <Form>
               <Label className={` marg24`}>
                 <Input>
                   <Field
@@ -124,9 +124,7 @@ export const LoginForm = () => {
                   data-testid="loader"
                 />
               </div>
-              <Button type="submit" disabled={errors.emptyForm}>
-                Увійти
-              </Button>
+              <Button type="submit">Увійти</Button>
               <StrDiv>
                 <p className="strange"></p>
                 <p className="and">або</p>
