@@ -171,9 +171,8 @@ export const Button = styled.button`
 `;
 
 export const ErrorMessage = styled(FormikErrorMessage)`
-  margin-left: 18px;
+  margin-left: 0;
   margin-top: 8px;
-
   color: #fa6666;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
