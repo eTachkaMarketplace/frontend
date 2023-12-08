@@ -30,8 +30,8 @@ const userSchema = Yup.object().shape({
     })
     .required('Введіть Email'),
   password: Yup.string()
-    .matches(/^\S*$/, 'Password must not contain spaces')
-    .required('Password is required'),
+    .matches(/^\S*$/, 'Пароль не повинен містити пробіли')
+    .required('Введіть пароль'),
 });
 
 
