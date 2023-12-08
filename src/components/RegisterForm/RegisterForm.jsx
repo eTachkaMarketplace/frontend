@@ -76,7 +76,7 @@ export const RegisterForm = () => {
     setFormSubmitted(false);
   }, []);
 
-  const handleSubmit = e => {
+/*  const handleSubmit = e => {
     e.preventDefault();
     const {
       name: { value: name },
@@ -92,7 +92,24 @@ export const RegisterForm = () => {
     setShowChecked(true);
     dispatch(register({ name, email, password }));
     e.currentTarget.reset();
+  };*/
+
+  const handleSubmit = async ({ name, email, password, acceptTerms }, { setErrors, resetForm }) => {
+    if (!acceptTerms) {
+      setErrors({ acceptTerms: 'Подтвердите условия соглашения' });
+      setShowChecked(false);
+      return;
+    }
+    try {
+      setShowChecked(true);
+      await dispatch(register({ name, email, password }));
+      resetForm();
+    } catch (error) {
+      console.error('Error submitting registration form:', error);
+    }
   };
+
+
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
