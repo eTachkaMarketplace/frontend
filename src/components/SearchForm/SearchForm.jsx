@@ -1,14 +1,22 @@
 import { Field, Formik, Form } from 'formik';
 import { Search } from './SearchForm.styled';
 import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsOpen } from 'redux/modal/modalSlice';
 
 export const SearchForm = ({ initialValues, onSubmit }) => {
+    const distatch = useDispatch();
+
   const formikRef = useRef(null);
    useEffect(() => {
      if (formikRef.current) {
        formikRef.current.resetForm({ values: initialValues });
      }
    }, [initialValues]);
+  
+  const clearForm = () => {
+    distatch(setIsOpen(true));
+  }
   return (
     <Search>
       <Formik
@@ -185,7 +193,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
           </div>
 
           <div className="btnWraper">
-            <button className="clearButton" type="button">
+            <button className="clearButton" onClick={clearForm} type="button">
               Очистити все
             </button>
             <button className="submitButton" type="submit">

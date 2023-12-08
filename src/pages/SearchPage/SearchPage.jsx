@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCarsFil } from 'redux/cars/selectors';
 import { getCarsThunkFiltered } from 'redux/cars/operations';
+import Modal from 'modal/modal';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ console.log(carsFilter);
           <SearchList />
         </div>
       </Wraper>
+      <Modal handleSearch={handleSearch} />
     </>
   );
 };
