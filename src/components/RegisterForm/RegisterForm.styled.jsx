@@ -165,6 +165,7 @@ export const Button = styled.button`
   padding: 14px 24px;
   gap: 4px;
   align-self: stretch;
+  border: 0;
   border-radius: 8px;
   background: linear-gradient(144deg, #0040bd 19.34%, #19015b 80.66%);
   &:hover,

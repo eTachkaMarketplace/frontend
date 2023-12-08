@@ -27,7 +27,10 @@ const userSchema = Yup.object().shape({
     .required("Введіть ім'я")
     .min(2, "Ім'я повинно бути принаймні 2 символи")
     .matches(/^[^\d]+$/, "Ім'я не повинно містити цифри")
-    .matches(/^[a-zA-Z\s]*$/, "Ім'я не повинно містити знаки або спецсимволи")
+    .matches(
+      /^[a-zA-Zа-яА-ЯіІїЇєЄёЁ\s]*$/,
+      "Ім'я не повинно містити знаки або спецсимволи"
+    )
     .test('name-validation', '', value => {
       return value && value.replace(/\s/g, '').length >= 2;
     }),

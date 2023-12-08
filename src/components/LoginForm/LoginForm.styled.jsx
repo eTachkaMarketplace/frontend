@@ -163,6 +163,7 @@ export const Button = styled.button`
   gap: 4px;
   align-self: stretch;
   border-radius: 8px;
+  border: 0;
   background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   &:hover,
   &:focus {
