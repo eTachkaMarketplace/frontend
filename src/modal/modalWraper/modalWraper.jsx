@@ -5,19 +5,19 @@ import { Container, Overlay } from './modalWraper.styled';
 
 
 export const ModalWraper = ({ children }) => {
-  const distatch = useDispatch();
+  const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsOpen);
 
   const handleOverlayClick = e => {
     if (e.currentTarget === e.target) {
-      distatch(setIsOpen(false));
+      dispatch(setIsOpen(false));
     }
   };
 
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        distatch(setIsOpen(false));
+        dispatch(setIsOpen(false));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -25,7 +25,7 @@ export const ModalWraper = ({ children }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [distatch, modalIsOpen]);
+  }, [dispatch, modalIsOpen]);
 
   return (
     <>

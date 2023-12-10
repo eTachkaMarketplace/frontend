@@ -31,3 +31,4 @@ export const Paragraph = styled.p`
   font-size: 16px;
   font-weight: 400;
 `;
+
