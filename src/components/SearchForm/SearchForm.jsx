@@ -52,40 +52,67 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <label>
               <Field className="fieldLong marg16" as="select" name="region">
                 <option value="">Область</option>
-                <option value="Щось1">Щось1</option>
-                <option value="Щось2">Щось2</option>
+                <option value="Kyivska">Київська</option>
+                <option value="Vinnytsia">Вінницька</option>
+                <option value="Volynsk">Волинська</option>
+                <option value="Dniprovska">Дніпровська</option>
+                <option value="Donetsk">Донецька</option>
+                <option value="Zhytomyr">Житомирська</option>
+                <option value="Zakarpattia">Закарпатська</option>
+                <option value="Zaporizhzhia">Запорізька</option>
+                <option value="Ivano-Frankivsk">Івано-франківська</option>
+                <option value="Kirovohradsk">Кіровоградська</option>
+                <option value="Luhansk">Луганська</option>
+                <option value="Lviv">Львівська</option>
+                <option value="Mykolayivska">Миколаївська</option>
+                <option value="Odesa">Одеська</option>
+                <option value="Poltava">Полтавська</option>
+                <option value="Rivne">Рівенська</option>
+                <option value="Sumy">Сумська</option>
+                <option value="Ternopilsk">Тернопільська</option>
+                <option value="Cherkasy">Черкаська</option>
+                <option value="Chernivtsi">Чернівецька</option>
+                <option value="Chernihivska">Чернігівська</option>
+                <option value="Kharkivska">Харківська</option>
+                <option value="Khersonsk">Херсонська</option>
+                <option value="Khmelnytska">Хмельницька</option>
               </Field>
             </label>
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldShort" as="select" name="yearFrom">
-                  <option value="">Рік від</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="yearFrom"
+                  placeholder="Введіть рік від"
+                />
               </label>
               <label>
-                <Field className="fieldShort" as="select" name="yearTo">
-                  <option value="">Рік до</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="yearTo"
+                  placeholder="Введіть рік до"
+                />
               </label>
             </div>
             <div className="shortDiv">
               <label>
-                <Field className="fieldShort" as="select" name="priceFrom">
-                  <option value="">Ціна від</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="priceFrom"
+                  placeholder="Введіть ціну від $"
+                />
               </label>
+
               <label>
-                <Field className="fieldShort" as="select" name="priceTo">
-                  <option value="">Ціна до</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="priceTo"
+                  placeholder="Введіть ціну до $"
+                />
               </label>
             </div>
           </div>
@@ -125,19 +152,21 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </label>
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldShort " as="select" name="mileageFrom">
-                  <option value="">Пробіг від</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="mileageFrom"
+                  placeholder="Введіть пробіг від"
+                />
               </label>
 
               <label>
-                <Field className="fieldShort " as="select" name="mileageTo">
-                  <option value="">Пробіг до</option>
-                  <option value="Щось1">Щось1</option>
-                  <option value="Щось2">Щось2</option>
-                </Field>
+                <Field
+                  className="fieldTextShort"
+                  type="text"
+                  name="mileageTo"
+                  placeholder="Введіть пробіг до"
+                />
               </label>
             </div>
             <label>
@@ -165,10 +194,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <label>
               <Field className="fieldLong marg16" as="select" name="condition">
                 <option value="">Технічний стан</option>
-                <option
-                  value="Completely intact
-"
-                >
+                <option value="Completely intact">
                   Повністю непошкоджене
                 </option>
                 <option value="Professionally repaired damage">

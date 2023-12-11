@@ -22,14 +22,25 @@ export const Search = styled.div`
     position: relative;
   }
 
-  label:after {
+  /* label:after {
     content: '▼';
     position: absolute;
     top: 20px;
     right: 16px;
     pointer-events: none;
-  }
+  } */
 
+  .fieldTextShort {
+    width: 149px;
+    height: 48px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 4px 16px;
+  }
   .title {
     margin-left: 4px;
     margin-bottom: 24px;
@@ -60,6 +71,7 @@ export const Search = styled.div`
 
     border-radius: 8px;
     background: #fff;
+    border: 1px solid #b9b9b9;
   }
 
   .fieldShort {
@@ -70,6 +82,7 @@ export const Search = styled.div`
     padding: 4px 16px;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid #b9b9b9;
 
     border-radius: 8px;
     background: #fff;
@@ -112,7 +125,7 @@ export const Search = styled.div`
     background-color: transparent;
     color: #4b4b4b;
     /* Subtitle 2.1 */
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
