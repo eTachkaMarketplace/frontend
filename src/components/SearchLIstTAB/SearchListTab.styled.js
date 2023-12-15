@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Div = styled.div`
+display: flex;
+gap: 8px;
+`
+
 export const Button = styled.button`
   display: inline-flex;
   width: auto;

@@ -14,7 +14,7 @@ export const SearchList = () => {
             <option value="expensive">Від дорожчих</option>
           </select>
         </div>
-        <div>
+        <div className='carsMainList'>
           <ul>
             <li className="carItem">
               <div>

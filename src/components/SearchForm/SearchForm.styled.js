@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Search = styled.div`
   display: flex;
   width: 412px;
-  height: 1200px;
+  height: 1252px;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
@@ -22,13 +22,13 @@ export const Search = styled.div`
     position: relative;
   }
 
-  label:after {
+  /* label:after {
     content: '▼';
     position: absolute;
     top: 20px;
     right: 16px;
     pointer-events: none;
-  }
+  } */
 
   .title {
     margin-left: 4px;
@@ -43,6 +43,28 @@ export const Search = styled.div`
     font-weight: 600;
     line-height: normal;
   }
+
+  .underTitle {
+    color: #4b4b4b;
+    margin-bottom: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .arrowDiv {
+    position: relative;
+  }
+  .arrow {
+    position: absolute;
+    z-index: 1;
+    right: 16px;
+    top: 12px;
+    pointer-events: none;
+  }
+
   .topWraper {
     display: flex;
     flex-direction: column;
@@ -60,6 +82,7 @@ export const Search = styled.div`
 
     border-radius: 8px;
     background: #fff;
+    border: 1px solid #b9b9b9;
   }
 
   .fieldShort {
@@ -70,11 +93,22 @@ export const Search = styled.div`
     padding: 4px 16px;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid #b9b9b9;
 
     border-radius: 8px;
     background: #fff;
   }
-
+  .fieldTextShort {
+    width: 149px;
+    height: 48px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 4px 16px;
+  }
   .shortDiv {
     display: flex;
     gap: 14px;
@@ -108,11 +142,15 @@ export const Search = styled.div`
     justify-content: space-between;
   }
   .clearButton {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
     border: 0;
     background-color: transparent;
     color: #4b4b4b;
     /* Subtitle 2.1 */
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

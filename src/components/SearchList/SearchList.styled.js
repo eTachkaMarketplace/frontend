@@ -42,6 +42,10 @@ export const SearchListDiv = styled.div`
     font-weight: 400;
     line-height: normal;
   }
+
+  .carsMainList {
+    margin-top: 20px;
+  }
   .carItem {
     display: flex;
     gap: 20px;
