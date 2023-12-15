@@ -19,6 +19,14 @@ export const Title = styled.h2`
   font-weight: 500;
 `;
 
+export const SectionTitle = styled.h3`
+  color: #141414;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
 export const RequiredMarker = styled.span`
   color: red;
   font-size: 16px;
@@ -31,4 +39,5 @@ export const Paragraph = styled.p`
   font-size: 16px;
   font-weight: 400;
 `;
+
 

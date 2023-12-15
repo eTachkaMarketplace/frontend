@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Title, RequiredMarker, Paragraph, } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
+import {Container, Title, RequiredMarker, Paragraph,SectionTitle } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { Formik, Field, Form } from 'formik';
 
 
