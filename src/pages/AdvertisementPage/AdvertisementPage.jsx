@@ -42,6 +42,8 @@ const MainInfoSection =()=>{
               <div>
                 <label htmlFor="brand">Марка авто:</label>
                 <Field type="text" id="brand" name="brand" />
+                <Field type="text" id="brand" name="brand" />
+
               </div>
 
               <div>
