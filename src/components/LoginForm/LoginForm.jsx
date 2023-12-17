@@ -41,23 +41,26 @@ export const LoginForm = () => {
   const [refError, setRefError] = useState(false);
   const requestError = useSelector(selectError);
   const loader = useSelector(selectIsLoading);
-  const handleSubmit = e => {
-    e.preventDefault();
-    const {
-      email: { value: email },
-      password: { value: password },
-    } = e.currentTarget;
-    dispatch(login({ email, password }));
-    e.currentTarget.reset();
-  };
+
+
+const handleSubmit = (values, { setSubmitting }) => {
+  const { email, password } = values;
+
+  dispatch(login({ email, password }));
+
+  setSubmitting(false);
+};
+
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+
   useEffect(() => {
     if (requestError) setRefError(true);
   }, [requestError]);
+
 
   return (
     <Formik
@@ -65,7 +68,7 @@ export const LoginForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, isValid, errors }) => {
+      {({ values, isValid, errors, handleSubmit }) => {
         return (
           <>
             <Form>

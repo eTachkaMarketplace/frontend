@@ -4,7 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 export const instance = axios.create({
-  baseURL: 'https://marketplace-fi3l.onrender.com',
+  baseURL: 'https://185.69.153.118:8443/',
 });
 
 
@@ -52,7 +52,6 @@ export const logoutOperation = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      // Очистка токена и другие операции, если необходимо
       clearToken();
       return true;
     } catch (error) {

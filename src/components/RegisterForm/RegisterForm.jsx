@@ -76,23 +76,20 @@ export const RegisterForm = () => {
     setFormSubmitted(false);
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const {
-      name: { value: name },
-      email: { value: email },
-      password: { value: password },
-      acceptTerms,
-    } = e.currentTarget;
+ const handleSubmit = (values, { setSubmitting }) => {
+   const { name, email, password, acceptTerms } = values;
 
-    if (!acceptTerms) {
-      setShowChecked(false);
-      return;
-    }
-    setShowChecked(true);
-    dispatch(register({ name, email, password }));
-    e.currentTarget.reset();
-  };
+   if (!acceptTerms) {
+     setShowChecked(false);
+     return;
+   }
+
+   setShowChecked(true);
+   dispatch(register({ name, email, password }));
+
+   // Reset the form
+   setSubmitting(false);
+ };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -108,7 +105,7 @@ export const RegisterForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, errors, touched, setFieldValue }) => {
+      {({ values, errors, touched, setFieldValue, isSubmitting }) => {
         const isValid = field =>
           touched[field] && errors[field]
             ? 'is-invalid'
