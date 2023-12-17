@@ -43,13 +43,28 @@ export const LoginForm = () => {
   const loader = useSelector(selectIsLoading);
 
 
-const handleSubmit = (values, { setSubmitting }) => {
+const handleSubmit = async (values, { resetForm, setSubmitting }) => {
   const { email, password } = values;
-
-  dispatch(login({ email, password }));
-
+try {
+  await dispatch(login({ email, password }));
+  resetForm();
   setSubmitting(false);
+  } catch (error) {
+      console.error('Error submitting form:', error);
+    }
 };
+
+
+//   const handleSubmit = async ({ email, password }, { resetForm }) => {
+//     try {
+//       await dispatch(login({ email, password }));
+//       resetForm();
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//     }
+//   };
+
+
 
 
   const handleShowPassword = () => {
@@ -127,7 +142,7 @@ const handleSubmit = (values, { setSubmitting }) => {
                   data-testid="loader"
                 />
               </div>
-              <Button type="submit">Увійти</Button>
+              <Button type="submit" disabled={!isValid || loader}>Увійти</Button>
               <StrDiv>
                 <p className="strange"></p>
                 <p className="and">або</p>
