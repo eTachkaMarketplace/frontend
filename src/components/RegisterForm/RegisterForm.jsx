@@ -76,38 +76,54 @@ export const RegisterForm = () => {
     setFormSubmitted(false);
   }, []);
 
-/*  const handleSubmit = e => {
-    e.preventDefault();
-    const {
-      name: { value: name },
-      email: { value: email },
-      password: { value: password },
-      acceptTerms,
-    } = e.currentTarget;
+ const handleSubmit = (values, { setSubmitting }) => {
+   const { name, email, password, acceptTerms } = values;
 
-    if (!acceptTerms) {
-      setShowChecked(false);
-      return;
-    }
-    setShowChecked(true);
-    dispatch(register({ name, email, password }));
-    e.currentTarget.reset();
-  };*/
+   if (!acceptTerms) {
+     setShowChecked(false);
+     return;
+   }
 
-  const handleSubmit = async ({ name, email, password, acceptTerms }, { setErrors, resetForm }) => {
-    if (!acceptTerms) {
-      setErrors({ acceptTerms: 'Подтвердите условия соглашения' });
-      setShowChecked(false);
-      return;
-    }
-    try {
-      setShowChecked(true);
-      await dispatch(register({ name, email, password }));
-      resetForm();
-    } catch (error) {
-      console.error('Error submitting registration form:', error);
-    }
-  };
+   setShowChecked(true);
+   dispatch(register({ name, email, password }));
+
+   // Reset the form
+   setSubmitting(false);
+ };
+// =======
+// /*  const handleSubmit = e => {
+//     e.preventDefault();
+//     const {
+//       name: { value: name },
+//       email: { value: email },
+//       password: { value: password },
+//       acceptTerms,
+//     } = e.currentTarget;
+
+//     if (!acceptTerms) {
+//       setShowChecked(false);
+//       return;
+//     }
+//     setShowChecked(true);
+//     dispatch(register({ name, email, password }));
+//     e.currentTarget.reset();
+//   };*/
+
+//   const handleSubmit = async ({ name, email, password, acceptTerms }, { setErrors, resetForm }) => {
+//     if (!acceptTerms) {
+//       setErrors({ acceptTerms: 'Подтвердите условия соглашения' });
+//       setShowChecked(false);
+//       return;
+//     }
+//     try {
+//       setShowChecked(true);
+//       await dispatch(register({ name, email, password }));
+//       resetForm();
+//     } catch (error) {
+//       console.error('Error submitting registration form:', error);
+//     }
+//   };
+// >>>>>>> main
 
 
 
@@ -125,7 +141,7 @@ export const RegisterForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, errors, touched, setFieldValue }) => {
+      {({ values, errors, touched, setFieldValue, isSubmitting }) => {
         const isValid = field =>
           touched[field] && errors[field]
             ? 'is-invalid'

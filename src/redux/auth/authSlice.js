@@ -3,13 +3,9 @@ import {
   login,
   register,
   logoutOperation,
-  // logout,
-  // refresh,
-  // updateUser,
   } from './operations';
 
 const initialState = {
-  user: {},
   refToken: '',
   token: '',
   isLoggedIn: false,
@@ -70,31 +66,4 @@ export const authSlice = createSlice({
 
 export const { logout, refresh } = authSlice.actions;
 
-export default authSlice.reducer;
 
-//   .addCase(refresh.fulfilled, (state, { payload }) => {
-//     state.isLoggedIn = true;
-//     state.isLoading = false;
-//     state.user = payload;
-//   })
-//   .addCase(refresh.pending, state => {
-//     state.isLoading = true;
-//   })
-//   .addCase(refresh.rejected, (state, { payload }) => {
-//     state.isLoading = false;
-//     state.isLoggedIn = false;
-//     state.error = payload;
-//     state.token = null;
-//   })
-//   .addCase(updateUser.fulfilled, (state, { payload }) => {
-//     state.user = payload;
-//     state.isLoading = false;
-//   })
-//   .addCase(updateUser.pending, state => {
-//     state.isLoading = true;
-//     state.error = null;
-//   })
-//   .addCase(updateUser.rejected, (state, { payload }) => {
-//     state.isLoading = false;
-//     state.error = payload;
-//   })

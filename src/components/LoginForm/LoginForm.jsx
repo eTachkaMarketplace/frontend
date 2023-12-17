@@ -41,14 +41,29 @@ export const LoginForm = () => {
   const [refError, setRefError] = useState(false);
   const requestError = useSelector(selectError);
   const loader = useSelector(selectIsLoading);
-  const handleSubmit = async ({ email, password }, { resetForm }) => {
-    try {
-      await dispatch(login({ email, password }));
-      resetForm();
-    } catch (error) {
+
+
+const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+  const { email, password } = values;
+try {
+  await dispatch(login({ email, password }));
+  resetForm();
+  setSubmitting(false);
+  } catch (error) {
       console.error('Error submitting form:', error);
     }
-  };
+};
+
+
+//   const handleSubmit = async ({ email, password }, { resetForm }) => {
+//     try {
+//       await dispatch(login({ email, password }));
+//       resetForm();
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//     }
+//   };
+
 
 
 
@@ -56,9 +71,11 @@ export const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
+
   useEffect(() => {
     if (requestError) setRefError(true);
   }, [requestError]);
+
 
   return (
     <Formik
@@ -66,7 +83,7 @@ export const LoginForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, isValid, errors }) => {
+      {({ values, isValid, errors, handleSubmit }) => {
         return (
           <>
             <Form>
