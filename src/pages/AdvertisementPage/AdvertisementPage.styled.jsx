@@ -9,6 +9,23 @@ export const Container = styled.section`
   padding: 80px 80px 120px 80px ;
   margin-left: auto;
   margin-right: auto;
+
+  .form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 25px;
+  }
+
+`;
+
+export const SectionContainer = styled.div`
+  /* max-width: 1440px; */
+  padding: 50px 100px;
+  margin: 0;
+
+  border-radius: 8px;
+  background: #F1F1F1;
 `;
 
 export const Title = styled.h2`
@@ -39,5 +56,6 @@ export const Paragraph = styled.p`
   font-size: 16px;
   font-weight: 400;
 `;
+
 
 

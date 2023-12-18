@@ -1,77 +1,105 @@
-import React from 'react';
-import {Container, Title, RequiredMarker, Paragraph,SectionTitle } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
+import {useState, useEffect, useRef } from 'react';
+import {Container, Title, RequiredMarker, Paragraph,SectionTitle, SectionContainer } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { Formik, Field, Form } from 'formik';
+import { useDispatch } from 'react-redux';
+import { setIsOpen } from 'redux/modal/modalSlice';
 
-
-const PhotoSection =()=>{
-  return (
-    <>
-    <SectionTitle>Фото автомобілю <RequiredMarker>*</RequiredMarker></SectionTitle>
-    <Paragraph>
-      Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна кількість фотографій - 6.
-    </Paragraph>
-    </>
-  )
+const brandsAndModels = {
+  BMW: ['X5', 'M3', 'X3'],
+  Toyota: ['Camry', 'Corolla', 'Avalon'],
+  'Mercedes-Benz': ['A-Class', 'B-Class', 'C-Class'],
 };
 
-const MainInfoSection =()=>{
-  const initialValues = {
-    brand: '',
-    model: '',
+
+  const AdvertisementForm = ({ initialValues, onSubmit}) => {
+    const dispatch = useDispatch();
+    const formikRef = useRef(null);
+
+    const [availableModels, setAvailableModels] = useState([]);
+
+    useEffect(() => {
+     if (formikRef.current) {
+       formikRef.current.resetForm({ values: initialValues });
+      }
+      }, [initialValues]);
+  
+  const clearForm = () => {
+    dispatch(setIsOpen(true));
+  }
+
+  const handleBrandChange = (event) => {
+    const selectedBrand = event.target.value;
+
+    const models = brandsAndModels[selectedBrand] || [];
+
+    setAvailableModels(models);
+
+    formikRef.current.setFieldValue('model', '');
   };
-
-  const MyCarForm = () => {
-    const handleSubmit = (values, { resetForm }) => {
-      // Обработка отправки формы
-      console.log(values);
-
-      // Очистка формы после успешной отправки
-      resetForm();
-    };
-
-    const handleExternalSubmit = (submitForm) => {
-      // Явный вызов отправки формы извне
-      submitForm();
-    };
 
     return (
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ submitForm }) => (
-          <>
-            <Form>
-              <div>
-                <label htmlFor="brand">Марка авто:</label>
-                <Field type="text" id="brand" name="brand" />
-                <Field type="text" id="brand" name="brand" />
+      <Formik 
+      initialValues={initialValues}        
+      onSubmit={values => onSubmit(values)}
+      innerRef={formik => (formikRef.current = formik)}
+      >
+            <Form className='form'>
+              <SectionContainer>
+              <SectionTitle>Етапи розміщення оголошення</SectionTitle>
+              </SectionContainer>
 
-              </div>
+              <SectionContainer>
+              <SectionTitle>Фото автомобілю<RequiredMarker>*</RequiredMarker></SectionTitle>
+                <Paragraph>
+                  Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна кількість фотографій - 6.
+                 </Paragraph>
+              </SectionContainer>
 
-              <div>
-                <label htmlFor="model">Модель авто:</label>
-                <Field type="text" id="model" name="model" />
-              </div>
-
-              <div>
-              </div>
-            </Form>
-
+              <SectionContainer>
+              <SectionTitle>Основна інформація</SectionTitle>
+              <label>
+                  Марка авто<RequiredMarker>*</RequiredMarker>
+                  <Field
+                    className="fieldLong marg16"
+                    as="select"
+                    name="brand"
+                    onChange={handleBrandChange}
+                  >
+                    <option value=""></option>
+                    {Object.keys(brandsAndModels).map((brand) => (
+                      <option key={brand} value={brand}>
+                        {brand}
+                      </option>
+                    ))}
+                  </Field>
+              </label>
+              <label>
+                  Модель авто<RequiredMarker>*</RequiredMarker>
+                  <Field className="fieldLong marg16" as="select" name="model">
+                    <option value=""></option>
+                    {availableModels.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </Field>
+              </label>
+                               
+              </SectionContainer>
+            
             <div>
-              {/* Кнопка сабмит вне формы */}
-              <button type="button" onClick={() => handleExternalSubmit(submitForm)}>
-                Отправить (вне формы)
+              <button className="submitButton" type="submit">
+              Опублікувати оголошення
               </button>
+              <button className="clearButton" onClick={clearForm} type="button">
+              Очистити все
+            </button>
             </div>
-          </>
-        )}
+          
+            </Form>
       </Formik>
     );
-  };
-  return (
-    <>
-      <SectionTitle>Основна інформація</SectionTitle>
-
-    </>
-  )
+  
 };
 
 
@@ -83,10 +111,7 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <PhotoSection/>
-
-      <MainInfoSection/>
-
+      <AdvertisementForm/>
 
 
     </Container>
