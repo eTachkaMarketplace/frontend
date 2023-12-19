@@ -22,7 +22,7 @@ const brandsAndModels = {
        formikRef.current.resetForm({ values: initialValues });
       }
       }, [initialValues]);
-  
+
   const clearForm = () => {
     dispatch(setIsOpen(true));
   }
@@ -38,8 +38,8 @@ const brandsAndModels = {
   };
 
     return (
-      <Formik 
-      initialValues={initialValues}        
+      <Formik
+      initialValues={initialValues}
       onSubmit={values => onSubmit(values)}
       innerRef={formik => (formikRef.current = formik)}
       >
@@ -74,7 +74,7 @@ const brandsAndModels = {
                   </Field>
               </label>
               <label>
-                  Модель авто<RequiredMarker>*</RequiredMarker>
+                  Модель авто <RequiredMarker>*</RequiredMarker>
                   <Field className="fieldLong marg16" as="select" name="model">
                     <option value=""></option>
                     {availableModels.map((model) => (
@@ -84,9 +84,9 @@ const brandsAndModels = {
                     ))}
                   </Field>
               </label>
-                               
+
               </SectionContainer>
-            
+
             <div>
               <button className="submitButton" type="submit">
               Опублікувати оголошення
@@ -95,11 +95,11 @@ const brandsAndModels = {
               Очистити все
             </button>
             </div>
-          
+
             </Form>
       </Formik>
     );
-  
+
 };
 
 
