@@ -16,6 +16,7 @@ import { authSlice } from './auth/authSlice';
 import { carsReducer } from './cars/carsSlice';
 import { modalReducer } from './modal/modalSlice';
 import { userSlice } from './user/userSlice';
+import { adversSlice } from './advertisment/adverSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,6 +30,7 @@ export const store = configureStore({
     cars: carsReducer,
     modal: modalReducer,
     user: userSlice.reducer,
+    adverts: adversSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
