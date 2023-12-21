@@ -30,10 +30,12 @@ const Header = () => {
           </ul>
         </Navigation>
         <User>
+        <NavLink to="/AdvertisementPage">
           <ButtonSale>
             <StyledAddSVG />
             <ButtonText>Продати</ButtonText>
           </ButtonSale>
+          </NavLink>
           <UserIcon>
             <StyledHeartSVG />
             <NavLink to={isLoggedIn ? '/account' : '/authorization'}>

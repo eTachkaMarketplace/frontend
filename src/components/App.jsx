@@ -8,6 +8,7 @@ import Footer from './Footer/Footer';
 import Main from './Main/Main';
 import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
+import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
@@ -33,6 +34,7 @@ export function App() {
               }
             />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/AdvertisementPage" element={<AdvertisementPage />} />
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/account" element={<AccountPage />} />
             </Route>
