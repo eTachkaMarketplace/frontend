@@ -57,6 +57,22 @@ const brandsAndModels = {
 
               <SectionContainer>
               <SectionTitle>Основна інформація</SectionTitle>
+                <div className="arrowDiv">
+                <label>
+                  Категорія<RequiredMarker>*</RequiredMarker>
+                  <Field
+                    className="fieldLong marg16"
+                    as="select"
+                    name="category"
+                  >
+                    <option value="All">Усі варіанти</option>
+                    <option value="New"></option>
+                    <option value="Used"></option>
+                    <option value="Servitude"></option>
+                  </Field>
+                </label>
+
+                </div>
               <label>
                   Марка авто<RequiredMarker>*</RequiredMarker>
                   <Field
