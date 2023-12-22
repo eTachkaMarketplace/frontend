@@ -154,13 +154,14 @@ export const Container = styled.section`
     align-items: center;
     border: 0;
     background-color: transparent;
-    color: #4b4b4b;
-    /* Subtitle 2.1 */
+    color: #ABABAB;
+
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
+    letter-spacing: -0.4px;
   }
   .submitButton {
     color: #fff;

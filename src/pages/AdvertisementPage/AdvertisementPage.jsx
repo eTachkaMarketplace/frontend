@@ -4,6 +4,8 @@ import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
+import Modal from '../../modal/modal';
+
 
 
 const brandsAndModels = {
@@ -239,7 +241,202 @@ const brandsAndModels = {
                 </label>
               </SectionContainer>
 
+              <SectionContainer>
+                <SectionTitle>Технічні характеристики</SectionTitle>
+                <div className="arrowDiv">
+                  <label>
+                    Тип кузова<RequiredMarker>*</RequiredMarker>
+                    <Field className="fieldLong marg16" as="select" name="bodyType">
+                      <option value="All">Усі варіанти</option>
+                      <option value="Універсал">Універсал</option>
+                      <option value="Седан">Седан</option>
+                      <option value="Кабріолет">Кабріолет</option>
+                      <option value="Купе">Купе</option>
+                      <option value="Внедорожник">Внедорожник</option>
+                      <option value="Хетчбек">Хетчбек</option>
+                      <option value="Пікап">Пікап</option>
+                      <option value="Лімузин">Лімузин</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Двигун<RequiredMarker>*</RequiredMarker>
+                    <Field className="fieldLong marg16" as="select" name="fuelType">
+                      <option value="Electro">Електрична силова установка</option>
+                      <option value="Hibrid">Гібрід</option>
+                      <option value="Gasoline">Бензиновий</option>
+                      <option value="Gaseous">Газовий</option>
+                      <option value="Diesel">Дизельний</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Об‘єм двигуна (л)<RequiredMarker>*</RequiredMarker>
+                    <Field
+                      className="fieldLong marg16"
+                      as="select"
+                      name="engineCapacity"
+                    >
+                      <option value="Microliter">До 1,1 літра</option>
+                      <option value="Low-volume">Від 1,2 до 1,7 літра</option>
+                      <option value="Medium-sized">Від 1,8 до 3,3 літра</option>
+                      <option value="Large-capacity">Від 3,5 літра</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Привід<RequiredMarker>*</RequiredMarker>
+                    <Field
+                      className="fieldLong marg16"
+                      as="select"
+                      name="driveType"
+                    >
+                      <option value="Front">Передній</option>
+                      <option value="Posterior">Задній</option>
+                      <option value="Full">Повний</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Коробка передач<RequiredMarker>*</RequiredMarker>
+                    <Field
+                      className="fieldLong marg16"
+                      as="select"
+                      name="transmission"
+                    >
+                      <option value="Mechanical">Механічна</option>
+                      <option value="Automatic">Автоматична</option>
+                      <option value="Robotic">Роботизована</option>
+                      <option value="Variable">Варіативна</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Технічний стан<RequiredMarker>*</RequiredMarker>
+                    <Field
+                      className="fieldLong marg16"
+                      as="select"
+                      name="condition"
+                    >
+                      <option value="Completely intact">
+                        Повністю непошкоджене
+                      </option>
+                      <option value="Professionally repaired damage">
+                        Професійно відремонтовані пошкодження
+                      </option>
+                      <option value="Unrepaired damage">
+                        Не відремонтовані пошкодження
+                      </option>
+                      <option value="Not running/For spare parts">
+                        Не на ходу/На запчастини
+                      </option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <div className="arrowDiv">
+                  <label>
+                    Колір<RequiredMarker>*</RequiredMarker>
+                    <Field className="fieldLong" as="select" name="color">
+                      <option value="">Колір</option>
+                      <option value="White">Білий</option>
+                      <option value="Black">Чорний</option>
+                      <option value="Gray">Сірий</option>
+                      <option value="Red">Червоний</option>
+                      <option value="Blue">Синій</option>
+                      <option value="Pink">Рожевий</option>
+                      <option value="Green">Зелений</option>
+                      <option value="Orange">Помаранчовий</option>
+                      <option value="Burgundy">Бордовий</option>
+                      <option value="Brown">Коричневий</option>
+                      <option value="Yellow">Жовтий</option>
+                      <option value="Violet">Фіолетовий</option>
+                      <option value="Gold">Золотий</option>
+                      <option value="Silver">Срібний</option>
+                      <option value="beige">бежевий</option>
+                      <option value="Multicolor">Мультиколір</option>
+                    </Field>
+                  </label>
+                  <div className="arrow">
+                    <DropArrow />
+                  </div>
+                </div>
+                <label>
+                  VIN код
+                  <Field
+                    className="fieldLong marg16"
+                    type="text"
+                    name="VIN"
+                    placeholder="VF7LCRFJF74251989"
+                  >
+                  </Field>
+                </label>
+              </SectionContainer>
+
+              <SectionContainer>
+                <SectionTitle>Опис</SectionTitle>
+                <Paragraph>
+                  Детально опишіть особливості вашого автомобілю або вкажіть додаткові паратметри (наприклад: круіз контроль, парктронік і т.д.)
+                </Paragraph>
+                <label>
+                  <Field
+                    className="fieldLong marg16"
+                    type="text"
+                    name="AboutCar"
+                  >
+                  </Field>
+                </label>
+              </SectionContainer>
+
+              <SectionContainer>
+                <SectionTitle>Контактні данні</SectionTitle>
+                <label>
+                  Ваше ім’я<RequiredMarker>*</RequiredMarker>
+                  <Field
+                    className="fieldLong marg16"
+                    type="text"
+                    name="username"
+                  >
+                  </Field>
+                </label>
+                <label>
+                  Телефон<RequiredMarker>*</RequiredMarker>
+                  <Field
+                    className="fieldLong marg16"
+                    type="phone"
+                    name="phone"
+                    placeholder="+38(0ХХ) ХХХ ХХ ХХ"
+                  >
+                  </Field>
+                </label>
+              </SectionContainer>
+
             <div>
+              <button >
+                Переглянути оголошення
+              </button>
               <button className="submitButton" type="submit">
               Опублікувати оголошення
               </button>
@@ -256,6 +453,8 @@ const brandsAndModels = {
 
 
 const AdvertisementPage = () => {
+
+
   return (
     <Container>
       <Title>Створити оголошення</Title>
@@ -265,7 +464,7 @@ const AdvertisementPage = () => {
 
       <AdvertisementForm/>
 
-
+      <Modal />
     </Container>
   );
 };
