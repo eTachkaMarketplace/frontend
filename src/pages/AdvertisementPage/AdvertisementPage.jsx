@@ -21,6 +21,7 @@ const brandsAndModels = {
 
     const [availableModels, setAvailableModels] = useState([]);
 
+
     useEffect(() => {
      if (formikRef.current) {
        formikRef.current.resetForm({ values: initialValues });
@@ -454,6 +455,32 @@ const brandsAndModels = {
 
 const AdvertisementPage = () => {
 
+  const [values, setValues] = useState({
+    category: 'All',
+    brand: '',
+    model: '',
+    licensePlate: '',
+    region: '',
+    Mileage: '10000',
+    Year: '1999',
+    Price: '',
+    bodyType: 'All',
+    fuelType: 'Electro',
+    engineCapacity: 'Microliter',
+    driveType: 'Front',
+    transmission: 'Mechanical',
+    condition: 'Completely intact',
+    color: '',
+    VIN: '',
+    AboutCar: '',
+    username: '',
+    phone: '',
+  });
+
+  const handleSearch = values => {
+    setValues(values);
+    console.log(values);
+  };
 
   return (
     <Container>
@@ -462,9 +489,9 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <AdvertisementForm/>
+      <AdvertisementForm initialValues={values} onSubmit={handleSearch}/>
 
-      <Modal />
+      <Modal handleSearch={handleSearch}/>
     </Container>
   );
 };
