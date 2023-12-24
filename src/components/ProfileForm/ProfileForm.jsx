@@ -10,10 +10,8 @@ const ProfileForm = () => {
 
 
   const [userInfo, setUserInfo] = useState({
-    id: '',
     firstName: '',
     lastName: '',
-    email: '',
     phone: '',
   });
 
@@ -21,15 +19,16 @@ const ProfileForm = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/info', {
+        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/user', {
           headers: {
             'accept': 'application/json',
             'Authorization': `Bearer ${token.replace(/"/g, '')}`,
           },
         });
-        const { id, firstName, lastName, email, phone } = response.data;
-        setUserInfo({ id, firstName, lastName, email, phone });
+        const { firstName, lastName, phone } = response.data;
+        setUserInfo({firstName, lastName, phone });
       } catch (error) {
+
         console.error('Error fetching user info:', error);
       }
     };
@@ -46,11 +45,10 @@ const ProfileForm = () => {
     onSubmit: async (values) => {
       try {
         const response = await axios.put(
-          `http://localhost:8080/api/users/user/${userInfo.id}`,
+          `https://marketplace-fi3l.onrender.com/api/users/user`,
           {
-            id: userInfo.id,
             firstName: values.firstName,
-            email: userInfo.email,
+            lastName: values.lastName,
             phone: values.phone,
           },
           {

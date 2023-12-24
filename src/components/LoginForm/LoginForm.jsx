@@ -41,13 +41,28 @@ export const LoginForm = () => {
   const loader = useSelector(selectIsLoading);
 
 
-const handleSubmit = (values, { setSubmitting }) => {
+const handleSubmit = async (values, { resetForm, setSubmitting }) => {
   const { email, password } = values;
-
-  dispatch(login({ email, password }));
-
+try {
+  await dispatch(login({ email, password }));
+  resetForm();
   setSubmitting(false);
+  } catch (error) {
+      console.error('Error submitting form:', error);
+    }
 };
+
+
+//   const handleSubmit = async ({ email, password }, { resetForm }) => {
+//     try {
+//       await dispatch(login({ email, password }));
+//       resetForm();
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//     }
+//   };
+
+
 
 
   const handleShowPassword = () => {
@@ -126,7 +141,6 @@ const handleSubmit = (values, { setSubmitting }) => {
                 />
               </div>
               <Button type="submit">Увійти</Button>
-
             </Form>
           </>
         );
@@ -146,6 +160,7 @@ const handleSubmit = (values, { setSubmitting }) => {
 //       }}
 
 
+
               // <StrDiv>
               //   <p className="strange"></p>
               //   <p className="and">або</p>
@@ -157,3 +172,4 @@ const handleSubmit = (values, { setSubmitting }) => {
               //     <span className="Gtext">Продовжити через Google</span>
               //   </div>
               // </GBtn>
+

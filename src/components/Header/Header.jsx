@@ -18,31 +18,33 @@ const Header = () => {
             <img src={Logo} alt="Logo" />
           </NavLink>
           <Navigation>
-            <ul>
-              <li>
-                <StyledLink to="/search">Нові</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/">Вживані</StyledLink>
-              </li>
-              <li>
-                <StyledLink to="/">Під пригон</StyledLink>
-              </li>
-            </ul>
-          </Navigation>
-          <User>
-            <ButtonSale>
-              <StyledAddSVG />
-              <ButtonText>Продати</ButtonText>
-            </ButtonSale>
-            <UserIcon>
-              <StyledHeartSVG />
-              <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
-                <StyledUserSVG />
-              </NavLink>
-            </UserIcon>
-          </User>
-        </HeaderWrapper>
+          <ul>
+            <li>
+              <StyledLink to="/search">Нові</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/">Вживані</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/">Під пригон</StyledLink>
+            </li>
+          </ul>
+        </Navigation>
+        <User>
+        <NavLink to="/AdvertisementPage">
+          <ButtonSale>
+            <StyledAddSVG />
+            <ButtonText>Продати</ButtonText>
+          </ButtonSale>
+          </NavLink>
+          <UserIcon>
+            <StyledHeartSVG />
+            <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
+              <StyledUserSVG />
+            </NavLink>
+          </UserIcon>
+        </User>
+      </HeaderWrapper>
       </Container>
     );
 };
