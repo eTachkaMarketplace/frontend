@@ -25,7 +25,7 @@ export const Form = styled(FormikForm)`
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #000;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     width: 119px;
   }
   .marg24 {
@@ -148,7 +148,6 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
   color: #fff;
 
   text-align: center;

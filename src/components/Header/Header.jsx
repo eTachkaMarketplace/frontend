@@ -1,21 +1,22 @@
 import React from 'react';
-import { ReactComponent as LogoSVG } from '../../images/Header/LogoSVG.svg';
 
 import {Container, HeaderWrapper,Navigation,User, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText} from './Header.styled'
 import { NavLink } from 'react-router-dom';
 
 import {  useSelector } from 'react-redux';
-import { selectIsLoggedIn  } from '../../redux/auth/selectors';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import Logo from '../../images/Header/LOGO.png'
+
 
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
     return (
       <Container>
-      <HeaderWrapper>
-        <NavLink to={'/'}>
-          <LogoSVG />
-        </NavLink>
+        <HeaderWrapper>
+          <NavLink to={'/'}>
+            <img src={Logo} alt="Logo" />
+          </NavLink>
           <Navigation>
           <ul>
             <li>
