@@ -14,10 +14,8 @@ import {
   PasswordInput,
   Button,
   HidePassword,
-  StrDiv,
-  GBtn,
 } from './RegisterForm.styled';
-import { Box1, Box2, GogleSVG } from 'components/LoginForm/chackBox';
+import { Box1, Box2 } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
 import { PulseLoader } from 'react-spinners';
 import { selectIsLoading } from 'redux/auth/selectors';
@@ -76,20 +74,20 @@ export const RegisterForm = () => {
     setFormSubmitted(false);
   }, []);
 
- const handleSubmit = (values, { setSubmitting }) => {
-   const { name, email, password, acceptTerms } = values;
+  const handleSubmit = (values, { setSubmitting }) => {
+    const { name, email, password, acceptTerms } = values;
 
-   if (!acceptTerms) {
-     setShowChecked(false);
-     return;
-   }
+    if (!acceptTerms) {
+      setShowChecked(false);
+      return;
+    }
 
-   setShowChecked(true);
-   dispatch(register({ name, email, password }));
+    setShowChecked(true);
+    dispatch(register({ name, email, password }));
 
-   // Reset the form
-   setSubmitting(false);
- };
+    // Reset the form
+    setSubmitting(false);
+  };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -225,20 +223,21 @@ export const RegisterForm = () => {
             <Button type="submit" onClick={() => setFormSubmitted(true)}>
               Зареєструватись
             </Button>
-            <StrDiv>
-              <p className="strange"></p>
-              <p className="and">або</p>
-              <p className="strange"></p>
-            </StrDiv>
-            <GBtn type="button">
-              <div className="Gdiv">
-                <GogleSVG />
-                <span className="Gtext">Продовжити через Google</span>
-              </div>
-            </GBtn>
           </Form>
         );
       }}
     </Formik>
   );
 };
+
+//  <StrDiv>
+//     <p className="strange"></p>
+//     <p className="and">або</p>
+//     <p className="strange"></p>
+//   </StrDiv>
+//   <GBtn type="button">
+//     <div className="Gdiv">
+//       <GogleSVG />
+//       <span className="Gtext">Продовжити через Google</span>
+//     </div>
+//   </GBtn>

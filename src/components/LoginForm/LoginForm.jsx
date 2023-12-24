@@ -14,10 +14,8 @@ import {
   PasswordInput,
   Button,
   HidePassword,
-  StrDiv,
-  GBtn,
 } from './LoginForm.styled';
-import { ErrorSVG, GogleSVG, ViewSVG } from './chackBox';
+import { ErrorSVG, ViewSVG } from './chackBox';
 import { selectError, selectIsLoading } from 'redux/auth/selectors';
 
 
@@ -128,17 +126,7 @@ const handleSubmit = (values, { setSubmitting }) => {
                 />
               </div>
               <Button type="submit">Увійти</Button>
-              <StrDiv>
-                <p className="strange"></p>
-                <p className="and">або</p>
-                <p className="strange"></p>
-              </StrDiv>
-              <GBtn type="button">
-                <div className="Gdiv">
-                  <GogleSVG />
-                  <span className="Gtext">Продовжити через Google</span>
-                </div>
-              </GBtn>
+
             </Form>
           </>
         );
@@ -156,3 +144,16 @@ const handleSubmit = (values, { setSubmitting }) => {
 //         console.log(errors.emptyForm);
 //         return errors;
 //       }}
+
+
+              // <StrDiv>
+              //   <p className="strange"></p>
+              //   <p className="and">або</p>
+              //   <p className="strange"></p>
+              // </StrDiv>
+              // <GBtn type="button">
+              //   <div className="Gdiv">
+              //     <GogleSVG />
+              //     <span className="Gtext">Продовжити через Google</span>
+              //   </div>
+              // </GBtn>

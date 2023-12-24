@@ -42,8 +42,9 @@ export const authSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        state.token = payload.jwtAccessToken;
-        state.refToken = payload.jwtRefreshToken;
+        console.log(payload)
+        state.token = payload.data.jwtAccessToken;
+        state.refToken = payload.data.jwtRefreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
         state.error = null;
