@@ -109,6 +109,17 @@ export const Search = styled.div`
     padding-inline: 0;
     padding: 4px 16px;
   }
+  .fieldTextLong {
+    width: 346px;
+    height: 48px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: 4px 16px;
+  }
   .shortDiv {
     display: flex;
     gap: 14px;
