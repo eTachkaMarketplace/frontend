@@ -50,7 +50,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <div className="arrowDiv">
               <label>
                 <Field className="fieldLong marg16" as="select" name="status">
-                  <option value="">Статус</option>
+                  <option value="">Категорія</option>
                   <option value="New">Нові</option>
                   <option value="Used">Вживані</option>
                   <option value="Servitude">Під пригон</option>
@@ -224,19 +224,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                 <DropArrow />
               </div>
             </div>
-            <div className="shortDiv marg16">
-              <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="mileageFrom"
-                  placeholder="Введіть пробіг від"
-                />
-              </label>
 
+            <div>
               <label>
                 <Field
-                  className="fieldTextShort"
+                  className="fieldTextLong marg16"
                   type="text"
                   name="mileageTo"
                   placeholder="Введіть пробіг до"
@@ -287,18 +279,14 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                   name="condition"
                 >
                   <option value="">Технічний стан</option>
-                  <option value="Completely intact">
-                    Повністю непошкоджене
-                  </option>
-                  <option value="Professionally repaired damage">
+                  <option value="Completely">Повністю непошкоджене</option>
+                  <option value="Repaired">
                     Професійно відремонтовані пошкодження
                   </option>
-                  <option value="Unrepaired damage">
+                  <option value="Unrepaired">
                     Не відремонтовані пошкодження
                   </option>
-                  <option value="Not running/For spare parts">
-                    Не на ходу/На запчастини
-                  </option>
+                  <option value="Parts">Не на ходу/На запчастини</option>
                 </Field>
               </label>
               <div className="arrow">
@@ -347,3 +335,25 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   );
 };
 export default SearchForm;
+
+
+
+// {/* <div className="shortDiv marg16">
+//   <label>
+//     <Field
+//       className="fieldTextShort"
+//       type="text"
+//       name="mileageFrom"
+//       placeholder="Введіть пробіг від"
+//     />
+//   </label>
+
+//   <label>
+//     <Field
+//       className="fieldTextShort"
+//       type="text"
+//       name="mileageTo"
+//       placeholder="Введіть пробіг до"
+//     />
+//   </label>
+// </div>; */}

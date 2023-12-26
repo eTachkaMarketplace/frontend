@@ -56,6 +56,7 @@ export const ConfDiv = styled.div`
   }
   .cansel {
     color: #0d0c0c;
+    background-color: transparent;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
