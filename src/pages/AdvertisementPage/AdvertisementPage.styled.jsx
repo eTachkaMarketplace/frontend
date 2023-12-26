@@ -60,6 +60,10 @@ export const Container = styled.section`
     line-height: normal;
   }
 
+  .containerLong{
+  width: 220px;
+  }
+
   .arrowDiv {
     position: relative;
   }
@@ -104,17 +108,47 @@ export const Container = styled.section`
     border-radius: 8px;
     background: #fff;
   }
+
+  .fieldInput{
+    display: flex;
+
+    width: 100%;
+    height: 310px;
+    padding: 4px 16px;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+  }
+
   .fieldTextShort {
-    width: 149px;
-    height: 48px;
+    box-sizing: border-box;
+
+    width: 215px;
+    height: 56px;
     padding: 0;
     border-radius: 8px;
     background: #fff;
     border: 1px solid #b9b9b9;
-    padding-block: 0;
-    padding-inline: 0;
+    
     padding: 4px 16px;
   }
+
+  .fieldTextLong {
+    box-sizing: border-box;
+
+    width: 450px;
+    height: 56px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+    
+    padding: 4px 16px;
+  }
+
   .shortDiv {
     display: flex;
     gap: 14px;
