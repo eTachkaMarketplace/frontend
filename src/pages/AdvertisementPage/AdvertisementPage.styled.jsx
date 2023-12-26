@@ -80,7 +80,7 @@ export const Container = styled.section`
   .fieldLong {
     display: flex;
 
-    width: 380px;
+    width: 450px;
     height: 56px;
     padding: 4px 16px;
     justify-content: space-between;
@@ -94,7 +94,7 @@ export const Container = styled.section`
   .fieldShort {
     display: flex;
 
-    width: 183px;
+    width: 215px;
     height: 56px;
     padding: 4px 16px;
     justify-content: space-between;

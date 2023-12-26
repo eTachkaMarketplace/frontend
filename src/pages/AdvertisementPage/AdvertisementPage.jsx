@@ -195,7 +195,7 @@ const brandsAndModels = {
                 <label>
                   Рік випуску<RequiredMarker>*</RequiredMarker>
                   <Field
-                    className="fieldLong marg16"
+                    className="fieldShort marg16"
                     as="select"
                     name="Year"
                   >
@@ -233,7 +233,7 @@ const brandsAndModels = {
                 <label>
                   Ціна<RequiredMarker>*</RequiredMarker>
                   <Field
-                    className="fieldLong marg16"
+                    className="fieldShort marg16"
                     type="text"
                     name="Price"
                     placeholder="1000 $"
