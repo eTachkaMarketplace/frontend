@@ -117,7 +117,7 @@ export const Container = styled.section`
 
     width: 100%;
     height: 310px;
-    padding: 4px 16px;
+    padding: 16px 16px;
     justify-content: space-between;
     align-items: center;
 
@@ -210,16 +210,46 @@ export const Container = styled.section`
     line-height: normal;
 
     display: flex;
-    width: 200px;
+    width: 450px;
     height: 56px;
     padding: 14px 24px;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    
 
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
+.chekAnnouncementButton{
+  color: #0D0C0C;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+
+    display: flex;
+    width: 450px;
+    height: 56px;
+    padding: 14px 24px;
+    justify-content: center;
+    align-items: center;
+    
+
+    border-radius: 8px;
+    border: 2px solid #0040BD;
+    background: transparent;
+}
+
+.buttonContainer{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ gap: 20px;
+}
+
 `;
 
 export const SectionContainer = styled.div`

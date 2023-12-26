@@ -15,31 +15,32 @@ const brandsAndModels = {
 };
 
 const regionsAndCities = {
-  'Kyivska': ['Київ', 'Біла-церква', 'Бровари', 'Ірпінь'],
-  'Vinnytsia': ['Вінниця', 'Хмельницький', 'Бар'],
-  'Volynska': ['Луцьк', 'Ковель', 'Нововолинь'],
-  'Dniprovska': ['Дніпро', 'Кривий Ріг', 'Нікополь'],
-  'Donetsk': ['Донецьк', 'Маріуполь', 'Макіївка'],
-  'Zhytomyr': ['Житомир', 'Коростень', 'Бердичів'],
-  'Zakarpattia': ['Ужгород', 'Мукачево', 'Хуст'],
-  'Zaporizhzhia': ['Запоріжжя', 'Мелітополь', 'Бердянськ'],
-  'Ivano-Frankivsk': ['Івано-Франківськ', 'Яремче', 'Коломия'],
-  'Kirovohradsk': ['Кропивницький', 'Світловодськ', 'Олександрія'],
-  'Luhansk': ['Луганськ', 'Алчевськ', 'Северодонецьк'],
-  'Lviv': ['Львів', 'Дрогобич', 'Трускавець'],
-  'Mykolayivska': ['Миколіїв', 'Первомайськ', 'Вознесенськ'],
-  'Odesa': ['Одесса', 'Черноморськ', 'Ізмаїл'],
-  'Poltava': ['Полтава', 'Кременчук', 'Миргород'],
-  'Rivne': ['Рівне', 'Костопіль', 'Дубно'],
-  'Sumy': ['Суми', 'Конотоп', 'Шостка'],
-  'Ternopilsk': ['Тернопіль', 'Чортків', 'Бережани'],
-  'Cherkasy': ['Черкаси', 'Сміла', 'Золотоноші'],
-  'Chernivtsi': ['Чернівці', 'Вашківці', 'Хотин'],
-  'Chernihivska': ['Чернігів', 'Ніжин', 'Прилуки'],
-  'Kharkivska': ['Харків', 'Ізюм', 'Балаклея'],
-  'Khersonsk': ['Херсон', 'Нова Каховка', 'Скадовськ'],
-  'Khmelnytska': ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
+  'Київська': ['Київ', 'Біла-церква', 'Бровари', 'Ірпінь'],
+  'Вінницька': ['Вінниця', 'Хмельницький', 'Бар'],
+  'Волинська': ['Луцьк', 'Ковель', 'Нововолинь'],
+  'Дніпропетровська': ['Дніпро', 'Кривий Ріг', 'Нікополь'],
+  'Донецька': ['Донецьк', 'Маріуполь', 'Макіївка'],
+  'Житомирська': ['Житомир', 'Коростень', 'Бердичів'],
+  'Закарпатська': ['Ужгород', 'Мукачево', 'Хуст'],
+  'Запорізька': ['Запоріжжя', 'Мелітополь', 'Бердянськ'],
+  'Івано-Франківська': ['Івано-Франківськ', 'Яремче', 'Коломия'],
+  'Кіровоградська': ['Кропивницький', 'Світловодськ', 'Олександрія'],
+  'Луганська': ['Луганськ', 'Алчевськ', 'Северодонецьк'],
+  'Львівська': ['Львів', 'Дрогобич', 'Трускавець'],
+  'Миколаївська': ['Миколіїв', 'Первомайськ', 'Вознесенськ'],
+  'Одеська': ['Одеса', 'Чорноморськ', 'Ізмаїл'],
+  'Полтавська': ['Полтава', 'Кременчук', 'Миргород'],
+  'Рівенська': ['Рівне', 'Костопіль', 'Дубно'],
+  'Сумська': ['Суми', 'Конотоп', 'Шостка'],
+  'Тернопільська': ['Тернопіль', 'Чортків', 'Бережани'],
+  'Черкаська': ['Черкаси', 'Сміла', 'Золотоноші'],
+  'Чернівецька': ['Чернівці', 'Вашківці', 'Хотин'],
+  'Чернігівська': ['Чернігів', 'Ніжин', 'Прилуки'],
+  'Харківська': ['Харків', 'Ізюм', 'Балаклея'],
+  'Херсонська': ['Херсон', 'Нова Каховка', 'Скадовськ'],
+  'Хмельницька': ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
 };
+
 
   const AdvertisementForm = ({ initialValues, onSubmit}) => {
     const dispatch = useDispatch();
@@ -134,7 +135,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldLong marg16"
                     as="select"
-                    name="brand"
+                    name="carMark"
                     onChange={handleBrandChange}
                   >
                     <option value=""></option>
@@ -156,7 +157,7 @@ const regionsAndCities = {
                   Модель авто <RequiredMarker>*</RequiredMarker>
                   </div>
                   <div className="arrowDiv">
-                  <Field className="fieldLong marg16" as="select" name="model">
+                  <Field className="fieldLong marg16" as="select" name="carModel">
                     {/* <option value="">Усі варіанти</option> */}
                     <option value=""></option>
                     {availableModels.map((model) => (
@@ -178,7 +179,7 @@ const regionsAndCities = {
                     <Field
                       className="fieldTextLong marg16"
                       type="text"
-                      name="licensePlate"
+                      name="carNumber"
                       placeholder="АК 9245 АК"
                     >
                     </Field>
@@ -242,7 +243,7 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="Mileage"
+                      name="mileage"
                     >
                       <option value="10000">10 тис км</option>
                       <option value="20000">20 тис км</option>
@@ -275,7 +276,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldShort marg16"
                     as="select"
-                    name="Year"
+                    name="yearToCreate"
                   >
                     <option value="1999">1999</option>
                     <option value="2000">2000</option>
@@ -316,7 +317,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldTextShort"
                     type="text"
-                    name="Price"
+                    name="price"
                     placeholder="1000 $"
                   >
                   </Field>
@@ -354,7 +355,7 @@ const regionsAndCities = {
                     Двигун<RequiredMarker>*</RequiredMarker>
                     </div>
                     <div className="arrowDiv">
-                    <Field className="fieldLong marg16" as="select" name="fuelType">
+                    <Field className="fieldLong marg16" as="select" name="engine">
                       <option value="Electro">Електрична силова установка</option>
                       <option value="Hibrid">Гібрід</option>
                       <option value="Gasoline">Бензиновий</option>
@@ -376,7 +377,7 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="engineCapacity"
+                      name="driveType"
                     >
                       <option value="Microliter">До 1,1 літра</option>
                       <option value="Low-volume">Від 1,2 до 1,7 літра</option>
@@ -398,7 +399,7 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="driveType"
+                      name="transmission"
                     >
                       <option value="Front">Передній</option>
                       <option value="Posterior">Задній</option>
@@ -441,7 +442,7 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="condition"
+                      name="technicalState"
                     >
                       <option value="Completely intact">
                         Повністю непошкоджене
@@ -500,7 +501,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldTextLong"
                     type="text"
-                    name="VIN"
+                    name="vinNumber"
                     placeholder="VF7LCRFJF74251989"
                   >
                   </Field>
@@ -515,8 +516,8 @@ const regionsAndCities = {
                 <label>
                   <Field
                     className="fieldInput marg16"
-                    type="text"
-                    name="AboutCar"
+                    as="textarea"
+                    name="description"
                   >
                   </Field>
                 </label>
@@ -531,7 +532,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldLong marg16"
                     type="text"
-                    name="username"
+                    name="name"
                     placeholder="Сергій"
                   >
                   </Field>
@@ -550,8 +551,8 @@ const regionsAndCities = {
                 </label>
               </SectionContainer>
 
-            <div>
-              <button >
+            <div  className="buttonContainer">
+              <button className="chekAnnouncementButton" type="button">
                 Переглянути оголошення
               </button>
               <button className="submitButton" type="submit">
