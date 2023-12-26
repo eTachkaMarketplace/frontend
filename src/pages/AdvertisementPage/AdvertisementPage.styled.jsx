@@ -60,6 +60,13 @@ export const Container = styled.section`
     line-height: normal;
   }
 
+  .containerLong{
+  width: 220px;
+  padding-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;  
+  }
+
   .arrowDiv {
     position: relative;
   }
@@ -80,7 +87,7 @@ export const Container = styled.section`
   .fieldLong {
     display: flex;
 
-    width: 380px;
+    width: 450px;
     height: 56px;
     padding: 4px 16px;
     justify-content: space-between;
@@ -94,7 +101,7 @@ export const Container = styled.section`
   .fieldShort {
     display: flex;
 
-    width: 183px;
+    width: 215px;
     height: 56px;
     padding: 4px 16px;
     justify-content: space-between;
@@ -104,17 +111,47 @@ export const Container = styled.section`
     border-radius: 8px;
     background: #fff;
   }
+
+  .fieldInput{
+    display: flex;
+
+    width: 100%;
+    height: 310px;
+    padding: 16px 16px;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+  }
+
   .fieldTextShort {
-    width: 149px;
-    height: 48px;
+    box-sizing: border-box;
+
+    width: 215px;
+    height: 56px;
     padding: 0;
     border-radius: 8px;
     background: #fff;
     border: 1px solid #b9b9b9;
-    padding-block: 0;
-    padding-inline: 0;
+    
     padding: 4px 16px;
   }
+
+  .fieldTextLong {
+    box-sizing: border-box;
+
+    width: 450px;
+    height: 56px;
+    padding: 0;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #b9b9b9;
+    
+    padding: 4px 16px;
+  }
+
   .shortDiv {
     display: flex;
     gap: 14px;
@@ -173,16 +210,46 @@ export const Container = styled.section`
     line-height: normal;
 
     display: flex;
-    width: 200px;
+    width: 450px;
     height: 56px;
     padding: 14px 24px;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    
 
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
+.chekAnnouncementButton{
+  color: #0D0C0C;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+
+    display: flex;
+    width: 450px;
+    height: 56px;
+    padding: 14px 24px;
+    justify-content: center;
+    align-items: center;
+    
+
+    border-radius: 8px;
+    border: 2px solid #0040BD;
+    background: transparent;
+}
+
+.buttonContainer{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ gap: 20px;
+}
+
 `;
 
 export const SectionContainer = styled.div`
@@ -207,18 +274,23 @@ export const Title = styled.h2`
 export const SectionTitle = styled.h3`
   color: #141414;
 
+  margin-bottom: 32px;
+
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
 `;
 
 export const RequiredMarker = styled.span`
   color: red;
-  font-size: 16px;
+  font-size: 22px;
+  padding-left: 5px;
 `;
 
 export const Paragraph = styled.p`
   color: #4B4B4B;
+
+  margin: 16px 0;
 
   font-family: 'Roboto', sans-serif;
   font-size: 16px;

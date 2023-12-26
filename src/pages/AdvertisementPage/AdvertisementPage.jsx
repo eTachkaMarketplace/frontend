@@ -14,13 +14,41 @@ const brandsAndModels = {
   'Mercedes-Benz': ['A-Class', 'B-Class', 'C-Class'],
 };
 
+const regionsAndCities = {
+  'Київська': ['Київ', 'Біла-церква', 'Бровари', 'Ірпінь'],
+  'Вінницька': ['Вінниця', 'Хмельницький', 'Бар'],
+  'Волинська': ['Луцьк', 'Ковель', 'Нововолинь'],
+  'Дніпропетровська': ['Дніпро', 'Кривий Ріг', 'Нікополь'],
+  'Донецька': ['Донецьк', 'Маріуполь', 'Макіївка'],
+  'Житомирська': ['Житомир', 'Коростень', 'Бердичів'],
+  'Закарпатська': ['Ужгород', 'Мукачево', 'Хуст'],
+  'Запорізька': ['Запоріжжя', 'Мелітополь', 'Бердянськ'],
+  'Івано-Франківська': ['Івано-Франківськ', 'Яремче', 'Коломия'],
+  'Кіровоградська': ['Кропивницький', 'Світловодськ', 'Олександрія'],
+  'Луганська': ['Луганськ', 'Алчевськ', 'Северодонецьк'],
+  'Львівська': ['Львів', 'Дрогобич', 'Трускавець'],
+  'Миколаївська': ['Миколіїв', 'Первомайськ', 'Вознесенськ'],
+  'Одеська': ['Одеса', 'Чорноморськ', 'Ізмаїл'],
+  'Полтавська': ['Полтава', 'Кременчук', 'Миргород'],
+  'Рівенська': ['Рівне', 'Костопіль', 'Дубно'],
+  'Сумська': ['Суми', 'Конотоп', 'Шостка'],
+  'Тернопільська': ['Тернопіль', 'Чортків', 'Бережани'],
+  'Черкаська': ['Черкаси', 'Сміла', 'Золотоноші'],
+  'Чернівецька': ['Чернівці', 'Вашківці', 'Хотин'],
+  'Чернігівська': ['Чернігів', 'Ніжин', 'Прилуки'],
+  'Харківська': ['Харків', 'Ізюм', 'Балаклея'],
+  'Херсонська': ['Херсон', 'Нова Каховка', 'Скадовськ'],
+  'Хмельницька': ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
+};
+
 
   const AdvertisementForm = ({ initialValues, onSubmit}) => {
     const dispatch = useDispatch();
     const formikRef = useRef(null);
 
     const [availableModels, setAvailableModels] = useState([]);
-
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
 
     useEffect(() => {
      if (formikRef.current) {
@@ -34,12 +62,26 @@ const brandsAndModels = {
 
   const handleBrandChange = (event) => {
     const selectedBrand = event.target.value;
-
+  
     const models = brandsAndModels[selectedBrand] || [];
-
+  
     setAvailableModels(models);
-
+  
     formikRef.current.setFieldValue('model', '');
+    formikRef.current.setFieldValue('brand', selectedBrand); 
+  };
+
+  const handleRegionChange = (e) => {
+    const regionValue = e.target.value;
+    setSelectedRegion(regionValue);
+    setSelectedCity(''); 
+    formikRef.current.setFieldValue('city', '');
+  };
+  
+  const handleCityChange = (e) => {
+    const cityValue = e.target.value;
+    setSelectedCity(cityValue);
+    formikRef.current.setFieldValue('city', cityValue);
   };
 
     return (
@@ -62,113 +104,146 @@ const brandsAndModels = {
 
               <SectionContainer>
               <SectionTitle>Основна інформація</SectionTitle>
-                <div className="arrowDiv">
+                
                 <label>
+                <div className="containerLong">
                   Категорія<RequiredMarker>*</RequiredMarker>
+                  </div>
+                  <div className="arrowDiv">
                   <Field
                     className="fieldLong marg16"
                     as="select"
                     name="category"
                   >
-                    <option value="All">Усі варіанти</option>
+                    {/* <option value="All">Усі варіанти</option> */}
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
                     <option value="Servitude">Під пригон</option>
                   </Field>
-                </label>
                   <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                </label>
+                 
+                
               <label>
+              <div className="containerLong">
                   Марка авто<RequiredMarker>*</RequiredMarker>
+                  </div>
+                  <div className="arrowDiv">
                   <Field
                     className="fieldLong marg16"
                     as="select"
-                    name="brand"
+                    name="carMark"
                     onChange={handleBrandChange}
                   >
-                    <option value="">Усі варіанти</option>
+                    <option value=""></option>
                     {Object.keys(brandsAndModels).map((brand) => (
                       <option key={brand} value={brand}>
                         {brand}
                       </option>
                     ))}
                   </Field>
-              </label>
                   <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+              </label>
+                  
+                
               <label>
+              <div className="containerLong">
                   Модель авто <RequiredMarker>*</RequiredMarker>
-                  <Field className="fieldLong marg16" as="select" name="model">
-                    <option value="">Усі варіанти</option>
+                  </div>
+                  <div className="arrowDiv">
+                  <Field className="fieldLong marg16" as="select" name="carModel">
+                    {/* <option value="">Усі варіанти</option> */}
+                    <option value=""></option>
                     {availableModels.map((model) => (
                       <option key={model} value={model}>
                         {model}
                       </option>
                     ))}
                   </Field>
-              </label>
-                <div className="arrow">
+                  <div className="arrow">
                   <DropArrow />
                 </div>
               </div>
+              </label>
+                
                 <label>
+                <div className="containerLong">
                     Номерний знак
+                    </div>
                     <Field
-                      className="fieldLong marg16"
+                      className="fieldTextLong marg16"
                       type="text"
-                      name="licensePlate"
+                      name="carNumber"
                       placeholder="АК 9245 АК"
                     >
                     </Field>
                   </label>
-                <div className="arrowDiv">
+               
                   <label>
-                    Область<RequiredMarker>*</RequiredMarker>
-                    <Field className="fieldLong marg16" as="select" name="region">
-                      <option value="">Усі Області</option>
-                      <option value="Kyivska">Київська</option>
-                      <option value="Vinnytsia">Вінницька</option>
-                      <option value="Volynsk">Волинська</option>
-                      <option value="Dniprovska">Дніпровська</option>
-                      <option value="Donetsk">Донецька</option>
-                      <option value="Zhytomyr">Житомирська</option>
-                      <option value="Zakarpattia">Закарпатська</option>
-                      <option value="Zaporizhzhia">Запорізька</option>
-                      <option value="Ivano-Frankivsk">Івано-франківська</option>
-                      <option value="Kirovohradsk">Кіровоградська</option>
-                      <option value="Luhansk">Луганська</option>
-                      <option value="Lviv">Львівська</option>
-                      <option value="Mykolayivska">Миколаївська</option>
-                      <option value="Odesa">Одеська</option>
-                      <option value="Poltava">Полтавська</option>
-                      <option value="Rivne">Рівенська</option>
-                      <option value="Sumy">Сумська</option>
-                      <option value="Ternopilsk">Тернопільська</option>
-                      <option value="Cherkasy">Черкаська</option>
-                      <option value="Chernivtsi">Чернівецька</option>
-                      <option value="Chernihivska">Чернігівська</option>
-                      <option value="Kharkivska">Харківська</option>
-                      <option value="Khersonsk">Херсонська</option>
-                      <option value="Khmelnytska">Хмельницька</option>
-                    </Field>
-                  </label>
-                  <div className="arrow">
-                    <DropArrow />
-                  </div>
-                </div>
-                <div className="arrowDiv">
+        <div className="containerLong">
+          Область<RequiredMarker>*</RequiredMarker>
+        </div>
+        <div className="arrowDiv">
+          <select
+            className="fieldLong marg16"
+            name="region"
+            onChange={handleRegionChange}
+            value={selectedRegion}
+          >
+            <option value=""></option>
+            {Object.keys(regionsAndCities).map((region) => (
+              <option key={region} value={region}>
+                {region}
+              </option>
+            ))}
+          </select>
+          <div className="arrow">
+            <DropArrow />
+          </div>
+        </div>
+      </label>
+
+      <label>
+        <div className="containerLong">
+          Місто<RequiredMarker>*</RequiredMarker>
+        </div>
+        <div className="arrowDiv">
+          <select
+            className="fieldLong marg16"
+            name="city"
+            onChange={handleCityChange}
+            value={selectedCity}
+          >
+            <option value=""></option>
+            {regionsAndCities[selectedRegion] &&
+              regionsAndCities[selectedRegion].map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+          </select>
+          <div className="arrow">
+            <DropArrow />
+          </div>
+        </div>
+      </label>
+                 
+               
                   <label>
+                  <div className="containerLong">                  
                     Пробіг до<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="Mileage"
+                      name="mileage"
                     >
                       <option value="10000">10 тис км</option>
                       <option value="20000">20 тис км</option>
@@ -186,18 +261,22 @@ const brandsAndModels = {
                       <option value="250000">250 тис км</option>
                       <option value="300000">300 тис км</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                  
+              
                 <label>
+                <div className="containerLong">
                   Рік випуску<RequiredMarker>*</RequiredMarker>
+                  </div>
+                  <div className="arrowDiv">
                   <Field
-                    className="fieldLong marg16"
+                    className="fieldShort marg16"
                     as="select"
-                    name="Year"
+                    name="yearToCreate"
                   >
                     <option value="1999">1999</option>
                     <option value="2000">2000</option>
@@ -225,17 +304,20 @@ const brandsAndModels = {
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                   </Field>
-                </label>
-                <div className="arrow">
+                  <div className="arrow">
                   <DropArrow />
                 </div>
               </div>
+                </label>
+                                
                 <label>
+                <div className="containerLong">
                   Ціна<RequiredMarker>*</RequiredMarker>
+                  </div>
                   <Field
-                    className="fieldLong marg16"
+                    className="fieldTextShort"
                     type="text"
-                    name="Price"
+                    name="price"
                     placeholder="1000 $"
                   >
                   </Field>
@@ -244,11 +326,14 @@ const brandsAndModels = {
 
               <SectionContainer>
                 <SectionTitle>Технічні характеристики</SectionTitle>
-                <div className="arrowDiv">
+                
                   <label>
+                    <div className="containerLong">
                     Тип кузова<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field className="fieldLong marg16" as="select" name="bodyType">
-                      <option value="All">Усі варіанти</option>
+                      {/* <option value="All">Усі варіанти</option> */}
                       <option value="Універсал">Універсал</option>
                       <option value="Седан">Седан</option>
                       <option value="Кабріолет">Кабріолет</option>
@@ -258,64 +343,80 @@ const brandsAndModels = {
                       <option value="Пікап">Пікап</option>
                       <option value="Лімузин">Лімузин</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
-                </div>
-                <div className="arrowDiv">
+                  </div>
+                  </label>
+
+               
                   <label>
+                  <div className="containerLong">
                     Двигун<RequiredMarker>*</RequiredMarker>
-                    <Field className="fieldLong marg16" as="select" name="fuelType">
+                    </div>
+                    <div className="arrowDiv">
+                    <Field className="fieldLong marg16" as="select" name="engine">
                       <option value="Electro">Електрична силова установка</option>
                       <option value="Hibrid">Гібрід</option>
                       <option value="Gasoline">Бензиновий</option>
                       <option value="Gaseous">Газовий</option>
                       <option value="Diesel">Дизельний</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                 
+               
                   <label>
+                  <div className="containerLong">
                     Об‘єм двигуна (л)<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="engineCapacity"
+                      name="driveType"
                     >
                       <option value="Microliter">До 1,1 літра</option>
                       <option value="Low-volume">Від 1,2 до 1,7 літра</option>
                       <option value="Medium-sized">Від 1,8 до 3,3 літра</option>
                       <option value="Large-capacity">Від 3,5 літра</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                 
+                
                   <label>
+                  <div className="containerLong">
                     Привід<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="driveType"
+                      name="transmission"
                     >
                       <option value="Front">Передній</option>
                       <option value="Posterior">Задній</option>
                       <option value="Full">Повний</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                  
+                
                   <label>
+                  <div className="containerLong">
                     Коробка передач<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field
                       className="fieldLong marg16"
                       as="select"
@@ -326,18 +427,22 @@ const brandsAndModels = {
                       <option value="Robotic">Роботизована</option>
                       <option value="Variable">Варіативна</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                 
+                
                   <label>
+                  <div className="containerLong">
                     Технічний стан<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="condition"
+                      name="technicalState"
                     >
                       <option value="Completely intact">
                         Повністю непошкоджене
@@ -352,16 +457,20 @@ const brandsAndModels = {
                         Не на ходу/На запчастини
                       </option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-                <div className="arrowDiv">
+                  </label>
+                  
+               
                   <label>
+                  <div className="containerLong">
                     Колір<RequiredMarker>*</RequiredMarker>
-                    <Field className="fieldLong" as="select" name="color">
-                      <option value="">Колір</option>
+                    </div>
+                    <div className="arrowDiv">
+                    <Field className="fieldLong marg16" as="select" name="color">
+                      {/* <option value="">Колір</option> */}
                       <option value="White">Білий</option>
                       <option value="Black">Чорний</option>
                       <option value="Gray">Сірий</option>
@@ -379,17 +488,20 @@ const brandsAndModels = {
                       <option value="beige">бежевий</option>
                       <option value="Multicolor">Мультиколір</option>
                     </Field>
-                  </label>
-                  <div className="arrow">
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
+                  </label>
+                  
                 <label>
+                <div className="containerLong">
                   VIN код
+                  </div>
                   <Field
-                    className="fieldLong marg16"
+                    className="fieldTextLong"
                     type="text"
-                    name="VIN"
+                    name="vinNumber"
                     placeholder="VF7LCRFJF74251989"
                   >
                   </Field>
@@ -403,9 +515,9 @@ const brandsAndModels = {
                 </Paragraph>
                 <label>
                   <Field
-                    className="fieldLong marg16"
-                    type="text"
-                    name="AboutCar"
+                    className="fieldInput marg16"
+                    as="textarea"
+                    name="description"
                   >
                   </Field>
                 </label>
@@ -414,16 +526,21 @@ const brandsAndModels = {
               <SectionContainer>
                 <SectionTitle>Контактні данні</SectionTitle>
                 <label>
+                <div className="containerLong">
                   Ваше ім’я<RequiredMarker>*</RequiredMarker>
+                  </div>
                   <Field
                     className="fieldLong marg16"
                     type="text"
-                    name="username"
+                    name="name"
+                    placeholder="Сергій"
                   >
                   </Field>
                 </label>
                 <label>
+                <div className="containerLong">
                   Телефон<RequiredMarker>*</RequiredMarker>
+                  </div>
                   <Field
                     className="fieldLong marg16"
                     type="phone"
@@ -434,8 +551,8 @@ const brandsAndModels = {
                 </label>
               </SectionContainer>
 
-            <div>
-              <button >
+            <div  className="buttonContainer">
+              <button className="chekAnnouncementButton" type="button">
                 Переглянути оголошення
               </button>
               <button className="submitButton" type="submit">
@@ -451,6 +568,7 @@ const brandsAndModels = {
     );
 
 };
+
 
 
 const AdvertisementPage = () => {
