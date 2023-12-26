@@ -210,7 +210,7 @@ const regionsAndCities = {
 
       <label>
         <div className="containerLong">
-          Город<RequiredMarker>*</RequiredMarker>
+          Місто<RequiredMarker>*</RequiredMarker>
         </div>
         <div className="arrowDiv">
           <select

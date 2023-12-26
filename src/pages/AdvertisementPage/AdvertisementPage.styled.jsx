@@ -62,6 +62,9 @@ export const Container = styled.section`
 
   .containerLong{
   width: 220px;
+  padding-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;  
   }
 
   .arrowDiv {
@@ -241,18 +244,23 @@ export const Title = styled.h2`
 export const SectionTitle = styled.h3`
   color: #141414;
 
+  margin-bottom: 32px;
+
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
 `;
 
 export const RequiredMarker = styled.span`
   color: red;
-  font-size: 16px;
+  font-size: 22px;
+  padding-left: 5px;
 `;
 
 export const Paragraph = styled.p`
   color: #4B4B4B;
+
+  margin: 16px 0;
 
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
