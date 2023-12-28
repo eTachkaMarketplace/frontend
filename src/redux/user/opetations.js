@@ -3,7 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
 
 export const getUser = createAsyncThunk(
-  'user/getUser',
+  'api/user/getUser',
   async (_, { rejectWithValue }) => {
     try {
       const response = await instance.get('api/users/user');

@@ -4,37 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
 import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement'
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
-import axios  from 'axios'
+import { getUser } from 'redux/user/opetations';
+import { selectUser } from 'redux/user/selectors';
 
 const AccountPage = () => {
   const dispatch = useDispatch();
   const [selectedNavItem, setSelectedNavItem] = useState('personal');
-  const [userInfo, setUserInfo] = useState({
-    firstName: '',
-    email: '',
-  })
-
-  const authState = useSelector((state) => state.auth);
-  const token = authState.token;
+  
+const userInfo = useSelector(selectUser)
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/user', {
-          headers: {
-            'accept': 'application/json',
-            'Authorization': `Bearer ${token.replace(/"/g, '')}`,
-          },
-        });
-        const { firstName, email } = response.data;
-        setUserInfo({ firstName, email });
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-    };
+    dispatch(getUser());
+  }, [dispatch]);
 
-    fetchUserInfo();
-  }, [token]);
 
 
 
@@ -74,36 +56,50 @@ const AccountPage = () => {
       <Container>
         <UserContainer>
           <div className="user-profile_container">
-            <h3 className="user-profile_title">{userInfo.firstName}</h3>
+            <div className="UserNameDiv">
+              <h3 className="user-profile_title">{userInfo.firstName}</h3>
+              <h3 className="user-profile_title">{userInfo.lastName}</h3>
+            </div>
             <p className="user-profile_text">{userInfo.email}</p>
           </div>
           <nav className="user-nav_container">
             <ul className="user-nav_list">
-              <li className={`user-nav_item ${selectedNavItem === 'personal' ? 'active' : ''}`} onClick={() => setSelectedNavItem('personal')}>
-                <StyledUserSVG/>
-                Особистий кабінет</li>
-              <li className={`user-nav_item ${selectedNavItem === 'announcements' ? 'active' : ''}`} onClick={() => setSelectedNavItem('announcements')}>
+              <li
+                className={`user-nav_item ${
+                  selectedNavItem === 'personal' ? 'active' : ''
+                }`}
+                onClick={() => setSelectedNavItem('personal')}
+              >
+                <StyledUserSVG />
+                Особистий кабінет
+              </li>
+              <li
+                className={`user-nav_item ${
+                  selectedNavItem === 'announcements' ? 'active' : ''
+                }`}
+                onClick={() => setSelectedNavItem('announcements')}
+              >
                 <StyledAnnouncementsSVG />
                 Мої оголошення
               </li>
-              <li className={`user-nav_item ${selectedNavItem === 'favourites' ? 'active' : ''}`} onClick={() => setSelectedNavItem('favourites')}>
+              <li
+                className={`user-nav_item ${
+                  selectedNavItem === 'favourites' ? 'active' : ''
+                }`}
+                onClick={() => setSelectedNavItem('favourites')}
+              >
                 <StyledFavouritesSVG />
                 Обране
               </li>
               <li className="user-nav_item" onClick={handleLogout}>
-              <StyledLogoutSVG/>
-                Вихід з акаунту</li>
+                <StyledLogoutSVG />
+                Вихід з акаунту
+              </li>
             </ul>
           </nav>
         </UserContainer>
 
-        <AnnouncementContainer>
-        {renderContent()}
-        </AnnouncementContainer>
-
-
-
-
+        <AnnouncementContainer>{renderContent()}</AnnouncementContainer>
       </Container>
     </AccountContainer>
   );

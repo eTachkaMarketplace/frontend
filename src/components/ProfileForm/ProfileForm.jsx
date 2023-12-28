@@ -1,124 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
-import {  useSelector } from 'react-redux';
-import {Container} from './ProfileForm.styled'
+import { useDispatch, useSelector } from 'react-redux';
+import { Container } from './ProfileForm.styled';
+import {  getUser } from 'redux/user/opetations';
+import { selectUser } from 'redux/user/selectors';
+import { IconSVG, IconSvg2 } from './ProfileSVG';
+
 
 const ProfileForm = () => {
-  const authState = useSelector((state) => state.auth);
-  const token = authState.token;
-
-
-  const [userInfo, setUserInfo] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-  });
+  const dispatch = useDispatch();
+    const inputValue = useSelector(selectUser);
 
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await axios.get('https://marketplace-fi3l.onrender.com/api/users/user', {
-          headers: {
-            'accept': 'application/json',
-            'Authorization': `Bearer ${token.replace(/"/g, '')}`,
-          },
-        });
-        const { firstName, lastName, phone } = response.data;
-        setUserInfo({firstName, lastName, phone });
-      } catch (error) {
+    dispatch(getUser());
+  }, [dispatch]);
 
-        console.error('Error fetching user info:', error);
-      }
-    };
 
-    fetchUserInfo();
-  }, [token]);
 
   const formik = useFormik({
     initialValues: {
-      lastName: userInfo.lastName,
-      firstName: userInfo.firstName,
-      phone: userInfo.phone,
+      lastName: inputValue.lastName || '',
+      firstName: inputValue.firstName || '',
+      phone: inputValue.phone || '',
+      photo: inputValue.photo || ''
     },
-    onSubmit: async (values) => {
-      try {
-        const response = await axios.put(
-          `https://marketplace-fi3l.onrender.com/api/users/user`,
-          {
-            firstName: values.firstName,
-            lastName: values.lastName,
-            phone: values.phone,
-          },
-          {
-            headers: {
-              'accept': '*/*',
-              'Authorization': `Bearer ${token.replace(/"/g, '')}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        // Обработка успешного обновления
-        console.log('User updated successfully:', response.data);
-      } catch (error) {
-        console.error('Error updating user:', error);
-      }
+    onSubmit: async values => {
+      console.log({ ...values, email: inputValue.email });
+      // dispatch(changeUser())
     },
   });
 
   return (
     <Container>
-      <form onSubmit={formik.handleSubmit} className="profile-form">
-        <label className="profile-label">
-          <p className="profile-label-title">Прізвище:</p>
-          <input
-            className="profile-input"
-            type="text"
-            name="lastName"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.lastName}
-          />
-        </label>
-        {formik.touched.lastName && formik.errors.lastName ? (
-          <div className="error-message">{formik.errors.lastName}</div>
-        ) : null}
+      <form onSubmit={formik.handleSubmit}>
+        <div className="profilePhoto">
+          <label className="photoLable">
+            <input
+              type="file"
+              name="photo"
+              onChange={formik.handleChange}
+              className="profile-input"
+              style={{ display: 'none' }}
+            />
+            <div className="posit">
+              <IconSVG />
+              <div className="plus">
+                <IconSvg2/>
+              </div>
+            </div>
+          </label>
+          <div>
+            <p className="pPhoto">Фото профілю</p>
+            <p className="pPhoto2">
+              Виберіть фото не менше 200х200, формату jpg.
+            </p>
+          </div>
+        </div>
+        <div className="profile-form">
+          <label className="profile-label">
+            <p className="profile-label-title">Прізвище:</p>
+            <input
+              className="profile-input"
+              type="text"
+              name="lastName"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
+            />
+          </label>
+          {formik.touched.lastName && formik.errors.lastName ? (
+            <div className="error-message">{formik.errors.lastName}</div>
+          ) : null}
 
-        <label>
-          <p className="profile-label-title">Імʼя:</p>
-          <input
-            className="profile-input"
-            type="text"
-            name="firstName"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.firstName}
-          />
-        </label>
-        {formik.touched.firstName && formik.errors.firstName ? (
-          <div className="error-message">{formik.errors.firstName}</div>
-        ) : null}
+          <label>
+            <p className="profile-label-title">Імʼя:</p>
+            <input
+              className="profile-input"
+              type="text"
+              name="firstName"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+            />
+          </label>
+          {formik.touched.firstName && formik.errors.firstName ? (
+            <div className="error-message">{formik.errors.firstName}</div>
+          ) : null}
 
-        <label>
-          <p className="profile-label-title">Номер телефону:</p>
-          <input
-            className="profile-input"
-            type="phone"
-            name="phone"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.phone}
-          />
-        </label>
-        {formik.touched.phone && formik.errors.phone ? (
-          <div className="error-message">{formik.errors.phone}</div>
-        ) : null}
+          <label>
+            <p className="profile-label-title">Номер телефону:</p>
+            <input
+              className="profile-input"
+              type="phone"
+              name="phone"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.phone}
+            />
+          </label>
+          {formik.touched.phone && formik.errors.phone ? (
+            <div className="error-message">{formik.errors.phone}</div>
+          ) : null}
 
-        <button type="submit" className="profile-btn">
-          Зберегти
-        </button>
+          <button type="submit" className="profile-btn">
+            Зберегти
+          </button>
+        </div>
       </form>
     </Container>
   );
