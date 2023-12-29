@@ -91,6 +91,9 @@ const regionsAndCities = {
       innerRef={formik => (formikRef.current = formik)}
       >
             <Form className='form'>
+            <button className="clearButton" onClick={clearForm} type="button">
+              Очистити все
+            </button>
               <SectionContainer>
               <SectionTitle>Етапи розміщення оголошення</SectionTitle>
               </SectionContainer>
@@ -558,9 +561,6 @@ const regionsAndCities = {
               <button className="submitButton" type="submit">
               Опублікувати оголошення
               </button>
-              <button className="clearButton" onClick={clearForm} type="button">
-              Очистити все
-            </button>
             </div>
 
             </Form>

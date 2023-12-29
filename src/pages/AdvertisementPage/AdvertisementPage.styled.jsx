@@ -11,10 +11,12 @@ export const Container = styled.section`
   margin-right: auto;
 
   .form{
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 25px;
+    
   }
 
   select {
@@ -185,8 +187,12 @@ export const Container = styled.section`
     justify-content: space-between;
   }
   .clearButton {
+    position: absolute;
+    top: -1.2%;
+    right: 0%;
+    
     display: flex;
-    gap: 2px;
+    width: 125px;
     justify-content: center;
     align-items: center;
     border: 0;
