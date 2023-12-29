@@ -1,10 +1,12 @@
-import {useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {Container, Title, RequiredMarker, Paragraph,SectionTitle, SectionContainer } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
 import Modal from '../../modal/modal';
+import { useDropzone } from 'react-dropzone';
+
 
 
 
@@ -49,6 +51,8 @@ const regionsAndCities = {
     const [availableModels, setAvailableModels] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
+    const [photos, setPhotos] = useState([]);
+
 
     useEffect(() => {
      if (formikRef.current) {
@@ -59,6 +63,13 @@ const regionsAndCities = {
   const clearForm = () => {
     dispatch(setIsOpen(true));
   }
+
+  const onDrop = (acceptedFiles) => {
+    setPhotos([...photos, ...acceptedFiles]);
+    formikRef.current.setFieldValue('photos', [...photos, ...acceptedFiles]);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: 'image/*', multiple: true });
 
   const handleBrandChange = (event) => {
     const selectedBrand = event.target.value;
@@ -103,6 +114,26 @@ const regionsAndCities = {
                 <Paragraph>
                   Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна кількість фотографій - 6.
                  </Paragraph>
+                 {/* <div {...getRootProps()} style={{ marginTop: '10px' }}>
+                    <input {...getInputProps()} />
+                    {photos.map((file) => (
+                      <img key={file.name} src={URL.createObjectURL(file)} alt={file.name} style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }} />
+                    ))}
+                  </div> */}
+                   <div>
+                    <button type="button" {...getRootProps()} style={{ marginTop: '10px', border: '2px dashed #eeeeee', padding: '20px', borderRadius: '4px' }}>
+                      Натисніть або перетягніть файли сюди для завантаження
+                    </button>
+                    <input {...getInputProps()} />
+                  </div>
+
+                  <div>
+                    {photos.map((file, index) => (
+                      <div key={index} style={{ display: 'inline-block', marginRight: '10px' }}>
+                        <img src={URL.createObjectURL(file)} alt={file.name} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                      </div>
+                    ))}
+                  </div>
               </SectionContainer>
 
               <SectionContainer>

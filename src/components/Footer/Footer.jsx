@@ -1,12 +1,16 @@
 import React from 'react';
 import {Container, FooterWrapper, FooterContainer,ListContainer, StyledYoutubeSVG, StyledInstagramSVG, StyledFacebookSVG } from './Footer.styled';
 import Logo from '../../images/Footer/Group 99footer.png';
+import { NavLink } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
     <Container>
       <FooterWrapper>
-        <img src={Logo} alt="Logo" />
+      <NavLink to={'/'}>
+            <img src={Logo} alt="Logo" />
+          </NavLink>
         <FooterContainer>
           <ListContainer>
             <ul className="footer_list">
