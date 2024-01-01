@@ -3,6 +3,7 @@ import {
   login,
   register,
   logoutOperation,
+  setToken,
   } from './operations';
 
 const initialState = {
@@ -24,6 +25,7 @@ export const authSlice = createSlice({
     },
     refresh: state => {
       if (state.token) state.isLoggedIn = true;
+      setToken(state.token);
     },
   },
   extraReducers: builder => {
@@ -42,7 +44,6 @@ export const authSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
-        console.log(payload)
         state.token = payload.data.jwtAccessToken;
         state.refToken = payload.data.jwtRefreshToken;
         state.isLoggedIn = true;

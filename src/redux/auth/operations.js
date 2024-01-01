@@ -36,9 +36,8 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await instance.post('api/auth/login', credentials);
-      setToken(response.data.jwtAccessToken);
-      console.log(instance.defaults);
-      console.log(response.data);
+      setToken(response.data.data.jwtAccessToken);
+      console.log(response);
       Notify.success(`Welcome back!!!`);
       return response.data;
     } catch (error) {

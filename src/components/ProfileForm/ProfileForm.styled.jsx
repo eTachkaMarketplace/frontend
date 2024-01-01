@@ -5,7 +5,67 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 30px;
 
-  .profile-form{
+  .profilePhoto {
+    height: 132px;
+    border-radius: 8px;
+    background: var(--Text-Grey-1, #f1f5ff);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+  }
+  .photoLable {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .posit {
+    display: flex;
+    position: relative;
+  }
+  .photoIMG {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92px;
+    height: 92px;
+    overflow: hidden;
+    border-radius: 45%;
+  }
+  .photp {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+  }
+  .plus {
+    display: flex;
+    bottom: 0;
+    right: 10px;
+    position: absolute;
+    border: 2px solid #f1f5ff;
+    border-radius: 50%;
+  }
+  .pPhoto {
+    color: var(--text-black-dark, #141414);
+    /* Subtitle 2.2 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .pPhoto2 {
+    color: var(--Text-black-2, #4b4b4b);
+    /* Body */
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .profile-form {
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -13,24 +73,23 @@ export const Container = styled.div`
     margin: 0;
 
     border-radius: 8px;
-    background:#F1F1F1;
+    background: #f1f5ff;
   }
 
-  .profile-label{
+  .profile-label {
     display: block;
   }
 
-  .profile-label-title{
+  .profile-label-title {
     color: #141414;
     margin-bottom: 8px;
-
 
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 500;
   }
 
-  .profile-input{
+  .profile-input {
     width: 100%;
     height: 40px;
     box-sizing: border-box;
@@ -42,11 +101,11 @@ export const Container = styled.div`
     font-weight: 400;
 
     border-radius: 8px;
-    border: 1px solid #B9B9B9;
-    background:  #FFF;
+    border: 1px solid #b9b9b9;
+    background: #fff;
   }
 
-  .profile-btn{
+  .profile-btn {
     display: flex;
     width: 200px;
     height: 56px;
@@ -59,20 +118,23 @@ export const Container = styled.div`
     font-size: 22px;
     font-weight: 500;
 
-    background: linear-gradient(160deg, #0040BD 19.1%, #19015B 78.89%);
+    background: linear-gradient(160deg, #0040bd 19.1%, #19015b 78.89%);
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
 
     &:hover {
-      background: linear-gradient(160deg, #0040BD 19.1%, #195B01 78.89%);
+      background: linear-gradient(160deg, #0040bd 19.1%, #195b01 78.89%);
     }
 
     &:active {
-      background: linear-gradient(160deg, rgba(5, 0, 20, 0.60) 19.1%, #050014 78.89%);
+      background: linear-gradient(
+        160deg,
+        rgba(5, 0, 20, 0.6) 19.1%,
+        #050014 78.89%
+      );
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
     }
   }
-
 `;
