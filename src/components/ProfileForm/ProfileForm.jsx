@@ -1,35 +1,65 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from './ProfileForm.styled';
-import {  getUser } from 'redux/user/opetations';
+import { getUser } from 'redux/user/opetations';
 import { selectUser } from 'redux/user/selectors';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
 
-
 const ProfileForm = () => {
   const dispatch = useDispatch();
-    const inputValue = useSelector(selectUser);
-
+  const inputValue = useSelector(selectUser);
+  const [cloudinaryImage, setCloudinaryImage] = useState(
+    inputValue.photo || ''
+  );
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
-
 
   const formik = useFormik({
     initialValues: {
       lastName: inputValue.lastName || '',
       firstName: inputValue.firstName || '',
       phone: inputValue.phone || '',
-      photo: inputValue.photo || ''
+      photo: inputValue.photo || '',
     },
     onSubmit: async values => {
-      console.log({ ...values, email: inputValue.email });
+      console.log({
+        ...values,
+        email: inputValue.email,
+        photo: cloudinaryImage,
+      });
       // dispatch(changeUser())
     },
   });
+
+  const handleImageUpload = async e => {
+    const file = e.target.files[0];
+
+    if (file) {
+      // Виклик Cloudinary API для завантаження фотографії
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'ml_default');
+
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/dsjxx9exc/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      // Оновлення стану для відображення завантаженої фотографії
+      console.log(data);
+      setLoad(true)
+      setCloudinaryImage(data.secure_url);
+    }
+  };
 
   return (
     <Container>
@@ -39,15 +69,20 @@ const ProfileForm = () => {
             <input
               type="file"
               name="photo"
-              onChange={formik.handleChange}
+              onChange={e => {
+                formik.handleChange(e);
+                handleImageUpload(e);
+              }}
               className="profile-input"
               style={{ display: 'none' }}
             />
             <div className="posit">
-              <IconSVG />
-              <div className="plus">
-                <IconSvg2/>
-              </div>
+            {load ? (<div className='photoIMG'><img src={cloudinaryImage} alt="user" /></div>): (<div>
+                <IconSVG />
+                <div className="plus">
+                  <IconSvg2 />
+                </div>
+              </div>)}
             </div>
           </label>
           <div>

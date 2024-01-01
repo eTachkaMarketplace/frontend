@@ -25,7 +25,15 @@ export const Container = styled.div`
     display: flex;
     position: relative;
   }
-  .plus {
+  .photoIMG{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92px;
+    height: 92px;
+    overflow: hidden;
+    border-radius: 45%;
+  } .plus {
     display: flex;
     bottom: 0;
     right: 10px;

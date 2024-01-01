@@ -9,7 +9,7 @@ import {
 const initialState = {
   refToken: '',
   token: '',
-  isLoggedIn: false,
+  isLoggedIn: true,
   isLoading: false,
   error: null,
 };
