@@ -19,7 +19,7 @@ export const changeUser = createAsyncThunk(
   'user/changeUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      await instance.put('api/user/user', credentials);
+      await instance.put('api/users/user', credentials);
       Notify.success(`User changed successfully`);
       return;
     } catch (error) {
@@ -33,7 +33,7 @@ export const deleteUser = createAsyncThunk(
   'user/deleteUser',
   async ({ id }, { rejectWithValue }) => {
     try {
-      await instance.delete(`api/user/${id}`);
+      await instance.delete(`api/users/${id}`);
       Notify.success(`User delete successfully`);
       return;
     } catch (error) {

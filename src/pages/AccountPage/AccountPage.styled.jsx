@@ -28,6 +28,16 @@ export const UserContainer = styled.div`
 
   width: 410px;
   overflow: hidden;
+  .photo {
+    width: 41px;
+    height: 41px;
+    object-fit: cover;
+    border-radius: 45%;
+  }
+  .photoDIV {
+    width: 41px;
+    height: 41px;
+  }
   .UserNameDiv {
     display: flex;
     gap: 5px;
@@ -35,7 +45,7 @@ export const UserContainer = styled.div`
   }
   .user-profile_container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 4px;
     /* align-items: flex-start;
         gap: 14px;

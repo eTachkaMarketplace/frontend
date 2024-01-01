@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from './ProfileForm.styled';
-import { getUser } from 'redux/user/opetations';
+import { changeUser, getUser } from 'redux/user/opetations';
 import { selectUser } from 'redux/user/selectors';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
 
@@ -12,7 +12,7 @@ const ProfileForm = () => {
   const [cloudinaryImage, setCloudinaryImage] = useState(
     inputValue.photo || ''
   );
-  const [load, setLoad] = useState(false);
+  // const [load, setLoad] = useState(false);
 
   useEffect(() => {
     dispatch(getUser());
@@ -22,8 +22,7 @@ const ProfileForm = () => {
     initialValues: {
       lastName: inputValue.lastName || '',
       firstName: inputValue.firstName || '',
-      phone: inputValue.phone || '',
-      photo: inputValue.photo || '',
+      phone: inputValue.phone || ''
     },
     onSubmit: async values => {
       console.log({
@@ -31,7 +30,13 @@ const ProfileForm = () => {
         email: inputValue.email,
         photo: cloudinaryImage,
       });
-      // dispatch(changeUser())
+      dispatch(
+        changeUser({
+          ...values,
+          email: inputValue.email,
+          photo: cloudinaryImage,
+        })
+      );
     },
   });
 
@@ -39,7 +44,6 @@ const ProfileForm = () => {
     const file = e.target.files[0];
 
     if (file) {
-      // Виклик Cloudinary API для завантаження фотографії
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', 'ml_default');
@@ -51,12 +55,9 @@ const ProfileForm = () => {
           body: formData,
         }
       );
-
       const data = await response.json();
 
-      // Оновлення стану для відображення завантаженої фотографії
       console.log(data);
-      setLoad(true)
       setCloudinaryImage(data.secure_url);
     }
   };
@@ -77,7 +78,7 @@ const ProfileForm = () => {
               style={{ display: 'none' }}
             />
             <div className="posit">
-            {load ? (<div className='photoIMG'><img src={cloudinaryImage} alt="user" /></div>): (<div>
+            {cloudinaryImage  ? (<div className='photoIMG'><img className='photp' src={cloudinaryImage} alt="user" /></div>): (<div>
                 <IconSVG />
                 <div className="plus">
                   <IconSvg2 />

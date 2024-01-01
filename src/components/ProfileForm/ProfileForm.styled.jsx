@@ -25,7 +25,7 @@ export const Container = styled.div`
     display: flex;
     position: relative;
   }
-  .photoIMG{
+  .photoIMG {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,13 @@ export const Container = styled.div`
     height: 92px;
     overflow: hidden;
     border-radius: 45%;
-  } .plus {
+  }
+  .photp {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+  }
+  .plus {
     display: flex;
     bottom: 0;
     right: 10px;

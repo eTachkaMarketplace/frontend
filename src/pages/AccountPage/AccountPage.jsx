@@ -6,6 +6,7 @@ import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { getUser } from 'redux/user/opetations';
 import { selectUser } from 'redux/user/selectors';
+import { SVG1 } from './AccPageSVG';
 
 const AccountPage = () => {
   const dispatch = useDispatch();
@@ -56,12 +57,22 @@ const userInfo = useSelector(selectUser)
       <Container>
         <UserContainer>
           <div className="user-profile_container">
-            <div className="UserNameDiv">
-              <h3 className="user-profile_title">{userInfo.firstName}</h3>
-              <h3 className="user-profile_title">{userInfo.lastName}</h3>
+            <div className='photoDIV'>
+              {userInfo.photo ? (
+                <img className="photo" src={userInfo.photo} alt="user" />
+              ) : (
+                <SVG1 />
+              )}
             </div>
-            <p className="user-profile_text">{userInfo.email}</p>
+            <div>
+              <div className="UserNameDiv">
+                <h3 className="user-profile_title">{userInfo.firstName}</h3>
+                <h3 className="user-profile_title">{userInfo.lastName}</h3>
+              </div>
+              <p className="user-profile_text">{userInfo.email}</p>
+            </div>
           </div>
+
           <nav className="user-nav_container">
             <ul className="user-nav_list">
               <li
