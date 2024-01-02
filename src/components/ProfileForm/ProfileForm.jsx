@@ -1,44 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
-import { changeUser, getUser } from 'redux/user/opetations';
-import { selectUser } from 'redux/user/selectors';
+import { changeUser} from 'redux/user/opetations';
+import {  } from 'redux/user/selectors';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
 
-const ProfileForm = () => {
+const ProfileForm = ({ initialValues }) => {
   const dispatch = useDispatch();
-  const inputValue = useSelector(selectUser);
   const [cloudinaryImage, setCloudinaryImage] = useState(
-    inputValue.photo || ''
+    initialValues.photo || ''
   );
-  // const [load, setLoad] = useState(false);
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+  // const [load, setLoad] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      lastName: inputValue.lastName || '',
-      firstName: inputValue.firstName || '',
-      phone: inputValue.phone || ''
+      lastName: initialValues.lastName || '',
+      firstName: initialValues.firstName || '',
+      phone: initialValues.phone || '',
     },
     onSubmit: async values => {
       console.log({
         ...values,
-        email: inputValue.email,
+        email: initialValues.email,
         photo: cloudinaryImage,
       });
       dispatch(
         changeUser({
           ...values,
-          email: inputValue.email,
+          email: initialValues.email,
           photo: cloudinaryImage,
         })
       );
     },
   });
+
+  useEffect(() => {
+    formik.setValues({
+      lastName: initialValues.lastName || '',
+      firstName: initialValues.firstName || '',
+      phone: initialValues.phone || '',
+    });
+    setCloudinaryImage(initialValues.photo || '');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialValues]);
 
   const handleImageUpload = async e => {
     const file = e.target.files[0];
@@ -78,12 +84,18 @@ const ProfileForm = () => {
               style={{ display: 'none' }}
             />
             <div className="posit">
-            {cloudinaryImage  ? (<div className='photoIMG'><img className='photp' src={cloudinaryImage} alt="user" /></div>): (<div>
-                <IconSVG />
-                <div className="plus">
-                  <IconSvg2 />
+              {cloudinaryImage ? (
+                <div className="photoIMG">
+                  <img className="photp" src={cloudinaryImage} alt="user" />
                 </div>
-              </div>)}
+              ) : (
+                <div>
+                  <IconSVG />
+                  <div className="plus">
+                    <IconSvg2 />
+                  </div>
+                </div>
+              )}
             </div>
           </label>
           <div>
