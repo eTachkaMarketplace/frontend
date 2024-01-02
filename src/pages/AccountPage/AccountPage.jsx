@@ -31,7 +31,7 @@ const userInfo = useSelector(selectUser)
         return (
           <div>
             <Subtitle>Основна інформація</Subtitle>
-            <ProfileForm/>
+            <ProfileForm initialValues={userInfo} />
           </div>
         );
       case 'announcements':
