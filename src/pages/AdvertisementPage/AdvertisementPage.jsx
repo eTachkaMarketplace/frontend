@@ -6,9 +6,7 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
 import Modal from '../../modal/modal';
 import { useDropzone } from 'react-dropzone';
-
-
-
+import axios from 'axios';
 
 const brandsAndModels = {
   BMW: ['X5', 'M3', 'X3'],
@@ -43,8 +41,7 @@ const regionsAndCities = {
   'Хмельницька': ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
 };
 
-
-  const AdvertisementForm = ({ initialValues, onSubmit}) => {
+const AdvertisementForm = ({ initialValues}) => {
     const dispatch = useDispatch();
     const formikRef = useRef(null);
 
@@ -52,7 +49,47 @@ const regionsAndCities = {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [photos, setPhotos] = useState([]);
+    // const [values, setValues] = useState({
+    //   // category: 'All',
+    //   'advertisementDTO.carDTO.carMark.name': '',
+    //   'advertisementDTO.carDTO.carMark.carModel.name': '',
+    //   'advertisementDTO.carDTO.carNumber': '',
+    //   'advertisementDTO.region.name': '',
+    //   'advertisementDTO.region.city.name': '',
+    //   'advertisementDTO.carDTO.mileage': '',
+    //   'advertisementDTO.carDTO.yearToCreate': '',
+    //   'advertisementDTO.price': '',
+    //   'advertisementDTO.carDTO.bodyType.name': '',
+    //   'advertisementDTO.carDTO.engine.name': '',
+    //   'advertisementDTO.carDTO.engine.volume': '',
+    //   'advertisementDTO.carDTO.driveType.name': '',
+    //   'advertisementDTO.carDTO.transmission.name': '',
+    //   'advertisementDTO.carDTO.technicalState.name': '',
+    //   'advertisementDTO.carDTO.color.name': '',
+    //   'advertisementDTO.carDTO.vinNumber': '',
+    //   'advertisementDTO.description': '',
+    //   'advertisementDTO.ownerName': '',
+    //   'advertisementDTO.ownerPhone': '',
+    // });
 
+    const onSubmit = async (values) => {
+      try {
+        const formData = new FormData();
+
+        formData.append('advertisementDTO', JSON.stringify(values.advertisementDTO));
+    
+           
+        const response = await axios.post('https://185.69.153.118:8443/api/advertisements/create', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+    
+        console.log('Response:', response.data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
     useEffect(() => {
      if (formikRef.current) {
@@ -114,13 +151,7 @@ const regionsAndCities = {
                 <Paragraph>
                   Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна кількість фотографій - 6.
                  </Paragraph>
-                 {/* <div {...getRootProps()} style={{ marginTop: '10px' }}>
-                    <input {...getInputProps()} />
-                    {photos.map((file) => (
-                      <img key={file.name} src={URL.createObjectURL(file)} alt={file.name} style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }} />
-                    ))}
-                  </div> */}
-                   <div>
+                  <div>
                     <button type="button" {...getRootProps()} style={{ marginTop: '10px', border: '2px dashed #eeeeee', padding: '20px', borderRadius: '4px' }}>
                       Натисніть або перетягніть файли сюди для завантаження
                     </button>
@@ -149,7 +180,7 @@ const regionsAndCities = {
                     as="select"
                     name="category"
                   >
-                    {/* <option value="All">Усі варіанти</option> */}
+                    <option value="">Оберіть</option>
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
                     <option value="Servitude">Під пригон</option>
@@ -159,52 +190,53 @@ const regionsAndCities = {
                   </div>
                 </div>
                 </label>
-                 
                 
-              <label>
-              <div className="containerLong">
-                  Марка авто<RequiredMarker>*</RequiredMarker>
+                <label>
+                <div className="containerLong">
+                    Марка авто<RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
+                    <Field
+                      className="fieldLong marg16"
+                      as="select"
+                      name="advertisementDTO.carDTO.carMark.name"
+                      onChange={handleBrandChange}
+                    >
+                      <option value="">Оберіть</option>
+                      {Object.keys(brandsAndModels).map((brand) => (
+                        <option key={brand} value={brand}>
+                          {brand}
+                        </option>
+                      ))}
+                    </Field>
+                    <div className="arrow">
+                      <DropArrow />
+                    </div>
                   </div>
-                  <div className="arrowDiv">
-                  <Field
-                    className="fieldLong marg16"
-                    as="select"
-                    name="carMark"
-                    onChange={handleBrandChange}
-                  >
-                    <option value=""></option>
-                    {Object.keys(brandsAndModels).map((brand) => (
-                      <option key={brand} value={brand}>
-                        {brand}
-                      </option>
-                    ))}
-                  </Field>
-                  <div className="arrow">
+                </label>
+                    
+                  
+                <label>
+                <div className="containerLong">
+                    Модель авто <RequiredMarker>*</RequiredMarker>
+                    </div>
+                    <div className="arrowDiv">
+                    <Field 
+                    className="fieldLong marg16" 
+                    as="select" 
+                    name="advertisementDTO.carDTO.carMark.carModel.name">
+                    <option value="">Оберіть</option>
+                      {availableModels.map((model) => (
+                        <option key={model} value={model}>
+                          {model}
+                        </option>
+                      ))}
+                    </Field>
+                    <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
-              </label>
-                  
-                
-              <label>
-              <div className="containerLong">
-                  Модель авто <RequiredMarker>*</RequiredMarker>
-                  </div>
-                  <div className="arrowDiv">
-                  <Field className="fieldLong marg16" as="select" name="carModel">
-                    {/* <option value="">Усі варіанти</option> */}
-                    <option value=""></option>
-                    {availableModels.map((model) => (
-                      <option key={model} value={model}>
-                        {model}
-                      </option>
-                    ))}
-                  </Field>
-                  <div className="arrow">
-                  <DropArrow />
-                </div>
-              </div>
-              </label>
+                </label>
                 
                 <label>
                 <div className="containerLong">
@@ -213,95 +245,94 @@ const regionsAndCities = {
                     <Field
                       className="fieldTextLong marg16"
                       type="text"
-                      name="carNumber"
+                      name="advertisementDTO.carDTO.carNumber"
                       placeholder="АК 9245 АК"
                     >
                     </Field>
                   </label>
                
-                  <label>
-        <div className="containerLong">
-          Область<RequiredMarker>*</RequiredMarker>
-        </div>
-        <div className="arrowDiv">
-          <select
-            className="fieldLong marg16"
-            name="region"
-            onChange={handleRegionChange}
-            value={selectedRegion}
-          >
-            <option value=""></option>
-            {Object.keys(regionsAndCities).map((region) => (
-              <option key={region} value={region}>
-                {region}
-              </option>
-            ))}
-          </select>
-          <div className="arrow">
-            <DropArrow />
-          </div>
-        </div>
-      </label>
-
-      <label>
-        <div className="containerLong">
-          Місто<RequiredMarker>*</RequiredMarker>
-        </div>
-        <div className="arrowDiv">
-          <select
-            className="fieldLong marg16"
-            name="city"
-            onChange={handleCityChange}
-            value={selectedCity}
-          >
-            <option value=""></option>
-            {regionsAndCities[selectedRegion] &&
-              regionsAndCities[selectedRegion].map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-          </select>
-          <div className="arrow">
-            <DropArrow />
-          </div>
-        </div>
-      </label>
-                 
-               
-                  <label>
-                  <div className="containerLong">                  
-                    Пробіг до<RequiredMarker>*</RequiredMarker>
-                    </div>
-                    <div className="arrowDiv">
-                    <Field
-                      className="fieldLong marg16"
-                      as="select"
-                      name="mileage"
-                    >
-                      <option value="10000">10 тис км</option>
-                      <option value="20000">20 тис км</option>
-                      <option value="30000">30 тис км</option>
-                      <option value="40000">40 тис км</option>
-                      <option value="50000">50 тис км</option>
-                      <option value="60000">60 тис км</option>
-                      <option value="70000">70 тис км</option>
-                      <option value="80000">80 тис км</option>
-                      <option value="90000">90 тис км</option>
-                      <option value="100000">100 тис км</option>
-                      <option value="125000">125 тис км</option>
-                      <option value="150000">150 тис км</option>
-                      <option value="200000">200 тис км</option>
-                      <option value="250000">250 тис км</option>
-                      <option value="300000">300 тис км</option>
-                    </Field>
-                    <div className="arrow">
-                    <DropArrow />
+                <label>
+                  <div className="containerLong">
+                    Область<RequiredMarker>*</RequiredMarker>
                   </div>
+                  <div className="arrowDiv">
+                    <select
+                      className="fieldLong marg16"
+                      name="advertisementDTO.region.name"
+                      onChange={handleRegionChange}
+                      value={selectedRegion}
+                    >
+                      <option value="">Оберіть</option>
+                      {Object.keys(regionsAndCities).map((region) => (
+                        <option key={region} value={region}>
+                          {region}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="arrow">
+                      <DropArrow />
+                    </div>
+                  </div>
+                </label>
+
+                <label>
+                  <div className="containerLong">
+                    Місто<RequiredMarker>*</RequiredMarker>
+                  </div>
+                  <div className="arrowDiv">
+                    <select
+                      className="fieldLong marg16"
+                      name="advertisementDTO.region.city.name"
+                      onChange={handleCityChange}
+                      value={selectedCity}
+                    >
+                      <option value="">Оберіть</option>
+                      {regionsAndCities[selectedRegion] &&
+                        regionsAndCities[selectedRegion].map((city) => (
+                          <option key={city} value={city}>
+                            {city}
+                          </option>
+                        ))}
+                    </select>
+                    <div className="arrow">
+                      <DropArrow />
+                    </div>
+                  </div>
+                </label>
+
+                <label>
+                <div className="containerLong">                  
+                  Пробіг до<RequiredMarker>*</RequiredMarker>
+                  </div>
+                  <div className="arrowDiv">
+                  <Field
+                    className="fieldLong marg16"
+                    as="select"
+                    name="advertisementDTO.carDTO.mileage"
+                  >
+                    <option value="">Оберіть</option>
+                    <option value="10000">10 тис км</option>
+                    <option value="20000">20 тис км</option>
+                    <option value="30000">30 тис км</option>
+                    <option value="40000">40 тис км</option>
+                    <option value="50000">50 тис км</option>
+                    <option value="60000">60 тис км</option>
+                    <option value="70000">70 тис км</option>
+                    <option value="80000">80 тис км</option>
+                    <option value="90000">90 тис км</option>
+                    <option value="100000">100 тис км</option>
+                    <option value="125000">125 тис км</option>
+                    <option value="150000">150 тис км</option>
+                    <option value="200000">200 тис км</option>
+                    <option value="250000">250 тис км</option>
+                    <option value="300000">300 тис км</option>
+                  </Field>
+                  <div className="arrow">
+                  <DropArrow />
                 </div>
-                  </label>
-                  
-              
+              </div>
+                </label>
+
                 <label>
                 <div className="containerLong">
                   Рік випуску<RequiredMarker>*</RequiredMarker>
@@ -310,8 +341,9 @@ const regionsAndCities = {
                   <Field
                     className="fieldShort marg16"
                     as="select"
-                    name="yearToCreate"
+                    name="advertisementDTO.carDTO.yearToCreate"
                   >
+                    <option value="">Оберіть</option>
                     <option value="1999">1999</option>
                     <option value="2000">2000</option>
                     <option value="2001">2001</option>
@@ -343,7 +375,7 @@ const regionsAndCities = {
                 </div>
               </div>
                 </label>
-                                
+
                 <label>
                 <div className="containerLong">
                   Ціна<RequiredMarker>*</RequiredMarker>
@@ -351,7 +383,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldTextShort"
                     type="text"
-                    name="price"
+                    name="advertisementDTO.price"
                     placeholder="1000 $"
                   >
                   </Field>
@@ -366,8 +398,11 @@ const regionsAndCities = {
                     Тип кузова<RequiredMarker>*</RequiredMarker>
                     </div>
                     <div className="arrowDiv">
-                    <Field className="fieldLong marg16" as="select" name="bodyType">
-                      {/* <option value="All">Усі варіанти</option> */}
+                    <Field 
+                    className="fieldLong marg16" 
+                    as="select" 
+                    name="advertisementDTO.carDTO.bodyType.name">
+                      <option value="">Оберіть</option>
                       <option value="Універсал">Універсал</option>
                       <option value="Седан">Седан</option>
                       <option value="Кабріолет">Кабріолет</option>
@@ -389,7 +424,11 @@ const regionsAndCities = {
                     Двигун<RequiredMarker>*</RequiredMarker>
                     </div>
                     <div className="arrowDiv">
-                    <Field className="fieldLong marg16" as="select" name="engine">
+                    <Field 
+                    className="fieldLong marg16" 
+                    as="select" 
+                    name="advertisementDTO.carDTO.engine.name">
+                      <option value="">Оберіть</option>
                       <option value="Electro">Електрична силова установка</option>
                       <option value="Hibrid">Гібрід</option>
                       <option value="Gasoline">Бензиновий</option>
@@ -411,8 +450,9 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="driveType"
+                      name="advertisementDTO.carDTO.engine.volume"
                     >
+                      <option value="">Оберіть</option>
                       <option value="Microliter">До 1,1 літра</option>
                       <option value="Low-volume">Від 1,2 до 1,7 літра</option>
                       <option value="Medium-sized">Від 1,8 до 3,3 літра</option>
@@ -433,8 +473,9 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="transmission"
+                      name="advertisementDTO.carDTO.driveType.name"
                     >
+                      <option value="">Оберіть</option>
                       <option value="Front">Передній</option>
                       <option value="Posterior">Задній</option>
                       <option value="Full">Повний</option>
@@ -454,8 +495,9 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="transmission"
+                      name="advertisementDTO.carDTO.transmission.name"
                     >
+                      <option value="">Оберіть</option>
                       <option value="Mechanical">Механічна</option>
                       <option value="Automatic">Автоматична</option>
                       <option value="Robotic">Роботизована</option>
@@ -476,8 +518,9 @@ const regionsAndCities = {
                     <Field
                       className="fieldLong marg16"
                       as="select"
-                      name="technicalState"
+                      name="advertisementDTO.carDTO.technicalState.name"
                     >
+                      <option value="">Оберіть</option>
                       <option value="Completely intact">
                         Повністю непошкоджене
                       </option>
@@ -503,8 +546,11 @@ const regionsAndCities = {
                     Колір<RequiredMarker>*</RequiredMarker>
                     </div>
                     <div className="arrowDiv">
-                    <Field className="fieldLong marg16" as="select" name="color">
-                      {/* <option value="">Колір</option> */}
+                    <Field 
+                    className="fieldLong marg16" 
+                    as="select" 
+                    name="advertisementDTO.carDTO.color.name">
+                      <option value="">Оберіть</option>
                       <option value="White">Білий</option>
                       <option value="Black">Чорний</option>
                       <option value="Gray">Сірий</option>
@@ -535,7 +581,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldTextLong"
                     type="text"
-                    name="vinNumber"
+                    name="advertisementDTO.carDTO.vinNumber"
                     placeholder="VF7LCRFJF74251989"
                   >
                   </Field>
@@ -551,7 +597,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldInput marg16"
                     as="textarea"
-                    name="description"
+                    name="advertisementDTO.description"
                   >
                   </Field>
                 </label>
@@ -566,7 +612,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldLong marg16"
                     type="text"
-                    name="name"
+                    name="advertisementDTO.ownerName"
                     placeholder="Сергій"
                   >
                   </Field>
@@ -578,7 +624,7 @@ const regionsAndCities = {
                   <Field
                     className="fieldLong marg16"
                     type="phone"
-                    name="phone"
+                    name="advertisementDTO.ownerPhone"
                     placeholder="+38(0ХХ) ХХХ ХХ ХХ"
                   >
                   </Field>
@@ -600,30 +646,29 @@ const regionsAndCities = {
 
 };
 
-
-
 const AdvertisementPage = () => {
 
   const [values, setValues] = useState({
-    category: 'All',
-    brand: '',
-    model: '',
-    licensePlate: '',
-    region: '',
-    Mileage: '10000',
-    Year: '1999',
-    Price: '',
-    bodyType: 'All',
-    fuelType: 'Electro',
-    engineCapacity: 'Microliter',
-    driveType: 'Front',
-    transmission: 'Mechanical',
-    condition: 'Completely intact',
-    color: '',
-    VIN: '',
-    AboutCar: '',
-    username: '',
-    phone: '',
+    // category: 'All',
+    'advertisementDTO.carDTO.carMark.name': '',
+    'advertisementDTO.carDTO.carMark.carModel.name': '',
+    'advertisementDTO.carDTO.carNumber': '',
+    'advertisementDTO.region.name': '',
+    'advertisementDTO.region.city.name': '',
+    'advertisementDTO.carDTO.mileage': '',
+    'advertisementDTO.carDTO.yearToCreate': '',
+    'advertisementDTO.price': '',
+    'advertisementDTO.carDTO.bodyType.name': '',
+    'advertisementDTO.carDTO.engine.name': '',
+    'advertisementDTO.carDTO.engine.volume': '',
+    'advertisementDTO.carDTO.driveType.name': '',
+    'advertisementDTO.carDTO.transmission.name': '',
+    'advertisementDTO.carDTO.technicalState.name': '',
+    'advertisementDTO.carDTO.color.name': '',
+    'advertisementDTO.carDTO.vinNumber': '',
+    'advertisementDTO.description': '',
+    'advertisementDTO.ownerName': '',
+    'advertisementDTO.ownerPhone': '',
   });
 
   const handleSearch = values => {
@@ -638,7 +683,7 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <AdvertisementForm initialValues={values} onSubmit={handleSearch}/>
+      <AdvertisementForm initialValues={values} />
 
       <Modal handleSearch={handleSearch}/>
     </Container>
