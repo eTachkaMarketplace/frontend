@@ -14,7 +14,7 @@ export default function ChangePassPage() {
   useEffect(() => {
     if (code) {
       try {
-        dispatch(acceptCode(code));
+        dispatch(acceptCode({code}));
         if (user) setSuccess(true);
       } catch (error) {
         setSuccess(false);
