@@ -4,9 +4,10 @@ import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
-import Modal from '../../modal/modal';
+import Modal2 from '../../modal/modal2';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+
 
 
 const brandsAndModels = {
@@ -45,6 +46,7 @@ const regionsAndCities = {
 const AdvertisementForm = ({ initialValues}) => {
     const dispatch = useDispatch();
     const formikRef = useRef(null);
+    
 
     const [availableModels, setAvailableModels] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('');
@@ -100,6 +102,7 @@ const AdvertisementForm = ({ initialValues}) => {
 
   const clearForm = () => {
     dispatch(setIsOpen(true));
+    // formikRef.current.resetForm({ values: initialValues });
   }
 
   const onDrop = (acceptedFiles) => {
@@ -683,7 +686,7 @@ const AdvertisementPage = () => {
     'advertisementDTO.ownerPhone': '',
   });
 
-  const handleSearch = values => {
+  const handleSearch1 = values => {
     setValues(values);
     console.log(values);
   };
@@ -697,7 +700,7 @@ const AdvertisementPage = () => {
 
       <AdvertisementForm initialValues={values} />
 
-      <Modal handleSearch={handleSearch}/>
+      <Modal2 handleSearch1={handleSearch1}/>
     </Container>
   );
 };
