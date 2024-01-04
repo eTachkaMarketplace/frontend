@@ -12,6 +12,7 @@ export default function ChangePassPage() {
   const { code } = useParams();
   const user = useSelector(selectUser);
   useEffect(() => {
+    
     if (code) {
       try {
         dispatch(acceptCode({code}));
@@ -20,6 +21,7 @@ export default function ChangePassPage() {
         setSuccess(false);
       }
     }
-  }, [code, dispatch, user]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code, dispatch]);
   return <div>{success ? <ChangePass /> : <ForgotPass />}</div>;
 }
