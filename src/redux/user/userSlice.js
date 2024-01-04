@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { changeUser, deleteUser, getUser } from './opetations';
+import { acceptCode, changePass, changeUser, deleteUser, forgotPass, getUser } from './opetations';
 
 const initialState = {
-  user: {},
+  user: null,
   isLoading: false,
   error: null,
 };
@@ -24,7 +24,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.error = payload.error;
       })
-      .addCase(changeUser.fulfilled, (state, ) => {
+      .addCase(changeUser.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
       })
@@ -35,7 +35,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(deleteUser.fulfilled, (state, ) => {
+      .addCase(deleteUser.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
       })
@@ -43,6 +43,40 @@ export const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
+      .addCase(forgotPass.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(forgotPass.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(forgotPass.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(changePass.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(changePass.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(changePass.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
+      .addCase(acceptCode.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(acceptCode.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(acceptCode.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
       });

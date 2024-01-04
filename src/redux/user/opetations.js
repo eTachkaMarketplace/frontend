@@ -42,3 +42,45 @@ export const deleteUser = createAsyncThunk(
     }
   }
 );
+
+
+export const forgotPass = createAsyncThunk(
+  'user/forgotPass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      await instance.put('api/users/forgot/password', credentials);
+      Notify.success(`Check your email`);
+      return;
+    } catch (error) {
+      Notify.failure(`Oops. Try again`);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changePass = createAsyncThunk(
+  'user/changePass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      await instance.put('api/users/change/password', credentials);
+      Notify.success(`Password changed successfully`);
+      return;
+    } catch (error) {
+      Notify.failure(`Change failed. Try again`);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const acceptCode = createAsyncThunk(
+  'user/acceptCode',
+  async ({code}, { rejectWithValue }) => {
+    try {
+      await instance.put(`api/users/accept/code/${code}`, );
+      console.log("code accepted")
+      return;
+    } catch (error) {
+      console.log(`Code failed. Try again`);
+      return rejectWithValue(error.message);
+    }
+  }
+);

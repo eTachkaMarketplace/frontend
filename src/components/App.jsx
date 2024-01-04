@@ -12,6 +12,7 @@ import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
+import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 
 export function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,14 @@ export function App() {
               element={
                 <PublickRoute redirectTo="/account">
                   <Authentication />
+                </PublickRoute>
+              }
+            />
+            <Route
+              path="/forgot-password/:code?"
+              element={
+                <PublickRoute redirectTo="/account">
+                  <ChangePassPage />
                 </PublickRoute>
               }
             />
