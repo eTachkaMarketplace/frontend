@@ -69,7 +69,7 @@ export const userSlice = createSlice({
         state.error = payload;
       })
       .addCase(acceptCode.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        state.user = {...payload.data};
         state.isLoading = false;
         state.error = null;
       })
