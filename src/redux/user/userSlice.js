@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { acceptCode, changePass, changeUser, deleteUser, forgotPass, getUser } from './opetations';
 
 const initialState = {
-  user: null,
+  user: {},
   isLoading: false,
   error: null,
 };
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
+        state.user = {...payload};
         state.isLoading = false;
         state.error = null;
       })

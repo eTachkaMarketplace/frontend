@@ -43,10 +43,22 @@ export function App() {
               }
             />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/AdvertisementPage" element={<AdvertisementPage />} />
-            <Route path="/" element={<PrivateRoute />}>
-              <Route path="/account" element={<AccountPage />} />
-            </Route>
+            <Route
+              path="/AdvertisementPage"
+              element={
+                <PrivateRoute redirectTo="/authorization">
+                  <AdvertisementPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <PrivateRoute redirectTo="/authorization">
+                  <AccountPage />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </Suspense>
       </main>

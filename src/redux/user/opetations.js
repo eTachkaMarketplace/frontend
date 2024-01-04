@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
 
 export const getUser = createAsyncThunk(
@@ -20,10 +20,10 @@ export const changeUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       await instance.put('api/users/user', credentials);
-      Notify.success(`User changed successfully`);
+      console.log(`User changed successfully`);
       return;
     } catch (error) {
-      Notify.failure(`Change failed. Try again`);
+      console.log(`Change failed. Try again`);
       return rejectWithValue(error.message);
     }
   }
@@ -34,10 +34,10 @@ export const deleteUser = createAsyncThunk(
   async ({ id }, { rejectWithValue }) => {
     try {
       await instance.delete(`api/users/${id}`);
-      Notify.success(`User delete successfully`);
+      console.log(`User delete successfully`);
       return;
     } catch (error) {
-      Notify.failure(`failed. Try again`);
+      console.log(`failed. Try again`);
       return rejectWithValue(error.message);
     }
   }
@@ -49,10 +49,10 @@ export const forgotPass = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       await instance.put('api/users/forgot/password', credentials);
-      Notify.success(`Check your email`);
+      console.log(`Check your email`);
       return;
     } catch (error) {
-      Notify.failure(`Oops. Try again`);
+      console.log(`Oops. Try again`);
       return rejectWithValue(error.message);
     }
   }
@@ -63,10 +63,10 @@ export const changePass = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       await instance.put('api/users/change/password', credentials);
-      Notify.success(`Password changed successfully`);
+      console.log(`Password changed successfully`);
       return;
     } catch (error) {
-      Notify.failure(`Change failed. Try again`);
+      console.log(`Change failed. Try again`);
       return rejectWithValue(error.message);
     }
   }
