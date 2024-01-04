@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Container, Title, RequiredMarker, Paragraph,SectionTitle, SectionContainer,StyledArrowSVG,StyledCreateSVG,StyledPostSVG } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { Formik, Field, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
 import Modal2 from '../../modal/modal2';
@@ -44,10 +44,13 @@ const regionsAndCities = {
 };
 
 const AdvertisementForm = ({ initialValues}) => {
+
     const dispatch = useDispatch();
     const formikRef = useRef(null);
-    
 
+    const authState = useSelector((state) => state.auth);
+    const token = authState.token;
+    
     const [availableModels, setAvailableModels] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
@@ -77,14 +80,19 @@ const AdvertisementForm = ({ initialValues}) => {
 
     const onSubmit = async (values) => {
       try {
+        console.log('token:', token);
         const formData = new FormData();
-
+    
+        // values.photos.forEach((photo, index) => {
+        //   formData.append(`images[${index}]`, photo);
+        // });
+    
         formData.append('advertisementDTO', JSON.stringify(values.advertisementDTO));
     
-           
         const response = await axios.post('https://185.69.153.118:8443/api/advertisements/create', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token.replace(/"/g, '')}`,
           },
         });
     
@@ -93,6 +101,7 @@ const AdvertisementForm = ({ initialValues}) => {
         console.error('Error:', error);
       }
     };
+    
 
     useEffect(() => {
      if (formikRef.current) {
