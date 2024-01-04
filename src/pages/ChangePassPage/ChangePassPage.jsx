@@ -7,7 +7,7 @@ import { acceptCode } from 'redux/user/opetations';
 import { selectUser } from 'redux/user/selectors';
 
 export default function ChangePassPage() {
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const { code } = useParams();
   const user = useSelector(selectUser);
