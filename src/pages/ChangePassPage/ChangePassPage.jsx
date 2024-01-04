@@ -22,6 +22,6 @@ export default function ChangePassPage() {
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code, dispatch]);
+  }, []);
   return <div>{success ? <ChangePass /> : <ForgotPass />}</div>;
 }
