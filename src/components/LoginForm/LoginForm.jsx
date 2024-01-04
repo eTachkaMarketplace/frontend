@@ -17,6 +17,7 @@ import {
 } from './LoginForm.styled';
 import { ErrorSVG, ViewSVG } from './chackBox';
 import { selectError, selectIsLoading } from 'redux/auth/selectors';
+import { NavLink } from 'react-router-dom';
 
 
 const userSchema = Yup.object().shape({
@@ -52,23 +53,9 @@ try {
     }
 };
 
-
-//   const handleSubmit = async ({ email, password }, { resetForm }) => {
-//     try {
-//       await dispatch(login({ email, password }));
-//       resetForm();
-//     } catch (error) {
-//       console.error('Error submitting form:', error);
-//     }
-//   };
-
-
-
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
 
   useEffect(() => {
     if (requestError) setRefError(true);
@@ -128,9 +115,9 @@ try {
               {refError ? (
                 <p className="errorMes">Недійсна пошта або пароль</p>
               ) : null}
-              <button className="remPassBtn" type="button">
+              <NavLink className="remPassBtn" to="/forgot-password">
                 Забули пароль?
-              </button>
+              </NavLink>
               <div className="loader">
                 <PulseLoader
                   color="#0040bd"
@@ -173,3 +160,12 @@ try {
               //   </div>
               // </GBtn>
 
+
+              //   const handleSubmit = async ({ email, password }, { resetForm }) => {
+//     try {
+//       await dispatch(login({ email, password }));
+//       resetForm();
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//     }
+//   };
