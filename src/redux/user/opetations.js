@@ -75,7 +75,10 @@ export const acceptCode = createAsyncThunk(
   'user/acceptCode',
   async ({code}, { rejectWithValue }) => {
     try {
-      await instance.put(`api/users/accept/code/${code}`, );
+      const codeApi = `api/users/accept/code/${code}`;
+      console.log(codeApi);
+      await instance.put(codeApi);
+      console.log(codeApi);
       console.log("code accepted")
       return;
     } catch (error) {
