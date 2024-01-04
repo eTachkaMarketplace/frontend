@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       })
       .addCase(getUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload.error;
+        state.error = payload;
       })
       .addCase(changeUser.fulfilled, state => {
         state.isLoading = false;
@@ -44,7 +44,7 @@ export const userSlice = createSlice({
       })
       .addCase(deleteUser.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload.error;
+        state.error = payload;
       })
       .addCase(forgotPass.fulfilled, state => {
         state.isLoading = false;
@@ -66,7 +66,7 @@ export const userSlice = createSlice({
       })
       .addCase(changePass.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload.error;
+        state.error = payload;
       })
       .addCase(acceptCode.fulfilled, (state, { payload }) => {
         state.user = payload;
@@ -78,7 +78,7 @@ export const userSlice = createSlice({
       })
       .addCase(acceptCode.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload.error;
+        state.error = payload;
       });
   },
 });
