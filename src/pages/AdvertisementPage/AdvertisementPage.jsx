@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {Container, Title, RequiredMarker, Paragraph,SectionTitle, SectionContainer } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
+import {Container, Title, RequiredMarker, Paragraph,SectionTitle, SectionContainer,StyledArrowSVG,StyledCreateSVG,StyledPostSVG } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
@@ -7,6 +7,7 @@ import { DropArrow } from '../../components/SearchForm/SearchFormSVG';
 import Modal from '../../modal/modal';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+
 
 const brandsAndModels = {
   BMW: ['X5', 'M3', 'X3'],
@@ -144,6 +145,17 @@ const AdvertisementForm = ({ initialValues}) => {
             </button>
               <SectionContainer>
               <SectionTitle>Етапи розміщення оголошення</SectionTitle>
+              <div className='styled'>
+                <StyledArrowSVG/>
+                <div className='create'>
+                  <StyledCreateSVG/>
+                  <p className='create_text'>1. Створення</p>
+                </div>
+                <div className='post'>
+                  <StyledPostSVG/>
+                  <p className='post_text'>2. Публікація</p>
+                </div>
+              </div>
               </SectionContainer>
 
               <SectionContainer>

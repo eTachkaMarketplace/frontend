@@ -1,4 +1,24 @@
 import styled from 'styled-components';
+import { ReactComponent as ArrowSVG } from '../../images/AccountPage/Arrow.svg';
+import { ReactComponent as CreateSVG } from '../../images/AccountPage/create.svg';
+import { ReactComponent as PostSVG } from '../../images/AccountPage/post.svg';
+
+export const StyledArrowSVG = styled(ArrowSVG)`
+  margin-top: -1px ;
+`;
+
+export const StyledCreateSVG = styled(CreateSVG)`
+  stroke: #fff;
+  margin-right: 5px;
+`;
+
+
+export const StyledPostSVG = styled(PostSVG)`
+  stroke:#4B4B4B;
+  margin-right: 5px;
+
+  `;
+
 
 export const Container = styled.section`
   display: flex;
@@ -19,6 +39,49 @@ export const Container = styled.section`
     
   }
 
+.styled{
+  position: relative;
+  display: block;
+  background: #FFF;
+  width: 1000px;
+  height: 74px;
+  border: 1px solid #B9B9B9;
+  border-radius: 10px;
+}
+
+.create{
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post{
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create_text{
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.post_text{
+  color: #4B4B4B;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+
+}
   select {
     appearance: none;
     -webkit-appearance: none;
