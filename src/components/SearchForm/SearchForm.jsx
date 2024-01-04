@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { Arrow, DropArrow } from './SearchFormSVG';
+import { useLocation } from 'react-router-dom';
 
 export const SearchForm = ({ initialValues, onSubmit }) => {
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
+  const location = useLocation();
   const carMark = {
     BMW: ['X5', 'M3', 'I3'],
     Toyota: ['Camry', 'Corolla', 'Avalon'],
@@ -32,6 +34,14 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       formikRef.current.resetForm({ values: initialValues });
     }
   }, [initialValues]);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const favouritesParam = searchParams.get('status');
+    console.log(favouritesParam);
+    if (favouritesParam) {
+      formikRef.current.setFieldValue('status', favouritesParam);
+    }
+  }, [location.search]);
 
   const clearForm = () => {
     distatch(setIsOpen(true));
@@ -335,8 +345,6 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   );
 };
 export default SearchForm;
-
-
 
 // {/* <div className="shortDiv marg16">
 //   <label>

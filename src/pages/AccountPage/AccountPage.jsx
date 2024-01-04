@@ -7,18 +7,23 @@ import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { getUser } from 'redux/user/opetations';
 import { selectUser } from 'redux/user/selectors';
 import { SVG1 } from './AccPageSVG';
+import { useLocation } from 'react-router-dom';
 
 const AccountPage = () => {
   const dispatch = useDispatch();
-  const [selectedNavItem, setSelectedNavItem] = useState('personal');
-  
+ const [selectedNavItem, setSelectedNavItem] = useState('personal');
+  const location = useLocation();
 const userInfo = useSelector(selectUser)
 
   useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]);
+    const searchParams = new URLSearchParams(location.search);
+    const favouritesParam = searchParams.get('favourites');
 
-
+    if (favouritesParam === 'true') {
+      setSelectedNavItem('favourites');
+    }
+  }, [dispatch, location.search]);
 
 
   const handleLogout = () => {

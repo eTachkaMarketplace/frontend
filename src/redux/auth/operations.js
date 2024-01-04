@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 export const instance = axios.create({
@@ -21,11 +21,11 @@ export const register = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await instance.post('api/auth/signup', credentials);
-      Notify.success(`Welcome!!!`);
+      console.log(`Welcome!!!`);
       return response.data;
       
     } catch (error) {
-      Notify.failure(`This email is already in use`);
+      console.log(`This email is already in use`);
       return rejectWithValue(error.message);
     }
   }
@@ -38,10 +38,10 @@ export const login = createAsyncThunk(
       const response = await instance.post('api/auth/login', credentials);
       setToken(response.data.data.jwtAccessToken);
       console.log(response);
-      Notify.success(`Welcome back!!!`);
+      console.log(`Welcome back!!!`);
       return response.data;
     } catch (error) {
-      Notify.failure(`Login failed. Try again`);
+      console.log(`Login failed. Try again`);
       return rejectWithValue(error.message);
     }
   }
@@ -94,7 +94,7 @@ export const logoutOperation = createAsyncThunk(
 //   async (credentials, { rejectWithValue }) => {
 //     try {
 //       const { data } = await instance.patch('api/auth/update', credentials);
-//       Notify.success(`Your profile has been updated`);
+//       console.log(`Your profile has been updated`);
 //       return data;
 //     } catch (error) {
 //       return rejectWithValue(error.message);
