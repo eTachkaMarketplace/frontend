@@ -7,14 +7,14 @@ import ModalWraper from './modalWraper/modalWraper';
 import ConfirmModalAdvertisement from './confirmModal/confirmModalAdvertisement';
 
 
-const Modal = ({ handleSearch1 }) => {
+const Modal2 = ({ handleClearForm}) => {
   const isOpen = useSelector(selectIsOpen);
 
   return ReactDOM.createPortal(
     <>
       {isOpen && (
         <ModalWraper>
-          <ConfirmModalAdvertisement handleSearch1={handleSearch1} />
+           <ConfirmModalAdvertisement clearForm={handleClearForm} />
         </ModalWraper>
       )}
     </>,
@@ -22,4 +22,4 @@ const Modal = ({ handleSearch1 }) => {
   );
 };
 
-export default Modal;
+export default Modal2;

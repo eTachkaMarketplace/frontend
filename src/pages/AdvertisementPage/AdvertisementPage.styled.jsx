@@ -163,6 +163,12 @@ export const Container = styled.section`
     border: 1px solid #b9b9b9;
   }
 
+.transparent{
+  color: #ABABAB;
+  font-size: 18px;
+
+}
+
   .fieldShort {
     display: flex;
 

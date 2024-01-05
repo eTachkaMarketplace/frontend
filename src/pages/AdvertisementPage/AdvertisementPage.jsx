@@ -55,30 +55,9 @@ const AdvertisementForm = ({ initialValues}) => {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [photos, setPhotos] = useState([]);
-    // const [values, setValues] = useState({
-    //   // category: 'All',
-    //   'advertisementDTO.carDTO.carMark.name': '',
-    //   'advertisementDTO.carDTO.carMark.carModel.name': '',
-    //   'advertisementDTO.carDTO.carNumber': '',
-    //   'advertisementDTO.region.name': '',
-    //   'advertisementDTO.region.city.name': '',
-    //   'advertisementDTO.carDTO.mileage': '',
-    //   'advertisementDTO.carDTO.yearToCreate': '',
-    //   'advertisementDTO.price': '',
-    //   'advertisementDTO.carDTO.bodyType.name': '',
-    //   'advertisementDTO.carDTO.engine.name': '',
-    //   'advertisementDTO.carDTO.engine.volume': '',
-    //   'advertisementDTO.carDTO.driveType.name': '',
-    //   'advertisementDTO.carDTO.transmission.name': '',
-    //   'advertisementDTO.carDTO.technicalState.name': '',
-    //   'advertisementDTO.carDTO.color.name': '',
-    //   'advertisementDTO.carDTO.vinNumber': '',
-    //   'advertisementDTO.description': '',
-    //   'advertisementDTO.ownerName': '',
-    //   'advertisementDTO.ownerPhone': '',
-    // });
-
-    const onSubmit = async (values) => {
+      const onSubmit = async (values) => {
+        console.log('Form values on submit:', values);
+        
       try {
         console.log('token:', token);
         const formData = new FormData();
@@ -109,11 +88,16 @@ const AdvertisementForm = ({ initialValues}) => {
       }
       }, [initialValues]);
 
-  const clearForm = () => {
+  const openModal = () => {
     dispatch(setIsOpen(true));
-    // formikRef.current.resetForm({ values: initialValues });
   }
 
+  useEffect(() => {
+    if (formikRef.current) {
+      formikRef.current.resetForm({ values: initialValues });
+    }
+  }, [initialValues]);
+  
   const onDrop = (acceptedFiles) => {
     setPhotos([...photos, ...acceptedFiles]);
     formikRef.current.setFieldValue('photos', [...photos, ...acceptedFiles]);
@@ -152,7 +136,7 @@ const AdvertisementForm = ({ initialValues}) => {
       innerRef={formik => (formikRef.current = formik)}
       >
             <Form className='form'>
-            <button className="clearButton" onClick={clearForm} type="button">
+            <button className="clearButton" onClick={openModal} type="button">
               Очистити все
             </button>
               <SectionContainer>
@@ -326,7 +310,7 @@ const AdvertisementForm = ({ initialValues}) => {
 
                 <label>
                 <div className="containerLong">                  
-                  Пробіг до<RequiredMarker>*</RequiredMarker>
+                  Пробіг<span className='transparent'> (тис. км)</span><RequiredMarker>*</RequiredMarker>
                   </div>
                   <div className="arrowDiv">
                   <Field
@@ -335,21 +319,21 @@ const AdvertisementForm = ({ initialValues}) => {
                     name="advertisementDTO.carDTO.mileage"
                   >
                     <option value="">Оберіть</option>
-                    <option value="10000">10 тис км</option>
-                    <option value="20000">20 тис км</option>
-                    <option value="30000">30 тис км</option>
-                    <option value="40000">40 тис км</option>
-                    <option value="50000">50 тис км</option>
-                    <option value="60000">60 тис км</option>
-                    <option value="70000">70 тис км</option>
-                    <option value="80000">80 тис км</option>
-                    <option value="90000">90 тис км</option>
-                    <option value="100000">100 тис км</option>
-                    <option value="125000">125 тис км</option>
-                    <option value="150000">150 тис км</option>
-                    <option value="200000">200 тис км</option>
-                    <option value="250000">250 тис км</option>
-                    <option value="300000">300 тис км</option>
+                    <option value="10000">10</option>
+                    <option value="20000">20</option>
+                    <option value="30000">30</option>
+                    <option value="40000">40</option>
+                    <option value="50000">50</option>
+                    <option value="60000">60</option>
+                    <option value="70000">70</option>
+                    <option value="80000">80</option>
+                    <option value="90000">90</option>
+                    <option value="100000">100</option>
+                    <option value="125000">125</option>
+                    <option value="150000">150</option>
+                    <option value="200000">200</option>
+                    <option value="250000">250</option>
+                    <option value="300000">300</option>
                   </Field>
                   <div className="arrow">
                   <DropArrow />
@@ -402,11 +386,11 @@ const AdvertisementForm = ({ initialValues}) => {
 
                 <label>
                 <div className="containerLong">
-                  Ціна<RequiredMarker>*</RequiredMarker>
+                  Ціна<span className='transparent'> ($)</span><RequiredMarker>*</RequiredMarker>
                   </div>
                   <Field
                     className="fieldTextShort"
-                    type="text"
+                    type="number"
                     name="advertisementDTO.price"
                     placeholder="1000 $"
                   >
@@ -431,7 +415,7 @@ const AdvertisementForm = ({ initialValues}) => {
                       <option value="Седан">Седан</option>
                       <option value="Кабріолет">Кабріолет</option>
                       <option value="Купе">Купе</option>
-                      <option value="Внедорожник">Внедорожник</option>
+                      <option value="Позашляховик">Внедорожник</option>
                       <option value="Хетчбек">Хетчбек</option>
                       <option value="Пікап">Пікап</option>
                       <option value="Лімузин">Лімузин</option>
@@ -468,7 +452,7 @@ const AdvertisementForm = ({ initialValues}) => {
                
                   <label>
                   <div className="containerLong">
-                    Об‘єм двигуна (л)<RequiredMarker>*</RequiredMarker>
+                    Об‘єм двигуна<span className='transparent'> (л)</span><RequiredMarker>*</RequiredMarker>
                     </div>
                     <div className="arrowDiv">
                     <Field
@@ -477,10 +461,10 @@ const AdvertisementForm = ({ initialValues}) => {
                       name="advertisementDTO.carDTO.engine.volume"
                     >
                       <option value="">Оберіть</option>
-                      <option value="Microliter">До 1,1 літра</option>
-                      <option value="Low-volume">Від 1,2 до 1,7 літра</option>
-                      <option value="Medium-sized">Від 1,8 до 3,3 літра</option>
-                      <option value="Large-capacity">Від 3,5 літра</option>
+                      <option value="Microliter">До 1,1</option>
+                      <option value="Low-volume">Від 1,2 до 1,7</option>
+                      <option value="Medium-sized">Від 1,8 до 3,3</option>
+                      <option value="Large-capacity">Від 3,5</option>
                     </Field>
                     <div className="arrow">
                     <DropArrow />
@@ -647,7 +631,7 @@ const AdvertisementForm = ({ initialValues}) => {
                   </div>
                   <Field
                     className="fieldLong marg16"
-                    type="phone"
+                    type="number"
                     name="advertisementDTO.ownerPhone"
                     placeholder="+38(0ХХ) ХХХ ХХ ХХ"
                   >
@@ -671,9 +655,7 @@ const AdvertisementForm = ({ initialValues}) => {
 };
 
 const AdvertisementPage = () => {
-
-  const [values, setValues] = useState({
-    // category: 'All',
+  const initialFormValues = {
     'advertisementDTO.carDTO.carMark.name': '',
     'advertisementDTO.carDTO.carMark.carModel.name': '',
     'advertisementDTO.carDTO.carNumber': '',
@@ -693,11 +675,19 @@ const AdvertisementPage = () => {
     'advertisementDTO.description': '',
     'advertisementDTO.ownerName': '',
     'advertisementDTO.ownerPhone': '',
-  });
+  };
 
-  const handleSearch1 = values => {
-    setValues(values);
-    console.log(values);
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  // const handleSearch1 = (values) => {
+  //   setFormValues(values);
+  //   console.log(values);
+  // };
+
+  const handleClearForm = () => {
+    console.log("Clearing form...");
+    setFormValues(initialFormValues);
   };
 
   return (
@@ -707,9 +697,9 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <AdvertisementForm initialValues={values} />
+      <AdvertisementForm initialValues={formValues} />
 
-      <Modal2 handleSearch1={handleSearch1}/>
+      <Modal2 handleClearForm={handleClearForm}/>
     </Container>
   );
 };
