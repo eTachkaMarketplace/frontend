@@ -55,30 +55,9 @@ const AdvertisementForm = ({ initialValues}) => {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [photos, setPhotos] = useState([]);
-    // const [values, setValues] = useState({
-    //   // category: 'All',
-    //   'advertisementDTO.carDTO.carMark.name': '',
-    //   'advertisementDTO.carDTO.carMark.carModel.name': '',
-    //   'advertisementDTO.carDTO.carNumber': '',
-    //   'advertisementDTO.region.name': '',
-    //   'advertisementDTO.region.city.name': '',
-    //   'advertisementDTO.carDTO.mileage': '',
-    //   'advertisementDTO.carDTO.yearToCreate': '',
-    //   'advertisementDTO.price': '',
-    //   'advertisementDTO.carDTO.bodyType.name': '',
-    //   'advertisementDTO.carDTO.engine.name': '',
-    //   'advertisementDTO.carDTO.engine.volume': '',
-    //   'advertisementDTO.carDTO.driveType.name': '',
-    //   'advertisementDTO.carDTO.transmission.name': '',
-    //   'advertisementDTO.carDTO.technicalState.name': '',
-    //   'advertisementDTO.carDTO.color.name': '',
-    //   'advertisementDTO.carDTO.vinNumber': '',
-    //   'advertisementDTO.description': '',
-    //   'advertisementDTO.ownerName': '',
-    //   'advertisementDTO.ownerPhone': '',
-    // });
-
-    const onSubmit = async (values) => {
+      const onSubmit = async (values) => {
+        console.log('Form values on submit:', values);
+        
       try {
         console.log('token:', token);
         const formData = new FormData();
@@ -109,11 +88,16 @@ const AdvertisementForm = ({ initialValues}) => {
       }
       }, [initialValues]);
 
-  const clearForm = () => {
+  const openModal = () => {
     dispatch(setIsOpen(true));
-    // formikRef.current.resetForm({ values: initialValues });
   }
 
+  useEffect(() => {
+    if (formikRef.current) {
+      formikRef.current.resetForm({ values: initialValues });
+    }
+  }, [initialValues]);
+  
   const onDrop = (acceptedFiles) => {
     setPhotos([...photos, ...acceptedFiles]);
     formikRef.current.setFieldValue('photos', [...photos, ...acceptedFiles]);
@@ -152,7 +136,7 @@ const AdvertisementForm = ({ initialValues}) => {
       innerRef={formik => (formikRef.current = formik)}
       >
             <Form className='form'>
-            <button className="clearButton" onClick={clearForm} type="button">
+            <button className="clearButton" onClick={openModal} type="button">
               Очистити все
             </button>
               <SectionContainer>
@@ -671,9 +655,7 @@ const AdvertisementForm = ({ initialValues}) => {
 };
 
 const AdvertisementPage = () => {
-
-  const [values, setValues] = useState({
-    // category: 'All',
+  const initialFormValues = {
     'advertisementDTO.carDTO.carMark.name': '',
     'advertisementDTO.carDTO.carMark.carModel.name': '',
     'advertisementDTO.carDTO.carNumber': '',
@@ -693,11 +675,19 @@ const AdvertisementPage = () => {
     'advertisementDTO.description': '',
     'advertisementDTO.ownerName': '',
     'advertisementDTO.ownerPhone': '',
-  });
+  };
 
-  const handleSearch1 = values => {
-    setValues(values);
-    console.log(values);
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  // const handleSearch1 = (values) => {
+  //   setFormValues(values);
+  //   console.log(values);
+  // };
+
+  const handleClearForm = () => {
+    console.log("Clearing form...");
+    setFormValues(initialFormValues);
   };
 
   return (
@@ -707,9 +697,9 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <AdvertisementForm initialValues={values} />
+      <AdvertisementForm initialValues={formValues} />
 
-      <Modal2 handleSearch1={handleSearch1}/>
+      <Modal2 handleClearForm={handleClearForm}/>
     </Container>
   );
 };

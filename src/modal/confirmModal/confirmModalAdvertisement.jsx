@@ -3,7 +3,7 @@ import { ConfDiv } from './confirmModal.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { XBTN } from './confirmModalSVG';
 
-const СonfirmModalAdvertisement = ({ handleSearch1 }) => {
+const СonfirmModalAdvertisement = ({ clearForm }) => {
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -11,27 +11,8 @@ const СonfirmModalAdvertisement = ({ handleSearch1 }) => {
   };
 
   const confirmModalAdvertisement = () => {
-    handleSearch1({
-        'advertisementDTO.carDTO.carMark.name': '',
-          'advertisementDTO.carDTO.carMark.carModel.name': '',
-          'advertisementDTO.carDTO.carNumber': '',
-          'advertisementDTO.region.name': '',
-          'advertisementDTO.region.city.name': '',
-          'advertisementDTO.carDTO.mileage': '',
-          'advertisementDTO.carDTO.yearToCreate': '',
-          'advertisementDTO.price': '',
-          'advertisementDTO.carDTO.bodyType.name': '',
-          'advertisementDTO.carDTO.engine.name': '',
-          'advertisementDTO.carDTO.engine.volume': '',
-          'advertisementDTO.carDTO.driveType.name': '',
-          'advertisementDTO.carDTO.transmission.name': '',
-          'advertisementDTO.carDTO.technicalState.name': '',
-          'advertisementDTO.carDTO.color.name': '',
-          'advertisementDTO.carDTO.vinNumber': '',
-          'advertisementDTO.description': '',
-          'advertisementDTO.ownerName': '',
-          'advertisementDTO.ownerPhone': '',
-    });
+    console.log('Confirming and clearing form...');
+    clearForm();
     dispatch(setIsOpen(false));
   };
 
