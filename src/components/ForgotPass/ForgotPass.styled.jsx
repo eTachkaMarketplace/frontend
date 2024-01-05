@@ -12,7 +12,89 @@ export const Wraper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  .circle {
+    display: flex;
+    width: 45px;
+    height: 45px;
+    padding: 17px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
 
+    border-radius: 50px;
+    background: var(--green, #069024);
+  }
+  .titleChack {
+    color: var(--green, #069024);
+    /* H2 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 27px;
+  }
+  .text2 {
+    color: var(--Text-black-2, #4b4b4b);
+    /* Subtitle 1.1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 16px;
+  }
+  .login {
+    color: var(--Text-White, #fff);
+    text-align: center;
+    /* Button 1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    display: flex;
+    width: 406px;
+    height: 26px;
+    padding: 14px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    border-radius: 8px;
+    background: var(
+      --buttons-accent,
+      linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%)
+    );
+    &:hover,
+    &:focus {
+      background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
+    }
+    margin-top: 59px;
+  }
+  .toMain {
+    display: flex;
+    width: 406px;
+    height: 26px;
+    padding: 14px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    border-radius: 8px;
+    border: 2px solid var(--buttons-accent, #0040bd);
+    margin-top: 20px;
+
+    color: var(--text-black-dark, #141414);
+    text-align: center;
+    /* Button 1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
   .title {
     color: var(--text-black-dark, #141414);
     text-align: center;
@@ -37,6 +119,62 @@ export const Wraper = styled.div`
     margin-top: 24px;
     margin-bottom: 24px;
     width: 454px;
+  }
+  .textBig {
+    color: var(--text-black-dark, #141414);
+    /* Subtitle 2.2 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .mainBtn {
+    color: var(--text-black-dark, #141414);
+    text-align: center;
+    /* Button 1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    display: flex;
+    width: 454px;
+    height: 56px;
+    padding: 14px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    border: 2px solid var(--buttons-accent, #0040bd);
+  }
+  .link {
+    color: var(--Text-White, #fff);
+    text-align: center;
+    /* Button 1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    display: flex;
+    margin-top: 24px;
+    width: 454px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    background: var(
+      --buttons-accent,
+      linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%)
+    );
+    &:hover,
+    &:focus {
+      background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
+    }
   }
 `;
 export const Form = styled(FormikForm)`
