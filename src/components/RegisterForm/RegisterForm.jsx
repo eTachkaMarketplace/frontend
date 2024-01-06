@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { login, register } from '../../redux/auth/operations';
 
 import {
   Form,
@@ -18,7 +18,8 @@ import {
 import { Box1, Box2 } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
 import { PulseLoader } from 'react-spinners';
-import { selectIsLoading } from 'redux/auth/selectors';
+import { selectError, selectIsLoading } from 'redux/auth/selectors';
+import { redirect } from 'react-router-dom';
 
 const userSchema = Yup.object().shape({
   name: Yup.string()
@@ -65,63 +66,39 @@ const userSchema = Yup.object().shape({
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
   const [showChecked, setShowChecked] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const loader = useSelector(selectIsLoading);
+  const errorRedux = useSelector(selectError);
 
   useEffect(() => {
     setShowChecked(false);
     setFormSubmitted(false);
   }, []);
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    const { name, email, password, acceptTerms } = values;
+  useEffect(() => {}, [errorRedux]);
 
+  const handleSubmit = async (
+    values,
+    { setFieldValue, setSubmitting, resetForm }
+  ) => {
+    const { name, email, password, acceptTerms } = values;
+    setFieldValue('acceptTerms', false);
+    resetForm();
+    setFormSubmitted(true);
+    setShowChecked(false);
     if (!acceptTerms) {
       setShowChecked(false);
       return;
     }
-
-    setShowChecked(true);
-    dispatch(register({ name, email, password }));
-
-
-   // Reset the form
-   setSubmitting(false);
- };
-// =======
-// /*  const handleSubmit = e => {
-//     e.preventDefault();
-//     const {
-//       name: { value: name },
-//       email: { value: email },
-//       password: { value: password },
-//       acceptTerms,
-//     } = e.currentTarget;
-
-//     if (!acceptTerms) {
-//       setShowChecked(false);
-//       return;
-//     }
-//     setShowChecked(true);
-//     dispatch(register({ name, email, password }));
-//     e.currentTarget.reset();
-//   };*/
-
-//   const handleSubmit = async ({ name, email, password, acceptTerms }, { setErrors, resetForm }) => {
-//     if (!acceptTerms) {
-//       setErrors({ acceptTerms: 'Подтвердите условия соглашения' });
-//       setShowChecked(false);
-//       return;
-//     }
-//     try {
-//       setShowChecked(true);
-//       await dispatch(register({ name, email, password }));
-//       resetForm();
-//     } catch (error) {
-//       console.error('Error submitting registration form:', error);
-//     }
-//   };
+    await dispatch(register({ name, email, password }));
+    setTimeout(() => {
+      dispatch(login({ email, password }));
+    });
+    redirect('/account');
+    setSubmitting(false);
+  };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -137,7 +114,14 @@ export const RegisterForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, errors, touched, setFieldValue, isSubmitting }) => {
+      {({
+        values,
+        errors,
+        touched,
+        setFieldValue,
+        resetForm,
+        isSubmitting,
+      }) => {
         const isValid = field =>
           touched[field] && errors[field]
             ? 'is-invalid'
@@ -229,17 +213,22 @@ export const RegisterForm = () => {
                 checked={values.acceptTerms}
                 onChange={e => {
                   setFieldValue('acceptTerms', e.target.checked);
+                  console.log(e.target.checked);
                   checkedIvent();
                 }}
                 style={{ position: 'absolute', opacity: 0 }}
               />
               <span
-                className={`custom-checkbox ${
-                  showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
+                className={`customCheckbox ${
+                  showChecked
+                    ? 'checked'
+                    : formSubmitted
+                    ? 'unchecked'
+                    : null
                 }`}
-                onClick={() =>
-                  setFieldValue('acceptTerms', !values.acceptTerms)
-                }
+                onClick={() => {
+                  setFieldValue('acceptTerms', !values.acceptTerms);
+                }}
               >
                 {values.acceptTerms ? <Box2 /> : <Box1 />}
               </span>
@@ -257,6 +246,9 @@ export const RegisterForm = () => {
             <Button type="submit" onClick={() => setFormSubmitted(true)}>
               Зареєструватись
             </Button>
+            {errorRedux && (
+              <h2 className="ErrorRedux">Реїстрація не успішна</h2>
+            )}
           </Form>
         );
       }}

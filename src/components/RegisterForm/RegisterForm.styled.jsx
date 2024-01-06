@@ -12,6 +12,16 @@ export const Form = styled(FormikForm)`
   width: 454px;
   background-color: white;
   margin-top: 24px;
+  .ErrorRedux {
+    color:  #ff0000;
+    text-align: center;
+    /* H2 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
   .checkLab {
     margin-top: 30px;
     color: rgba(13, 12, 12, 0.7);
@@ -25,6 +35,9 @@ export const Form = styled(FormikForm)`
     align-items: flex-start;
     gap: 8px;
     cursor: pointer;
+  }
+  .customCheckbox {
+    pointer-events: none;
   }
   .checked {
     color: green;
