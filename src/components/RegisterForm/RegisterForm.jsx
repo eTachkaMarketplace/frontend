@@ -220,11 +220,7 @@ export const RegisterForm = () => {
               />
               <span
                 className={`customCheckbox ${
-                  showChecked
-                    ? 'checked'
-                    : formSubmitted
-                    ? 'unchecked'
-                    : null
+                  showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
                 }`}
                 onClick={() => {
                   setFieldValue('acceptTerms', !values.acceptTerms);
@@ -247,7 +243,7 @@ export const RegisterForm = () => {
               Зареєструватись
             </Button>
             {errorRedux && (
-              <h2 className="ErrorRedux">Реїстрація не успішна</h2>
+              <h2 className="ErrorRedux">Реєстрація не успішна</h2>
             )}
           </Form>
         );
