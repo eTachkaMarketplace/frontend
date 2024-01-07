@@ -67,10 +67,9 @@ export const AdvertisementForm = ({ initialValues }) => {
       console.log('values', values);
 
       const formData = new FormData();
-      for (let i = 0; i < values.images.length; i++) {
-            console.log(`Appending image ${i + 1}:`, values.image);
-            formData.append('images', values.images[i]);
-          }
+        for (let i = 0; i < values.images.length; i++) {
+          formData.append('images', values.images[i]);
+        }
       formData.append(
         'advertisementDTO',
         JSON.stringify(values.advertisementDTO)
