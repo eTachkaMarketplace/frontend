@@ -34,12 +34,15 @@ const SearchPage = () => {
   const handleSearch = values => {
     setValuesGen(values);
   };
+  
   useEffect(() => {
     console.log(valuesGen);
     dispatch(getCarsThunkFiltered(valuesGen));
     
   }, [dispatch, valuesGen]);
+
 console.log(carsFilter);
+
   return (
     <>
       <Wraper>

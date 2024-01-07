@@ -101,14 +101,22 @@ export const putFavoriteAdverstisementsByID = createAsyncThunk(
 );
 
 
+
 export const createFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/createFavoriteAdverstisementsByID',
-  async ({ Adverstisements }, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
+    console.log(formData);
     try {
       const response = await instance.post(
         `api/advertisements/create`,
-        Adverstisements
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
       );
+
       console.log('createFavoriteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
@@ -116,3 +124,18 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
     }
   }
 );
+// export const createFavoriteAdverstisementsByID = createAsyncThunk(
+//   'adverstisements/createFavoriteAdverstisementsByID',
+//   async (formData, { rejectWithValue }) => {
+//     try {
+//       const response = await instance.post(
+//         `api/advertisements/create`,
+//         formData
+//       );
+//       console.log('createFavoriteAdverstisementsByID is successful');
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
