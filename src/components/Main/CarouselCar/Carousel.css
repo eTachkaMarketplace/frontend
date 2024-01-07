@@ -1,12 +1,11 @@
 
 .splide__arrow--prev {
-    left: -90px ;
-    background-color: transparent;
+  display: none;
+
   }
 
   .splide__arrow--next {
-    right: -90px ;
-    background-color: transparent;
+    display: none;
 
   }
   
