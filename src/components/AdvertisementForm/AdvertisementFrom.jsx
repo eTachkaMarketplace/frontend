@@ -10,8 +10,9 @@ import {
   StyledPostSVG,
 } from 'pages/AdvertisementPage/AdvertisementPage.styled';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
+import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
 const brandsAndModels = {
@@ -54,6 +55,7 @@ export const AdvertisementForm = ({ initialValues }) => {
   const [availableModels, setAvailableModels] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
+  const token = useSelector(selectToken);
 
   const handleFileChange = event => {
     const files = event.currentTarget.files;
@@ -65,7 +67,10 @@ export const AdvertisementForm = ({ initialValues }) => {
       console.log('values', values);
 
       const formData = new FormData();
-      formData.append('images',[...values.images]);
+      for (let i = 0; i < values.images.length; i++) {
+            console.log(`Appending image ${i + 1}:`, values.image);
+            formData.append('images', values.images[i]);
+          }
       formData.append(
         'advertisementDTO',
         JSON.stringify(values.advertisementDTO)
@@ -73,7 +78,7 @@ export const AdvertisementForm = ({ initialValues }) => {
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
-      await dispatch(createFavoriteAdverstisementsByID(values));
+      await dispatch(createFavoriteAdverstisementsByID({ formData, token }));
 
       console.log('adverse created');
     } catch (error) {

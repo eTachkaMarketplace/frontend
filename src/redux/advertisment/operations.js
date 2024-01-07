@@ -104,7 +104,7 @@ export const putFavoriteAdverstisementsByID = createAsyncThunk(
 
 export const createFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/createFavoriteAdverstisementsByID',
-  async (formData, { rejectWithValue }) => {
+  async ({formData, token}, { rejectWithValue }) => {
     console.log(formData);
     try {
       const response = await instance.post(
@@ -113,6 +113,7 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
         {
           headers: {
             'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`,
           },
         }
       );
