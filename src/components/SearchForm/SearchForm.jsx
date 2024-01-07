@@ -7,15 +7,17 @@ import { Arrow, DropArrow } from './SearchFormSVG';
 import { useLocation } from 'react-router-dom';
 
 export const SearchForm = ({ initialValues, onSubmit }) => {
+  const distatch = useDispatch();
+  const location = useLocation();
+  const formikRef = useRef(null);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
-  const location = useLocation();
+
   const carMark = {
     BMW: ['X5', 'M3', 'I3'],
     Toyota: ['Camry', 'Corolla', 'Avalon'],
     Mercedes: ['A-Class', 'B-Class', 'C-Class'],
   };
-  const distatch = useDispatch();
 
   const handleBrandChange = event => {
     const brand = event.target.value;
@@ -28,12 +30,12 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
     setSelectedModel(model);
   };
 
-  const formikRef = useRef(null);
   useEffect(() => {
     if (formikRef.current) {
       formikRef.current.resetForm({ values: initialValues });
     }
   }, [initialValues]);
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const favouritesParam = searchParams.get('status');
@@ -46,6 +48,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   const clearForm = () => {
     distatch(setIsOpen(true));
   };
+  
   return (
     <Search>
       <Formik

@@ -11,7 +11,6 @@ const СonfirmModalAdvertisement = ({ clearForm }) => {
   };
 
   const confirmModalAdvertisement = () => {
-    console.log('Confirming and clearing form...');
     clearForm();
     dispatch(setIsOpen(false));
   };
