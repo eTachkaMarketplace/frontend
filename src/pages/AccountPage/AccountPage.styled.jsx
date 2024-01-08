@@ -53,7 +53,7 @@ export const UserContainer = styled.div`
 
     padding: 20px 15px;
     border-radius: 8px;
-    background: #f1f1f1;
+    background: #F1F5FF;
   }
 
   .user-profile_title {
@@ -75,7 +75,7 @@ export const UserContainer = styled.div`
   .user-nav_container {
     padding: 20px 15px 20px 0;
     border-radius: 8px;
-    background: #f1f1f1;
+    background: #F1F5FF;
   }
 
   .user-nav_item {

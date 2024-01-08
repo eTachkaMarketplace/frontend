@@ -9,7 +9,7 @@ export const Search = styled.div`
   flex-shrink: 0;
 
   border-radius: 8px;
-  background: #f1f1f1;
+  background: #F1F5FF;
 
   select {
     appearance: none;

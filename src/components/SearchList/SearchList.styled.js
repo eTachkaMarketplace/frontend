@@ -52,7 +52,7 @@ export const SearchListDiv = styled.div`
     width: 844px;
     height: 240px;
     border-radius: 8px;
-    background: #f1f1f1;
+    background: #F1F5FF;
     position: relative;
   }
   .img {
