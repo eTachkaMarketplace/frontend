@@ -30,6 +30,14 @@ export const FooterWrapper = styled.div`
     font-weight: 400;
       }
 
+  .footer_item:hover, .footer_item:focus{
+    cursor: pointer;
+    text-decoration: underline;
+    /* color: ;
+    */
+      }
+      
+
   .footer-contact_title{
     color: #F1F1F1;
     font-family: 'Roboto', sans-serif;
