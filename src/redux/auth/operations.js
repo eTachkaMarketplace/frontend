@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 export const instance = axios.create({
-  baseURL: 'https://185.69.153.118:8443/',
+  baseURL: 'https://etachka-marketplace.space/',
 });
 
 
