@@ -10,9 +10,9 @@ export const CarouselCar =() => {
   return (
 <Splide className="splide-container" aria-label="Car logo carousel"  tag="section"  options={ {
     rewind: true,
-    width : 1080,
-    perPage: 7,
-    focus  : "center",
+    width : 1260,
+    perPage: 8,
+    focus  : "right",
     perMove: 1,
     omitEnd: false,
     autoplay: true,
