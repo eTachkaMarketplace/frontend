@@ -32,7 +32,7 @@ export const SectionCar = styled.section`
     align-items: flex-start;
     flex-direction: column;
     border-radius: 8px;
-    background: #f1f1f1;
+    background: #F1F5FF;
   }
   .imgCar {
     width: 373px;

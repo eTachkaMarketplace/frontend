@@ -14,19 +14,25 @@ const Footer = () => {
         <FooterContainer>
           <ListContainer>
             <ul className="footer_list">
-              <li className="footer_item">Нові</li>
-              <li className="footer_item">Вживані</li>
-              <li className="footer_item">Під Пригон</li>
-            </ul>
-            <ul className="footer_list">
-              <li className="footer_item">Партнерам</li>
-              <li className="footer_item">FAQ</li>
-              <li className="footer_item">Мій кабінет</li>
+              <li className="footer_item">
+              <NavLink to={'/search?status=New'}>Нові</NavLink>
+              </li>
+              <li className="footer_item">
+              <NavLink to={'/search?status=Used'}>Вживані</NavLink>
+              </li>
+              <li className="footer_item">
+              <NavLink to={'/search?status=Servitude'}>Під Пригон</NavLink>
+              </li>
             </ul>
             <ul className="footer_list">
               <li className="footer_item">Умови використання</li>
               <li className="footer_item">Політика конфіденційності</li>
               <li className="footer_item">Правила публікації оголошень</li>
+            </ul>
+            <ul className="footer_list">
+              <li className="footer_item">FAQ</li>
+              <li className="footer_item">
+                <NavLink to={'/account'}>Мій кабінет</NavLink></li>
             </ul>
           </ListContainer>
           <ul className="footer-contact_list">
