@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import HeroBgImg from '../../../images/HeroBgImgMin.jpg'
+import HeroBgImage from '../../../images/bgMin.jpg';
 
 export const HeroSection = styled.section`
   width: 100%;
   height: 680px;
-  background-image: url('${HeroBgImg}'); 
+  background-image: url('${HeroBgImage}'); 
   background-size: cover;
   background-position: center;
 
