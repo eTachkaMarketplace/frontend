@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 export const instance = axios.create({
-  baseURL: 'https://etachka-marketplace.space/',
+  baseURL: process.env['BACKEND_URL'] || "https://api.etachka-marketplace.space/",
 });
 
 
@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
       const response = await instance.post('api/auth/signup', credentials);
       console.log(`Welcome!!!`);
       return response.data;
-      
+
     } catch (error) {
       console.log(`This email is already in use`);
       return rejectWithValue(error.message);
