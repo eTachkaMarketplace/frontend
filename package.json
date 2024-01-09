@@ -2,7 +2,7 @@
   "name": "car-trade-marketplace",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eTachkaMarketplace.github.io/frontend/",
+  "homepage": "https://etachka-marketplace.space",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@splidejs/react-splide": "^0.7.12",
