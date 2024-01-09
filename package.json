@@ -2,7 +2,7 @@
   "name": "car-trade-marketplace",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Yura-Platonov.github.io/Car-Trade_Marketplace/",
+  "homepage": "https://Yura-Platonov.github.io/eTachkaMarketplace/eTachkaMarketplace/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@splidejs/react-splide": "^0.7.12",
