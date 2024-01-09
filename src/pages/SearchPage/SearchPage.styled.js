@@ -8,4 +8,6 @@ export const Wraper = styled.div`
   gap: 24px;
   margin-top: 24px;
   margin-bottom: 124px;
+  margin-left: 80px;
+  margin-right: 80px;
 `
