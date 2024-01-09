@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
+import NotFound from '../pages/NotFoundPage/NotFound';
 
 export function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ export function App() {
                 </PrivateRoute>
               }
             />
+            <Route path={"*"} element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
