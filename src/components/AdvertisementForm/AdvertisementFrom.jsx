@@ -71,8 +71,8 @@ export const AdvertisementForm = ({ initialValues }) => {
           formData.append('images', values.images[i]);
         }
       formData.append(
-        'advertisementDTO',
-        JSON.stringify(values.advertisementDTO)
+        'payload',
+        new Blob([JSON.stringify(values.advertisementDTO)], {type: "application/json"})
       );
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
