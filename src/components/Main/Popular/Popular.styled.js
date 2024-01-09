@@ -4,7 +4,7 @@ export const SectionCar = styled.section`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 1280px;
+  /* width: 1280px; */
   margin-top: 120px;
 
   .carTitle {

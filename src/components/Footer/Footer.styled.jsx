@@ -7,10 +7,11 @@ import { ReactComponent as FacebookSVG } from '../../images/Footer/facebook.svg'
 export const Container = styled.footer`
     background: #141414;
 
-
 `;
 
 export const FooterWrapper = styled.div`
+  position: relative;
+  box-sizing: border-box;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
@@ -75,6 +76,15 @@ export const FooterWrapper = styled.div`
   .footer-contact_link:active{
     color: #00308D;
 
+  }
+
+  .footer-remark{
+    position: absolute;
+    bottom: 6%;
+    left: 6.2%;
+    color: #6F6F6F;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
   }
 
 `;

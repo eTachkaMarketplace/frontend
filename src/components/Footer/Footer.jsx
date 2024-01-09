@@ -61,6 +61,7 @@ const Footer = () => {
               </ul>
             </li>
           </ul>
+          <p className="footer-remark">Всі права захищені. 2024</p>
         </FooterContainer>
       </FooterWrapper>
     </Container>

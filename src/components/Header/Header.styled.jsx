@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   max-width: 1440px;
   padding: 20px 80px;
   margin-left: auto;
@@ -57,7 +58,7 @@ export const User = styled.div`
 export const UserIcon = styled.div`
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 16px;
 .userBtn{
   border: 0;
   background-color: transparent;
@@ -65,16 +66,17 @@ gap: 8px;
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
-  fill: #000;
+stroke:#141414;
+
   &:hover {
-    fill: #0141BD;
+    stroke: #0141BD;
     }
 `;
 
 export const StyledHeartSVG = styled(HeartSVG)`
-  fill: #000;
+stroke:#141414;
   &:hover {
-    fill: #0141BD;
+    stroke: #0141BD;
     }
 `;
 

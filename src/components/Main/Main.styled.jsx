@@ -6,6 +6,7 @@ export const MainWrapper = styled.main`
   align-items: center;
   justify-content: center;
   
+  box-sizing: border-box;
   max-width: 1440px;
   padding: 0px 80px;
   margin-left: auto;

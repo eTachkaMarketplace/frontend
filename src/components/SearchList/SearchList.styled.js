@@ -61,7 +61,7 @@ export const SearchListDiv = styled.div`
     border-radius: 8px;
     object-fit: cover;
     margin-left: 20px;
-    padding-top: 20px;
+    margin-top: 20px;
   }
   .infoDiv {
     margin-top: 20px;
@@ -76,7 +76,7 @@ export const SearchListDiv = styled.div`
     width: auto;
     flex-direction: column;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 12px;
   }
   .number {
     align-self: flex-start;
@@ -89,17 +89,30 @@ export const SearchListDiv = styled.div`
 
     padding: 2px 4px;
     border: 1px solid #ababab;
+    border-radius: 4px;
+
   }
   .listDIV {
     display: flex;
     gap: 60px;
-    margin-top: 28px;
+    margin-top: 20px;
   }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    
+  }
+
   .itemLI {
     display: flex;
     align-items: center;
     gap: 10px;
     align-self: stretch;
+    font-family: 'Roboto', sans-serif;
+    color: #4B4B4B;
+    font-size: 14px;
   }
   .favoriteBTN {
     background-color: transparent;
