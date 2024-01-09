@@ -34,7 +34,7 @@ export const SearchList = () => {
                   <h3 className='number'>МІ202067688585855994949</h3>
                 </div>
                 <div className="listDIV">
-                  <ul>
+                  <ul className="list">
                     <li className="itemLI">
                       <DateSVG />
                       2012
@@ -48,7 +48,7 @@ export const SearchList = () => {
                       150 000
                     </li>
                   </ul>
-                  <ul>
+                  <ul className="list">
                     <li className="itemLI">
                       <PetrolSVG />
                       Бензин
