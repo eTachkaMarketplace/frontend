@@ -11,6 +11,7 @@ export const Container = styled.footer`
 `;
 
 export const FooterWrapper = styled.div`
+  box-sizing: border-box;
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;

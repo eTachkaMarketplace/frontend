@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   max-width: 1440px;
   padding: 20px 80px;
   margin-left: auto;
