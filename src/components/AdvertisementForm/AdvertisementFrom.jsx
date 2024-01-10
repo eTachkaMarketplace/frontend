@@ -636,7 +636,7 @@ export const AdvertisementForm = ({ initialValues }) => {
           <button className="submitButton" type="submit">
             Опублікувати оголошення
           </button>
-          <NavLink to="/advertisementDone">123</NavLink>
+          <NavLink to="/advertisementDone">confirm</NavLink>
         </div>
       </Form>
     </Formik>

@@ -344,6 +344,10 @@ export const Container = styled.section`
  
 }
 
+.button_redirect:hover, .button_redirect:focus{
+    border: 2px solid #069024; 
+}
+
 
 
 .text_done{
