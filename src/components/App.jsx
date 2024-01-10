@@ -9,6 +9,7 @@ import Main from './Main/Main';
 import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
+import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
 import { useDispatch } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
@@ -45,7 +46,7 @@ export function App() {
             />
             <Route path="/search" element={<SearchPage />} />
             <Route
-              path="/AdvertisementPage"
+              path="/advertisementPage"
               element={
                 <PrivateRoute redirectTo="/authorization">
                   <AdvertisementPage />
@@ -57,6 +58,14 @@ export function App() {
               element={
                 <PrivateRoute redirectTo="/authorization">
                   <AccountPage />
+                </PrivateRoute>
+              }
+            />
+             <Route
+              path="/advertisementDone"
+              element={
+                <PrivateRoute redirectTo="/authorization">
+                  <AdvertisementPageDone/>
                 </PrivateRoute>
               }
             />

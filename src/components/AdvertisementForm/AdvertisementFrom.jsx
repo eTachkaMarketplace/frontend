@@ -1,5 +1,6 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
+import { NavLink } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 import {
   Paragraph,
@@ -635,6 +636,7 @@ export const AdvertisementForm = ({ initialValues }) => {
           <button className="submitButton" type="submit">
             Опублікувати оголошення
           </button>
+          <NavLink to="/advertisementDone">123</NavLink>
         </div>
       </Form>
     </Formik>
