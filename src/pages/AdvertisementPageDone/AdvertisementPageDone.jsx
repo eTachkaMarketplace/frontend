@@ -1,5 +1,6 @@
 import React from 'react';
-import {Container, Title, SectionContainer,SectionTitle,StyledArrowSVG,StyledCreateSVG,StyledPostSVG,} from './AdvertisementPageDone.styled';
+import {Container, Title, SectionContainer,SectionTitle,StyledArrowSVG,StyledCreateSVG,StyledPostSVG,StyledDoneSVG, } from './AdvertisementPageDone.styled';
+import { NavLink } from 'react-router-dom';
 
 const AdvertisementPageDone = () => {
   
@@ -20,7 +21,21 @@ const AdvertisementPageDone = () => {
             </div>
           </div>
         </SectionContainer>
-      
+        <div className='container_confirm'>
+          <StyledDoneSVG/>
+          <p className='text_done'>Вітаємо!</p>
+          <p className='text_normal'>Ваше оголошення з’явиться на сайті через декілька секунд.</p>
+          <NavLink to="/account">
+          <button className="button_redirect" type="button">
+          В особистий кабінет
+          </button>
+          </NavLink>
+          <NavLink to="/">
+          <button className="button_redirect" type="button">
+          На головну
+          </button>
+          </NavLink>
+        </div>
     </Container>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as ArrowSVG } from '../../images/AccountPage/Arrow.svg';
 import { ReactComponent as CreateSVG } from '../../images/AccountPage/create.svg';
 import { ReactComponent as PostSVG } from '../../images/AccountPage/post.svg';
+import { ReactComponent as DoneSVG } from '../../images/AccountPage/done.svg';
 
 export const StyledArrowSVG = styled(ArrowSVG)`
   margin-top: -1px ;
@@ -19,6 +20,12 @@ export const StyledPostSVG = styled(PostSVG)`
   margin-right: 5px;
 
   `;
+
+export const StyledDoneSVG = styled(DoneSVG)`
+margin-top: 65px;
+margin-bottom: 30px;
+
+`;
 
 
 export const Container = styled.section`
@@ -296,8 +303,24 @@ export const Container = styled.section`
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
-.chekAnnouncementButton{
-  color: #0D0C0C;
+
+.buttonContainer{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.container_confirm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+
+}
+
+.button_redirect{
+    color: #0D0C0C;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
@@ -310,6 +333,7 @@ export const Container = styled.section`
     width: 450px;
     height: 56px;
     padding: 14px 24px;
+    margin-bottom: 20px;
     justify-content: center;
     align-items: center;
     
@@ -317,14 +341,26 @@ export const Container = styled.section`
     border-radius: 8px;
     border: 2px solid #0040BD;
     background: transparent;
+ 
 }
 
-.buttonContainer{
- display: flex;
- align-items: center;
- flex-direction: column;
- gap: 20px;
+
+
+.text_done{
+  color:  #069024;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
+
+.text_normal{
+  color: #141414;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  margin-bottom: 60px;
+}
+
 
 `;
 
