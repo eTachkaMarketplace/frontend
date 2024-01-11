@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   isLoading: false,
   error: null,
+  isLoggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -13,8 +14,9 @@ export const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUser.fulfilled, (state, { payload }) => {
-        state.user = {...payload};
+        state.user = { ...payload };
         state.isLoading = false;
+        state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(getUser.pending, state => {
@@ -23,6 +25,7 @@ export const userSlice = createSlice({
       .addCase(getUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+        state.isLoggedIn = false;
       })
       .addCase(changeUser.fulfilled, state => {
         state.isLoading = false;
@@ -69,7 +72,7 @@ export const userSlice = createSlice({
         state.error = payload;
       })
       .addCase(acceptCode.fulfilled, (state, { payload }) => {
-        state.user = {...payload.data};
+        state.user = { ...payload.data };
         state.isLoading = false;
         state.error = null;
       })

@@ -4,7 +4,8 @@ import {
   register,
   logoutOperation,
   setToken,
-  } from './operations';
+} from './operations';
+  
 
 const initialState = {
   refToken: '',
