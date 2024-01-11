@@ -17,9 +17,11 @@ import NotFound from '../pages/NotFoundPage/NotFound';
 
 export function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
+  
   return (
     <>
       <Header />
@@ -60,7 +62,7 @@ export function App() {
                 </PrivateRoute>
               }
             />
-            <Route path={"*"} element={<NotFound />} />
+            <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>

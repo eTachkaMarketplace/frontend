@@ -6,9 +6,9 @@ export const getAdverstisements = createAsyncThunk(
   'adverstisements/getAdverstisements',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await instance.get('api/advertisements');
+      const response = await instance.get('api/advertisements?sortByDate=true');
       console.log('getAdverstisements is successful');
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -19,7 +19,7 @@ const initialState = {
 };
 
 export const adversSlice = createSlice({
-  name: 'adverstisements',
+  name: 'adverstisement',
   initialState,
   extraReducers: builder => {
     builder
