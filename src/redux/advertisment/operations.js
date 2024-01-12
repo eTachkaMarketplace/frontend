@@ -19,9 +19,9 @@ export const getAdverstisementsByID = createAsyncThunk(
   'adverstisements/getAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`api/advertisements/${id}`);
+      const response = await instance.get(`advertisements/${id}`);
       console.log('getAdverstisementsByID is successful');
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
