@@ -15,6 +15,8 @@ import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 import NotFound from '../pages/NotFoundPage/NotFound';
+import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
+
 
 export function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,14 @@ export function App() {
               element={
                 <PublickRoute redirectTo="/account">
                   <ChangePassPage />
+                </PublickRoute>
+              }
+            />
+            <Route
+              path="/AdvertisementByID/:id"
+              element={
+                <PublickRoute redirectTo="/account">
+                  <AdvertisementByID />
                 </PublickRoute>
               }
             />
