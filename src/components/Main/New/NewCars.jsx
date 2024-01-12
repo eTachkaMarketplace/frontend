@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCarsThunk } from 'redux/cars/operations';
 import { SectionCar } from '../Popular/Popular.styled';
 import { heartSvg1 } from '../Popular/PopularSvg';
 import { PagDiv } from './NewCars.styled';
 import { leftArrow, rightArrow } from './NewCarsSvg';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import { selectAdverstisements } from 'redux/advertisment/selectors';
-import carIMG from '../../../images/carIMG.jpg'
-import { API_BASE_URL } from '../../../redux/store';
 
 const NewCars = () => {
   const dispatch = useDispatch();
