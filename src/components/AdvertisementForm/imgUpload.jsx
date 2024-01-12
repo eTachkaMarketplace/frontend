@@ -43,7 +43,7 @@
 // ImageUploadComponent.js
 
 import React, { useState } from 'react';
-import { Container, AddPhotoText, ImageContainer, EmptyImage, } from './imgUpload.styled';
+import { Container, AddPhotoText, ImageContainer, EmptyImage, StyledCameraSVG, StyledCloseImgSVG} from './imgUpload.styled';
 
 const ImageUploadComponent = ({ onImagesChange }) => {
   const [images, setImages] = useState([]);
@@ -65,7 +65,9 @@ const ImageUploadComponent = ({ onImagesChange }) => {
     return images.map((image, index) => (
       <ImageContainer key={index}>
         <img src={URL.createObjectURL(image)} alt={`img-${index}`} />
-        <button onClick={() => handleImageRemove(index)}>X</button>
+        <button onClick={() => handleImageRemove(index)} className='transpatent_button'>
+          <StyledCloseImgSVG/>
+        </button>
       </ImageContainer>
     ));
   };
@@ -74,7 +76,7 @@ const ImageUploadComponent = ({ onImagesChange }) => {
     const emptyImagesCount = 5 - images.length;
     const emptyImages = Array.from({ length: emptyImagesCount }, (_, index) => (
       <EmptyImage key={index} onClick={() => document.getElementById('fileInput').click()}>
-        <span>+</span>
+        <StyledCameraSVG/>
       </EmptyImage>
     ));
     return emptyImages;
@@ -83,7 +85,7 @@ const ImageUploadComponent = ({ onImagesChange }) => {
   return (
     <Container>
       <label className='add_label' htmlFor="fileInput">
-        <AddPhotoText>Добавить фото</AddPhotoText>
+        <AddPhotoText>Додати фото</AddPhotoText>
         <input type="file" accept="image/*" id="fileInput" onChange={handleImageChange} multiple style={{ display: 'none' }} />
       </label>
       

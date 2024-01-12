@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-
+import { ReactComponent as CameraSVG } from '../../images/AccountPage/camera.svg';
+import { ReactComponent as CloseImgSVG } from '../../images/AccountPage/closeImg.svg';
 
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  margin: -12px;
+  
 
   .add_label{
     display: flex;
@@ -12,29 +14,42 @@ export const Container = styled.div`
     align-items: center;
     width: 335px;
     height: 185px;
+    margin: 12px;
 
     border-radius: 8px;
-    border: 1px solid #B9B9B9;
-    background:  #FFF;
+    border: 1px dashed  #FA6666;
+    background: #FFF;
     cursor: pointer;
 }
+
+.transpatent_button{
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+
   
 `;
 export const AddPhotoText = styled.p`
-  font-size: 16px;
-  color: #555;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0141BD;
+  /* text-decoration: underline; */
   cursor: pointer;
 `;
 
 export const ImageContainer = styled.div`
-  display: inline-block;
   position: relative;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 12px;
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 335px;
+    height: 185px;
     object-fit: cover;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -57,6 +72,7 @@ export const EmptyImage = styled.div`
     align-items: center;
     width: 335px;
     height: 185px;
+    margin: 12px;
 
     border-radius: 8px;
     border: 1px solid #B9B9B9;
@@ -64,4 +80,22 @@ export const EmptyImage = styled.div`
     cursor: pointer;
 
 
+`;
+
+export const StyledCameraSVG = styled(CameraSVG)`
+  stroke:#ABABAB;
+
+  
+  &:hover {
+    stroke: #0141bd;
+  }
+`;
+
+export const StyledCloseImgSVG = styled(CloseImgSVG)`
+  stroke: black;
+
+/*   
+  &:hover {
+    stroke: #0141bd;
+  } */
 `;
