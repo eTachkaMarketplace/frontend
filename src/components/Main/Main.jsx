@@ -11,7 +11,7 @@ import { getAdverstisements } from 'redux/advertisment/operations';
 const Main = () => {
 const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAdverstisements());
+    dispatch(getAdverstisements({}));
   }, [dispatch]);
   return (
     <MainWrapper>
