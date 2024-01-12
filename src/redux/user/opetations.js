@@ -6,7 +6,7 @@ export const getUser = createAsyncThunk(
   'api/user/getUser',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await instance.get('api/users/user');
+      const response = await instance.get('user/me');
       console.log('getUser is successful');
       return response.data;
     } catch (error) {
@@ -19,7 +19,7 @@ export const changeUser = createAsyncThunk(
   'user/changeUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      await instance.put('api/users/user', credentials);
+      await instance.put('user/me', credentials);
       console.log(`User changed successfully`);
       return;
     } catch (error) {
@@ -31,9 +31,9 @@ export const changeUser = createAsyncThunk(
 
 export const deleteUser = createAsyncThunk(
   'user/deleteUser',
-  async ({ id }, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      await instance.delete(`api/users/${id}`);
+      await instance.delete(`user/me`);
       console.log(`User delete successfully`);
       return;
     } catch (error) {
@@ -48,7 +48,7 @@ export const forgotPass = createAsyncThunk(
   'user/forgotPass',
   async (credentials, { rejectWithValue }) => {
     try {
-      await instance.put('api/users/forgot/password', credentials);
+      await instance.put('user/password/forgot', credentials);
       console.log(`Check your email`);
       return;
     } catch (error) {
@@ -62,7 +62,7 @@ export const changePass = createAsyncThunk(
   'user/changePass',
   async (credentials, { rejectWithValue }) => {
     try {
-      await instance.put('api/users/change/password', credentials);
+      await instance.put('user/password', credentials);
       console.log(`Password changed successfully`);
       return;
     } catch (error) {
@@ -75,7 +75,7 @@ export const acceptCode = createAsyncThunk(
   'user/acceptCode',
   async ({code}, { rejectWithValue }) => {
     try {
-      const codeApi = `api/users/accept/code/${code}`;
+      const codeApi = `user/accept/code/${code}`;
       console.log(codeApi);
       const response = await instance.put(codeApi);
       console.log(codeApi);

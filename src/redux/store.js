@@ -30,7 +30,7 @@ export const store = configureStore({
     cars: carsReducer,
     modal: modalReducer,
     user: userSlice.reducer,
-    adverts: adversSlice.reducer,
+    adverstisement: adversSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

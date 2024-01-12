@@ -1,23 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCarsThunk } from 'redux/cars/operations';
-import { selectCars } from 'redux/cars/selectors';
 import { SectionCar } from '../Popular/Popular.styled';
 import { heartSvg1 } from '../Popular/PopularSvg';
 import { PagDiv } from './NewCars.styled';
 import { leftArrow, rightArrow } from './NewCarsSvg';
+import { getAdverstisements } from 'redux/advertisment/operations';
+import { selectAdverstisements } from 'redux/advertisment/selectors';
+import carIMG from '../../../images/carIMG.jpg'
+import { API_BASE_URL } from '../../../redux/store';
 
 const NewCars = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const cars = useSelector(selectCars);
+  const advertisements = useSelector(selectAdverstisements);
 
+
+ const filteredAdvertisements = advertisements.filter(
+   advertisement => advertisement.description !== ''
+  );
+  console.log(filteredAdvertisements);
   const limit = 6;
   const totalPages = 6;
 
   useEffect(() => {
-    dispatch(getCarsThunk({ limit, page }));
-  }, [dispatch, page]);
+    dispatch(getAdverstisements({}));
+  }, [dispatch]);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -41,22 +49,23 @@ const NewCars = () => {
       <SectionCar>
         <h2 className="carTitle">Нові оголошення</h2>
         <ul className="carList">
-          {cars
-            ? cars.map(car => {
-                const addressParts = car.address.split(',');
-                const City = addressParts[1] ? addressParts[1].trim() : '';
+          {filteredAdvertisements
+            ? filteredAdvertisements.map(ad => {
+              let car = ad.car;
                 return (
-                  <li className="carItem" key={car.id}>
-                    <img className="imgCar" src={car.img} alt="Car view" />
+                  <li className="carItem" key={ad.id}>
+
+                      <img className="imgCar" src={ad.previewImage} alt="Car " />
+
                     <h3 className="blackTitle ">
-                      {car.make} {car.model} {car.year}
+                      {car.brand} {car.model} {car.year}
                     </h3>
                     <ul className="carDescrList">
                       <li>
-                        <p className="carDescrPrice">{car.rentalPrice}</p>
+                        <p className="carDescrPrice">$ {car.price}</p>
                       </li>
                       <li className="cityRight">
-                        <p className="carDescrCity">{City}</p>
+                        <p className="carDescrCity">{ad.region}</p>
                       </li>
                     </ul>
 

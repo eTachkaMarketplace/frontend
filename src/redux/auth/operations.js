@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 export const instance = axios.create({
-  baseURL: process.env['BACKEND_URL'] || "https://api.etachka-marketplace.space/",
+  baseURL: "https://api.etachka-marketplace.space",
 });
 
 
@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await instance.post('api/auth/signup', credentials);
+      const response = await instance.post('auth/signup', credentials);
       console.log(`Welcome!!!`);
       return response.data;
 
@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await instance.post('api/auth/login', credentials);
+      const response = await instance.post('auth/login', credentials);
       setToken(response.data.data.jwtAccessToken);
       console.log(response);
       console.log(`Welcome back!!!`);

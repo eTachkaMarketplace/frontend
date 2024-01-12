@@ -18,9 +18,11 @@ import NotFound from '../pages/NotFoundPage/NotFound';
 
 export function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
+  
   return (
     <>
       <Header />
