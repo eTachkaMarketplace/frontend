@@ -1,6 +1,8 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
+import { NavLink } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
+import ImageUploadComponent from './imgUpload';
 import {
   Paragraph,
   RequiredMarker,
@@ -57,10 +59,14 @@ export const AdvertisementForm = ({ initialValues }) => {
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const token = useSelector(selectToken);
+  const [formImages, setFormImages] = useState([]);
 
-  const handleFileChange = event => {
-    const files = event.currentTarget.files;
-    formikRef.current.setFieldValue('images', files);
+  const handleImagesChange = (newImages) => {
+    // Обновляем список изображений в родительском компоненте (или форме)
+    
+    setFormImages(newImages);
+    console.log(formImages);
+    
   };
 
   const onSubmit = async values => {
@@ -168,17 +174,9 @@ export const AdvertisementForm = ({ initialValues }) => {
             Перше фото є головним. Максимальний розмір фотографії до 5 МБ.
             Формат фотографії: JPG, PNG. Мінімальна кількість фотографій - 6.
           </Paragraph>
-          <div>
-            <input
-              type="file"
-              name="images"
-              className="profile-input"
-              multiple
-              onChange={handleFileChange}
-            />
-          </div>
+          <ImageUploadComponent onImagesChange={handleImagesChange} />
         </SectionContainer>
-        ;
+        
         <SectionContainer>
           <SectionTitle>Основна інформація</SectionTitle>
 
@@ -635,6 +633,7 @@ export const AdvertisementForm = ({ initialValues }) => {
           <button className="submitButton" type="submit">
             Опублікувати оголошення
           </button>
+          <NavLink to="/advertisementDone">confirm</NavLink>
         </div>
       </Form>
     </Formik>
