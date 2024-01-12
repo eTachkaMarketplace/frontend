@@ -24,6 +24,8 @@ export const Container = styled.section`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  box-sizing: border-box;
+
 
   max-width: 1440px;
   padding: 80px 80px 120px 80px ;

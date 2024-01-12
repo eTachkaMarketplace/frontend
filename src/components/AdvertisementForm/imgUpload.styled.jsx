@@ -17,7 +17,7 @@ export const Container = styled.div`
     margin: 12px;
 
     border-radius: 8px;
-    border: 1px dashed  #FA6666;
+    border: 1px dashed #0141BD;
     background: #FFF;
     cursor: pointer;
 }

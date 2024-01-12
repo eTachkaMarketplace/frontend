@@ -33,6 +33,7 @@ export const Container = styled.section`
   align-items: flex-start;
   flex-direction: column;
 
+  box-sizing: border-box;
   max-width: 1440px;
   padding: 80px 80px 120px 80px ;
   margin-left: auto;
@@ -372,11 +373,11 @@ export const SectionContainer = styled.div`
   /* max-width: 1440px; */
   padding: 50px 100px;
   margin: 0;
+  box-sizing: border-box;
+  width: -webkit-fill-available;
 
   border-radius: 8px;
   background: #F1F5FF;
-
-
 `;
 
 export const Title = styled.h2`

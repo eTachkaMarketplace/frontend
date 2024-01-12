@@ -92,18 +92,25 @@ const ImageUploadComponent = ({ onImagesChange }) => {
     return emptyImages;
   };
 
-  return (
-    <Container>
+ return (
+  <Container>
+    {images.length > 0 && renderImages()}
+    {images.length > 0 && (
       <label className='add_label' htmlFor="fileInput">
         <AddPhotoText>Додати фото</AddPhotoText>
         <input type="file" accept="image/*" id="fileInput" onChange={handleImageChange} multiple style={{ display: 'none' }} />
       </label>
-      
-        {renderImages()}
-        {renderEmptyImages()}
-      
-    </Container>
-  );
+    )}
+    
+    {images.length === 0 && (
+      <label className='add_label' htmlFor="fileInput">
+        <AddPhotoText>Додати фото</AddPhotoText>
+        <input type="file" accept="image/*" id="fileInput" onChange={handleImageChange} multiple style={{ display: 'none' }} />
+      </label>
+    )}
+    {renderEmptyImages()}
+  </Container>
+);
 };
 
 export default ImageUploadComponent;
