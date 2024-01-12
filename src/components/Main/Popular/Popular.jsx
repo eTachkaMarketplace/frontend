@@ -4,7 +4,6 @@ import { SectionCar } from './Popular.styled';
 import { heartSvg1 } from './PopularSvg';
 import { getCarsThunkPopular } from 'redux/cars/operations';
 import { selectAdverstisements } from 'redux/advertisment/selectors';
-import carIMG from '../../../images/carIMG.jpg';
 
 const Catalog = () => {
   const dispatch = useDispatch();
