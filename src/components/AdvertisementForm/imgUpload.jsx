@@ -72,10 +72,20 @@ const ImageUploadComponent = ({ onImagesChange }) => {
     ));
   };
 
+  // const renderEmptyImages = () => {
+  //   const emptyImagesCount = 5 - images.length;
+  //   const emptyImages = Array.from({ length: emptyImagesCount }, (_, index) => (
+  //     <EmptyImage key={index} onClick={() => document.getElementById('fileInput').click()}>
+  //       <StyledCameraSVG/>
+  //     </EmptyImage>
+  //   ));
+  //   return emptyImages;
+  // };
+
   const renderEmptyImages = () => {
     const emptyImagesCount = 5 - images.length;
-    const emptyImages = Array.from({ length: emptyImagesCount }, (_, index) => (
-      <EmptyImage key={index} onClick={() => document.getElementById('fileInput').click()}>
+    const emptyImages = Array.from({ length: emptyImagesCount }, (_, ) => (
+      <EmptyImage >
         <StyledCameraSVG/>
       </EmptyImage>
     ));

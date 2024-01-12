@@ -77,18 +77,14 @@ export const EmptyImage = styled.div`
     border-radius: 8px;
     border: 1px solid #B9B9B9;
     background:  #FFF;
-    cursor: pointer;
-
 
 `;
 
 export const StyledCameraSVG = styled(CameraSVG)`
   stroke:#ABABAB;
-
-  
-  &:hover {
+  /* &:hover {
     stroke: #0141bd;
-  }
+  } */
 `;
 
 export const StyledCloseImgSVG = styled(CloseImgSVG)`
