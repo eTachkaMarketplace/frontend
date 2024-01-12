@@ -9,7 +9,7 @@ export const getCarsThunkFiltered = createAsyncThunk(
   'cars/getCarsThunkFiltered',
   async (filters, { rejectWithValue }) => {
     try {
-      let url = `/api/adverts/cars?`;
+      let url = `/advertisement/search`;
 
       Object.keys(filters).forEach((key, index) => {
         if (filters[key] || filters[key] === 0) {
@@ -36,7 +36,7 @@ export const getCarsThunk = createAsyncThunk(
   'cars/getCarsThunk',
   async ({ page, limit }, { rejectWithValue }) => {
     try {
-      const url = `/api/adverts/adverts?limit=${limit}&page=${page}`;
+      const url = `/advertisement/search?size=${limit}&page=${page}`;
 
       const response = await instance.get(url);
 
@@ -51,7 +51,7 @@ export const getCarsThunkPopular = createAsyncThunk(
   'cars/getCarsThunkPopular',
   async ({ page, limit }, { rejectWithValue }) => {
     try {
-      const url = `/api/adverts/adverts?limit=${limit}&page=${page}`;
+      const url = `/advertisement/search?size=${limit}&page=${page}`;
 
       const response = await instance.get(url);
 

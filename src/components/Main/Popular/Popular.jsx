@@ -25,21 +25,22 @@ const firstThreeAdvertisements = filteredAdvertisements.slice(0, 3);
       <h2 className="carTitle">Популярні</h2>
       <ul className="carList">
         {firstThreeAdvertisements
-          ? firstThreeAdvertisements.map(car => {
+          ? firstThreeAdvertisements.map(ad => {
+            let car = ad.car;
               return (
                 <li className="carItem" key={car.id}>
-                  <img className="imgCar" src={carIMG} alt="Car " />
+                  <img className="imgCar" src={ad.previewImage} alt="Car " />
 
                   <h3 className="blackTitle ">
-                    {car.carDTO.carMark.carModel.name} {car.carDTO.carMark.name}{' '}
-                    {car.carDTO.yearToCreate}
+                    {car.brand} {car.model}{' '}
+                    {car.year}
                   </h3>
                   <ul className="carDescrList">
                     <li>
                       <p className="carDescrPrice">$ {car.price}</p>
                     </li>
                     <li className="cityRight">
-                      <p className="carDescrCity">{car.region.city.name}</p>
+                      <p className="carDescrCity">{car.region}</p>
                     </li>
                   </ul>
 

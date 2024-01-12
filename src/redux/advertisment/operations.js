@@ -3,10 +3,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from 'redux/auth/operations';
 
 export const getAdverstisements = createAsyncThunk(
-  'adverstisements/getAdverstisements',
-  async (_, { rejectWithValue }) => {
+  'adverstisement/getAdverstisements',
+  async ({ page = 0, size = 10, filter = {}, sortBy = "unsorted" }, { rejectWithValue }) => {
     try {
-      const response = await instance.get('api/advertisements?sortByDate=true');
+      const encodedFilter = encodeURI(JSON.stringify(filter));
+      const response = await instance.get(`advertisement/search?page=${page}&size=${size}&filter=${encodedFilter}&sortBy=${sortBy}`);
       console.log('getAdverstisements is successful');
       return response.data.data;
     } catch (error) {
@@ -19,7 +20,7 @@ export const getAdverstisementsByID = createAsyncThunk(
   'adverstisements/getAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`advertisements/${id}`);
+      const response = await instance.get(`advertisement/${id}`);
       console.log('getAdverstisementsByID is successful');
       return response.data.data;
     } catch (error) {
@@ -32,7 +33,7 @@ export const getAdverstisementsFavorite = createAsyncThunk(
   'adverstisements/getAdverstisementsFavorite',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`api/advertisements/favorites`);
+      const response = await instance.get(`advertisement/favorites`);
       console.log('getAdverstisementsFavorite is successful');
       return response.data;
     } catch (error) {
@@ -45,7 +46,7 @@ export const deleteAdverstisementsByID = createAsyncThunk(
   'adverstisements/deleteAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await instance.delete(`api/advertisements/${id}/remove`);
+      const response = await instance.delete(`advertisement/${id}`);
       console.log('deleteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
@@ -59,7 +60,7 @@ export const deleteFavoriteAdverstisementsByID = createAsyncThunk(
   async ({ id }, { rejectWithValue }) => {
     try {
       const response = await instance.delete(
-        `api/advertisements/${id}/favorites`
+        `advertisement/favorite/${id}`
       );
       console.log('deleteFavoriteAdverstisementsByID is successful');
       return response.data;
@@ -74,7 +75,7 @@ export const postFavoriteAdverstisementsByID = createAsyncThunk(
   async ({ id }, { rejectWithValue }) => {
     try {
       const response = await instance.post(
-        `api/advertisements/${id}/favorites`
+        `advertisement/favorite/${id}`
       );
       console.log('postFavoriteAdverstisementsByID is successful');
       return response.data;
@@ -89,7 +90,7 @@ export const putFavoriteAdverstisementsByID = createAsyncThunk(
   async ({ Adverstisements, id }, { rejectWithValue }) => {
     try {
       const response = await instance.put(
-        `api/advertisements/${id}/favorites`,
+        `advertisement/favorite/${id}`,
         Adverstisements
       );
       console.log('putFavoriteAdverstisementsByID is successful');
@@ -108,7 +109,7 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
     console.log(formData);
     try {
       const response = await instance.post(
-        `api/advertisements/create`,
+        `advertisement`,
         formData,
         {
           headers: {

@@ -8,12 +8,13 @@ import { leftArrow, rightArrow } from './NewCarsSvg';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import { selectAdverstisements } from 'redux/advertisment/selectors';
 import carIMG from '../../../images/carIMG.jpg'
+import { API_BASE_URL } from '../../../redux/store';
 
 const NewCars = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const advertisements = useSelector(selectAdverstisements);
-  
+
 
  const filteredAdvertisements = advertisements.filter(
    advertisement => advertisement.description !== ''
@@ -23,11 +24,7 @@ const NewCars = () => {
   const totalPages = 6;
 
   useEffect(() => {
-    dispatch(getCarsThunk({ limit, page }));
-  }, [dispatch, page]);
-
-  useEffect(() => {
-    dispatch(getAdverstisements());
+    dispatch(getAdverstisements({}));
   }, [dispatch]);
 
   const nextPage = () => {
@@ -53,21 +50,22 @@ const NewCars = () => {
         <h2 className="carTitle">Нові оголошення</h2>
         <ul className="carList">
           {filteredAdvertisements
-            ? filteredAdvertisements.map(car => {
+            ? filteredAdvertisements.map(ad => {
+              let car = ad.car;
                 return (
-                  <li className="carItem" key={car.id}>
-                    
-                      <img className="imgCar" src={carIMG} alt="Car " />
-                    
+                  <li className="carItem" key={ad.id}>
+
+                      <img className="imgCar" src={ad.previewImage} alt="Car " />
+
                     <h3 className="blackTitle ">
-                      {car.carDTO.carMark.carModel.name} {car.carDTO.carMark.name} {car.carDTO.yearToCreate}
+                      {car.brand} {car.model} {car.year}
                     </h3>
                     <ul className="carDescrList">
                       <li>
                         <p className="carDescrPrice">$ {car.price}</p>
                       </li>
                       <li className="cityRight">
-                        <p className="carDescrCity">{car.region.city.name}</p>
+                        <p className="carDescrCity">{ad.region}</p>
                       </li>
                     </ul>
 

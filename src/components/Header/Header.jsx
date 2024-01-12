@@ -33,7 +33,7 @@ const Header = () => {
             </ul>
           </Navigation>
           <User>
-            <NavLink to="/AdvertisementPage">
+            <NavLink to="/advertisementPage">
               <ButtonSale>
                 <StyledAddSVG />
                 <ButtonText>Продати</ButtonText>
