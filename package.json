@@ -32,7 +32,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.1",
-    "prettier": "^3.2.1"
+    "prettier": "^3.2.1",
+    "sass": "^1.69.7"
   },
   "scripts": {
     "start": "react-scripts start",

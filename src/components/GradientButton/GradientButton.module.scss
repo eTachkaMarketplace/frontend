@@ -1,0 +1,22 @@
+@keyframes gradientShift {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.gradientButton {
+  background: linear-gradient(160deg, #0040BD 19.1%, #19015B 78.89%);
+  background-size: 100%;
+  transition: all 1s linear;
+
+  &:hover {
+    background-size: 200%;
+    animation: gradientShift 1s ease-in;
+  }
+}

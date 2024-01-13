@@ -5,7 +5,6 @@ import { PublickRoute } from './PublickRoute';
 import { PrivateRoute } from './PrivateRoute';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import Main from './Main/Main';
 import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
@@ -16,7 +15,7 @@ import SearchPage from 'pages/SearchPage/SearchPage';
 import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
-
+import HomePage from '../pages/HomePage/HomePage';
 
 export function App() {
   const dispatch = useDispatch();
@@ -24,14 +23,14 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-  
+
   return (
     <>
       <Header />
       <main>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<HomePage />} />
             <Route
               path="/authorization"
               element={
@@ -73,15 +72,15 @@ export function App() {
                 </PrivateRoute>
               }
             />
-             <Route
+            <Route
               path="/advertisementDone"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AdvertisementPageDone/>
+                  <AdvertisementPageDone />
                 </PrivateRoute>
               }
             />
-            <Route path={"*"} element={<NotFound />} />
+            <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
