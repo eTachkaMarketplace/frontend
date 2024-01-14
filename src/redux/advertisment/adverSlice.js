@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   adverstisements: [],
-  adverstisementsID: [],
+  adverstisementsID: null,
   adverstisementsFavorite: [],
   isLoading: false,
   error: null,

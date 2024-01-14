@@ -6,15 +6,15 @@ import { PagDiv } from './NewCars.styled';
 import { leftArrow, rightArrow } from './NewCarsSvg';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import { selectAdverstisements } from 'redux/advertisment/selectors';
+import { Link } from 'react-router-dom';
 
 const NewCars = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const advertisements = useSelector(selectAdverstisements);
 
-
- const filteredAdvertisements = advertisements.filter(
-   advertisement => advertisement.description !== ''
+  const filteredAdvertisements = advertisements.filter(
+    advertisement => advertisement.description !== ''
   );
   console.log(filteredAdvertisements);
   const limit = 6;
@@ -48,24 +48,28 @@ const NewCars = () => {
         <ul className="carList">
           {filteredAdvertisements
             ? filteredAdvertisements.map(ad => {
-              let car = ad.car;
+                let car = ad.car;
                 return (
                   <li className="carItem" key={ad.id}>
+                    <Link to={`/AdvertisementByID/${ad.id}`}>
+                      <img
+                        className="imgCar"
+                        src={ad.previewImage}
+                        alt="Car "
+                      />
 
-                      <img className="imgCar" src={ad.previewImage} alt="Car " />
-
-                    <h3 className="blackTitle ">
-                      {car.brand} {car.model} {car.year}
-                    </h3>
-                    <ul className="carDescrList">
-                      <li>
-                        <p className="carDescrPrice">$ {car.price}</p>
-                      </li>
-                      <li className="cityRight">
-                        <p className="carDescrCity">{ad.region}</p>
-                      </li>
-                    </ul>
-
+                      <h3 className="blackTitle ">
+                        {car.brand} {car.model} {car.year}
+                      </h3>
+                      <ul className="carDescrList">
+                        <li>
+                          <p className="carDescrPrice">$ {car.price}</p>
+                        </li>
+                        <li className="cityRight">
+                          <p className="carDescrCity">{ad.region}</p>
+                        </li>
+                      </ul>
+                    </Link>
                     <button
                       // onClick={() => {
                       //   if (isCarInFav(car.id)) {

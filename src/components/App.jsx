@@ -17,14 +17,13 @@ import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
 
-
 export function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-  
+
   return (
     <>
       <Header />
@@ -50,11 +49,7 @@ export function App() {
             />
             <Route
               path="/AdvertisementByID/:id"
-              element={
-                <PublickRoute redirectTo="/account">
-                  <AdvertisementByID />
-                </PublickRoute>
-              }
+              element={<AdvertisementByID />}
             />
             <Route path="/search" element={<SearchPage />} />
             <Route
@@ -73,15 +68,15 @@ export function App() {
                 </PrivateRoute>
               }
             />
-             <Route
+            <Route
               path="/advertisementDone"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AdvertisementPageDone/>
+                  <AdvertisementPageDone />
                 </PrivateRoute>
               }
             />
-            <Route path={"*"} element={<NotFound />} />
+            <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
