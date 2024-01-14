@@ -17,6 +17,7 @@ import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
 import HomePage from '../pages/HomePage/HomePage';
 
+
 export function App() {
   const dispatch = useDispatch();
 
@@ -49,11 +50,7 @@ export function App() {
             />
             <Route
               path="/AdvertisementByID/:id"
-              element={
-                <PublickRoute redirectTo="/account">
-                  <AdvertisementByID />
-                </PublickRoute>
-              }
+              element={<AdvertisementByID />}
             />
             <Route path="/search" element={<SearchPage />} />
             <Route
