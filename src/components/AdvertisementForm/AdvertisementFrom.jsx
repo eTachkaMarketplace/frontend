@@ -312,7 +312,6 @@ export const AdvertisementForm = ({ initialValues }) => {
               Пробіг<span className="transparent"> (тис. км)</span>
               <RequiredMarker>*</RequiredMarker>
             </div>
-            <div className="arrowDiv">
               <Field
                 className="fieldLong marg16"
                 as="select"
@@ -335,10 +334,6 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <option value={250000}>250</option>
                 <option value={300000}>300</option>
               </Field>
-              <div className="arrow">
-                <DropArrow />
-              </div>
-            </div>
           </label>
 
           <label>
