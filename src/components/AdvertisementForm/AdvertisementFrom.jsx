@@ -1,7 +1,7 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 import { NavLink } from 'react-router-dom';
-import { Field, Form, Formik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ImageUploadComponent from './imgUpload';
 import {
   Paragraph,
@@ -313,11 +313,11 @@ export const AdvertisementForm = ({ initialValues }) => {
               <RequiredMarker>*</RequiredMarker>
             </div>
               <Field
-                className="fieldLong marg16"
-                as="select"
+                className="fieldTextShort marg16"
+                type="number"
                 name="advertisementDTO.carDTO.mileage"
               >
-                <option value="">Оберіть</option>
+                {/* <option value="">Оберіть</option>
                 <option value={10000}>10</option>
                 <option value={20000}>20</option>
                 <option value={30000}>30</option>
@@ -332,7 +332,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <option value={150000}>150</option>
                 <option value={200000}>200</option>
                 <option value={250000}>250</option>
-                <option value={300000}>300</option>
+                <option value={300000}>300</option> */}
               </Field>
           </label>
 
