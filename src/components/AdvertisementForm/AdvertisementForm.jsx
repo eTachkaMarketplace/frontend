@@ -1,26 +1,22 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field} from 'formik';
+import { Formik} from 'formik';
+import * as Yup from 'yup';
 import ImageUploadComponent from './imgUpload';
 import {
   Paragraph,
   RequiredMarker,
-  // StyledArrowSVG,
-  // StyledCreateSVG,
-  // StyledPostSVG,
 } from 'pages/AdvertisementPage/AdvertisementPage.styled';
 import {
   SectionContainer,
   SectionTitle,
   Form,
-  // Label,
-  // Field,
+  Field,
   ErrorMessage,
   StyledArrowSVG,
   StyledCreateSVG,
   StyledPostSVG,
-  // Input,
 } from './AdvertisementForm.styled';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,6 +56,21 @@ const regionsAndCities = {
   Херсонська: ['Херсон', 'Нова Каховка', 'Скадовськ'],
   Хмельницька: ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
 };
+
+const userSchema = Yup.object().shape({
+  'advertisementDTO.carDTO.carNumber': Yup.string()
+    .required("Введіть номер машини")
+    .min(3, "Номер машини повинен бути не менше 3 символа"),
+    // .matches(
+    //   /^(?=.*[A-Z])/,
+    //   'Пароль повинен містити принаймні одну велику літеру'
+    // )
+    // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
+    // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
+    // .test('number-validation', '', value => {
+    //   return value && value.replace(/\s/g, '').length >= 1;
+    // }),
+});
 
 export const AdvertisementForm = ({ initialValues }) => {
   const dispatch = useDispatch();
@@ -150,11 +161,15 @@ export const AdvertisementForm = ({ initialValues }) => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={userSchema}
       onSubmit={values => {
         onSubmit(values);
       }}
       innerRef={formik => (formikRef.current = formik)}
     >
+
+      {({ isValid, dirty }) => (
+    
       <Form>
         <button className="clearButton" onClick={openModal} type="button">
           Очистити все
@@ -255,7 +270,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             </div>
           </label>
 
-          <label>
+          {/* <label >
             <div className="containerLong">Номерний знак</div>
             <Field
               className="fieldTextLong marg16"
@@ -263,7 +278,18 @@ export const AdvertisementForm = ({ initialValues }) => {
               name="advertisementDTO.carDTO.carNumber"
               placeholder="АК 9245 АК"
             ></Field>
-          </label>
+             <ErrorMessage name="advertisementDTO.carDTO.carNumber" component="div" />
+          </label> */}
+          <label>
+          <div className="containerLong">Номерний знак</div>
+          <Field
+           className={`fieldTextLong marg16 ${dirty && !isValid ? 'is-valid' : 'is-invalid'}`}
+            type="text"
+            name="advertisementDTO.carDTO.carNumber"
+            placeholder="АК 9245 АК"
+          />
+        <ErrorMessage name="advertisementDTO.carDTO.carNumber" component="div" />
+        </label>
 
           <label>
             <div className="containerLong">
@@ -632,12 +658,14 @@ export const AdvertisementForm = ({ initialValues }) => {
           <button className="chekAnnouncementButton" type="button">
             Переглянути оголошення
           </button>
-          <button className="submitButton" type="submit">
+          <button className="submitButton" type="submit" disabled={!isValid}>
             Опублікувати оголошення
           </button>
           <NavLink to="/advertisementDone">confirm</NavLink>
         </div>
       </Form>
+     )}
+    
     </Formik>
   );
 };
