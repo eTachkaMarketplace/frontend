@@ -104,7 +104,7 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
                 ? advertisement.images.map(image => {
                     return (
                       <img
-                        key={nanoid()}
+                        key={image}
                         className="imgCarCarousel"
                         src={image}
                         alt="Car "
