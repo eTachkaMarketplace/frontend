@@ -1,17 +1,27 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 import { NavLink } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Field} from 'formik';
 import ImageUploadComponent from './imgUpload';
 import {
   Paragraph,
   RequiredMarker,
+  // StyledArrowSVG,
+  // StyledCreateSVG,
+  // StyledPostSVG,
+} from 'pages/AdvertisementPage/AdvertisementPage.styled';
+import {
   SectionContainer,
   SectionTitle,
+  Form,
+  // Label,
+  // Field,
+  ErrorMessage,
   StyledArrowSVG,
   StyledCreateSVG,
   StyledPostSVG,
-} from 'pages/AdvertisementPage/AdvertisementPage.styled';
+  // Input,
+} from './AdvertisementForm.styled';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
@@ -62,11 +72,8 @@ export const AdvertisementForm = ({ initialValues }) => {
   const [formImages, setFormImages] = useState([]);
 
   const handleImagesChange = (newImages) => {
-    // Обновляем список изображений в родительском компоненте (или форме)
-    
     setFormImages(newImages);
     console.log(formImages);
-    
   };
 
   const onSubmit = async values => {
@@ -148,7 +155,7 @@ export const AdvertisementForm = ({ initialValues }) => {
       }}
       innerRef={formik => (formikRef.current = formik)}
     >
-      <Form className="form">
+      <Form>
         <button className="clearButton" onClick={openModal} type="button">
           Очистити все
         </button>

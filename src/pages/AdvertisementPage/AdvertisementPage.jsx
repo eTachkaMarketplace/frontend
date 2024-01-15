@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Container, Title, RequiredMarker, Paragraph} from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 
 import Modal2 from '../../modal/modal2';
-import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFrom.jsx';
+import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementForm.jsx';
 
 const AdvertisementPage = () => {
   const initialFormValues = {
