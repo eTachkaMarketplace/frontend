@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function Pagination({ totalPages, pageIndex, onPageChange }) {
   const breakpoint = useBreakpoint();
@@ -27,7 +28,7 @@ export default function Pagination({ totalPages, pageIndex, onPageChange }) {
       </button>
       {getPageButtons(pageIndex, totalPages, maxPageButtons).map(toPageIndex => {
         return (
-          <button className={'px-2 cursor-pointer hover:underline'} onClick={() => onPageChange(toPageIndex)}>
+          <button key={nanoid()} className={'px-2 cursor-pointer hover:underline'} onClick={() => onPageChange(toPageIndex)}>
             <p className={`text-lg font-semibold ${toPageIndex === pageIndex ? 'text-gray-500' : 'text-black'}`}>
               {toPageIndex + 1}
             </p>

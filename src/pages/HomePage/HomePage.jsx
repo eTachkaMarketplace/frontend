@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAdverstisements } from '../../redux/advertisment/selectors';
 import { getAdverstisements } from '../../redux/advertisment/operations';
+import { nanoid } from '@reduxjs/toolkit';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   return (
@@ -34,18 +36,19 @@ function NewCatalog() {
 
   useEffect(() => {
     dispatch(getAdverstisements({ size: 6, page: pageIndex }));
-  }, [dispatch]);
+    setTotalPages(1)
+  }, [dispatch, pageIndex]);
 
   return (
     <AdvertisementSection name={'Нові оголошення'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {firstList.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {secondList.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-row justify-center py-6'}>
@@ -67,7 +70,7 @@ function PopularCatalog() {
     <AdvertisementSection name={'Популярні'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {advertisements.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
     </AdvertisementSection>
@@ -93,20 +96,22 @@ function AdvertisementCard({ data }) {
       className="flex flex-col flex-1 p-4 gap-3 cursor-pointer bg-blue-50 border-2 border-transparent
     hover:border-blue-200 rounded transition duration-300 "
     >
-      <img
-        className={'rounded-lg aspect-preview w-full h-full object-cover'}
-        src={data.previewImage}
-        alt={'Advertisement Preview Image'}
-      />
-      <div>
-        <h4 className={'text-lg font-semibold'}>
-          {car.brand} {car.model} {car.year}
-        </h4>
-        <div className={'flex flex-row justify-between items-center'}>
-          <p>$ {car.price}</p>
-          <p className={'text-sm'}>{data.region}</p>
+      <Link to={`/AdvertisementByID/${data.id}`}>
+        <img
+          className={'rounded-lg aspect-preview w-full h-full object-cover'}
+          src={data.previewImage}
+          alt={'Advertisement Preview IMG'}
+        />
+        <div>
+          <h4 className={'text-lg font-semibold'}>
+            {car.brand} {car.model} {car.year}
+          </h4>
+          <div className={'flex flex-row justify-between items-center'}>
+            <p>$ {car.price}</p>
+            <p className={'text-sm'}>{data.region}</p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
@@ -201,11 +206,12 @@ function FilterSelect({ name, options }) {
   return (
     <div className={'relative'}>
       <select
+        defaultValue=""
         className="text-gray-300 block bg-white bg-opacity-15 appearance-none p-4 focus:outline-none
         hover:bg-opacity-20 cursor-pointer w-full"
         style={{ color: '#B9B9B9' }}
       >
-        <option disabled selected>
+        <option disabled value="">
           {name}
         </option>
         {options.map((option, index) => (
