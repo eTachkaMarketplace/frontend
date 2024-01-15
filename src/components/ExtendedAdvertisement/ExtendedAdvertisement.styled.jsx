@@ -236,7 +236,7 @@ export const Section = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 21px;
-    width: 1088px;
+    width: 1280px;
     margin-top: 24px;
 
     border-radius: 8px;
@@ -284,7 +284,7 @@ export const Section = styled.div`
     border: 2px solid var(--firm-color, #0141bd);
   }
   .numberDiv {
-    width: 1088px;
+    width: 1280px;
     display: flex;
     justify-content: space-between;
 

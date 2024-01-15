@@ -57,7 +57,6 @@ const NewCars = () => {
                         src={ad.previewImage}
                         alt="Car "
                       />
-
                       <h3 className="blackTitle ">
                         {car.brand} {car.model} {car.year}
                       </h3>
