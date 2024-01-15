@@ -1,6 +1,6 @@
 
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-import { NavLink } from 'react-router-dom';
+import { NavLink, redirect } from 'react-router-dom';
 import { Formik} from 'formik';
 import * as Yup from 'yup';
 import ImageUploadComponent from './imgUpload';
@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
+
 
 const brandsAndModels = {
   BMW: ['X5', 'M3', 'X3'],
@@ -60,7 +61,7 @@ const regionsAndCities = {
 const userSchema = Yup.object().shape({
   'advertisementDTO.carDTO.carNumber': Yup.string()
     .required("Введіть номер машини")
-    .min(3, "Номер машини повинен бути не менше 3 символа"),
+    // .min(3, "Номер машини повинен бути не менше 3 символа"),
     // .matches(
     //   /^(?=.*[A-Z])/,
     //   'Пароль повинен містити принаймні одну велику літеру'
@@ -102,9 +103,10 @@ export const AdvertisementForm = ({ initialValues }) => {
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
-      await dispatch(createFavoriteAdverstisementsByID({ formData, token }));
+       dispatch(createFavoriteAdverstisementsByID({ formData, token }));
 
       console.log('adverse created');
+      redirect('/advertisementDone');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -658,7 +660,7 @@ export const AdvertisementForm = ({ initialValues }) => {
           <button className="chekAnnouncementButton" type="button">
             Переглянути оголошення
           </button>
-          <button className="submitButton" type="submit" disabled={!isValid}>
+          <button className="submitButton" type="submit" >
             Опублікувати оголошення
           </button>
           <NavLink to="/advertisementDone">confirm</NavLink>
