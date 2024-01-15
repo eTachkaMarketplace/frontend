@@ -18,7 +18,7 @@ export default function PopularCatalog() {
     <AdvertisementSection name={'Популярні'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {advertisements.map((advertisement, _) => (
-          <AdvertisementCard key={nanoid()} data={advertisement} />
+          <AdvertisementCard key={advertisement.id} data={advertisement} />
         ))}
       </div>
     </AdvertisementSection>

@@ -23,12 +23,12 @@ export default function NewCatalog() {
     <AdvertisementSection name={'Нові оголошення'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {firstList.map((advertisement, _) => (
-          <AdvertisementCard key={nanoid()} data={advertisement} />
+          <AdvertisementCard key={advertisement.id} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {secondList.map((advertisement, _) => (
-          <AdvertisementCard key={nanoid()} data={advertisement} />
+          <AdvertisementCard key={advertisement.id} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-row justify-center py-6'}>
