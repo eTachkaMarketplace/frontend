@@ -2,11 +2,12 @@ export default function FilterSelect({ name, options }) {
   return (
     <div className={'relative'}>
       <select
+        defaultValue=""
         className="text-gray-300 block bg-white bg-opacity-15 appearance-none p-4 focus:outline-none
         hover:bg-opacity-20 cursor-pointer w-full"
         style={{ color: '#B9B9B9' }}
       >
-        <option disabled selected>
+        <option disabled value="">
           {name}
         </option>
         {options.map((option, index) => (

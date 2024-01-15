@@ -5,6 +5,7 @@ import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
 import Pagination from '../Pagination/Pagination';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function NewCatalog() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -22,12 +23,12 @@ export default function NewCatalog() {
     <AdvertisementSection name={'Нові оголошення'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {firstList.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {secondList.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
       <div className={'flex flex-row justify-center py-6'}>

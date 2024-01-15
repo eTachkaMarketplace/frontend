@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
+import { nanoid } from '@reduxjs/toolkit';
 
 export default function PopularCatalog() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function PopularCatalog() {
     <AdvertisementSection name={'Популярні'}>
       <div className={'flex flex-col md:flex-row gap-6'}>
         {advertisements.map((advertisement, _) => (
-          <AdvertisementCard data={advertisement} />
+          <AdvertisementCard key={nanoid()} data={advertisement} />
         ))}
       </div>
     </AdvertisementSection>
