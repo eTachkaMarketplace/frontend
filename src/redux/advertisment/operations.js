@@ -7,7 +7,7 @@ export const getAdverstisements = createAsyncThunk(
   async ({ page = 0, size = 10, filter = {}, sortBy = "unsorted" }, { rejectWithValue }) => {
     try {
       const encodedFilter = encodeURI(JSON.stringify(filter));
-      const response = await instance.get(`advertisement/search?page=${page}&size=${size}&filter=${encodedFilter}&sortBy=${sortBy}`);
+      const response = await instance.get(`advertisement/search?page=${page}&size=${size}&filter=${encodedFilter}&sort=${sortBy}`);
       console.log('getAdverstisements is successful');
       return response.data.data;
     } catch (error) {
