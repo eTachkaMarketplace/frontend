@@ -26,7 +26,7 @@ const SearchPage = () => {
     mileageFrom: '',
     mileageTo: '',
     driveType: '',
-    transmission: '',
+    transmissionType: '',
     condition: '',
     color: '',
   });
