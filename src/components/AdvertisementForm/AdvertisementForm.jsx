@@ -61,7 +61,7 @@ const regionsAndCities = {
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
     licensePlate: Yup.string()
-      .required('Введіть номерний знак')
+      .required('Введіть номерний знак').max(10,'Номер до 10 символів'),
   }),
 });
 
