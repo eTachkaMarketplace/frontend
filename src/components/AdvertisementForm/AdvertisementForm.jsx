@@ -59,7 +59,9 @@ const regionsAndCities = {
 };
 
 const userSchema = Yup.object().shape({
-  category: Yup.string().required('Виберіть категорію'),
+  category: Yup.string().test('is-category-selected', 'Виберіть категорію', (value) => {
+    return value !== undefined && value !== null && value !== '';
+  }),
   licensePlate: Yup.string().required('Введіть номерний знак').min(3, "Номер машини повинен бути не менше 3 символа"),
   // .min(3, "Номер машини повинен бути не менше 3 символа"),
   // .matches(
@@ -200,15 +202,17 @@ export const AdvertisementForm = ({ initialValues }) => {
               </Paragraph>
               <ImageUploadComponent onImagesChange={handleImagesChange} />
             </SectionContainer>
+
             <SectionContainer>
               <SectionTitle>Основна інформація</SectionTitle>
+
               <label>
                 <div className="containerLong">
                   Категорія<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`fieldTextLong marg16 ${isValid('category')}`}
+                  className="fieldLong marg16" as="select" name="category"
                   >
                     <option value="">Оберіть</option>
                     <option value="New">Нові</option>
