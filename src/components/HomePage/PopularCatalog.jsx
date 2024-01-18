@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
-import { nanoid } from '@reduxjs/toolkit';
 
 export default function PopularCatalog() {
   const dispatch = useDispatch();

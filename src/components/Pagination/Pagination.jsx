@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { nanoid } from '@reduxjs/toolkit';
 
 export default function Pagination({ totalPages, pageIndex, onPageChange }) {
   const breakpoint = useBreakpoint();
