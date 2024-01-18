@@ -35,16 +35,12 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-    const keys = Object.keys(valuesGen);
-    const nonEmptyKeys = keys.filter(key => valuesGen[key] !== '');
-    const nonEmptyValues = {};
-    nonEmptyKeys.forEach(key => {
-      nonEmptyValues[key] = valuesGen[key];
-    });
-    const filteredValues = nonEmptyValues;
-    console.log(filteredValues);
+    const queryParams = Object.entries(valuesGen)
+      .filter(([key, value]) => value !== '')
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join('&');
 
-    dispatch(getAdverstisements({ size: 8, page: 0, filter: filteredValues, sortBy: 'unsorted' }));
+    dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sortBy: 'unsorted' }));
   }, [dispatch, valuesGen]);
 
 

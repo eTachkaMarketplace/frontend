@@ -23,11 +23,15 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
     const brand = event.target.value;
     setSelectedBrand(brand);
     setSelectedModel('');
+
+    formikRef.current.setFieldValue('brand', brand);
+    formikRef.current.setFieldValue('model', '');
   };
 
   const handleModelChange = event => {
     const model = event.target.value;
     setSelectedModel(model);
+    formikRef.current.setFieldValue('model', model);
   };
 
   useEffect(() => {
@@ -48,7 +52,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   const clearForm = () => {
     distatch(setIsOpen(true));
   };
-  
+
   return (
     <Search>
       <Formik
@@ -310,5 +314,3 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   );
 };
 export default SearchForm;
-
- 

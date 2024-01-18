@@ -4,13 +4,9 @@ import { instance } from 'redux/auth/operations';
 
 export const getAdverstisements = createAsyncThunk(
   'adverstisement/getAdverstisements',
-  async ({ page = 0, size = 10, filter = {}, sort = "unsorted" }, { rejectWithValue }) => {
+  async ({ page = 0, size = 10, queryParams = '', sort = 'unsorted' }, { rejectWithValue }) => {
     try {
-      const encodedFilter = encodeURI(JSON.stringify(filter));
-      console.log(encodedFilter);
-      const response = await instance.get(
-        `advertisement/search?page=${page}&size=${size}&filter=${encodedFilter}&sort=${sort}`
-      );
+      const response = await instance.get(`advertisement/search?page=${page}&size=${size}&${queryParams}&sort=${sort}`);
       console.log('getAdverstisements is successful');
       return response.data.data;
     } catch (error) {
