@@ -6,54 +6,36 @@ import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFor
 
 const AdvertisementPage = () => {
   const initialFormValues = {
-    images: [],
-    advertisementDTO: {
-      description: '',
-      ownerName: '',
-      ownerPhone: '',
-      price: 0,
-      region: {
-        name: '',
-        city: {
-          name: '',
-        },
-      },
-      carDTO: {
-        carMark: {
-          name: '',
-          carModel: {
-            name: '',
-          },
-        },
-        carNumber: '',
-        yearToCreate: '',
-        mileage: 0,
-        bodyType: {
-          name: '',
-        },
-        engine: {
-          name: '',
-          volume: '',
-        },
-        driveType: {
-          name: '',
-        },
-        transmission: {
-          name: '',
-        },
-        technicalState: {
-          name: '',
-        },
-        color: {
-          name: '',
-        },
-        vinNumber: '',
-      },
+     "description": "string",
+    "region": "string",
+    "category": "string",
+    "car": {
+      "brand": "string",
+      "model": "string",
+      "vin": "string",
+      "year": 0,
+      "price": 0,
+      "licensePlate": "string",
+      "mileage": 0,
+      "transmissionType": "string",
+      "engineType": "string",
+      "engineVolume": 0,
+      "technicalState": "string",
+      "bodyType": "string",
+      "driveType": "string",
+      "color": "string"
     },
-  };
+    "contactName": "string",
+    "contactPhone": "string",
+    "isActive": true,
+    "images": [
+      "string"
+    ],
+  
+  }
+
   const [formValues, setFormValues] = useState(initialFormValues);
   console.log(formValues);
-
 
   const handleClearForm = () => {
     console.log("Clearing form...");

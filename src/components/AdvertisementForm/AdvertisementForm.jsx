@@ -134,9 +134,9 @@ export const AdvertisementForm = ({ initialValues }) => {
 
     setAvailableModels(models);
 
-    formikRef.current.setFieldValue('advertisementDTO.carDTO.carMark.name', '');
+    formikRef.current.setFieldValue('brand', '');
     formikRef.current.setFieldValue(
-      'advertisementDTO.carDTO.carMark.name',
+      'brand',
       selectedBrand
     );
   };
@@ -146,7 +146,7 @@ export const AdvertisementForm = ({ initialValues }) => {
     setSelectedRegion(regionValue);
     setSelectedCity('');
     formikRef.current.setFieldValue(
-      'advertisementDTO.region.name',
+      'region',
       regionValue
     );
   };
@@ -212,7 +212,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.description"
+                name="category"
               >
                 <option value="">Оберіть</option>
                 <option value="New">Нові</option>
@@ -233,7 +233,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.carMark.name"
+                name="brand"
                 onChange={handleBrandChange}
               >
                 <option value="">Оберіть</option>
@@ -257,7 +257,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.carMark.carModel.name"
+                name="model"
               >
                 <option value="">Оберіть</option>
                 {availableModels.map(model => (
@@ -271,26 +271,15 @@ export const AdvertisementForm = ({ initialValues }) => {
               </div>
             </div>
           </label>
-
-          {/* <label >
-            <div className="containerLong">Номерний знак</div>
-            <Field
-              className="fieldTextLong marg16"
-              type="text"
-              name="advertisementDTO.carDTO.carNumber"
-              placeholder="АК 9245 АК"
-            ></Field>
-             <ErrorMessage name="advertisementDTO.carDTO.carNumber" component="div" />
-          </label> */}
           <label>
           <div className="containerLong">Номерний знак</div>
           <Field
            className={`fieldTextLong marg16 ${dirty && !isValid ? 'is-valid' : 'is-invalid'}`}
             type="text"
-            name="advertisementDTO.carDTO.carNumber"
+            name="licensePlate"
             placeholder="АК 9245 АК"
           />
-        <ErrorMessage name="advertisementDTO.carDTO.carNumber" component="div" />
+        <ErrorMessage name="licensePlate" component="div" />
         </label>
 
           <label>
@@ -300,7 +289,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             <div className="arrowDiv">
               <select
                 className="fieldLong marg16"
-                name="advertisementDTO.region.name"
+                name="region"
                 onChange={handleRegionChange}
                 value={selectedRegion}
               >
@@ -324,7 +313,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             <div className="arrowDiv">
               <select
                 className="fieldLong marg16"
-                name="advertisementDTO.region.city.name"
+                name="city"
                 onChange={handleCityChange}
                 value={selectedCity}
               >
@@ -350,7 +339,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldTextShort marg16"
                 type="number"
-                name="advertisementDTO.carDTO.mileage"
+                name="mileage"
               >
                 {/* <option value="">Оберіть</option>
                 <option value={10000}>10</option>
@@ -379,7 +368,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldShort marg16"
                 as="select"
-                name="advertisementDTO.carDTO.yearToCreate"
+                name="year"
               >
                 <option value="">Оберіть</option>
                 <option value="1999">1999</option>
@@ -422,7 +411,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             <Field
               className="fieldTextShort"
               type="number"
-              name="advertisementDTO.price"
+              name="price"
               placeholder="1000 $"
             ></Field>
           </label>
@@ -438,7 +427,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.bodyType.name"
+                name="bodyType"
               >
                 <option value="">Оберіть</option>
                 <option value="Універсал">Універсал</option>
@@ -464,7 +453,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.engine.name"
+                name="engineType"
               >
                 <option value="">Оберіть</option>
                 <option value="Electro">Електрична силова установка</option>
@@ -488,7 +477,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.engine.volume"
+                name="engineVolume"
               >
                 <option value="">Оберіть</option>
                 <option value="Microliter">До 1,1</option>
@@ -510,7 +499,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.driveType.name"
+                name="driveType"
               >
                 <option value="">Оберіть</option>
                 <option value="Front">Передній</option>
@@ -531,7 +520,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.transmission.name"
+                name="transmissionType"
               >
                 <option value="">Оберіть</option>
                 <option value="Mechanical">Механічна</option>
@@ -553,7 +542,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.technicalState.name"
+                name="technicalState"
               >
                 <option value="">Оберіть</option>
                 <option value="Completely intact">Повністю непошкоджене</option>
@@ -581,7 +570,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <Field
                 className="fieldLong marg16"
                 as="select"
-                name="advertisementDTO.carDTO.color.name"
+                name="color"
               >
                 <option value="">Оберіть</option>
                 <option value="White">Білий</option>
@@ -612,25 +601,11 @@ export const AdvertisementForm = ({ initialValues }) => {
             <Field
               className="fieldTextLong"
               type="text"
-              name="advertisementDTO.carDTO.vinNumber"
+              name="vin"
               placeholder="VF7LCRFJF74251989"
             ></Field>
           </label>
         </SectionContainer>
-        {/* <SectionContainer>
-          <SectionTitle>Опис</SectionTitle>
-          <Paragraph>
-            Детально опишіть особливості вашого автомобілю або вкажіть додаткові
-            паратметри (наприклад: круіз контроль, парктронік і т.д.)
-          </Paragraph>
-          <label>
-            <Field
-              className="fieldInput marg16"
-              as="textarea"
-              name="description"
-            ></Field>
-          </label>
-        </SectionContainer> */}
         <SectionContainer>
           <SectionTitle>Контактні данні</SectionTitle>
           <label>
@@ -640,7 +615,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             <Field
               className="fieldLong marg16"
               type="text"
-              name="advertisementDTO.ownerName"
+              name="contactName"
               placeholder="Сергій"
             ></Field>
           </label>
@@ -651,7 +626,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             <Field
               className="fieldLong marg16"
               type="text"
-              name="advertisementDTO.ownerPhone"
+              name="contactPhone"
               placeholder="+38(0ХХ) ХХХ ХХ ХХ"
             ></Field>
           </label>
