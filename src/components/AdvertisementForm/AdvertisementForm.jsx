@@ -59,23 +59,10 @@ const regionsAndCities = {
 };
 
 const userSchema = Yup.object().shape({
-
   car: Yup.object().shape({
     licensePlate: Yup.string()
       .required('Введіть номерний знак')
-
   }),
-  category: Yup.string().required('Введіть номерний знак'),
-  // .min(3, "Номер машини повинен бути не менше 3 символа"),
-  // .matches(
-  //   /^(?=.*[A-Z])/,
-  //   'Пароль повинен містити принаймні одну велику літеру'
-  // )
-  // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
-  // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
-  // .test('number-validation', '', value => {
-  //   return value && value.replace(/\s/g, '').length >= 1;
-  // }),
 });
 
 export const AdvertisementForm = ({ initialValues }) => {
@@ -166,6 +153,8 @@ export const AdvertisementForm = ({ initialValues }) => {
     );
   };
 
+  
+
   return (
     <Formik
       initialValues={initialValues}
@@ -175,8 +164,8 @@ export const AdvertisementForm = ({ initialValues }) => {
       }}
       innerRef={formik => (formikRef.current = formik)}
     >
-      {({ values, errors, touched, dirty }) => {
-        const isValid = field => (touched[field] && errors[field] ? 'is-invalid' : touched[field] ? 'is-valid' : '');
+      {({ values,isValid, errors, touched, dirty }) => {
+        // const isValid = field => (touched[field] && errors[field] ? 'is-invalid' : touched[field] ? 'is-valid' : '');
         return (
           <Form>
             <button className="clearButton" onClick={openModal} type="button">
@@ -268,7 +257,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <label>
                 <div className="containerLong">Номерний знак</div>
                 <Field
-                  className={`fieldTextLong marg16 ${isValid('car.licensePlate')}`}
+                  className={`${touched.car && isValid ? 'is-valid' : ''} ${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
                   type="text"
                   name="car.licensePlate"
                   placeholder="АК 9245 АК"
@@ -577,3 +566,16 @@ export const AdvertisementForm = ({ initialValues }) => {
     </Formik>
   );
 };
+
+
+// category: Yup.string().required('Введіть номерний знак'),
+//   // .min(3, "Номер машини повинен бути не менше 3 символа"),
+//   // .matches(
+//   //   /^(?=.*[A-Z])/,
+//   //   'Пароль повинен містити принаймні одну велику літеру'
+//   // )
+//   // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
+//   // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
+//   // .test('number-validation', '', value => {
+//   //   return value && value.replace(/\s/g, '').length >= 1;
+//   // }),
