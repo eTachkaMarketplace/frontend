@@ -24,7 +24,7 @@ export const SearchList = () => {
               {cars.map(car => {
                 const desc = car.car
                 return (
-                  <li className="carItem">
+                  <li key={car.id} className="carItem">
                     <div>
                       <img className="img" src={car.previewImage} alt="car" />
                     </div>

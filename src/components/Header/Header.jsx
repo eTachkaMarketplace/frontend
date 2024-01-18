@@ -20,15 +20,13 @@ const Header = () => {
           <Navigation>
             <ul>
               <li>
-                <StyledLink to="/search?status=New">Нові</StyledLink>
+                <StyledLink to="/search?category=Нові">Нові</StyledLink>
               </li>
               <li>
-                <StyledLink to="/search?status=Used">Вживані</StyledLink>
+                <StyledLink to="/search?category=Вживані">Вживані</StyledLink>
               </li>
               <li>
-                <StyledLink to="/search?status=Servitude">
-                  Під пригон
-                </StyledLink>
+                <StyledLink to="/search?category=Під пригон">Під пригон</StyledLink>
               </li>
             </ul>
           </Navigation>

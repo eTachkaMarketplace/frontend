@@ -3,45 +3,51 @@ import SearchList from 'components/SearchList/SearchList';
 import { Wraper } from './SearchPage.styled';
 import SearchListTab from 'components/SearchLIstTAB/SearchListTab';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCarsFil } from 'redux/cars/selectors';
+import { useDispatch } from 'react-redux';
+
 import Modal from 'modal/modal';
 import { getAdverstisements } from 'redux/advertisment/operations';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
-  const carsFilter = useSelector(selectCarsFil);
   const [valuesGen, setValuesGen] = useState({
-    status: '',
+    category: '',
     brand: '',
     model: '',
     region: '',
-    yearFrom: '',
-    yearTo: '',
-    priceFrom: '',
-    priceTo: '',
+    yearMin: '',
+    yearMax: '',
+    priceMin: '',
+    priceMax: '',
     bodyType: '',
-    fuelType: '',
-    engineCapacity: '',
-    mileageFrom: '',
-    mileageTo: '',
+    engineType: '',
+    engineVolumeMin: '',
+    engineVolumeMax: '',
+    mileageMax: '',
     driveType: '',
-    transmission: '',
-    condition: '',
+    transmissionType: '',
+    technicalState: '',
     color: '',
   });
 
   const handleSearch = values => {
     setValuesGen(values);
   };
-  
+
   useEffect(() => {
-    console.log(valuesGen);
-    dispatch(getAdverstisements({ size: 1, page: 0,filter: valuesGen }));
-    
+    const keys = Object.keys(valuesGen);
+    const nonEmptyKeys = keys.filter(key => valuesGen[key] !== '');
+    const nonEmptyValues = {};
+    nonEmptyKeys.forEach(key => {
+      nonEmptyValues[key] = valuesGen[key];
+    });
+    const filteredValues = nonEmptyValues;
+    console.log(filteredValues);
+
+    dispatch(getAdverstisements({ size: 8, page: 0, filter: filteredValues, sortBy: 'unsorted' }));
   }, [dispatch, valuesGen]);
 
-console.log(carsFilter);
+
 
   return (
     <>

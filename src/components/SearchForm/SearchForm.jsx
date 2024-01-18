@@ -38,10 +38,10 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const favouritesParam = searchParams.get('status');
+    const favouritesParam = searchParams.get('category');
     console.log(favouritesParam);
     if (favouritesParam) {
-      formikRef.current.setFieldValue('status', favouritesParam);
+      formikRef.current.setFieldValue('category', favouritesParam);
     }
   }, [location.search]);
 
@@ -62,11 +62,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <h5 className="underTitle">Основні характеристики</h5>
             <div className="arrowDiv">
               <label>
-                <Field className="fieldLong marg16" as="select" name="status">
+                <Field className="fieldLong marg16" as="select" name="category">
                   <option value="">Категорія</option>
-                  <option value="New">Нові</option>
-                  <option value="Used">Вживані</option>
-                  <option value="Servitude">Під пригон</option>
+                  <option value="Нові">Нові</option>
+                  <option value="Вживані">Вживані</option>
+                  <option value="Під пригон">Під пригон</option>
                 </Field>
               </label>
               <div className="arrow">
@@ -152,39 +152,19 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="shortDiv marg16">
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="yearFrom"
-                  placeholder="Введіть рік від"
-                />
+                <Field className="fieldTextShort" type="text" name="yearMin" placeholder="Введіть рік від" />
               </label>
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="yearTo"
-                  placeholder="Введіть рік до"
-                />
+                <Field className="fieldTextShort" type="text" name="yearMax" placeholder="Введіть рік до" />
               </label>
             </div>
             <div className="shortDiv">
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="priceFrom"
-                  placeholder="Введіть ціну від $"
-                />
+                <Field className="fieldTextShort" type="text" name="priceMin" placeholder="Введіть ціну від $" />
               </label>
 
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="priceTo"
-                  placeholder="Введіть ціну до $"
-                />
+                <Field className="fieldTextShort" type="text" name="priceMax" placeholder="Введіть ціну до $" />
               </label>
             </div>
           </div>
@@ -206,7 +186,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="arrowDiv">
               <label>
-                <Field className="fieldLong marg16" as="select" name="fuelType">
+                <Field className="fieldLong marg16" as="select" name="engineType">
                   <option value="">Двигун</option>
                   <option value="Electro">Електрична силова установка</option>
                   <option value="Hibrid">Гібрід</option>
@@ -219,42 +199,37 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                 <DropArrow />
               </div>
             </div>
-            <div className="arrowDiv">
+            {/* <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="engineCapacity"
-                >
+                <Field className="fieldLong marg16" as="select" name="engineVolumeMax">
                   <option value="">Об'єм двигуна</option>
-                  <option value="Microliter">До 1,1 літра</option>
-                  <option value="Low-volume">Від 1,2 до 1,7 літра</option>
-                  <option value="Medium-sized">Від 1,8 до 3,3 літра</option>
-                  <option value="Large-capacity">Від 3,5 літра</option>
+                  <option value="1.1">До 1,1 літра</option>
+                  <option value="1.7">Від 1,2 до 1,7 літра</option>
+                  <option value="3.3">Від 1,8 до 3,3 літра</option>
+                  <option value="3.5">Від 3,5 літра</option>
                 </Field>
               </label>
               <div className="arrow">
                 <DropArrow />
               </div>
-            </div>
+            </div> */}
+            <div className="shortDiv marg16">
+              <label>
+                <Field className="fieldTextShort" type="text" name="engineVolumeMin" placeholder="Об'єм двигуна від" />
+              </label>
 
+              <label>
+                <Field className="fieldTextShort" type="text" name="engineVolumeMax" placeholder="Об'єм двигуна до" />
+              </label>
+            </div>
             <div>
               <label>
-                <Field
-                  className="fieldTextLong marg16"
-                  type="text"
-                  name="mileageTo"
-                  placeholder="Введіть пробіг до"
-                />
+                <Field className="fieldTextLong marg16" type="text" name="mileageMax" placeholder="Введіть пробіг до" />
               </label>
             </div>
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="driveType"
-                >
+                <Field className="fieldLong marg16" as="select" name="driveType">
                   <option value="">Привід</option>
                   <option value="Front">Передній</option>
                   <option value="Posterior">Задній</option>
@@ -265,14 +240,9 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
                 <DropArrow />
               </div>
             </div>
-
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="transmission"
-                >
+                <Field className="fieldLong marg16" as="select" name="transmissionType">
                   <option value="">Коробка передач</option>
                   <option value="Mechanical">Механічна</option>
                   <option value="Automatic">Автоматична</option>
@@ -286,19 +256,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="condition"
-                >
+                <Field className="fieldLong marg16" as="select" name="technicalState">
                   <option value="">Технічний стан</option>
                   <option value="Completely">Повністю непошкоджене</option>
-                  <option value="Repaired">
-                    Професійно відремонтовані пошкодження
-                  </option>
-                  <option value="Unrepaired">
-                    Не відремонтовані пошкодження
-                  </option>
+                  <option value="Repaired">Професійно відремонтовані пошкодження</option>
+                  <option value="Unrepaired">Не відремонтовані пошкодження</option>
                   <option value="Parts">Не на ходу/На запчастини</option>
                 </Field>
               </label>
@@ -349,22 +311,4 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
 };
 export default SearchForm;
 
-// {/* <div className="shortDiv marg16">
-//   <label>
-//     <Field
-//       className="fieldTextShort"
-//       type="text"
-//       name="mileageFrom"
-//       placeholder="Введіть пробіг від"
-//     />
-//   </label>
-
-//   <label>
-//     <Field
-//       className="fieldTextShort"
-//       type="text"
-//       name="mileageTo"
-//       placeholder="Введіть пробіг до"
-//     />
-//   </label>
-// </div>; */}
+ 
