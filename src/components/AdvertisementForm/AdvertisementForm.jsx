@@ -59,8 +59,8 @@ const regionsAndCities = {
 };
 
 const userSchema = Yup.object().shape({
-  category: Yup.string().required('Введіть номер машини'),
-  licensePlate: Yup.string().required('Введіть номерний знак'),
+  category: Yup.string().required('Виберіть категорію'),
+  licensePlate: Yup.string().required('Введіть номерний знак').min(3, "Номер машини повинен бути не менше 3 символа"),
   // .min(3, "Номер машини повинен бути не менше 3 символа"),
   // .matches(
   //   /^(?=.*[A-Z])/,
@@ -200,16 +200,16 @@ export const AdvertisementForm = ({ initialValues }) => {
               </Paragraph>
               <ImageUploadComponent onImagesChange={handleImagesChange} />
             </SectionContainer>
-
             <SectionContainer>
               <SectionTitle>Основна інформація</SectionTitle>
-
               <label>
                 <div className="containerLong">
                   Категорія<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" as="select" name="category">
+                  <Field 
+                  className={`fieldTextLong marg16 ${isValid('category')}`}
+                  >
                     <option value="">Оберіть</option>
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
@@ -219,6 +219,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="category" component="div" />
               </label>
 
               <label>
