@@ -5,8 +5,8 @@ import SearchListTab from 'components/SearchLIstTAB/SearchListTab';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCarsFil } from 'redux/cars/selectors';
-import { getCarsThunkFiltered } from 'redux/cars/operations';
 import Modal from 'modal/modal';
+import { getAdverstisements } from 'redux/advertisment/operations';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const SearchPage = () => {
   
   useEffect(() => {
     console.log(valuesGen);
-    dispatch(getCarsThunkFiltered(valuesGen));
+    dispatch(getAdverstisements({ size: 1, page: 0,filter: valuesGen }));
     
   }, [dispatch, valuesGen]);
 

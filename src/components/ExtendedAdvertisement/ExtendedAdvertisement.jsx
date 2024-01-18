@@ -9,7 +9,6 @@ import {
   PetrolSVG,
 } from './ExtendedAdvertisementSVG';
 import { useState } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
 
 export const ExtendedAdvertisement = ({ advertisement }) => {
   const [showPhone, setShowPhone] = useState(true);

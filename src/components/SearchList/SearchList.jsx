@@ -1,8 +1,12 @@
+import { useSelector } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
 import { CarSVG, DateSVG, Favorit, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
+import { selectAdverstisements } from 'redux/advertisment/selectors';
 // import { Arrow } from './SearchListSVG';
 
 export const SearchList = () => {
+  const cars = useSelector(selectAdverstisements);
+
   return (
     <SearchListDiv>
       <div>
@@ -14,61 +18,68 @@ export const SearchList = () => {
             <option value="expensive">Від дорожчих</option>
           </select>
         </div>
-        <div className='carsMainList'>
-          <ul>
-            <li className="carItem">
-              <div>
-                <img
-                  className="img"
-                  src="https://i.imgur.com/nJhybxm.jpg"
-                  alt="car"
-                />
-              </div>
-              <div className="infoDiv">
-                <div className="modelInfoDIV">
-                  <h2 className="modelInfo">BMW X5 2019</h2>
-                  <h2 className="modelInfo">64 244$</h2>
-                </div>
-                <div className="numberDiv">
-                  <h3 className='number'>KA2020HM</h3>
-                  <h3 className='number'>МІ202067688585855994949</h3>
-                </div>
-                <div className="listDIV">
-                  <ul className="list">
-                    <li className="itemLI">
-                      <DateSVG />
-                      2012
-                    </li>
-                    <li className="itemLI">
-                      <LockSVG />
-                      Київ
-                    </li>
-                    <li className="itemLI">
-                      <SpeedometerSVG />
-                      150 000
-                    </li>
-                  </ul>
-                  <ul className="list">
-                    <li className="itemLI">
-                      <PetrolSVG />
-                      Бензин
-                    </li>
-                    <li className="itemLI">
-                      <SlideSVG />
-                      Автомат
-                    </li>
-                    <li className="itemLI">
-                      <CarSVG />
-                      Задній
-                    </li>
-                  </ul>
-                </div>
-                <button className="favoriteBTN" type="button">
-                  <Favorit />
-                </button>
-              </div>
-            </li>
-          </ul>
+        <div className="carsMainList">
+          {cars ? (
+            <ul>
+              {cars.map(car => {
+                const desc = car.car
+                return (
+                  <li className="carItem">
+                    <div>
+                      <img className="img" src={car.previewImage} alt="car" />
+                    </div>
+                    <div className="infoDiv">
+                      <div className="modelInfoDIV">
+                        <h2 className="modelInfo">
+                          {desc.brand} {desc.model} {desc.year}
+                        </h2>
+                        <h2 className="modelInfo">{desc.price}$</h2>
+                      </div>
+                      <div className="numberDiv">
+                        <h3 className="number">{desc.licensePlate}</h3>
+                        <h3 className="number">{desc.vin}</h3>
+                      </div>
+                      <div className="listDIV">
+                        <ul className="list">
+                          <li className="itemLI">
+                            <DateSVG />
+                            {desc.year}
+                          </li>
+                          <li className="itemLI">
+                            <LockSVG />
+                            {car.region}
+                          </li>
+                          <li className="itemLI">
+                            <SpeedometerSVG />
+                            {desc.mileage}
+                          </li>
+                        </ul>
+                        <ul className="list">
+                          <li className="itemLI">
+                            <PetrolSVG />
+                            {desc.engineType}
+                          </li>
+                          <li className="itemLI">
+                            <SlideSVG />
+                            {desc.driveType}
+                          </li>
+                          <li className="itemLI">
+                            <CarSVG />
+                            {desc.transmissionType}
+                          </li>
+                        </ul>
+                      </div>
+                      <button className="favoriteBTN" type="button">
+                        <Favorit />
+                      </button>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <h2>Виберіть другі фільтри</h2>
+          )}
         </div>
       </div>
     </SearchListDiv>
