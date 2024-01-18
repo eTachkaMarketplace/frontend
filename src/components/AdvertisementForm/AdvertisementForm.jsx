@@ -59,18 +59,18 @@ const regionsAndCities = {
 };
 
 const userSchema = Yup.object().shape({
-  'advertisementDTO.carDTO.carNumber': Yup.string()
-    .required("Введіть номер машини")
-    // .min(3, "Номер машини повинен бути не менше 3 символа"),
-    // .matches(
-    //   /^(?=.*[A-Z])/,
-    //   'Пароль повинен містити принаймні одну велику літеру'
-    // )
-    // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
-    // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
-    // .test('number-validation', '', value => {
-    //   return value && value.replace(/\s/g, '').length >= 1;
-    // }),
+  category: Yup.string().required('Введіть номер машини'),
+  licensePlate: Yup.string().required('Введіть номерний знак'),
+  // .min(3, "Номер машини повинен бути не менше 3 символа"),
+  // .matches(
+  //   /^(?=.*[A-Z])/,
+  //   'Пароль повинен містити принаймні одну велику літеру'
+  // )
+  // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
+  // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
+  // .test('number-validation', '', value => {
+  //   return value && value.replace(/\s/g, '').length >= 1;
+  // }),
 });
 
 export const AdvertisementForm = ({ initialValues }) => {
