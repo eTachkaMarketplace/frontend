@@ -59,23 +59,15 @@ const regionsAndCities = {
 };
 
 const userSchema = Yup.object().shape({
-  category: Yup.string().test('is-category-selected', 'Виберіть категорію', (value) => {
-    return value !== undefined && value !== null && value !== '';
+  car: Yup.object().shape({
+    licensePlate: Yup.string()
+      .required('Введіть номерний знак')
+
   }),
-  licensePlate: Yup.string().required('Введіть номерний знак').min(3, "Номер машини повинен бути не менше 3 символа"),
-  // .min(3, "Номер машини повинен бути не менше 3 символа"),
-  // .matches(
-  //   /^(?=.*[A-Z])/,
-  //   'Пароль повинен містити принаймні одну велику літеру'
-  // )
-  // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
-  // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
-  // .test('number-validation', '', value => {
-  //   return value && value.replace(/\s/g, '').length >= 1;
-  // }),
 });
 
 export const AdvertisementForm = ({ initialValues }) => {
+  console.log(initialValues);
   const dispatch = useDispatch();
   const formikRef = useRef(null);
 
@@ -211,9 +203,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Категорія<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className="fieldLong marg16" as="select" name="category"
-                  >
+                  <Field className="fieldLong marg16" as="select" name="category">
                     <option value="">Оберіть</option>
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
@@ -266,12 +256,12 @@ export const AdvertisementForm = ({ initialValues }) => {
               <label>
                 <div className="containerLong">Номерний знак</div>
                 <Field
-                  className={`fieldTextLong marg16 ${isValid('licensePlate')}`}
+                  className={`fieldTextLong marg16 ${isValid('car.licensePlate')}`}
                   type="text"
-                  name="licensePlate"
+                  name="car.licensePlate"
                   placeholder="АК 9245 АК"
                 />
-                <ErrorMessage name="licensePlate" component="div" />
+                <ErrorMessage name="car.licensePlate" component="div" />
               </label>
 
               <label>
