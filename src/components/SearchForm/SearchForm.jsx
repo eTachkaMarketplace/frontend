@@ -152,39 +152,19 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="shortDiv marg16">
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="yearFrom"
-                  placeholder="Введіть рік від"
-                />
+                <Field className="fieldTextShort" type="text" name="yearFrom" placeholder="Введіть рік від" />
               </label>
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="yearTo"
-                  placeholder="Введіть рік до"
-                />
+                <Field className="fieldTextShort" type="text" name="yearTo" placeholder="Введіть рік до" />
               </label>
             </div>
             <div className="shortDiv">
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="priceFrom"
-                  placeholder="Введіть ціну від $"
-                />
+                <Field className="fieldTextShort" type="text" name="priceFrom" placeholder="Введіть ціну від $" />
               </label>
 
               <label>
-                <Field
-                  className="fieldTextShort"
-                  type="text"
-                  name="priceTo"
-                  placeholder="Введіть ціну до $"
-                />
+                <Field className="fieldTextShort" type="text" name="priceTo" placeholder="Введіть ціну до $" />
               </label>
             </div>
           </div>
@@ -221,11 +201,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="engineCapacity"
-                >
+                <Field className="fieldLong marg16" as="select" name="engineCapacity">
                   <option value="">Об'єм двигуна</option>
                   <option value="Microliter">До 1,1 літра</option>
                   <option value="Low-volume">Від 1,2 до 1,7 літра</option>
@@ -240,21 +216,12 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
 
             <div>
               <label>
-                <Field
-                  className="fieldTextLong marg16"
-                  type="text"
-                  name="mileageTo"
-                  placeholder="Введіть пробіг до"
-                />
+                <Field className="fieldTextLong marg16" type="text" name="mileageTo" placeholder="Введіть пробіг до" />
               </label>
             </div>
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="driveType"
-                >
+                <Field className="fieldLong marg16" as="select" name="driveType">
                   <option value="">Привід</option>
                   <option value="Front">Передній</option>
                   <option value="Posterior">Задній</option>
@@ -268,11 +235,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
 
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="transmission"
-                >
+                <Field className="fieldLong marg16" as="select" name="transmissionType">
                   <option value="">Коробка передач</option>
                   <option value="Mechanical">Механічна</option>
                   <option value="Automatic">Автоматична</option>
@@ -286,19 +249,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="arrowDiv">
               <label>
-                <Field
-                  className="fieldLong marg16"
-                  as="select"
-                  name="condition"
-                >
+                <Field className="fieldLong marg16" as="select" name="condition">
                   <option value="">Технічний стан</option>
                   <option value="Completely">Повністю непошкоджене</option>
-                  <option value="Repaired">
-                    Професійно відремонтовані пошкодження
-                  </option>
-                  <option value="Unrepaired">
-                    Не відремонтовані пошкодження
-                  </option>
+                  <option value="Repaired">Професійно відремонтовані пошкодження</option>
+                  <option value="Unrepaired">Не відремонтовані пошкодження</option>
                   <option value="Parts">Не на ходу/На запчастини</option>
                 </Field>
               </label>
