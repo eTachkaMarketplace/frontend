@@ -6,31 +6,29 @@ import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFor
 
 const AdvertisementPage = () => {
   const initialFormValues = {
-     "description": "string",
-    "region": "string",
-    "category": "string",
-    "car": {
-      "brand": "string",
-      "model": "string",
-      "vin": "string",
-      "year": 0,
-      "price": 0,
-      "licensePlate": "string",
-      "mileage": 0,
-      "transmissionType": "string",
-      "engineType": "string",
-      "engineVolume": 0,
-      "technicalState": "string",
-      "bodyType": "string",
-      "driveType": "string",
-      "color": "string"
+     description: "",
+    region: "",
+    category: "",
+    car: {
+      brand: "",
+      model: "",
+      vin: "",
+      year: 0,
+      price: 0,
+      licensePlate: "",
+      mileage: 0,
+      transmissionType: "",
+      engineType: "",
+      engineVolume: 0,
+      technicalState: "",
+      bodyType: "",
+      driveType: "",
+      color: ""
     },
-    "contactName": "string",
-    "contactPhone": "string",
-    "isActive": true,
-    "images": [
-      "string"
-    ],
+    contactName: "",
+    contactPhone: "",
+    isActive: true,
+    images: [""],
   
   }
 
