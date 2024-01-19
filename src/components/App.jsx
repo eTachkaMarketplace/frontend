@@ -72,9 +72,9 @@ export function App() {
             <Route
               path="/advertisementDone"
               element={
-                <PrivateRoute redirectTo="/authorization">
+                
                   <AdvertisementPageDone />
-                </PrivateRoute>
+                
               }
             />
             <Route path={'*'} element={<NotFound />} />

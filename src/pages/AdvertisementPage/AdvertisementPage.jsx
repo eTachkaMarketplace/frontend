@@ -2,58 +2,36 @@ import React, { useEffect, useState } from 'react';
 import {Container, Title, RequiredMarker, Paragraph} from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 
 import Modal2 from '../../modal/modal2';
-import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFrom.jsx';
+import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementForm.jsx';
 
 const AdvertisementPage = () => {
   const initialFormValues = {
-    images: [],
-    advertisementDTO: {
-      description: '',
-      ownerName: '',
-      ownerPhone: '',
+     description: "",
+    region: "",
+    category: "",
+    car: {
+      brand: "",
+      model: "",
+      vin: "",
+      year: 0,
       price: 0,
-      region: {
-        name: '',
-        city: {
-          name: '',
-        },
-      },
-      carDTO: {
-        carMark: {
-          name: '',
-          carModel: {
-            name: '',
-          },
-        },
-        carNumber: '',
-        yearToCreate: '',
-        mileage: 0,
-        bodyType: {
-          name: '',
-        },
-        engine: {
-          name: '',
-          volume: '',
-        },
-        driveType: {
-          name: '',
-        },
-        transmission: {
-          name: '',
-        },
-        technicalState: {
-          name: '',
-        },
-        color: {
-          name: '',
-        },
-        vinNumber: '',
-      },
+      licensePlate: "",
+      mileage: 0,
+      transmissionType: "",
+      engineType: "",
+      engineVolume: 0,
+      technicalState: "",
+      bodyType: "",
+      driveType: "",
+      color: ""
     },
-  };
+    contactName: "",
+    contactPhone: "",
+    isActive: true,  
+  }
+
   const [formValues, setFormValues] = useState(initialFormValues);
   console.log(formValues);
-
 
   const handleClearForm = () => {
     console.log("Clearing form...");
