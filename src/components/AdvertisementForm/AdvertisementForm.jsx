@@ -55,8 +55,28 @@ const regionsAndCities = {
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
-    licensePlate: Yup.string().required('Введіть номерний знак').max(10, 'Номер до 10 символів'),
+    licensePlate: Yup.string().required('це поле обов`язкове для заповнення').max(10, 'Номер до 10 символів'),
+    brand: Yup.string().required('це поле обов`язкове для заповнення'),
+    model: Yup.string().required('це поле обов`язкове для заповнення'),
+    mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    year: Yup.string().required('це поле обов`язкове для заповнення'),
+    price:Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    bodyType: Yup.string().required('це поле обов`язкове для заповнення'),
+    engineType: Yup.string().required('це поле обов`язкове для заповнення'),
+    engineVolume: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    driveType: Yup.string().required('це поле обов`язкове для заповнення'),
+    transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
+    technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
+    color: Yup.string().required('це поле обов`язкове для заповнення'),
+    vin: Yup.string().required('це поле обов`язкове для заповнення').max(10, 'Номер до 10 символів'),
+
   }),
+  category: Yup.string().required('це поле обов`язкове для заповнення'),
+  region: Yup.string().required('це поле обов`язкове для заповнення'),
+  contactName: Yup.string().required('це поле обов`язкове для заповнення'),
+  contactPhone: Yup.number().required('це поле обов`язкове для заповнення'),
+  description: Yup.string().required('це поле обов`язкове для заповнення'),
+  
 });
 
 export const AdvertisementForm = ({ initialValues }) => {
@@ -187,7 +207,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Категорія<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="category">
+                  <Field 
+                  // className="fieldLong marg16"
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                   component="select" name="category">
                     <option value="">Оберіть</option>
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
@@ -205,7 +228,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Марка авто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.brand" onChange={handleBrandChange}>
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                   component="select" 
+                   name="car.brand" 
+                   onChange={handleBrandChange}>
                     <option value="">Оберіть</option>
                     {Object.keys(brandsAndModels).map(brand => (
                       <option key={brand} value={brand}>
@@ -217,6 +244,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.brand" component="div" />
               </label>
 
               <label>
@@ -224,7 +252,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Модель авто <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.model">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  component="select" 
+                  name="car.model">
                     <option value="">Оберіть</option>
                     {availableModels.map(model => (
                       <option key={model} value={model}>
@@ -236,11 +267,12 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.model" component="div" />
               </label>
               <label>
                 <div className="containerLong">Номерний знак</div>
                 <Field
-                  className={`${touched.car && isValid ? 'is-valid' : ''} ${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
+                  className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
                   type="text"
                   name="car.licensePlate"
                   placeholder="АК 9245 АК"
@@ -253,9 +285,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Область<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <select
-                    className="fieldLong marg16"
+                  <Field
+                    className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
                     name="region"
+                    component="select" 
                     onChange={handleRegionChange}
                     value={selectedRegion}
                   >
@@ -265,11 +298,12 @@ export const AdvertisementForm = ({ initialValues }) => {
                         {region}
                       </option>
                     ))}
-                  </select>
+                  </Field>
                   <div className="arrow">
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="region" component="div" />
               </label>
 
               {/* <label>
@@ -277,7 +311,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Місто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <select className="fieldLong marg16" name="city" onChange={handleCityChange} value={selectedCity}>
+                  <Field  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  component="select" name="city" onChange={handleCityChange} value={selectedCity}>
                     <option value="">Оберіть</option>
                     {regionsAndCities[selectedRegion] &&
                       regionsAndCities[selectedRegion].map(city => (
@@ -285,7 +320,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                           {city}
                         </option>
                       ))}
-                  </select>
+                  </Field>
                   <div className="arrow">
                     <DropArrow />
                   </div>
@@ -297,8 +332,12 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Пробіг<span className="transparent"> (тис. км)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
-                <Field className="fieldTextShort marg16" type="number" name="car.mileage">
+                <Field 
+                className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
+                type="number" 
+                name="car.mileage">
                 </Field>
+                <ErrorMessage name="car.mileage" component="div" />
               </label>
 
               <label>
@@ -306,8 +345,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Рік випуску<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldShort marg16" component="select" name="car.year">
-                    <option value={0}>Оберіть</option>
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldShort marg16`}
+                  component="select" 
+                  name="car.year">
+                    <option value="">Оберіть</option>
                     <option value={1999}>1999</option>
                     <option value={2000}>2000</option>
                     <option value={2001}>2001</option>
@@ -338,6 +380,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.year" component="div" />
               </label>
 
               <label>
@@ -345,7 +388,13 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Ціна<span className="transparent"> ($)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
-                <Field className="fieldTextShort" type="number" name="car.price" placeholder="1000 $"></Field>
+                <Field 
+                className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextShort`}
+                 type="number" 
+                 name="car.price" 
+                 placeholder="1000 $">
+                 </Field>
+                <ErrorMessage name="car.price" component="div" />
               </label>
             </SectionContainer>
             <SectionContainer>
@@ -356,7 +405,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Тип кузова<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.bodyType">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  component="select" 
+                  name="car.bodyType">
                     <option value="">Оберіть</option>
                     <option value="Універсал">Універсал</option>
                     <option value="Седан">Седан</option>
@@ -371,6 +423,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.bodyType" component="div" />
               </label>
 
               <label>
@@ -378,7 +431,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Двигун<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.engineType">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  component="select" 
+                  name="car.engineType">
                     <option value="">Оберіть</option>
                     <option value="Electro">Електрична силова установка</option>
                     <option value="Hibrid">Гібрід</option>
@@ -390,6 +446,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.engineType" component="div" />
               </label>
 
               <label>
@@ -398,7 +455,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" as="input" type="number" name="car.engineVolume" placeholder="3">
+                  <Field  
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  as="input" type="number" name="car.engineVolume" placeholder="3">
                     {/* <option value="">Оберіть</option>
                     <option value="1.1">До 1,1</option>
                     <option value="Low-volume">Від 1,2 до 1,7</option>
@@ -406,6 +465,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <option value="Large-capacity">Від 3,5</option> */}
                   </Field>
                 </div>
+                <ErrorMessage name="car.engineVolume" component="div" />
               </label>
 
               <label>
@@ -413,7 +473,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Привід<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.driveType">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  component="select" 
+                  name="car.driveType">
                     <option value="">Оберіть</option>
                     <option value="Front">Передній</option>
                     <option value="Posterior">Задній</option>
@@ -423,6 +486,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.driveType" component="div" />
               </label>
 
               <label>
@@ -430,7 +494,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Коробка передач<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.transmissionType">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  component="select" 
+                  name="car.transmissionType">
                     <option value="">Оберіть</option>
                     <option value="Mechanical">Механічна</option>
                     <option value="Automatic">Автоматична</option>
@@ -441,6 +508,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.transmissionType" component="div" />
               </label>
 
               <label>
@@ -448,7 +516,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Технічний стан<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.technicalState">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  component="select" 
+                  name="car.technicalState">
                     <option value="">Оберіть</option>
                     <option value="Completely intact">Повністю непошкоджене</option>
                     <option value="Professionally repaired damage">Професійно відремонтовані пошкодження</option>
@@ -459,6 +530,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.technicalState" component="div" />
               </label>
 
               <label>
@@ -466,7 +538,10 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Колір<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field className="fieldLong marg16" component="select" name="car.color">
+                  <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  component="select" 
+                  name="car.color">
                     <option value="">Оберіть</option>
                     <option value="White">Білий</option>
                     <option value="Black">Чорний</option>
@@ -489,31 +564,59 @@ export const AdvertisementForm = ({ initialValues }) => {
                     <DropArrow />
                   </div>
                 </div>
+                <ErrorMessage name="car.color" component="div" />
               </label>
 
               <label>
                 <div className="containerLong">VIN код</div>
-                <Field className="fieldTextLong" type="text" name="car.vin" placeholder="VF7LCRFJF74251989"></Field>
+                <Field 
+                className={`${!isValid ? 'is-invalid' : ''}  fieldTextLong`} 
+                type="text" 
+                name="car.vin" 
+                placeholder="VF7LCRFJF74251989">
+                </Field>
+                <ErrorMessage name="car.vin" component="div" />
               </label>
             </SectionContainer>
+        <SectionContainer>
+          <SectionTitle>Опис</SectionTitle>
+          <Paragraph>
+            Детально опишіть особливості вашого автомобілю або вкажіть додаткові
+            паратметри (наприклад: круіз контроль, парктронік і т.д.)
+          </Paragraph>
+          <label>
+            <Field
+              className={`${!isValid ? 'is-invalid' : ''}  fieldInput marg16`} 
+              as="textarea"
+              name="description"
+            ></Field>
+           <ErrorMessage name="description" component="div" />
+          </label>
+        </SectionContainer>
             <SectionContainer>
               <SectionTitle>Контактні данні</SectionTitle>
               <label>
                 <div className="containerLong">
                   Ваше ім’я<RequiredMarker>*</RequiredMarker>
                 </div>
-                <Field className="fieldLong marg16" type="text" name="contactName" placeholder="Сергій"></Field>
+                <Field 
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  type="text"
+                 name="contactName" 
+                 placeholder="Сергій"></Field>
+                <ErrorMessage name="contactName" component="div" />
               </label>
               <label>
                 <div className="containerLong">
                   Телефон<RequiredMarker>*</RequiredMarker>
                 </div>
                 <Field
-                  className="fieldLong marg16"
-                  type="text"
+                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  type="number"
                   name="contactPhone"
                   placeholder="+38(0ХХ) ХХХ ХХ ХХ"
                 ></Field>
+                <ErrorMessage name="contactPhone" component="div" />
               </label>
             </SectionContainer>
             <div className="buttonContainer">
@@ -531,15 +634,3 @@ export const AdvertisementForm = ({ initialValues }) => {
     </Formik>
   );
 };
-
-// category: Yup.string().required('Введіть номерний знак'),
-//   // .min(3, "Номер машини повинен бути не менше 3 символа"),
-//   // .matches(
-//   //   /^(?=.*[A-Z])/,
-//   //   'Пароль повинен містити принаймні одну велику літеру'
-//   // )
-//   // .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
-//   // .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли')
-//   // .test('number-validation', '', value => {
-//   //   return value && value.replace(/\s/g, '').length >= 1;
-//   // }),
