@@ -1,5 +1,5 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-import { NavLink, redirect } from 'react-router-dom';
+// import { NavLink, redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import ImageUploadComponent from './imgUpload';
@@ -55,7 +55,7 @@ const regionsAndCities = {
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
-    licensePlate: Yup.string().required('це поле обов`язкове для заповнення').max(10, 'Номер до 10 символів'),
+    licensePlate: Yup.string().max(10, 'Номер до 10 символів'),
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
     mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
@@ -68,14 +68,14 @@ const userSchema = Yup.object().shape({
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().required('це поле обов`язкове для заповнення').max(10, 'Номер до 10 символів'),
+    vin: Yup.string().max(14, 'Номер до 14 символів'),
 
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
   region: Yup.string().required('це поле обов`язкове для заповнення'),
   contactName: Yup.string().required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.number().required('це поле обов`язкове для заповнення'),
-  description: Yup.string().required('це поле обов`язкове для заповнення'),
+  // description: Yup.string().required('це поле обов`язкове для заповнення'),
   
 });
 
@@ -111,7 +111,7 @@ export const AdvertisementForm = ({ initialValues }) => {
       dispatch(createFavoriteAdverstisementsByID({ formData, token }));
 
       console.log('adverse created');
-      redirect('/advertisementDone');
+      // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
     }
@@ -607,7 +607,7 @@ export const AdvertisementForm = ({ initialValues }) => {
           
             <Field
               className={`${touched.description && !values.description && !isValid ? 'is-invalid' : ''}  fieldInput marg16`} 
-              as="textarea"
+              component="textarea"
               name="description"
             ></Field>
            <ErrorMessage name="description" component="div" />
@@ -651,7 +651,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               <button className="submitButton" type="submit">
                 Опублікувати оголошення
               </button>
-              <NavLink to="/advertisementDone">confirm</NavLink>
+              {/* <NavLink to="/advertisementDone">confirm</NavLink> */}
             </div>
           </Form>
         );

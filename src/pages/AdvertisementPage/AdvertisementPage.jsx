@@ -6,7 +6,7 @@ import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFor
 
 const AdvertisementPage = () => {
   const initialFormValues = {
-     description: "Опис",
+     description: "",
     region: "",
     category: "",
     car: {
