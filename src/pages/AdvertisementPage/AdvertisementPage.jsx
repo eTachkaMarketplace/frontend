@@ -6,7 +6,7 @@ import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFor
 
 const AdvertisementPage = () => {
   const initialFormValues = {
-     description: "",
+     description: "Опис",
     region: "",
     category: "",
     car: {
@@ -27,9 +27,7 @@ const AdvertisementPage = () => {
     },
     contactName: "",
     contactPhone: "",
-    isActive: true,
-    images: [""],
-  
+    isActive: true,  
   }
 
   const [formValues, setFormValues] = useState(initialFormValues);
