@@ -18,7 +18,10 @@ export const SectionContainer = styled.div`
   border-radius: 8px;
   background: #F1F5FF;
 
-
+.flex{
+display: flex;
+flex-direction: column;
+}
 `;
 
 export const SectionTitle = styled.h3`
@@ -246,7 +249,7 @@ export const Form = styled(FormikForm)`
     gap: 14px;
   }
   .marg16 {
-    margin-bottom: 16px;
+    margin-top: 16px;
   }
   .bottomWraper {
     display: flex;

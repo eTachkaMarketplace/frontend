@@ -59,7 +59,7 @@ const userSchema = Yup.object().shape({
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
     mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
-    year: Yup.string().required('це поле обов`язкове для заповнення'),
+    year: Yup.number().required('це поле обов`язкове для заповнення').min(1999, 'Виберіть рік'),
     price:Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
     bodyType: Yup.string().required('це поле обов`язкове для заповнення'),
     engineType: Yup.string().required('це поле обов`язкове для заповнення'),
@@ -208,9 +208,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  // className="fieldLong marg16"
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
-                   component="select" name="category">
+                  className={`${touched.category && !values.category && !isValid ? 'is-invalid' : ''}  fieldLong `}
+                   component="select" 
+                   name="category">
                     <option value="">Оберіть</option>
                     <option value="New">Нові</option>
                     <option value="Used">Вживані</option>
@@ -219,8 +219,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="category" component="div" />
                 </div>
-                <ErrorMessage name="category" component="div" />
               </label>
 
               <label>
@@ -229,8 +229,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
-                   component="select" 
+                    className={`${touched.car && touched.car.brand && !isValid && !values.car.brand ? 'is-invalid' : ''} fieldLong marg16`}
+                    component="select" 
                    name="car.brand" 
                    onChange={handleBrandChange}>
                     <option value="">Оберіть</option>
@@ -243,8 +243,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.brand" component="div" />
                 </div>
-                <ErrorMessage name="car.brand" component="div" />
+                
               </label>
 
               <label>
@@ -253,7 +254,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  className={`${touched.car && touched.car.model && !values.car.model && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
                   component="select" 
                   name="car.model">
                     <option value="">Оберіть</option>
@@ -266,18 +267,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.model" component="div" />
                 </div>
-                <ErrorMessage name="car.model" component="div" />
+                
               </label>
               <label>
                 <div className="containerLong">Номерний знак</div>
+                <div className="flex">
                 <Field
-                  className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
+                  className={`${touched.car && touched.car.licensePlate  && !values.car.licensePlate && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
                   type="text"
                   name="car.licensePlate"
                   placeholder="АК 9245 АК"
                 />
                 <ErrorMessage name="car.licensePlate" component="div" />
+                </div>
               </label>
 
               <label>
@@ -286,7 +290,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field
-                    className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                    className={`${touched.region && !values.region && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
                     name="region"
                     component="select" 
                     onChange={handleRegionChange}
@@ -302,8 +306,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="region" component="div" />
                 </div>
-                <ErrorMessage name="region" component="div" />
               </label>
 
               {/* <label>
@@ -332,12 +336,14 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Пробіг<span className="transparent"> (тис. км)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
-                <Field 
-                className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
+                <div className="flex">
+                <Field
+                className={`${touched.car && touched.car.mileage  && !values.car.mileage && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
                 type="number" 
                 name="car.mileage">
                 </Field>
                 <ErrorMessage name="car.mileage" component="div" />
+                </div>
               </label>
 
               <label>
@@ -345,11 +351,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Рік випуску<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldShort marg16`}
+                  <Field
+                  className={`${touched.car && touched.car.year && !values.car.year && !isValid ? 'is-invalid' : ''}  fieldShort marg16`}
                   component="select" 
                   name="car.year">
-                    <option value="">Оберіть</option>
+                    <option value={0}>Оберіть</option>
                     <option value={1999}>1999</option>
                     <option value={2000}>2000</option>
                     <option value={2001}>2001</option>
@@ -379,8 +385,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.year" component="div" />
                 </div>
-                <ErrorMessage name="car.year" component="div" />
+                
               </label>
 
               <label>
@@ -388,13 +395,15 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Ціна<span className="transparent"> ($)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
-                <Field 
-                className={`${touched.car && !isValid ? 'is-invalid' : ''}  fieldTextShort`}
+                <div className="flex">
+                <Field
+                className={`${touched.car && touched.car.price  && !values.car.price && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
                  type="number" 
                  name="car.price" 
                  placeholder="1000 $">
                  </Field>
                 <ErrorMessage name="car.price" component="div" />
+                </div>
               </label>
             </SectionContainer>
             <SectionContainer>
@@ -406,7 +415,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  className={`${touched.car && touched.car.bodyType  && !values.car.bodyType && !isValid ? 'is-invalid' : ''}  fieldLong`}
                   component="select" 
                   name="car.bodyType">
                     <option value="">Оберіть</option>
@@ -422,8 +431,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.bodyType" component="div" />
                 </div>
-                <ErrorMessage name="car.bodyType" component="div" />
+                
               </label>
 
               <label>
@@ -431,8 +441,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Двигун<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  <Field
+                  className={`${touched.car && touched.car.engineType  && !values.car.engineType  && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
                   component="select" 
                   name="car.engineType">
                     <option value="">Оберіть</option>
@@ -445,8 +455,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.engineType" component="div" />
                 </div>
-                <ErrorMessage name="car.engineType" component="div" />
+               
               </label>
 
               <label>
@@ -455,17 +466,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field  
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
-                  as="input" type="number" name="car.engineVolume" placeholder="3">
+                  <Field
+                  className={`${touched.car && touched.car.engineVolume  && !values.car.engineVolume && !isValid ? 'is-invalid' : ''} fieldLong marg16`}
+                   type="number"
+                    name="car.engineVolume" 
+                    placeholder="3"
+                    >
                     {/* <option value="">Оберіть</option>
                     <option value="1.1">До 1,1</option>
                     <option value="Low-volume">Від 1,2 до 1,7</option>
                     <option value="Medium-sized">Від 1,8 до 3,3</option>
                     <option value="Large-capacity">Від 3,5</option> */}
                   </Field>
+                  <ErrorMessage name="car.engineVolume" component="div" />
                 </div>
-                <ErrorMessage name="car.engineVolume" component="div" />
+                
               </label>
 
               <label>
@@ -473,9 +488,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Привід<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
-                  component="select" 
+                  <Field
+                  className={`${touched.car && touched.car.driveType  && !values.car.driveType && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  component="select"
                   name="car.driveType">
                     <option value="">Оберіть</option>
                     <option value="Front">Передній</option>
@@ -485,8 +500,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.driveType" component="div" />
                 </div>
-                <ErrorMessage name="car.driveType" component="div" />
+                
               </label>
 
               <label>
@@ -494,8 +510,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Коробка передач<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  <Field
+                  className={`${touched.car && touched.car.transmissionType  && !values.car.transmissionType && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
                   component="select" 
                   name="car.transmissionType">
                     <option value="">Оберіть</option>
@@ -507,8 +523,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.transmissionType" component="div" />
                 </div>
-                <ErrorMessage name="car.transmissionType" component="div" />
+                
               </label>
 
               <label>
@@ -517,7 +534,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.car && touched.car.technicalState  && !values.car.technicalState && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
                   component="select" 
                   name="car.technicalState">
                     <option value="">Оберіть</option>
@@ -529,8 +546,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.technicalState" component="div" />
                 </div>
-                <ErrorMessage name="car.technicalState" component="div" />
               </label>
 
               <label>
@@ -538,8 +555,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   Колір<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  <Field
+                  className={`${touched.car && touched.car.color  && !values.car.color && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
                   component="select" 
                   name="car.color">
                     <option value="">Оберіть</option>
@@ -563,19 +580,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="car.color" component="div" />
                 </div>
-                <ErrorMessage name="car.color" component="div" />
               </label>
 
               <label>
                 <div className="containerLong">VIN код</div>
-                <Field 
-                className={`${!isValid ? 'is-invalid' : ''}  fieldTextLong`} 
+                <div className="flex">
+                <Field
+                className={`${touched.car && touched.car.vin  && !values.car.vin && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`} 
                 type="text" 
                 name="car.vin" 
                 placeholder="VF7LCRFJF74251989">
                 </Field>
                 <ErrorMessage name="car.vin" component="div" />
+                </div>
               </label>
             </SectionContainer>
         <SectionContainer>
@@ -585,12 +604,14 @@ export const AdvertisementForm = ({ initialValues }) => {
             паратметри (наприклад: круіз контроль, парктронік і т.д.)
           </Paragraph>
           <label>
+          
             <Field
-              className={`${!isValid ? 'is-invalid' : ''}  fieldInput marg16`} 
+              className={`${touched.description && !values.description && !isValid ? 'is-invalid' : ''}  fieldInput marg16`} 
               as="textarea"
               name="description"
             ></Field>
            <ErrorMessage name="description" component="div" />
+           
           </label>
         </SectionContainer>
             <SectionContainer>
@@ -599,24 +620,28 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <div className="containerLong">
                   Ваше ім’я<RequiredMarker>*</RequiredMarker>
                 </div>
+                <div className="flex">
                 <Field 
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.contactName && !values.contactName && !isValid ? 'is-invalid' : ''}   fieldLong`} 
                   type="text"
                  name="contactName" 
                  placeholder="Сергій"></Field>
                 <ErrorMessage name="contactName" component="div" />
+                </div>
               </label>
               <label>
                 <div className="containerLong">
                   Телефон<RequiredMarker>*</RequiredMarker>
                 </div>
+                <div className="flex">
                 <Field
-                  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.contactPhone && !values.contactPhone  && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
                   type="number"
                   name="contactPhone"
                   placeholder="+38(0ХХ) ХХХ ХХ ХХ"
                 ></Field>
                 <ErrorMessage name="contactPhone" component="div" />
+                </div>
               </label>
             </SectionContainer>
             <div className="buttonContainer">
