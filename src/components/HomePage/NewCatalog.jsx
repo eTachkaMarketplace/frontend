@@ -5,7 +5,6 @@ import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
 import Pagination from '../Pagination/Pagination';
-import { nanoid } from '@reduxjs/toolkit';
 
 export default function NewCatalog() {
   const [pageIndex, setPageIndex] = useState(0);

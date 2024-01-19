@@ -77,13 +77,10 @@ export const adversSlice = createSlice({
       .addCase(deleteFavoriteAdverstisementsByID.pending, state => {
         state.isLoading = true;
       })
-      .addCase(
-        deleteFavoriteAdverstisementsByID.rejected,
-        (state, { payload }) => {
-          state.isLoading = false;
-          state.error = payload.error;
-        }
-      )
+      .addCase(deleteFavoriteAdverstisementsByID.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
       .addCase(postFavoriteAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
@@ -91,13 +88,10 @@ export const adversSlice = createSlice({
       .addCase(postFavoriteAdverstisementsByID.pending, state => {
         state.isLoading = true;
       })
-      .addCase(
-        postFavoriteAdverstisementsByID.rejected,
-        (state, { payload }) => {
-          state.isLoading = false;
-          state.error = payload.error;
-        }
-      )
+      .addCase(postFavoriteAdverstisementsByID.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
       .addCase(putFavoriteAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
@@ -105,13 +99,10 @@ export const adversSlice = createSlice({
       .addCase(putFavoriteAdverstisementsByID.pending, state => {
         state.isLoading = true;
       })
-      .addCase(
-        putFavoriteAdverstisementsByID.rejected,
-        (state, { payload }) => {
-          state.isLoading = false;
-          state.error = payload.error;
-        }
-      )
+      .addCase(putFavoriteAdverstisementsByID.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
       .addCase(createFavoriteAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
@@ -119,12 +110,9 @@ export const adversSlice = createSlice({
       .addCase(createFavoriteAdverstisementsByID.pending, state => {
         state.isLoading = true;
       })
-      .addCase(
-        createFavoriteAdverstisementsByID.rejected,
-        (state, { payload }) => {
-          state.isLoading = false;
-          state.error = payload.error;
-        }
-      );
+      .addCase(createFavoriteAdverstisementsByID.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      });
   },
 });
