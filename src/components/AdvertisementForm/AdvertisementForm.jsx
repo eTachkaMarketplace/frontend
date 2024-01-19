@@ -81,7 +81,7 @@ export const AdvertisementForm = ({ initialValues }) => {
 
       const formData = new FormData();
       formImages.forEach((image, index) => {
-        formData.append(`images`, image[index]);
+        formData.append(`images`, image);
       });
       
       formData.append('payload', new Blob([JSON.stringify(values)], { type: 'application/json' }));
