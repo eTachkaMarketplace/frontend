@@ -13,9 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authSlice } from './auth/authSlice';
-import { carsReducer } from './cars/carsSlice';
 import { modalReducer } from './modal/modalSlice';
-import { userSlice } from './user/userSlice';
 import { adversSlice } from './advertisment/adverSlice';
 
 const authPersistConfig = {
@@ -27,9 +25,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
-    cars: carsReducer,
     modal: modalReducer,
-    user: userSlice.reducer,
     adverstisement: adversSlice.reducer,
   },
   middleware: getDefaultMiddleware =>

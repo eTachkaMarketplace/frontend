@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
 import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement';
 import ProfileForm from '../../components/ProfileForm/ProfileForm';
-import { getUser } from 'redux/user/opetations';
-import { selectUser } from 'redux/user/selectors';
 import { SVG1 } from './AccPageSVG';
 import { useLocation } from 'react-router-dom';
+import { selectUser } from 'redux/auth/selectors';
+import { getUser } from 'redux/auth/operations';
 
 const AccountPage = () => {
   const dispatch = useDispatch();

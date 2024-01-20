@@ -2,9 +2,8 @@ import React, {  useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
-import { changeUser} from 'redux/user/opetations';
-import {  } from 'redux/user/selectors';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
+import { changeUser } from 'redux/auth/operations';
 
 const ProfileForm = ({ initialValues }) => {
   const dispatch = useDispatch();
