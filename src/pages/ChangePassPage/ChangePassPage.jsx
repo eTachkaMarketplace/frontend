@@ -3,8 +3,8 @@ import ForgotPass from 'components/ForgotPass/ForgotPass';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { acceptCode } from 'redux/user/opetations';
-import { selectUser } from 'redux/user/selectors';
+import { acceptCode } from 'redux/auth/operations';
+import { selectUser } from 'redux/auth/selectors';
 
 export default function ChangePassPage() {
   const [success, setSuccess] = useState(false);

@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { selectError } from 'redux/auth/selectors';
-import { selectUser } from 'redux/user/selectors';
-import { changePass } from 'redux/user/opetations';
+import { selectError, selectUser } from 'redux/auth/selectors';
 import { Button, ErrorMessage, Field, Form, Label, Wraper } from 'components/ForgotPass/ForgotPass.styled';
 import { HidePassword, PasswordInput } from 'components/LoginForm/LoginForm.styled';
 import { ErrorSVG, ViewSVG } from 'components/LoginForm/chackBox';
 import { SvgTreu } from './ChangeSVG';
 import { NavLink } from 'react-router-dom';
+import { changePass } from 'redux/auth/operations';
 
 const userSchema = Yup.object().shape({
   password: Yup.string()

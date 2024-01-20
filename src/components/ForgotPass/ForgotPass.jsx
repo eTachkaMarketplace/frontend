@@ -4,9 +4,9 @@ import { Formik } from 'formik';
 import { Form, ErrorMessage, Field, Label, Input, Wraper, Button } from './ForgotPass.styled';
 import { ErrorSVG } from 'components/LoginForm/chackBox';
 import { useEffect, useState } from 'react';
-import { selectError } from 'redux/user/selectors';
-import { forgotPass } from 'redux/user/opetations';
 import { NavLink } from 'react-router-dom';
+import { selectError } from 'redux/auth/selectors';
+import { forgotPass } from 'redux/auth/operations';
 
 const userSchema = Yup.object().shape({
   email: Yup.string()
