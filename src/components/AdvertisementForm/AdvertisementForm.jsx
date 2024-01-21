@@ -21,39 +21,6 @@ import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
-const brandsAndModels = {
-  BMW: ['X5', 'M3', 'X3'],
-  Toyota: ['Camry', 'Corolla', 'Avalon'],
-  'Mercedes-Benz': ['A-Class', 'B-Class', 'C-Class'],
-};
-
-const regionsAndCities = {
-  Київська: ['Київ', 'Біла-церква', 'Бровари', 'Ірпінь'],
-  Вінницька: ['Вінниця', 'Хмельницький', 'Бар'],
-  Волинська: ['Луцьк', 'Ковель', 'Нововолинь'],
-  Дніпропетровська: ['Дніпро', 'Кривий Ріг', 'Нікополь'],
-  Донецька: ['Донецьк', 'Маріуполь', 'Макіївка'],
-  Житомирська: ['Житомир', 'Коростень', 'Бердичів'],
-  Закарпатська: ['Ужгород', 'Мукачево', 'Хуст'],
-  Запорізька: ['Запоріжжя', 'Мелітополь', 'Бердянськ'],
-  'Івано-Франківська': ['Івано-Франківськ', 'Яремче', 'Коломия'],
-  Кіровоградська: ['Кропивницький', 'Світловодськ', 'Олександрія'],
-  Луганська: ['Луганськ', 'Алчевськ', 'Северодонецьк'],
-  Львівська: ['Львів', 'Дрогобич', 'Трускавець'],
-  Миколаївська: ['Миколіїв', 'Первомайськ', 'Вознесенськ'],
-  Одеська: ['Одеса', 'Чорноморськ', 'Ізмаїл'],
-  Полтавська: ['Полтава', 'Кременчук', 'Миргород'],
-  Рівенська: ['Рівне', 'Костопіль', 'Дубно'],
-  Сумська: ['Суми', 'Конотоп', 'Шостка'],
-  Тернопільська: ['Тернопіль', 'Чортків', 'Бережани'],
-  Черкаська: ['Черкаси', 'Сміла', 'Золотоноші'],
-  Чернівецька: ['Чернівці', 'Вашківці', 'Хотин'],
-  Чернігівська: ['Чернігів', 'Ніжин', 'Прилуки'],
-  Харківська: ['Харків', 'Ізюм', 'Балаклея'],
-  Херсонська: ['Херсон', 'Нова Каховка', 'Скадовськ'],
-  Хмельницька: ['Хмельницький', 'Камʼянець-Подільський', 'Шепетівка'],
-};
-
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
     licensePlate: Yup.string().max(10, 'Номер до 10 символів'),
@@ -89,6 +56,7 @@ export const AdvertisementForm = ({ initialValues }) => {
   // const [selectedCity, setSelectedCity] = useState('');
   const token = useSelector(selectToken);
   const [formImages, setFormImages] = useState([]);
+  const dataAccessor = new DataAccessor();
 
   const handleImagesChange = newImages => {
     setFormImages(newImages);
@@ -135,8 +103,8 @@ export const AdvertisementForm = ({ initialValues }) => {
 
   const handleBrandChange = event => {
     const selectedBrand = event.target.value;
-
-    const models = brandsAndModels[selectedBrand] || [];
+   
+    const models = dataAccessor.getModelsByBrand(selectedBrand);
 
     setAvailableModels(models);
 
@@ -235,9 +203,9 @@ export const AdvertisementForm = ({ initialValues }) => {
                    name="car.brand" 
                    onChange={handleBrandChange}>
                     <option value="">Оберіть</option>
-                    {Object.keys(brandsAndModels).map(brand => (
-                      <option key={brand} value={brand}>
-                        {brand}
+                    {Object.keys(dataAccessor.brandsAndModels).map(brand => (
+                  <option key={brand} value={brand}>
+                    {brand}
                       </option>
                     ))}
                   </Field>
@@ -260,8 +228,8 @@ export const AdvertisementForm = ({ initialValues }) => {
                   name="car.model">
                     <option value="">Оберіть</option>
                     {availableModels.map(model => (
-                      <option key={model} value={model}>
-                        {model}
+                  <option key={model} value={model}>
+                    {model}
                       </option>
                     ))}
                   </Field>
@@ -298,7 +266,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                     value={selectedRegion}
                   >
                     <option value="">Оберіть</option>
-                    {Object.keys(regionsAndCities).map(region => (
+                    {Object.keys(dataAccessor.regionsAndCities).map(region => (
                       <option key={region} value={region}>
                         {region}
                       </option>
