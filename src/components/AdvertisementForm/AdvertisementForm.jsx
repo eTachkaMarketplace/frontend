@@ -2,6 +2,7 @@ import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 // import { NavLink, redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import DataAccessor from '../Class/DataAccessor';
 import ImageUploadComponent from './imgUpload';
 import { Paragraph, RequiredMarker } from 'pages/AdvertisementPage/AdvertisementPage.styled';
 import {
