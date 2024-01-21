@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import Modal from 'modal/modal';
 import { getAdverstisements } from 'redux/advertisment/operations';
+import ConfirmModal from 'modal/confirmModal/confirmModal';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,9 @@ const SearchPage = () => {
           <SearchList />
         </div>
       </Wraper>
-      <Modal handleSearch={handleSearch} />
+      <Modal >
+        <ConfirmModal handleSearch={handleSearch} />
+      </Modal>
     </>
   );
 };
