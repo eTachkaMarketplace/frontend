@@ -23,7 +23,7 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
-    licensePlate: Yup.string().max(10, 'Номер до 10 символів'),
+    licensePlate: Yup.string().required("це поле обов`язкове для заповнення").max(10, 'Номер до 10 символів'),
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
     mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
@@ -36,7 +36,7 @@ const userSchema = Yup.object().shape({
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().max(14, 'Номер до 14 символів'),
+    vin: Yup.string().required("це поле обов`язкове для заповнення").max(14, 'Номер до 14 символів'),
 
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
