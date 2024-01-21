@@ -181,9 +181,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                    component="select" 
                    name="category">
                     <option value="">Оберіть</option>
-                    <option value="New">Нові</option>
-                    <option value="Used">Вживані</option>
-                    <option value="Servitude">Під пригон</option>
+                    {Object.keys(dataAccessor.category).map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -192,13 +194,13 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Марка авто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                    className={`${touched.car && touched.car.brand && !isValid && !values.car.brand ? 'is-invalid' : ''} fieldLong marg16`}
+                    className={`${touched.car && touched.car.brand && !isValid && !values.car.brand ? 'is-invalid' : ''} fieldLong`}
                     component="select" 
                    name="car.brand" 
                    onChange={handleBrandChange}>
@@ -217,13 +219,13 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Модель авто <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${touched.car && touched.car.model && !values.car.model && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  className={`${touched.car && touched.car.model && !values.car.model && !isValid ? 'is-invalid' : ''}  fieldLong`}
                   component="select" 
                   name="car.model">
                     <option value="">Оберіть</option>
@@ -240,11 +242,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
                 
               </label>
-              <label>
+              <label className="marg16">
                 <div className="containerLong">Номерний знак</div>
                 <div className="flex">
                 <Field
-                  className={`${touched.car && touched.car.licensePlate  && !values.car.licensePlate && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`}
+                  className={`${touched.car && touched.car.licensePlate  && !values.car.licensePlate && !isValid ? 'is-invalid' : ''}  fieldTextLong `}
                   type="text"
                   name="car.licensePlate"
                   placeholder="АК 9245 АК"
@@ -253,13 +255,13 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Область<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                    className={`${touched.region && !values.region && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                    className={`${touched.region && !values.region && !isValid ? 'is-invalid' : ''}  fieldLong `}
                     name="region"
                     component="select" 
                     onChange={handleRegionChange}
@@ -279,12 +281,12 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              {/* <label>
+              {/* <label className="marg16">
                 <div className="containerLong">
                   Місто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field  className={`${!isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  <Field  className={`${!isValid ? 'is-invalid' : ''}  fieldLong `}
                   component="select" name="city" onChange={handleCityChange} value={selectedCity}>
                     <option value="">Оберіть</option>
                     {regionsAndCities[selectedRegion] &&
@@ -300,14 +302,14 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label> */}
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Пробіг<span className="transparent"> (тис. км)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="flex">
                 <Field
-                className={`${touched.car && touched.car.mileage  && !values.car.mileage && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
+                className={`${touched.car && touched.car.mileage  && !values.car.mileage && !isValid ? 'is-invalid' : ''}  fieldTextShort`}
                 type="number" 
                 name="car.mileage">
                 </Field>
@@ -315,41 +317,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Рік випуску<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.year && !values.car.year && !isValid ? 'is-invalid' : ''}  fieldShort marg16`}
+                  className={`${touched.car && touched.car.year && !values.car.year && !isValid ? 'is-invalid' : ''}  fieldShort `}
                   component="select" 
                   name="car.year">
-                    <option value={0}>Оберіть</option>
-                    <option value={1999}>1999</option>
-                    <option value={2000}>2000</option>
-                    <option value={2001}>2001</option>
-                    <option value={2002}>2002</option>
-                    <option value={2003}>2003</option>
-                    <option value={2004}>2004</option>
-                    <option value={2005}>2005</option>
-                    <option value={2006}>2006</option>
-                    <option value={2007}>2007</option>
-                    <option value={2008}>2008</option>
-                    <option value={2009}>2009</option>
-                    <option value={2010}>2010</option>
-                    <option value={2011}>2011</option>
-                    <option value={2012}>2012</option>
-                    <option value={2013}>2013</option>
-                    <option value={2014}>2014</option>
-                    <option value={2015}>2015</option>
-                    <option value={2016}>2016</option>
-                    <option value={2017}>2017</option>
-                    <option value={2018}>2018</option>
-                    <option value={2019}>2019</option>
-                    <option value={2020}>2020</option>
-                    <option value={2021}>2021</option>
-                    <option value={2022}>2022</option>
-                    <option value={2023}>2023</option>
+                  <option value={0}>Оберіть</option>
+                    {dataAccessor.getYears().map(year => (
+                      <option key={year} value={year}>
+                        {year}
+                  </option>
+                ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -359,14 +341,14 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Ціна<span className="transparent"> ($)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="flex">
                 <Field
-                className={`${touched.car && touched.car.price  && !values.car.price && !isValid ? 'is-invalid' : ''}  fieldTextShort marg16`}
+                className={`${touched.car && touched.car.price  && !values.car.price && !isValid ? 'is-invalid' : ''}  fieldTextShort `}
                  type="number" 
                  name="car.price" 
                  placeholder="1000 $">
@@ -387,15 +369,12 @@ export const AdvertisementForm = ({ initialValues }) => {
                   className={`${touched.car && touched.car.bodyType  && !values.car.bodyType && !isValid ? 'is-invalid' : ''}  fieldLong`}
                   component="select" 
                   name="car.bodyType">
-                    <option value="">Оберіть</option>
-                    <option value="Універсал">Універсал</option>
-                    <option value="Седан">Седан</option>
-                    <option value="Кабріолет">Кабріолет</option>
-                    <option value="Купе">Купе</option>
-                    <option value="Позашляховик">Внедорожник</option>
-                    <option value="Хетчбек">Хетчбек</option>
-                    <option value="Пікап">Пікап</option>
-                    <option value="Лімузин">Лімузин</option>
+                  <option value="">Оберіть</option>
+                  {Object.keys(dataAccessor.bodyType).map(bodyType => (
+                  <option key={bodyType} value={bodyType}>
+                    {bodyType}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -405,21 +384,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Двигун<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.engineType  && !values.car.engineType  && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  className={`${touched.car && touched.car.engineType  && !values.car.engineType  && !isValid ? 'is-invalid' : ''}  fieldLong `}
                   component="select" 
                   name="car.engineType">
                     <option value="">Оберіть</option>
-                    <option value="Electro">Електрична силова установка</option>
-                    <option value="Hibrid">Гібрід</option>
-                    <option value="Gasoline">Бензиновий</option>
-                    <option value="Gaseous">Газовий</option>
-                    <option value="Diesel">Дизельний</option>
+                    {Object.keys(dataAccessor.engineType).map(engineType => (
+                  <option key={engineType} value={engineType}>
+                    {engineType}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -429,14 +408,14 @@ export const AdvertisementForm = ({ initialValues }) => {
                
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Об‘єм двигуна<span className="transparent"> (л)</span>
                   <RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.engineVolume  && !values.car.engineVolume && !isValid ? 'is-invalid' : ''} fieldLong marg16`}
+                  className={`${touched.car && touched.car.engineVolume  && !values.car.engineVolume && !isValid ? 'is-invalid' : ''} fieldLong `}
                    type="number"
                     name="car.engineVolume" 
                     placeholder="3"
@@ -452,19 +431,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Привід<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.driveType  && !values.car.driveType && !isValid ? 'is-invalid' : ''}  fieldLong marg16`}
+                  className={`${touched.car && touched.car.driveType  && !values.car.driveType && !isValid ? 'is-invalid' : ''}  fieldLong `}
                   component="select"
                   name="car.driveType">
                     <option value="">Оберіть</option>
-                    <option value="Front">Передній</option>
-                    <option value="Posterior">Задній</option>
-                    <option value="Full">Повний</option>
+                    {Object.keys(dataAccessor.driveType).map(driveType => (
+                  <option key={driveType} value={driveType}>
+                    {driveType}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -474,20 +455,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Коробка передач<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.transmissionType  && !values.car.transmissionType && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.car && touched.car.transmissionType  && !values.car.transmissionType && !isValid ? 'is-invalid' : ''}  fieldLong `} 
                   component="select" 
                   name="car.transmissionType">
                     <option value="">Оберіть</option>
-                    <option value="Mechanical">Механічна</option>
-                    <option value="Automatic">Автоматична</option>
-                    <option value="Robotic">Роботизована</option>
-                    <option value="Variable">Варіативна</option>
+                    {Object.keys(dataAccessor.transmissionType).map(transmissionType => (
+                  <option key={transmissionType} value={transmissionType}>
+                    {transmissionType}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -497,20 +479,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Технічний стан<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field 
-                  className={`${touched.car && touched.car.technicalState  && !values.car.technicalState && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.car && touched.car.technicalState  && !values.car.technicalState && !isValid ? 'is-invalid' : ''}  fieldLong `} 
                   component="select" 
                   name="car.technicalState">
                     <option value="">Оберіть</option>
-                    <option value="Completely intact">Повністю непошкоджене</option>
-                    <option value="Professionally repaired damage">Професійно відремонтовані пошкодження</option>
-                    <option value="Unrepaired damage">Не відремонтовані пошкодження</option>
-                    <option value="Not running/For spare parts">Не на ходу/На запчастини</option>
+                    {Object.keys(dataAccessor.technicalState).map(technicalState => (
+                  <option key={technicalState} value={technicalState}>
+                    {technicalState}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -519,32 +502,21 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Колір<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
                   <Field
-                  className={`${touched.car && touched.car.color  && !values.car.color && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.car && touched.car.color  && !values.car.color && !isValid ? 'is-invalid' : ''}  fieldLong `} 
                   component="select" 
                   name="car.color">
                     <option value="">Оберіть</option>
-                    <option value="White">Білий</option>
-                    <option value="Black">Чорний</option>
-                    <option value="Gray">Сірий</option>
-                    <option value="Red">Червоний</option>
-                    <option value="Blue">Синій</option>
-                    <option value="Pink">Рожевий</option>
-                    <option value="Green">Зелений</option>
-                    <option value="Orange">Помаранчовий</option>
-                    <option value="Burgundy">Бордовий</option>
-                    <option value="Brown">Коричневий</option>
-                    <option value="Yellow">Жовтий</option>
-                    <option value="Violet">Фіолетовий</option>
-                    <option value="Gold">Золотий</option>
-                    <option value="Silver">Срібний</option>
-                    <option value="beige">бежевий</option>
-                    <option value="Multicolor">Мультиколір</option>
+                    {Object.keys(dataAccessor.color).map(color => (
+                  <option key={color} value={color}>
+                    {color}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
@@ -553,11 +525,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                 </div>
               </label>
 
-              <label>
+              <label className="marg16">
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                 <Field
-                className={`${touched.car && touched.car.vin  && !values.car.vin && !isValid ? 'is-invalid' : ''}  fieldTextLong marg16`} 
+                className={`${touched.car && touched.car.vin  && !values.car.vin && !isValid ? 'is-invalid' : ''}  fieldTextLong `} 
                 type="text" 
                 name="car.vin" 
                 placeholder="VF7LCRFJF74251989">
@@ -572,16 +544,16 @@ export const AdvertisementForm = ({ initialValues }) => {
             Детально опишіть особливості вашого автомобілю або вкажіть додаткові
             паратметри (наприклад: круіз контроль, парктронік і т.д.)
           </Paragraph>
-          <label>
-          
+
+          <label className="marg16">
             <Field
-              className={`${touched.description && !values.description && !isValid ? 'is-invalid' : ''}  fieldInput marg16`} 
+              className={`${touched.description && !values.description && !isValid ? 'is-invalid' : ''}  fieldInput `} 
               component="textarea"
               name="description"
             ></Field>
            <ErrorMessage name="description" component="div" />
-           
           </label>
+
         </SectionContainer>
             <SectionContainer>
               <SectionTitle>Контактні данні</SectionTitle>
@@ -598,13 +570,13 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <ErrorMessage name="contactName" component="div" />
                 </div>
               </label>
-              <label>
+              <label className="marg16">
                 <div className="containerLong">
                   Телефон<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="flex">
                 <Field
-                  className={`${touched.contactPhone && !values.contactPhone  && !isValid ? 'is-invalid' : ''}  fieldLong marg16`} 
+                  className={`${touched.contactPhone && !values.contactPhone  && !isValid ? 'is-invalid' : ''}  fieldLong `} 
                   type="number"
                   name="contactPhone"
                   placeholder="+38(0ХХ) ХХХ ХХ ХХ"
