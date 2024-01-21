@@ -1,5 +1,6 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 // import { NavLink, redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import DataAccessor from '../Class/DataAccessor';
@@ -50,6 +51,7 @@ const userSchema = Yup.object().shape({
 export const AdvertisementForm = ({ initialValues }) => {
   const dispatch = useDispatch();
   const formikRef = useRef(null);
+  const navigate = useNavigate();
 
   const [availableModels, setAvailableModels] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -80,6 +82,7 @@ export const AdvertisementForm = ({ initialValues }) => {
       dispatch(createFavoriteAdverstisementsByID({ formData, token }));
 
       console.log('adverse created');
+      navigate('/advertisementDone');
       // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
