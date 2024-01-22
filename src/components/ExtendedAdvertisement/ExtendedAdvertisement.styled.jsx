@@ -48,6 +48,8 @@ export const Section = styled.div`
     margin-top: 12px;
   }
   .region {
+    display: flex;
+    gap: 8px;
     color: var(--firm-color, #0141bd);
     /* Subtitle 2.1 */
     font-family: 'Roboto', sans-serif;
@@ -136,10 +138,7 @@ export const Section = styled.div`
     align-items: center;
     gap: 4px;
     border-radius: 8px;
-    background: var(
-      --buttons-accent,
-      linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%)
-    );
+    background: var(--buttons-accent, linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%));
     &:hover {
       background: linear-gradient(160deg, #0040bd 19.1%, #195b01 78.89%);
     }
@@ -152,7 +151,27 @@ export const Section = styled.div`
     object-fit: cover;
 
     border-radius: 8px;
-    background: url(<path-to-image>), lightgray 50% / cover no-repeat, #fff;
+    background:
+      url(<path-to-image>),
+      lightgray 50% / cover no-repeat,
+      #fff;
+  }
+  .photoDiv {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .id {
+    position: absolute;
+    right: 32px;
+    top: 26px;
+    color: var(--Text-grey3, #ababab);
+    /* Subtitle 3 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   .carousel {
     display: flex;
@@ -166,7 +185,10 @@ export const Section = styled.div`
     object-fit: cover;
 
     border-radius: 8px;
-    background: url(<path-to-image>), lightgray 50% / cover no-repeat, #fff;
+    background:
+      url(<path-to-image>),
+      lightgray 50% / cover no-repeat,
+      #fff;
   }
   .secondInfoBox {
     margin-top: 24px;

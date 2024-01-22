@@ -104,7 +104,15 @@ export const Container = styled.div`
     border: 1px solid #b9b9b9;
     background: #fff;
   }
-
+  .error-message {
+    color: var(--red, #fa6666);
+    /* Information errors */
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
   .profile-btn {
     display: flex;
     width: 200px;
@@ -129,11 +137,7 @@ export const Container = styled.div`
     }
 
     &:active {
-      background: linear-gradient(
-        160deg,
-        rgba(5, 0, 20, 0.6) 19.1%,
-        #050014 78.89%
-      );
+      background: linear-gradient(160deg, rgba(5, 0, 20, 0.6) 19.1%, #050014 78.89%);
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
     }
   }

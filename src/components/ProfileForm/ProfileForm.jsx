@@ -1,15 +1,20 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
 import { changeUser } from 'redux/auth/operations';
+import * as yup from 'yup';
+
+const profileSchema = yup.object().shape({
+  lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Прізвище може містити лише літери, - і '),
+  firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Імʼя може містити лише літери, - і '),
+  phone: yup.string().matches(/^[0-9+]*$/, 'Номер телефону може містити лише цифри та +'),
+});
 
 const ProfileForm = ({ initialValues }) => {
   const dispatch = useDispatch();
-  const [cloudinaryImage, setCloudinaryImage] = useState(
-    initialValues.photo || ''
-  );
+  const [cloudinaryImage, setCloudinaryImage] = useState(initialValues.photo || '');
 
   // const [load, setLoad] = useState(false);
 
@@ -33,6 +38,7 @@ const ProfileForm = ({ initialValues }) => {
         })
       );
     },
+    validationSchema: profileSchema,
   });
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const ProfileForm = ({ initialValues }) => {
       phone: initialValues.phone || '',
     });
     setCloudinaryImage(initialValues.photo || '');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues]);
 
   const handleImageUpload = async e => {
@@ -53,13 +59,10 @@ const ProfileForm = ({ initialValues }) => {
       formData.append('file', file);
       formData.append('upload_preset', 'ml_default');
 
-      const response = await fetch(
-        'https://api.cloudinary.com/v1_1/dsjxx9exc/image/upload',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
+      const response = await fetch('https://api.cloudinary.com/v1_1/dsjxx9exc/image/upload', {
+        method: 'POST',
+        body: formData,
+      });
       const data = await response.json();
 
       console.log(data);
@@ -99,9 +102,7 @@ const ProfileForm = ({ initialValues }) => {
           </label>
           <div>
             <p className="pPhoto">Фото профілю</p>
-            <p className="pPhoto2">
-              Виберіть фото не менше 200х200, формату jpg.
-            </p>
+            <p className="pPhoto2">Виберіть фото не менше 200х200, формату jpg.</p>
           </div>
         </div>
         <div className="profile-form">
