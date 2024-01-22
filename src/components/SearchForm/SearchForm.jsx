@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { Arrow, DropArrow } from './SearchFormSVG';
 import { useLocation } from 'react-router-dom';
+import DataAccessor from 'components/Class/DataAccessor';
 
 export const SearchForm = ({ initialValues, onSubmit }) => {
   const distatch = useDispatch();
@@ -12,12 +13,18 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   const formikRef = useRef(null);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
+  const dataAccessor = new DataAccessor();
 
-  const carMark = {
-    BMW: ['X5', 'M3', 'I3'],
-    Toyota: ['Camry', 'Corolla', 'Avalon'],
-    Mercedes: ['A-Class', 'B-Class', 'C-Class'],
-  };
+  const carMark = dataAccessor.getModels();
+  const category = dataAccessor.getCategories();
+  const region = dataAccessor.getRegion();
+  const bodyTypes = dataAccessor.getBodyTypes();
+  const engineType = dataAccessor.getEngineTypes();
+  const driveType = dataAccessor.getDriveTypes();
+  const transmissionType = dataAccessor.getTransmissionTypes();
+  const technicalState = dataAccessor.getTechnicalStates();
+  const color = dataAccessor.getColors();
+
 
   const handleBrandChange = event => {
     const brand = event.target.value;
@@ -68,9 +75,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="category">
                   <option value="">Категорія</option>
-                  <option value="Нові">Нові</option>
-                  <option value="Вживані">Вживані</option>
-                  <option value="Під пригон">Під пригон</option>
+                  {Object.entries(category).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -124,30 +133,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="region">
                   <option value="">Область</option>
-                  <option value="Kyivska">Київська</option>
-                  <option value="Vinnytsia">Вінницька</option>
-                  <option value="Volynsk">Волинська</option>
-                  <option value="Dniprovska">Дніпровська</option>
-                  <option value="Donetsk">Донецька</option>
-                  <option value="Zhytomyr">Житомирська</option>
-                  <option value="Zakarpattia">Закарпатська</option>
-                  <option value="Zaporizhzhia">Запорізька</option>
-                  <option value="Ivano-Frankivsk">Івано-франківська</option>
-                  <option value="Kirovohradsk">Кіровоградська</option>
-                  <option value="Luhansk">Луганська</option>
-                  <option value="Lviv">Львівська</option>
-                  <option value="Mykolayivska">Миколаївська</option>
-                  <option value="Odesa">Одеська</option>
-                  <option value="Poltava">Полтавська</option>
-                  <option value="Rivne">Рівенська</option>
-                  <option value="Sumy">Сумська</option>
-                  <option value="Ternopilsk">Тернопільська</option>
-                  <option value="Cherkasy">Черкаська</option>
-                  <option value="Chernivtsi">Чернівецька</option>
-                  <option value="Chernihivska">Чернігівська</option>
-                  <option value="Kharkivska">Харківська</option>
-                  <option value="Khersonsk">Херсонська</option>
-                  <option value="Khmelnytska">Хмельницька</option>
+                  {Object.keys(region).map(region => (
+                    <option key={region} value={region}>
+                      {region}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -178,10 +168,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="bodyType">
                   <option value="">Тип кузова</option>
-                  <option value="Universal">Універсал</option>
-                  <option value="Sedan">Седан</option>
-                  <option value="Cabriolet">Кабріолет</option>
-                  <option value="Compartment">Купе</option>
+                  {Object.entries(bodyTypes).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -192,11 +183,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="engineType">
                   <option value="">Двигун</option>
-                  <option value="Electro">Електрична силова установка</option>
-                  <option value="Hibrid">Гібрід</option>
-                  <option value="Gasoline">Бензиновий</option>
-                  <option value="Gaseous">Газовий</option>
-                  <option value="Diesel">Дизельний</option>
+                  {Object.entries(engineType).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -235,9 +226,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="driveType">
                   <option value="">Привід</option>
-                  <option value="Front">Передній</option>
-                  <option value="Posterior">Задній</option>
-                  <option value="Full">Повний</option>
+                  {Object.entries(driveType).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -248,10 +241,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="transmissionType">
                   <option value="">Коробка передач</option>
-                  <option value="Mechanical">Механічна</option>
-                  <option value="Automatic">Автоматична</option>
-                  <option value="Robotic">Роботизована</option>
-                  <option value="Variable">Варіативна</option>
+                  {Object.entries(transmissionType).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -262,10 +256,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong marg16" as="select" name="technicalState">
                   <option value="">Технічний стан</option>
-                  <option value="Completely">Повністю непошкоджене</option>
-                  <option value="Repaired">Професійно відремонтовані пошкодження</option>
-                  <option value="Unrepaired">Не відремонтовані пошкодження</option>
-                  <option value="Parts">Не на ходу/На запчастини</option>
+                  {Object.entries(technicalState).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">
@@ -276,22 +271,11 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field className="fieldLong" as="select" name="color">
                   <option value="">Колір</option>
-                  <option value="White">Білий</option>
-                  <option value="Black">Чорний</option>
-                  <option value="Gray">Сірий</option>
-                  <option value="Red">Червоний</option>
-                  <option value="Blue">Синій</option>
-                  <option value="Pink">Рожевий</option>
-                  <option value="Green">Зелений</option>
-                  <option value="Orange">Помаранчовий</option>
-                  <option value="Burgundy">Бордовий</option>
-                  <option value="Brown">Коричневий</option>
-                  <option value="Yellow">Жовтий</option>
-                  <option value="Violet">Фіолетовий</option>
-                  <option value="Gold">Золотий</option>
-                  <option value="Silver">Срібний</option>
-                  <option value="beige">бежевий</option>
-                  <option value="Multicolor">Мультиколір</option>
+                  {Object.entries(color).map(([key, value]) => (
+                    <option key={value} value={value}>
+                      {key}
+                    </option>
+                  ))}
                 </Field>
               </label>
               <div className="arrow">

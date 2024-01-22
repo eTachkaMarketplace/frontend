@@ -1,22 +1,47 @@
 import { Section } from './ExtendedAdvertisement.styled';
-import {
-  DateSVG,
-  HeartSVG,
-  InterSVG,
-  MapSVG,
-  MileSVG,
-  NavSVG,
-  PetrolSVG,
-} from './ExtendedAdvertisementSVG';
+import { BlueMap, DateSVG, HeartSVG, InterSVG, MapSVG, MileSVG, NavSVG, PetrolSVG } from './ExtendedAdvertisementSVG';
 import { useState } from 'react';
 
 export const ExtendedAdvertisement = ({ advertisement }) => {
   const [showPhone, setShowPhone] = useState(true);
   console.log(advertisement);
 
+  const monthsInUkrainian = [
+    'січня',
+    'лютого',
+    'березня',
+    'квітня',
+    'травня',
+    'червня',
+    'липня',
+    'серпня',
+    'вересня',
+    'жовтня',
+    'листопада',
+    'грудня',
+  ];
+  const dateString = advertisement.createdTimestamp;
+  const dateObject = new Date(dateString);
+  const day = dateObject.getDate();
+  const month = monthsInUkrainian[dateObject.getMonth()];
+  const year = dateObject.getFullYear();
+  const result = `${day} ${month} ${year}`;
+
   const changeShowPhone = () => {
     setShowPhone(!showPhone);
   };
+  function formatMileage(number) {
+    const isOverThousand = number >= 1000;
+
+    if (isOverThousand) {
+      const thousands = Math.floor(number / 1000);
+      const remainder = number % 1000;
+
+      return `${thousands} тис. км${remainder ? ` ${remainder}` : ''}`;
+    } else {
+      return `${number} км`;
+    }
+  }
 
   return (
     <>
@@ -31,9 +56,11 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
                 <HeartSVG />
               </button>
             </div>
-            <p className="brandTitle">{advertisement.car.price} $</p>
-            <p className="publickDate">Опубліковано</p>
-            <p className="region">{advertisement.region}</p>
+            <p className="brandTitle">{advertisement.car.price.toLocaleString('uk-UA')} $</p>
+            <p className="publickDate">Опубліковано {result}</p>
+            <p className="region">
+              <BlueMap /> {advertisement.region} область
+            </p>
             <div className="vinBox">
               <p className="vin">{advertisement.car.licensePlate}</p>
               <p className="vin">{advertisement.car.vin}</p>
@@ -50,7 +77,7 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
                 </p>
                 <p className="infoText">
                   <MileSVG />
-                  {advertisement.car.mileage}
+                  {advertisement.car.mileage.toLocaleString('uk-UA')}
                 </p>
               </div>
               <div className="textInfoBOxRight">
@@ -71,44 +98,26 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
             <div>
               <h2 className="seller">
                 Продавець:
-                <span className="sellName">{advertisement.contactName}</span>
+                <span className="sellName"> {advertisement.contactName}</span>
               </h2>
               {showPhone ? (
-                <button
-                  className="btnNumber"
-                  type="button"
-                  onClick={changeShowPhone}
-                >
+                <button className="btnNumber" type="button" onClick={changeShowPhone}>
                   Показати номер
                 </button>
               ) : (
-                <button
-                  className="number"
-                  type="button"
-                  onClick={changeShowPhone}
-                >
-                  {advertisement.contactPhone}
+                <button className="number" type="button" onClick={changeShowPhone}>
+                  +{advertisement.contactPhone}
                 </button>
               )}
             </div>
           </div>
-          <div>
-            <img
-              className="imgCar"
-              src={advertisement.previewImage}
-              alt="Car "
-            />
+          <div className="photoDiv">
+            <p className="id">№{advertisement.id}</p>
+            <img className="imgCar" src={advertisement.previewImage} alt="Car " />
             <div className="carousel">
               {advertisement.images
                 ? advertisement.images.map(image => {
-                    return (
-                      <img
-                        key={image}
-                        className="imgCarCarousel"
-                        src={image}
-                        alt="Car "
-                      />
-                    );
+                    return <img key={image} className="imgCarCarousel" src={image} alt="Car " />;
                   })
                 : null}
             </div>
@@ -122,16 +131,14 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
                 <div className="gapDIV">
                   <p className="leftText">Тип кузова</p>
                   <p className="leftText">Двигун</p>
-                  <p className="leftText">Об'єм двигуна</p>
+                  <p className="leftText">Об'єм двигуна (л)</p>
                   <p className="leftText"> Технічний стан</p>
                 </div>
                 <div className="gapDIV">
                   <p className="rightText">{advertisement.car.bodyType}</p>
                   <p className="rightText">{advertisement.car.engineType}</p>
                   <p className="rightText">{advertisement.car.engineVolume} л</p>
-                  <p className="rightText">
-                    {advertisement.car.technicalState}
-                  </p>
+                  <p className="rightText">{advertisement.car.technicalState}</p>
                 </div>
               </div>
               <div className="rightBox">
@@ -142,10 +149,8 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
                   <p className="leftText">Колір</p>
                 </div>
                 <div className="gapDIV">
-                  <p className="rightText">{advertisement.car.mileage}</p>
-                  <p className="rightText">
-                    {advertisement.car.transmissionType}
-                  </p>
+                  <p className="rightText">{formatMileage(advertisement.car.mileage)}</p>
+                  <p className="rightText">{advertisement.car.transmissionType}</p>
                   <p className="rightText">{advertisement.car.driveType}</p>
                   <p className="rightText">{advertisement.car.color}</p>
                 </div>
@@ -164,19 +169,15 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
         <div className="numberDiv">
           <h3 className="sellerBottom">
             Зв'язатись з продавцем:
-            <span className="sellName">{advertisement.contactName}</span>
+            <span className="sellName"> {advertisement.contactName}</span>
           </h3>
           {showPhone ? (
-            <button
-              className="btnNumber"
-              type="button"
-              onClick={changeShowPhone}
-            >
+            <button className="btnNumber" type="button" onClick={changeShowPhone}>
               Показати номер
             </button>
           ) : (
             <button className="number" type="button" onClick={changeShowPhone}>
-              {advertisement.contactPhone}
+              +{advertisement.contactPhone}
             </button>
           )}
         </div>

@@ -78,7 +78,7 @@ try {
                     className={refError ? 'is-invalid' : ''}
                     type="email"
                     name="email"
-                    placeholder="Електрону пошту"
+                    placeholder="Електронна пошта"
                     value={values.email}
                   />
 
@@ -112,9 +112,7 @@ try {
                 </PasswordInput>
                 <ErrorMessage name="password" component="div" />
               </Label>
-              {refError ? (
-                <p className="errorMes">Недійсна пошта або пароль</p>
-              ) : null}
+              {refError ? <p className="errorMes">Недійсна пошта або пароль</p> : null}
               <NavLink className="remPassBtn" to="/forgot-password">
                 Забули пароль?
               </NavLink>

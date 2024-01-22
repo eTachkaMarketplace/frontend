@@ -29,6 +29,14 @@ class DataAccessor {
     return this.regionsAndCities[region] || [];
   }
 
+  getModels() {
+    return this.brandsAndModels ;
+  }
+
+  getRegion() {
+    return this.regionsAndCities ;
+  }
+
   getBodyTypes() {
     return this.bodyType || [];
   }
