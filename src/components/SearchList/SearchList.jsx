@@ -4,15 +4,30 @@ import { CarSVG, DateSVG, Favorit, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG 
 import { selectAdverstisements } from 'redux/advertisment/selectors';
 // import { Arrow } from './SearchListSVG';
 
-export const SearchList = () => {
+export const SearchList = ({ setSort }) => {
   const cars = useSelector(selectAdverstisements);
+
+
+const handleSelectChange = event => {
+  const selectedValue = event.target.value;
+
+  if ( selectedValue === 'foData') {
+    setSort('new');
+  } else if (selectedValue === 'cheap') {
+    setSort('cheap');
+  } else if (selectedValue === 'expensive') {
+    setSort('expensive');
+  } 
+};
+
+
 
   return (
     <SearchListDiv>
       <div>
         <div className="titleDiv">
           <h2 className="title">Результати пошуку (2):</h2>
-          <select className="select" name="select">
+          <select className="select" name="select" onChange={handleSelectChange} >
             <option value="foData">За датою додавання</option>
             <option value="cheap">Від дешевших</option>
             <option value="expensive">Від дорожчих</option>
@@ -22,7 +37,7 @@ export const SearchList = () => {
           {cars ? (
             <ul>
               {cars.map(car => {
-                const desc = car.car
+                const desc = car.car;
                 return (
                   <li key={car.id} className="carItem">
                     <div>
@@ -36,8 +51,8 @@ export const SearchList = () => {
                         <h2 className="modelInfo">{desc.price}$</h2>
                       </div>
                       <div className="numberDiv">
-                        <h3 className="number">{desc.licensePlate}</h3>
-                        <h3 className="number">{desc.vin}</h3>
+                        {desc.licensePlate &&<h3 className="number">{desc.licensePlate}</h3>}
+                        {desc.vin && <h3 className="number">{desc.vin}</h3>}
                       </div>
                       <div className="listDIV">
                         <ul className="list">

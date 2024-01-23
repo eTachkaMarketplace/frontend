@@ -4,7 +4,7 @@ import { instance } from 'redux/auth/operations';
 
 export const getAdverstisements = createAsyncThunk(
   'adverstisement/getAdverstisements',
-  async ({ page = 0, size = 10, queryParams = '', sort = 'unsorted' }, { rejectWithValue }) => {
+  async ({ page = 0, size = 10, queryParams = '', sort = 'new' }, { rejectWithValue }) => {
     try {
       const response = await instance.get(`advertisement/search?page=${page}&size=${size}&${queryParams}&sort=${sort}`);
       console.log('getAdverstisements is successful');

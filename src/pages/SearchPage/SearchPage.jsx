@@ -11,6 +11,7 @@ import ConfirmModal from 'modal/confirmModal/confirmModal';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
+  const [sort, setSort ] = useState("new");
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -41,8 +42,8 @@ const SearchPage = () => {
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join('&');
 
-    dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sortBy: 'unsorted' }));
-  }, [dispatch, valuesGen]);
+    dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
+  }, [dispatch, sort, valuesGen]);
 
 
 
@@ -52,7 +53,7 @@ const SearchPage = () => {
         <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
         <div className="searchList">
           <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
-          <SearchList />
+          <SearchList setSort={setSort} />
         </div>
       </Wraper>
       <Modal >

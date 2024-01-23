@@ -4,6 +4,7 @@ export const Div = styled.div`
 display: flex;
 flex-wrap: wrap;
 gap: 8px;
+width: 854px;
 `
 
 export const Button = styled.button`
