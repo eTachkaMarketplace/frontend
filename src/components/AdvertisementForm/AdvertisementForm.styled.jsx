@@ -305,6 +305,7 @@ label{
     line-height: normal;
     letter-spacing: -0.4px;
   }
+
   .submitButton {
     color: #fff;
     text-align: center;
@@ -325,6 +326,13 @@ label{
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
+
+  .submitButton:disabled {
+    color: #666666; 
+    cursor: not-allowed;
+    background: #cccccc; 
+}
+
 .chekAnnouncementButton{
   color: #0D0C0C;
     text-align: center;
@@ -352,6 +360,7 @@ label{
  display: flex;
  align-items: center;
  flex-direction: column;
+ margin-top: 40px;
  gap: 20px;
 }
 `;

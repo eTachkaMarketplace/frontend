@@ -58,9 +58,10 @@ export const AdvertisementForm = ({ initialValues }) => {
   const [availableModels, setAvailableModels] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
   // const [selectedCity, setSelectedCity] = useState('');
-  const token = useSelector(selectToken);
   const [formImages, setFormImages] = useState([]);
+  const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
+  const token = useSelector(selectToken);
 
   const handleImagesChange = newImages => {
     setFormImages(newImages);
@@ -170,7 +171,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                 Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
                 кількість фотографій - 6.
               </Paragraph>
-              <ImageUploadComponent onImagesChange={handleImagesChange} />
+              {/* <ImageUploadComponent onImagesChange={handleImagesChange} /> */}
+              <ImageUploadComponent onImagesChange={(newImages) => {
+                  handleImagesChange(newImages);
+                  setPhotosSelected(newImages.length > 0);
+                }} />
             </SectionContainer>
 
             <SectionContainer>
@@ -592,10 +597,10 @@ export const AdvertisementForm = ({ initialValues }) => {
               </label>
             </SectionContainer>
             <div className="buttonContainer">
-              <button className="chekAnnouncementButton" type="button">
+              {/* <button className="chekAnnouncementButton" type="button">
                 Переглянути оголошення
-              </button>
-              <button className="submitButton" type="submit">
+              </button> */}
+              <button className="submitButton" type="submit" disabled={!isValid || !dirty || !photosSelected}>
                 Опублікувати оголошення
               </button>
               {/* <NavLink to="/advertisementDone">confirm</NavLink> */}
