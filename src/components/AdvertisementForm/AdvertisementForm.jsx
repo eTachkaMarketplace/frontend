@@ -176,6 +176,11 @@ export const AdvertisementForm = ({ initialValues }) => {
                   handleImagesChange(newImages);
                   setPhotosSelected(newImages.length > 0);
                 }} />
+                {formImages.length > 0 && formImages.length < 6 && (
+                  <div className="error-message">
+                    Мінімальна кількість фото - 6
+                  </div>
+                )}
             </SectionContainer>
 
             <SectionContainer>
@@ -600,7 +605,7 @@ export const AdvertisementForm = ({ initialValues }) => {
               {/* <button className="chekAnnouncementButton" type="button">
                 Переглянути оголошення
               </button> */}
-              <button className="submitButton" type="submit" disabled={!isValid || !dirty || !photosSelected}>
+              <button className="submitButton" type="submit" disabled={!isValid || !dirty || !photosSelected || formImages.length < 6}>
                 Опублікувати оголошення
               </button>
               {/* <NavLink to="/advertisementDone">confirm</NavLink> */}

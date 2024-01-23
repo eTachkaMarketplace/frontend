@@ -356,6 +356,17 @@ label{
     background: transparent;
 }
 
+.error-message{
+  color: #fa6666;
+  margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+}
+
 .buttonContainer{
  display: flex;
  align-items: center;
@@ -387,3 +398,4 @@ export const ErrorMessage = styled(FormikErrorMessage)`
   font-weight: 400;
   line-height: normal;
 `;
+
