@@ -19,16 +19,6 @@ const ImageUploadComponent = ({ onImagesChange }) => {
 
     onImagesChange([...images, ...selectedImages]);
   };
-  // const handleImageChange = (e) => {
-  //   const selectedImages = Array.from(e.target.files);
-
-  //   if (selectedImages.length + images.length >= 6) {
-  //     setImages((prevImages) => [...prevImages, ...selectedImages]);
-  //     onImagesChange([...images, ...selectedImages]);
-  //   } else {
-      
-  //   }
-  // };
 
   const handleImageRemove = index => {
     setImages(prevImages => prevImages.filter((_, i) => i !== index));
