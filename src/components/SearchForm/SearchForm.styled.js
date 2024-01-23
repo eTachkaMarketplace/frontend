@@ -9,7 +9,7 @@ export const Search = styled.div`
   flex-shrink: 0;
 
   border-radius: 8px;
-  background: #F1F5FF;
+  background: #f1f5ff;
 
   select {
     appearance: none;
@@ -99,7 +99,7 @@ export const Search = styled.div`
     background: #fff;
   }
   .fieldTextShort {
-    width: 149px;
+    width: 183px;
     height: 48px;
     padding: 0;
     border-radius: 8px;
@@ -109,8 +109,17 @@ export const Search = styled.div`
     padding-inline: 0;
     padding: 4px 16px;
   }
+  .greyOption {
+    color: var(--Text-grey-2, #b9b9b9);
+    /* Subtitle 3 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
   .fieldTextLong {
-    width: 346px;
+    width: 380px;
     height: 48px;
     padding: 0;
     border-radius: 8px;

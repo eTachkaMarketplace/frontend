@@ -25,7 +25,6 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   const technicalState = dataAccessor.getTechnicalStates();
   const color = dataAccessor.getColors();
 
-
   const handleBrandChange = event => {
     const brand = event.target.value;
     setSelectedBrand(brand);
@@ -45,15 +44,20 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
     if (formikRef.current) {
       formikRef.current.resetForm({ values: initialValues });
     }
+    setSelectedBrand(initialValues.brand);
+    setSelectedModel(initialValues.model);
   }, [initialValues]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const favouritesParam = searchParams.get('category');
     console.log(favouritesParam);
-    if (favouritesParam) {
+    if (favouritesParam !== null) {
       formikRef.current.setFieldValue('category', favouritesParam);
+      onSubmit({ ...initialValues, category: favouritesParam });
     }
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   const clearForm = () => {
@@ -73,7 +77,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <h5 className="underTitle">Основні характеристики</h5>
             <div className="arrowDiv">
               <label>
-                <Field className="fieldLong marg16" as="select" name="category">
+                <Field className={`fieldLong marg16`} as="select" name="category">
                   <option value="">Категорія</option>
                   {Object.entries(category).map(([key, value]) => (
                     <option key={value} value={value}>
