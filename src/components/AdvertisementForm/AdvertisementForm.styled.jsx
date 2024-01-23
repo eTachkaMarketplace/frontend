@@ -204,6 +204,15 @@ export const Form = styled(FormikForm)`
     background: #fff;
   }
 
+label{
+  width: min-content;
+}
+
+.description{
+  width: auto;
+
+}
+
   .fieldInput{
     display: flex;
 

@@ -24,7 +24,7 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
-    licensePlate: Yup.string().max(10, 'Номер до 10 символів'),
+    licensePlate: Yup.string().max(10, 'Номер до 10 символів').notRequired(),
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
     mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
@@ -37,7 +37,9 @@ const userSchema = Yup.object().shape({
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().max(14, 'Номер до 14 символів'),
+    vin: Yup.string().max(14, 'Номер до 14 символів').notRequired(),
+   
+    
 
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
@@ -249,7 +251,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <div className="containerLong">Номерний знак</div>
                 <div className="flex">
                 <Field
-                  className={`${touched.car && touched.car.licensePlate  && !isValid ? 'is-invalid' : ''}  fieldTextLong `}
+                  className={`${values.car.licensePlate.length > 10 ? 'is-invalid' : ''} fieldTextLong`}
                   type="text"
                   name="car.licensePlate"
                   placeholder="АК 9245 АК"
@@ -532,7 +534,7 @@ export const AdvertisementForm = ({ initialValues }) => {
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                 <Field
-                className={`${touched.car && touched.car.vin  && !isValid ? 'is-invalid' : ''}  fieldTextLong `} 
+                className={`${values.car.vin.length > 14 ? 'is-invalid' : ''} fieldTextLong`}
                 type="text" 
                 name="car.vin" 
                 placeholder="VF7LCRFJF74251989">
@@ -548,7 +550,7 @@ export const AdvertisementForm = ({ initialValues }) => {
             паратметри (наприклад: круіз контроль, парктронік і т.д.)
           </Paragraph>
 
-          <label className="marg16">
+          <label className="marg16 description">
             <Field
               // className={`${touched.description && !values.description && !isValid ? 'is-invalid' : ''}  fieldInput `} 
               className={`fieldInput `} 
