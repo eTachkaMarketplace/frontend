@@ -2,7 +2,7 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import SearchList from 'components/SearchList/SearchList';
 import { Wraper } from './SearchPage.styled';
 import SearchListTab from 'components/SearchLIstTAB/SearchListTab';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Modal from 'modal/modal';
@@ -31,20 +31,25 @@ const SearchPage = () => {
     technicalState: '',
     color: '',
   });
+  const firstRender = useRef(true);
 
   const handleSearch = values => {
     setValuesGen(values);
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    console.log('useEffect is called');
+
+    if (!firstRender.current) {
       const queryParams = Object.entries(valuesGen)
         .filter(([key, value]) => value !== '')
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join('&');
 
       dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
-    }, 1000)
+    } else {
+      firstRender.current = false; 
+    }
   }, [dispatch, sort, valuesGen]);
 
 
