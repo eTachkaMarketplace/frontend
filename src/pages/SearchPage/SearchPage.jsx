@@ -37,6 +37,7 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
+     console.log('useEffect is called');
     const queryParams = Object.entries(valuesGen)
       .filter(([key, value]) => value !== '')
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
