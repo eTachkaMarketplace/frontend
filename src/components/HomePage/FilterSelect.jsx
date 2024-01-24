@@ -1,14 +1,20 @@
-export default function FilterSelect({ name, options }) {
+export default function FilterSelect({ name, nameUser, options, onSelectChange }) {
+  const handleSelectChange = event => {
+    const selectedValue = event.target.value;
+    onSelectChange(name, selectedValue);
+  };
   return (
     <div className={'relative'}>
       <select
+        name={name}
+        onChange={handleSelectChange}
         defaultValue=""
         className="text-gray-300 block bg-white bg-opacity-15 appearance-none p-4 focus:outline-none
         hover:bg-opacity-20 cursor-pointer w-full"
         style={{ color: '#B9B9B9' }}
       >
         <option disabled value="">
-          {name}
+          {nameUser}
         </option>
         {options.map((option, index) => (
           <option key={index} value={option}>

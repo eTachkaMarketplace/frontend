@@ -51,12 +51,36 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const favouritesParam = searchParams.get('category');
-    console.log(favouritesParam);
+    const brandParam = searchParams.get('brand');
+    const modelParam = searchParams.get('model');
+    const regionParam = searchParams.get('region');
+    const yearMinParam = searchParams.get('yearMin');
+    const yearMaxParam = searchParams.get('yearMax');
+    const priceMinParam = searchParams.get('priceMin');
+    const priceMaxParam = searchParams.get('priceMax');
     if (favouritesParam !== null) {
       formikRef.current.setFieldValue('category', favouritesParam);
       onSubmit({ ...initialValues, category: favouritesParam });
     }
-    
+    if (brandParam ) {
+      formikRef.current.setFieldValue('brand', brandParam);
+      formikRef.current.setFieldValue('model', modelParam);
+      formikRef.current.setFieldValue('region', regionParam);
+      formikRef.current.setFieldValue('yearMin', yearMinParam);
+      formikRef.current.setFieldValue('yearMax', yearMaxParam);
+      formikRef.current.setFieldValue('priceMin', priceMinParam);
+      formikRef.current.setFieldValue('priceMax', priceMaxParam);
+      onSubmit({
+        ...initialValues,
+        brand: brandParam,
+        model: modelParam,
+        region: regionParam,
+        yearMin: yearMinParam,
+        yearMax: yearMaxParam,
+        priceMin: priceMinParam,
+        priceMax: priceMaxParam
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
