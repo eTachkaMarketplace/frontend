@@ -174,19 +174,19 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldTextShort" type="text" name="yearMin" placeholder="Введіть рік від" />
+                <Field className="fieldTextShort" type="number" name="yearMin" placeholder="Введіть рік від" />
               </label>
               <label>
-                <Field className="fieldTextShort" type="text" name="yearMax" placeholder="Введіть рік до" />
+                <Field className="fieldTextShort" type="number" name="yearMax" placeholder="Введіть рік до" />
               </label>
             </div>
             <div className="shortDiv">
               <label>
-                <Field className="fieldTextShort" type="text" name="priceMin" placeholder="Введіть ціну від $" />
+                <Field className="fieldTextShort" type="number" name="priceMin" placeholder="Введіть ціну від $" />
               </label>
 
               <label>
-                <Field className="fieldTextShort" type="text" name="priceMax" placeholder="Введіть ціну до $" />
+                <Field className="fieldTextShort" type="number" name="priceMax" placeholder="Введіть ціну до $" />
               </label>
             </div>
           </div>
@@ -238,16 +238,26 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div> */}
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldTextShort" type="text" name="engineVolumeMin" placeholder="Об'єм двигуна від" />
+                <Field
+                  className="fieldTextShort"
+                  type="number"
+                  name="engineVolumeMin"
+                  placeholder="Об'єм двигуна від"
+                />
               </label>
 
               <label>
-                <Field className="fieldTextShort" type="text" name="engineVolumeMax" placeholder="Об'єм двигуна до" />
+                <Field className="fieldTextShort" type="number" name="engineVolumeMax" placeholder="Об'єм двигуна до" />
               </label>
             </div>
             <div>
               <label>
-                <Field className="fieldTextLong marg16" type="text" name="mileageMax" placeholder="Введіть пробіг до" />
+                <Field
+                  className="fieldTextLong marg16"
+                  type="number"
+                  name="mileageMax"
+                  placeholder="Введіть пробіг до"
+                />
               </label>
             </div>
             <div className="arrowDiv">
