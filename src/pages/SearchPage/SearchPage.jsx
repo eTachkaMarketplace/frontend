@@ -37,13 +37,14 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-     console.log('useEffect is called');
-    const queryParams = Object.entries(valuesGen)
-      .filter(([key, value]) => value !== '')
-      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-      .join('&');
+    setTimeout(() => {
+      const queryParams = Object.entries(valuesGen)
+        .filter(([key, value]) => value !== '')
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&');
 
-    dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
+      dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
+    }, 1000)
   }, [dispatch, sort, valuesGen]);
 
 
