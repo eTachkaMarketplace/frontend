@@ -9,7 +9,6 @@ import DataAccessor from 'components/Class/DataAccessor';
 export default function FindCarForm() {
   const dataAccessor = new DataAccessor();
   const carMark = dataAccessor.getModels();
-
   const [valueSea, setValueSea] = useState({
     brand: '',
     model: '',
@@ -20,8 +19,6 @@ export default function FindCarForm() {
     priceMax: '',
   });
   const [availableModels, setAvailableModels] = useState([]);
-
-  
 
 const handleSelectChange = (name, selectedValue) => {
   if (name === 'brand') {

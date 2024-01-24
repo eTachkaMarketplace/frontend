@@ -19,10 +19,7 @@ export default function FilterInput({ name, nameUser, onSelectChange }) {
       className="text-gray-300 block bg-white bg-opacity-15 p-4 focus:outline-none focus:border-indigo-400
       hover:bg-opacity-20 cursor-text w-full rounded"
       style={{
-        color: '#B9B9B9',
-        WebkitAppearance: 'none', 
-        margin: 0,
-        MozAppearance: 'textfield', }}
+        color: '#B9B9B9'}}
       placeholder={nameUser}
       max={10000000}
     />
