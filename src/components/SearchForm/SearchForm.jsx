@@ -62,7 +62,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       formikRef.current.setFieldValue('category', favouritesParam);
       onSubmit({ ...initialValues, category: favouritesParam });
     }
-    if (brandParam ) {
+    if (brandParam || modelParam || regionParam || yearMaxParam || yearMinParam || priceMaxParam || priceMinParam || priceMaxParam) {
       formikRef.current.setFieldValue('brand', brandParam);
       formikRef.current.setFieldValue('model', modelParam);
       formikRef.current.setFieldValue('region', regionParam);
@@ -78,7 +78,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
         yearMin: yearMinParam,
         yearMax: yearMaxParam,
         priceMin: priceMinParam,
-        priceMax: priceMaxParam
+        priceMax: priceMaxParam,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
