@@ -228,6 +228,7 @@ export const Section = styled.div`
     margin-top: 55px;
     padding-left: 32px;
     border-left: 1px solid #b9b9b9;
+    padding-right: 32px;
   }
   .leftText {
     color: var(--Text-black-2, #4b4b4b);
