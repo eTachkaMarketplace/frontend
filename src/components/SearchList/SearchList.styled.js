@@ -52,7 +52,7 @@ export const SearchListDiv = styled.div`
     width: 844px;
     height: 240px;
     border-radius: 8px;
-    background: #F1F5FF;
+    background: #f1f5ff;
     position: relative;
   }
   .img {
@@ -90,7 +90,6 @@ export const SearchListDiv = styled.div`
     padding: 2px 4px;
     border: 1px solid #ababab;
     border-radius: 4px;
-
   }
   .listDIV {
     display: flex;
@@ -102,7 +101,6 @@ export const SearchListDiv = styled.div`
     display: flex;
     flex-direction: column;
     gap: 11px;
-    
   }
 
   .itemLI {
@@ -111,7 +109,7 @@ export const SearchListDiv = styled.div`
     gap: 10px;
     align-self: stretch;
     font-family: 'Roboto', sans-serif;
-    color: #4B4B4B;
+    color: #4b4b4b;
     font-size: 14px;
   }
   .favoriteBTN {
@@ -128,6 +126,15 @@ export const SearchListDiv = styled.div`
     font-size: 26px;
     font-style: normal;
     font-weight: 600;
+    line-height: normal;
+  }
+  .enotherONe {
+    color: var(--Text-black-2, #4b4b4b);
+    /* Subtitle 1.1 */
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
     line-height: normal;
   }
 `;

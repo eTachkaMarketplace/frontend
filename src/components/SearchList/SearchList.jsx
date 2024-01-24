@@ -34,7 +34,7 @@ const handleSelectChange = event => {
           </select>
         </div>
         <div className="carsMainList">
-          {cars ? (
+          {cars && cars.length > 0  ? (
             <ul>
               {cars.map(car => {
                 const desc = car.car;
@@ -93,7 +93,7 @@ const handleSelectChange = event => {
               })}
             </ul>
           ) : (
-            <h2>Виберіть другі фільтри</h2>
+            <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2>
           )}
         </div>
       </div>
