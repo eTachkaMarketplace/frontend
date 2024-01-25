@@ -1,9 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Section } from './ExtendedAdvertisement.styled';
 import { BlueMap, DateSVG, HeartSVG, InterSVG, MapSVG, MileSVG, NavSVG, PetrolSVG } from './ExtendedAdvertisementSVG';
 import { useState } from 'react';
+import { setIsOpen } from 'redux/modal/modalSlice';
 
-export const ExtendedAdvertisement = ({ advertisement }) => {
+export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
   const [showPhone, setShowPhone] = useState(true);
+  const dispatch = useDispatch();
   console.log(advertisement);
 
   const monthsInUkrainian = [
@@ -41,6 +44,11 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
     } else {
       return `${number} км`;
     }
+  }
+
+  const setImageModal = (image) => {
+    dispatch(setIsOpen(true));
+    setImage(image)
   }
 
   return (
@@ -117,7 +125,15 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
             <div className="carousel">
               {advertisement.images
                 ? advertisement.images.map(image => {
-                    return <img key={image} className="imgCarCarousel" src={image} alt="Car " />;
+                    return (
+                      <img
+                        key={image}
+                        onClick={()=>{setImageModal(image)}}
+                        className="imgCarCarousel"
+                        src={image}
+                        alt="Car "
+                      />
+                    );
                   })
                 : null}
             </div>
