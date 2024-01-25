@@ -204,6 +204,15 @@ export const Form = styled(FormikForm)`
     background: #fff;
   }
 
+label{
+  width: min-content;
+}
+
+.description{
+  width: auto;
+
+}
+
   .fieldInput{
     display: flex;
 
@@ -296,6 +305,7 @@ export const Form = styled(FormikForm)`
     line-height: normal;
     letter-spacing: -0.4px;
   }
+
   .submitButton {
     color: #fff;
     text-align: center;
@@ -316,6 +326,13 @@ export const Form = styled(FormikForm)`
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
+
+  .submitButton:disabled {
+    color: #666666; 
+    cursor: not-allowed;
+    background: #cccccc; 
+}
+
 .chekAnnouncementButton{
   color: #0D0C0C;
     text-align: center;
@@ -339,10 +356,22 @@ export const Form = styled(FormikForm)`
     background: transparent;
 }
 
+.error-message{
+  color: #fa6666;
+  margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+}
+
 .buttonContainer{
  display: flex;
  align-items: center;
  flex-direction: column;
+ margin-top: 40px;
  gap: 20px;
 }
 `;
@@ -369,3 +398,4 @@ export const ErrorMessage = styled(FormikErrorMessage)`
   font-weight: 400;
   line-height: normal;
 `;
+
