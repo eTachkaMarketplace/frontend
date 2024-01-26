@@ -343,18 +343,28 @@ export const Section = styled.div`
     font-weight: 500;
     line-height: normal;
   }
-  .splide{
+  .splide {
     overflow: hidden;
     width: 760px;
   }
 
-  
   .splide__arrow--next {
     margin-right: 10px;
+
+    background: linear-gradient(250deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
+  }
+  .splide__arrow--prev {
+    margin-right: 10px;
+
+    background: linear-gradient(90deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
 
   .splide__arrow svg {
-    fill: #000000;
+    fill: #ffffff;
+    z-index: 2;
   }
 
+  .splide__arrow {
+    opacity: 1;
+  }
 `;
