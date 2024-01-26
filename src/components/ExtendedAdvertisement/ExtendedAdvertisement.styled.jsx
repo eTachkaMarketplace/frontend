@@ -144,7 +144,7 @@ export const Section = styled.div`
     }
   }
   .imgCar {
-    width: 713px;
+    width: 740px;
     height: 486px;
     flex-shrink: 0;
     margin-top: 52px;
@@ -161,6 +161,22 @@ export const Section = styled.div`
     flex-direction: column;
     position: relative;
   }
+  .loopDiv {
+    position: relative;
+  }
+  .loop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 35px;
+    bottom: 15px;
+    background-color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
   .id {
     position: absolute;
     right: 32px;
@@ -173,14 +189,12 @@ export const Section = styled.div`
     font-weight: 400;
     line-height: normal;
   }
-  .carousel {
+  .splide__list {
     display: flex;
-    gap: 16px;
   }
   .imgCarCarousel {
-    width: 140px;
+    width: 130px;
     height: 100px;
-    flex-shrink: 0;
     margin-top: 16px;
     object-fit: cover;
 
@@ -329,4 +343,18 @@ export const Section = styled.div`
     font-weight: 500;
     line-height: normal;
   }
+  .splide{
+    overflow: hidden;
+    width: 760px;
+  }
+
+  
+  .splide__arrow--next {
+    margin-right: 10px;
+  }
+
+  .splide__arrow svg {
+    fill: #000000;
+  }
+
 `;
