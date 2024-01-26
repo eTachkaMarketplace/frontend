@@ -3,7 +3,7 @@ import { ConfDiv } from './confirmModal.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { XBTN } from './confirmModalSVG';
 
-const СonfirmModalAdvertisement = ({ clearForm }) => {
+const СonfirmModalAdvertisement = ({ resetForm }) => {
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -11,7 +11,7 @@ const СonfirmModalAdvertisement = ({ clearForm }) => {
   };
 
   const confirmModalAdvertisement = () => {
-    clearForm();
+    resetForm();
     dispatch(setIsOpen(false));
   };
 
@@ -24,7 +24,7 @@ const СonfirmModalAdvertisement = ({ clearForm }) => {
         Ви впевнені що хочете <span className="cringe">очистити</span> фільтри?
       </h4>
       <p className="content">
-      Натискаючи на кнопку “підтвердити” форма заповнення <br/>оголошення повністю очиститься
+      Натискаючи на кнопку “підтвердити111” форма заповнення <br/>оголошення повністю очиститься
       </p>
       <div className="buttonBox">
         <button type="button" onClick={closeModal} className="cansel">
