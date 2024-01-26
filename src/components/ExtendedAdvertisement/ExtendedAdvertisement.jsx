@@ -15,8 +15,10 @@ import { useEffect, useState } from 'react';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/dist/css/splide.min.css';
+import { useNavigate } from 'react-router-dom';
 
 export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
+  const navigate = useNavigate();
   const [showPhone, setShowPhone] = useState(true);
   const dispatch = useDispatch();
   console.log(advertisement);
@@ -75,6 +77,11 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
       pagination: false,
     }).mount();
   }, [advertisement]);
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+
+  }, [navigate]);
 
   return (
     <>
