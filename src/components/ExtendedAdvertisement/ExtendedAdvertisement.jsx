@@ -1,9 +1,24 @@
+import { useDispatch } from 'react-redux';
 import { Section } from './ExtendedAdvertisement.styled';
-import { BlueMap, DateSVG, HeartSVG, InterSVG, MapSVG, MileSVG, NavSVG, PetrolSVG } from './ExtendedAdvertisementSVG';
-import { useState } from 'react';
+import {
+  BlueMap,
+  DateSVG,
+  HeartSVG,
+  InterSVG,
+  MapSVG,
+  MileSVG,
+  NavSVG,
+  PetrolSVG,
+  SearchLoop,
+} from './ExtendedAdvertisementSVG';
+import { useEffect, useState } from 'react';
+import { setIsOpen } from 'redux/modal/modalSlice';
+import Splide from '@splidejs/splide';
+import '@splidejs/splide/dist/css/splide.min.css';
 
-export const ExtendedAdvertisement = ({ advertisement }) => {
+export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
   const [showPhone, setShowPhone] = useState(true);
+  const dispatch = useDispatch();
   console.log(advertisement);
 
   const monthsInUkrainian = [
@@ -30,18 +45,36 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
   const changeShowPhone = () => {
     setShowPhone(!showPhone);
   };
-  function formatMileage(number) {
-    const isOverThousand = number >= 1000;
+ function formatMileage(number) {
+   const isOverThousand = number >= 1000;
 
-    if (isOverThousand) {
-      const thousands = Math.floor(number / 1000);
-      const remainder = number % 1000;
+   if (isOverThousand) {
+     const thousands = Math.floor(number / 1000);
+     const remainder = number % 1000;
 
-      return `${thousands} тис. км${remainder ? ` ${remainder}` : ''}`;
-    } else {
-      return `${number} км`;
-    }
-  }
+     // Форматуємо залишок, якщо він є, і додаємо його до результату
+     const formattedRemainder = remainder ? ` ${remainder} км` : '';
+
+     return `${thousands} тис.${formattedRemainder}`;
+   } else {
+     return `${number} км`;
+   }
+ }
+
+  const setImageModal = image => {
+    dispatch(setIsOpen(true));
+    setImage(image);
+  };
+
+  useEffect(() => {
+    // Ініціалізація Splide.js
+    new Splide('.splide', {
+      type: 'slide',
+      perPage: 5,
+      perMove: 1,
+      pagination: false,
+    }).mount();
+  }, [advertisement]);
 
   return (
     <>
@@ -113,13 +146,47 @@ export const ExtendedAdvertisement = ({ advertisement }) => {
           </div>
           <div className="photoDiv">
             <p className="id">№{advertisement.id}</p>
-            <img className="imgCar" src={advertisement.previewImage} alt="Car " />
-            <div className="carousel">
-              {advertisement.images
-                ? advertisement.images.map(image => {
-                    return <img key={image} className="imgCarCarousel" src={image} alt="Car " />;
-                  })
-                : null}
+            <div className="loopDiv">
+              <img
+                className="imgCar"
+                onClick={() => {
+                  setImageModal(advertisement.previewImage);
+                }}
+                src={advertisement.previewImage}
+                alt="Car "
+              />
+              <button
+                onClick={() => {
+                  setImageModal(advertisement.previewImage);
+                }}
+                type="button"
+                className="loop"
+              >
+                <SearchLoop />
+              </button>
+            </div>
+            <div className="splide">
+              <div className="splide__track">
+                <ul className="splide__list">
+                  {advertisement.images
+                    ? advertisement.images.map(image => {
+                        return (
+                          <li className="splide__slide" key={image}>
+                            <img
+                              key={image}
+                              onClick={() => {
+                                setImageModal(image);
+                              }}
+                              className="imgCarCarousel"
+                              src={image}
+                              alt="Car "
+                            />
+                          </li>
+                        );
+                      })
+                    : null}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

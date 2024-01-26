@@ -6,7 +6,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(18, 20, 23, 0.5);
+  background: rgba(0, 0, 0, 0.90);
   opacity: 1;
   z-index: 1000;
   overflow: auto;
