@@ -55,9 +55,9 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
      const remainder = number % 1000;
 
      // Форматуємо залишок, якщо він є, і додаємо його до результату
-     const formattedRemainder = remainder ? ` ${remainder} км` : '';
+     const formattedRemainder = remainder ? ` ${remainder} ` : '';
 
-     return `${thousands} тис.${formattedRemainder}`;
+     return `${thousands} тис.${formattedRemainder} км`;
    } else {
      return `${number} км`;
    }
