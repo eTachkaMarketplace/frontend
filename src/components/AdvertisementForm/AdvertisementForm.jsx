@@ -3,6 +3,8 @@ import { DropArrow } from 'components/SearchForm/SearchFormSVG';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Modal from 'modal/modal';
+import ConfirmModalAdvertisement from "../../modal/confirmModal/confirmModalAdvertisement"
 import DataAccessor from '../Class/DataAccessor';
 import ImageUploadComponent from './imgUpload';
 import { Paragraph, RequiredMarker } from 'pages/AdvertisementPage/AdvertisementPage.styled';
@@ -16,11 +18,12 @@ import {
   StyledCreateSVG,
   StyledPostSVG,
 } from './AdvertisementForm.styled';
-import { useEffect, useRef, useState } from 'react';
+import {  useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
+
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
@@ -50,7 +53,7 @@ const userSchema = Yup.object().shape({
   
 });
 
-export const AdvertisementForm = ({ initialValues }) => {
+export const AdvertisementForm = () => {
   const dispatch = useDispatch();
   const formikRef = useRef(null);
   const navigate = useNavigate();
@@ -62,6 +65,31 @@ export const AdvertisementForm = ({ initialValues }) => {
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
   const token = useSelector(selectToken);
+
+  const initialValues = {
+        description: "",
+        region: "",
+        category: "",
+        car: {
+          brand: "",
+          model: "",
+          vin: "",
+          year: 0,
+          price: 0,
+          licensePlate: "",
+          mileage: 0,
+          transmissionType: "",
+          engineType: "",
+          engineVolume: 0,
+          technicalState: "",
+          bodyType: "",
+          driveType: "",
+          color: ""
+        },
+        contactName: "",
+        contactPhone: "",
+        isActive: true,  
+    }
 
   const handleImagesChange = newImages => {
     setFormImages(newImages);
@@ -91,21 +119,16 @@ export const AdvertisementForm = ({ initialValues }) => {
       console.error('Error:', error);
     }
   };
-  useEffect(() => {
-    if (formikRef.current) {
-      formikRef.current.resetForm({ values: initialValues });
-    }
-  }, [initialValues]);
+
+  // useEffect(() => {
+  //   if (formikRef.current) {
+  //     formikRef.current.resetForm({ values: initialValues });
+  //   }
+  // }, [initialValues]);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
   };
-
-  useEffect(() => {
-    if (formikRef.current) {
-      formikRef.current.resetForm({ values: initialValues });
-    }
-  }, [initialValues]);
 
   const handleBrandChange = event => {
     const selectedBrand = event.target.value;
@@ -123,6 +146,10 @@ export const AdvertisementForm = ({ initialValues }) => {
     setSelectedRegion(regionValue);
     // setSelectedCity('');
     formikRef.current.setFieldValue('region', regionValue);
+  };
+
+  const resetForm = () => {
+    formikRef.current.resetForm({ values: initialValues });
   };
 
   // const handleCityChange = e => {
@@ -146,7 +173,10 @@ export const AdvertisementForm = ({ initialValues }) => {
       {({ values, isValid, errors, touched, dirty }) => {
         return (
           <Form>
-            <button className="clearButton" onClick={openModal} type="button">
+            <Modal >
+              <ConfirmModalAdvertisement resetForm={resetForm}/>
+            </Modal>
+            <button className="clearButton" onClick={openModal}  type="button">
               Очистити все
             </button>
             <SectionContainer>
