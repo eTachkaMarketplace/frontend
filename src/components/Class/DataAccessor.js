@@ -37,6 +37,7 @@ class DataAccessor {
     return this.regionsAndCities ;
   }
 
+ 
   getBodyTypes() {
     return this.bodyType || [];
   }

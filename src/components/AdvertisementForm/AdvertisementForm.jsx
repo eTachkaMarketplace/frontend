@@ -47,6 +47,7 @@ const userSchema = Yup.object().shape({
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
   region: Yup.string().required('це поле обов`язкове для заповнення'),
+  city: Yup.string().required('це поле обов`язкове для заповнення'),
   contactName: Yup.string().required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.number().required('це поле обов`язкове для заповнення'),
   // description: Yup.string().required('це поле обов`язкове для заповнення'),
@@ -60,7 +61,7 @@ export const AdvertisementForm = () => {
 
   const [availableModels, setAvailableModels] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
-  // const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
   const [formImages, setFormImages] = useState([]);
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
@@ -70,6 +71,7 @@ export const AdvertisementForm = () => {
   const initialValues = {
         description: "",
         region: "",
+        city: "",
         category: "",
         car: {
           brand: "",
@@ -144,25 +146,23 @@ export const AdvertisementForm = () => {
   const handleRegionChange = e => {
     const regionValue = e.target.value;
     setSelectedRegion(regionValue);
-    // setSelectedCity('');
+    setSelectedCity(''); // Обнуление выбранного города при смене региона
     formikRef.current.setFieldValue('region', regionValue);
+    formikRef.current.setFieldValue('city', ''); // Обнуление выбранного города в форме
   };
-
+  
+  const handleCityChange = e => {
+    const cityValue = e.target.value;
+    setSelectedCity(cityValue); // Установка выбранного города
+    formikRef.current.setFieldValue('city', cityValue);
+  };
+  
   const resetForm = () => {
     formikRef.current.resetForm({ values: initialValues });
     setFormImages([]);
     setSelectedRegion('')
   };
   useEffect(() => {}, [formImages]);
-
-  // const handleCityChange = e => {
-  //   const cityValue = e.target.value;
-  //   setSelectedCity(cityValue);
-  //   formikRef.current.setFieldValue(
-  //     'advertisementDTO.region.city.name',
-  //     cityValue
-  //   );
-  // };
 
   return (
     <Formik
@@ -331,26 +331,32 @@ export const AdvertisementForm = () => {
                 </div>
               </label>
 
-              {/* <label className="marg16">
+              <label className="marg16">
                 <div className="containerLong">
                   Місто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field  className={`${!isValid ? 'is-invalid' : ''}  fieldLong `}
-                  component="select" name="city" onChange={handleCityChange} value={selectedCity}>
+                  <Field  
+                    className={`${touched.city && !values.city && !isValid ? 'is-invalid' : ''}  fieldLong `}
+                    component="select" 
+                    name="city" 
+                    onChange={handleCityChange} 
+                    value={selectedCity}>
                     <option value="">Оберіть</option>
-                    {regionsAndCities[selectedRegion] &&
-                      regionsAndCities[selectedRegion].map(city => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
+                    {dataAccessor.getCitiesByRegion(selectedRegion).map(city => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
                   </Field>
                   <div className="arrow">
                     <DropArrow />
                   </div>
+                  <ErrorMessage name="city" component="div" />
                 </div>
-              </label> */}
+              </label>
+            
+                 
 
               <label className="marg16">
                 <div className="containerLong">
