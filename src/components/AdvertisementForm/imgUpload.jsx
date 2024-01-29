@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   AddPhotoText,
@@ -9,8 +9,11 @@ import {
 } from './imgUpload.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
-const ImageUploadComponent = ({ onImagesChange }) => {
-  const [images, setImages] = useState([]);
+const ImageUploadComponent = ({ onImagesChange, setImg }) => {
+  const [images, setImages] = useState(setImg);
+  useEffect(() => {
+    setImages(setImg);
+  }, [setImg]);
 
   const handleImageChange = e => {
     const selectedImages = Array.from(e.target.files);

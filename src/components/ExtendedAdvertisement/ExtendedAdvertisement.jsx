@@ -15,10 +15,14 @@ import { useEffect, useRef, useState } from 'react';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/dist/css/splide.min.css';
+import { useNavigate } from 'react-router-dom';
 
 export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
-   const splideRef = useRef(null);
+  const splideRef = useRef(null);
   const [smallImage, setSmallImage] = useState(null)
+
+  const navigate = useNavigate();
+
   const [showPhone, setShowPhone] = useState(true);
   const dispatch = useDispatch();
   console.log(advertisement);
@@ -51,22 +55,19 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
     const isOverThousand = number >= 1000;
 
     if (isOverThousand) {
-      const thousands = Math.floor(number / 1000);
-      const remainder = number % 1000;
+     const thousands = Math.floor(number / 1000);
+     const remainder = number % 1000;
+     const formattedRemainder = remainder ? ` ${remainder} ` : '';
 
-      // Форматуємо залишок, якщо він є, і додаємо його до результату
-      const formattedRemainder = remainder ? ` ${remainder} км` : '';
-
-      return `${thousands} тис.${formattedRemainder}`;
-    } else {
-      return `${number} км`;
-    }
-  }
+     return `${thousands} тис.${formattedRemainder} км`;
+   } else {
+     return `${number} км`;
+   }
+ }
 
   const handlerSmallImage = image => {
     setSmallImage(image);
   };
-
 
   const setImageModal = image => {
     dispatch(setIsOpen(true));
@@ -118,6 +119,11 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
       splide.destroy();
     };
   }, [advertisement]);
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+
+  }, [navigate]);
 
   return (
     <>

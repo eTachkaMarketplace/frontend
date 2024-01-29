@@ -3,7 +3,7 @@ import { ConfDiv } from './confirmModal.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { XBTN } from './confirmModalSVG';
 
-const СonfirmModalAdvertisement = ({ clearForm }) => {
+const СonfirmModalAdvertisement = ({ resetForm }) => {
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -11,7 +11,7 @@ const СonfirmModalAdvertisement = ({ clearForm }) => {
   };
 
   const confirmModalAdvertisement = () => {
-    clearForm();
+    resetForm();
     dispatch(setIsOpen(false));
   };
 
