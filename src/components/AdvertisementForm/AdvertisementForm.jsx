@@ -40,7 +40,7 @@ const userSchema = Yup.object().shape({
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().max(14, 'Номер до 14 символів').notRequired(),
+    vin: Yup.string().matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри').notRequired(),
    
     
 
@@ -586,7 +586,8 @@ export const AdvertisementForm = () => {
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                   <Field
-                    className={`${values.car.vin.length > 14 ? 'is-invalid' : ''} fieldTextLong`}
+                  className={`${errors.car && errors.car.vin  ? 'is-invalid' : ''} fieldTextLong`}
+                    // className={`${values.car.vin.length > 17 ? 'is-invalid' : ''} fieldTextLong`}
                     type="text"
                     name="car.vin"
                     placeholder="VF7LCRFJF74251989"
