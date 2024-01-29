@@ -11,14 +11,18 @@ import {
   PetrolSVG,
   SearchLoop,
 } from './ExtendedAdvertisementSVG';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { useNavigate } from 'react-router-dom';
 
 export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
+  const splideRef = useRef(null);
+  const [smallImage, setSmallImage] = useState(null)
+
   const navigate = useNavigate();
+
   const [showPhone, setShowPhone] = useState(true);
   const dispatch = useDispatch();
   console.log(advertisement);
@@ -47,14 +51,12 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
   const changeShowPhone = () => {
     setShowPhone(!showPhone);
   };
- function formatMileage(number) {
-   const isOverThousand = number >= 1000;
+  function formatMileage(number) {
+    const isOverThousand = number >= 1000;
 
-   if (isOverThousand) {
+    if (isOverThousand) {
      const thousands = Math.floor(number / 1000);
      const remainder = number % 1000;
-
-     // Форматуємо залишок, якщо він є, і додаємо його до результату
      const formattedRemainder = remainder ? ` ${remainder} ` : '';
 
      return `${thousands} тис.${formattedRemainder} км`;
@@ -63,19 +65,59 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
    }
  }
 
+  const handlerSmallImage = image => {
+    setSmallImage(image);
+  };
+
   const setImageModal = image => {
     dispatch(setIsOpen(true));
     setImage(image);
   };
 
   useEffect(() => {
-    // Ініціалізація Splide.js
-    new Splide('.splide', {
-      type: 'slide',
-      perPage: 5,
-      perMove: 1,
+    // Initialize Splide.js
+    const splide = new Splide('.splide', {
+      rewind: true,
+      fixedWidth: 140,
+      fixedHeight: 100,
+      isNavigation: true,
+      gap: 16,
+      focus: 'center',
       pagination: false,
-    }).mount();
+      cover: true,
+      dragMinThreshold: {
+        mouse: 4,
+        touch: 10,
+      },
+      breakpoints: {
+        640: {
+          fixedWidth: 66,
+          fixedHeight: 38,
+        },
+      },
+    });
+
+    // Set up the event listener for the 'active' event
+    splide.on('active', () => {
+      // Get the current active slide index
+      const activeIndex = splide.index;
+
+      // Update the smallImage with the corresponding image from advertisement.images
+      if (advertisement.images && advertisement.images[activeIndex]) {
+        setSmallImage(advertisement.images[activeIndex]);
+      }
+    });
+
+    // Save the Splide instance in the ref for later use
+    splideRef.current = splide;
+
+    // Mount the Splide instance
+    splide.mount();
+
+    // Clean up the Splide instance on component unmount
+    return () => {
+      splide.destroy();
+    };
   }, [advertisement]);
 
   useEffect(() => {
@@ -102,8 +144,8 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
               <BlueMap /> {advertisement.region} область
             </p>
             <div className="vinBox">
-              <p className="vin">{advertisement.car.licensePlate}</p>
-              <p className="vin">{advertisement.car.vin}</p>
+              {advertisement.car.licensePlate && <p className="vin">{advertisement.car.licensePlate}</p>}
+              {advertisement.car.vin && <p className="vin">{advertisement.car.vin}</p>}
             </div>
             <div className="textInfoBOx">
               <div className="textInfoBOxLeft">
@@ -135,7 +177,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="sellerDIV">
               <h2 className="seller">
                 Продавець:
                 <span className="sellName"> {advertisement.contactName}</span>
@@ -157,9 +199,9 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
               <img
                 className="imgCar"
                 onClick={() => {
-                  setImageModal(advertisement.previewImage);
+                  // setImageModal(advertisement.previewImage);
                 }}
-                src={advertisement.previewImage}
+                src={smallImage? smallImage : advertisement.previewImage}
                 alt="Car "
               />
               <button
@@ -182,7 +224,8 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
                             <img
                               key={image}
                               onClick={() => {
-                                setImageModal(image);
+                                handlerSmallImage(image);
+                                // setImageModal(image);
                               }}
                               className="imgCarCarousel"
                               src={image}
