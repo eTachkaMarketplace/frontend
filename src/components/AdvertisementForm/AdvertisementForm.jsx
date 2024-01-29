@@ -40,7 +40,7 @@ const userSchema = Yup.object().shape({
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().max(14, 'Номер до 14 символів').notRequired(),
+    vin: Yup.string().matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри').notRequired(),
    
     
 
@@ -49,7 +49,11 @@ const userSchema = Yup.object().shape({
   region: Yup.string().required('це поле обов`язкове для заповнення'),
   city: Yup.string().required('це поле обов`язкове для заповнення'),
   contactName: Yup.string().required('це поле обов`язкове для заповнення'),
-  contactPhone: Yup.number().required('це поле обов`язкове для заповнення'),
+  contactPhone: Yup.string()
+  .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
+    return value.startsWith('+380') && value.length === 13;
+  })
+  .required('це поле обов`язкове для заповнення')
   // description: Yup.string().required('це поле обов`язкове для заповнення'),
   
 });
@@ -90,7 +94,7 @@ export const AdvertisementForm = () => {
           color: ""
         },
         contactName: "",
-        contactPhone: "",
+        contactPhone: '+380',
         isActive: true,  
     }
 
@@ -146,14 +150,14 @@ export const AdvertisementForm = () => {
   const handleRegionChange = e => {
     const regionValue = e.target.value;
     setSelectedRegion(regionValue);
-    setSelectedCity(''); // Обнуление выбранного города при смене региона
+    setSelectedCity(''); 
     formikRef.current.setFieldValue('region', regionValue);
-    formikRef.current.setFieldValue('city', ''); // Обнуление выбранного города в форме
+    formikRef.current.setFieldValue('city', ''); 
   };
   
   const handleCityChange = e => {
     const cityValue = e.target.value;
-    setSelectedCity(cityValue); // Установка выбранного города
+    setSelectedCity(cityValue); 
     formikRef.current.setFieldValue('city', cityValue);
   };
   
@@ -173,7 +177,7 @@ export const AdvertisementForm = () => {
       }}
       innerRef={formik => (formikRef.current = formik)}
     >
-      {({ values, isValid, errors, touched, dirty }) => {
+      {({ values, isValid, errors, touched, dirty, handleChange }) => {
         return (
           <Form>
             <Modal>
@@ -586,7 +590,8 @@ export const AdvertisementForm = () => {
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                   <Field
-                    className={`${values.car.vin.length > 14 ? 'is-invalid' : ''} fieldTextLong`}
+                  className={`${errors.car && errors.car.vin  ? 'is-invalid' : ''} fieldTextLong`}
+                    // className={`${values.car.vin.length > 17 ? 'is-invalid' : ''} fieldTextLong`}
                     type="text"
                     name="car.vin"
                     placeholder="VF7LCRFJF74251989"
@@ -634,9 +639,17 @@ export const AdvertisementForm = () => {
                 </div>
                 <div className="flex">
                   <Field
-                    className={`${touched.contactPhone && !values.contactPhone && !isValid ? 'is-invalid' : ''}  fieldLong `}
-                    type="number"
+                    className={`${touched.contactPhone && errors.contactPhone  ? 'is-invalid' : ''}  fieldLong `}
+                    type="text"
                     name="contactPhone"
+                    value={values.contactPhone}
+                    onChange={handleChange}
+                    onKeyDown={(e) => {
+                      const newValue = e.target.value;
+                      if ((e.key === 'Delete' || e.key === 'Backspace') && newValue === '+380') {
+                        e.preventDefault();
+                      }
+                    }}
                     placeholder="+38(0ХХ) ХХХ ХХ ХХ"
                   ></Field>
                   <ErrorMessage name="contactPhone" component="div" />
