@@ -24,7 +24,7 @@ const СonfirmModalAdvertisement = ({ resetForm }) => {
         Ви впевнені що хочете <span className="cringe">очистити</span> фільтри?
       </h4>
       <p className="content">
-      Натискаючи на кнопку “підтвердити111” форма заповнення <br/>оголошення повністю очиститься
+      Натискаючи на кнопку “підтвердити” форма заповнення <br/>оголошення повністю очиститься
       </p>
       <div className="buttonBox">
         <button type="button" onClick={closeModal} className="cansel">
