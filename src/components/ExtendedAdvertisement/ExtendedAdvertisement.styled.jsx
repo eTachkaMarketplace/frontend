@@ -13,9 +13,13 @@ export const Section = styled.div`
     border-radius: 8px;
     background: var(--Text-Grey-1, #f1f5ff);
     display: flex;
-    gap: 128px;
+    gap: 116px;
   }
   .marg32 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-left: 32px;
     margin-top: 52px;
   }
@@ -100,6 +104,10 @@ export const Section = styled.div`
     justify-content: flex-start;
     align-items: center;
   }
+  .sellerDIV {
+    align-self: flex-end;
+    margin-bottom: 52px;
+  }
   .seller {
     color: var(--Text-black-2, #4b4b4b);
     /* H4 */
@@ -144,7 +152,7 @@ export const Section = styled.div`
     }
   }
   .imgCar {
-    width: 740px;
+    width: 760px;
     height: 486px;
     flex-shrink: 0;
     margin-top: 52px;
@@ -169,8 +177,8 @@ export const Section = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 35px;
-    bottom: 15px;
+    right: 17px;
+    bottom: 16px;
     background-color: #fff;
     width: 44px;
     height: 44px;
@@ -178,8 +186,9 @@ export const Section = styled.div`
   }
 
   .id {
+    text-align: end;
     position: absolute;
-    right: 32px;
+    right: 0;
     top: 26px;
     color: var(--Text-grey3, #ababab);
     /* Subtitle 3 */
@@ -346,10 +355,11 @@ export const Section = styled.div`
   .splide {
     overflow: hidden;
     width: 760px;
+    margin-top: 16px;
   }
 
   .splide__arrow--next {
-    margin-right: 10px;
+    /* margin-right: 5px; */
 
     background: linear-gradient(250deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
@@ -366,5 +376,17 @@ export const Section = styled.div`
 
   .splide__arrow {
     opacity: 1;
+  }
+
+  .splide__slide img {
+    border: none;
+    outline: none;
+  }
+
+  .splide__slide {
+    border-radius: 8px;
+  }
+  .splide__track--nav > .splide__list > .splide__slide.is-active {
+    border: none;
   }
 `;
