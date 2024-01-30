@@ -359,13 +359,15 @@ export const Section = styled.div`
   }
 
   .splide__arrow--next {
-    /* margin-right: 5px; */
-
+    margin-right: -15px;
+    width: 100px;
+    height: 140px;
     background: linear-gradient(250deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
   .splide__arrow--prev {
-    margin-right: 10px;
-
+    margin-left: -16px;
+    width: 100px;
+    height: 140px;
     background: linear-gradient(90deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
 
@@ -376,6 +378,7 @@ export const Section = styled.div`
 
   .splide__arrow {
     opacity: 1;
+    border-radius: 0;
   }
 
   .splide__slide img {
@@ -388,5 +391,11 @@ export const Section = styled.div`
   }
   .splide__track--nav > .splide__list > .splide__slide.is-active {
     border: none;
+  }
+  .splide__arrow--prev svg {
+    margin-left: -45px;
+  }
+  .splide__arrow--next svg {
+    margin-right: -45px;
   }
 `;
