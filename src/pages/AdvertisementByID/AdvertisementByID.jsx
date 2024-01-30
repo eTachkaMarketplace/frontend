@@ -9,6 +9,7 @@ import { selectAdverstisementsID } from 'redux/advertisment/selectors';
 
 export const AdvertisementByID = () => {
   const [imgSrs, setImgSrs] = useState()
+  const [selectedImage, setSelectedImage]= useState()
   const dispatch = useDispatch();
   const id = useParams();
   const Advertisement = useSelector(selectAdverstisementsID);
@@ -27,9 +28,9 @@ export const AdvertisementByID = () => {
 
   return (
     <>
-      <ExtendedAdvertisement advertisement={Advertisement} setImage={setImage} />
+      <ExtendedAdvertisement advertisement={Advertisement} setImage={setImage} setSelectedImage={setSelectedImage} />
       <Modal>
-        <IMGModal imgSrs={imgSrs} />
+        <IMGModal imgSrs={imgSrs} selectedImage={selectedImage} />
       </Modal>
     </>
   );

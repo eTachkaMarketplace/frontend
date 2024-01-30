@@ -17,15 +17,14 @@ import Splide from '@splidejs/splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { useNavigate } from 'react-router-dom';
 
-export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
+export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImage }) => {
   const splideRef = useRef(null);
-  const [smallImage, setSmallImage] = useState(null)
+  const [smallImage, setSmallImage] = useState(null);
 
   const navigate = useNavigate();
 
   const [showPhone, setShowPhone] = useState(true);
   const dispatch = useDispatch();
-  console.log(advertisement);
 
   const monthsInUkrainian = [
     'січня',
@@ -55,24 +54,27 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
     const isOverThousand = number >= 1000;
 
     if (isOverThousand) {
-     const thousands = Math.floor(number / 1000);
-     const remainder = number % 1000;
-     const formattedRemainder = remainder ? ` ${remainder} ` : '';
+      const thousands = Math.floor(number / 1000);
+      const remainder = number % 1000;
+      const formattedRemainder = remainder ? ` ${remainder} ` : '';
 
-     return `${thousands} тис.${formattedRemainder} км`;
-   } else {
-     return `${number} км`;
-   }
- }
+      return `${thousands} тис.${formattedRemainder} км`;
+    } else {
+      return `${number} км`;
+    }
+  }
 
   const handlerSmallImage = image => {
     setSmallImage(image);
   };
 
-  const setImageModal = image => {
+  const setImageModal = images => {
     dispatch(setIsOpen(true));
-    setImage(image);
+    setImage(images);
   };
+  useEffect(() => {
+    setSelectedImage(smallImage);
+  },[setSelectedImage, smallImage])
 
   useEffect(() => {
     // Initialize Splide.js
@@ -121,8 +123,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
   }, [advertisement]);
 
   useEffect(() => {
-      window.scrollTo(0, 0);
-
+    window.scrollTo(0, 0);
   }, [navigate]);
 
   return (
@@ -196,17 +197,10 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
           <div className="photoDiv">
             <p className="id">№{advertisement.id}</p>
             <div className="loopDiv">
-              <img
-                className="imgCar"
-                onClick={() => {
-                  // setImageModal(advertisement.previewImage);
-                }}
-                src={smallImage? smallImage : advertisement.previewImage}
-                alt="Car "
-              />
+              <img className="imgCar" src={smallImage ? smallImage : advertisement.previewImage} alt="Car " />
               <button
                 onClick={() => {
-                  setImageModal(advertisement.previewImage);
+                  setImageModal(advertisement.images);
                 }}
                 type="button"
                 className="loop"
@@ -225,7 +219,6 @@ export const ExtendedAdvertisement = ({ advertisement, setImage }) => {
                               key={image}
                               onClick={() => {
                                 handlerSmallImage(image);
-                                // setImageModal(image);
                               }}
                               className="imgCarCarousel"
                               src={image}
