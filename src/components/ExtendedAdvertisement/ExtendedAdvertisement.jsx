@@ -189,7 +189,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
                 </button>
               ) : (
                 <button className="number" type="button" onClick={changeShowPhone}>
-                  +{advertisement.contactPhone}
+                  {advertisement.contactPhone}
                 </button>
               )}
             </div>
@@ -287,7 +287,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
             </button>
           ) : (
             <button className="number" type="button" onClick={changeShowPhone}>
-              +{advertisement.contactPhone}
+              {advertisement.contactPhone}
             </button>
           )}
         </div>
