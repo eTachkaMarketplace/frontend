@@ -82,20 +82,14 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
       rewind: true,
       fixedWidth: 140,
       fixedHeight: 100,
-      isNavigation: true,
+      // isNavigation: true,
       gap: 16,
-      focus: 'center',
+      // focus: 'center',
       pagination: false,
       cover: true,
       dragMinThreshold: {
         mouse: 4,
         touch: 10,
-      },
-      breakpoints: {
-        640: {
-          fixedWidth: 66,
-          fixedHeight: 38,
-        },
       },
     });
 

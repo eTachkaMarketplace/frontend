@@ -16,6 +16,7 @@ export const Section = styled.div`
     gap: 116px;
   }
   .marg32 {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -37,9 +38,11 @@ export const Section = styled.div`
     line-height: normal;
   }
   .svg {
+    position: absolute;
+    right: 0;
+    top: 0;
     background-color: transparent;
     border: 0;
-    margin-left: 24px;
   }
   .publickDate {
     color: var(--Text-black-2, #4b4b4b);
@@ -89,6 +92,16 @@ export const Section = styled.div`
     align-items: flex-start;
     gap: 40px;
     margin-top: 26px;
+  }
+  .textInfoBOxLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .textInfoBOxRight {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .infoText {
     color: var(--Text-black-2, #4b4b4b);
@@ -152,7 +165,7 @@ export const Section = styled.div`
     }
   }
   .imgCar {
-    width: 760px;
+    width: 765px;
     height: 486px;
     flex-shrink: 0;
     margin-top: 52px;
@@ -177,7 +190,7 @@ export const Section = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 17px;
+    right: 16px;
     bottom: 16px;
     background-color: #fff;
     width: 44px;
@@ -238,7 +251,7 @@ export const Section = styled.div`
   }
   .secondBOXBOX {
     display: flex;
-    gap: 192px;
+    justify-content: space-between;
   }
   .leftBox {
     display: flex;
@@ -254,6 +267,7 @@ export const Section = styled.div`
     padding-right: 32px;
   }
   .leftText {
+    width: 190px;
     color: var(--Text-black-2, #4b4b4b);
     /* Subtitle 1.1 */
     font-family: 'Roboto', sans-serif;
@@ -274,6 +288,7 @@ export const Section = styled.div`
   .gapDIV {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: 24px;
   }
   .descriptionBox {
@@ -353,21 +368,21 @@ export const Section = styled.div`
     line-height: normal;
   }
   .splide {
-    overflow: hidden;
-    width: 760px;
+    /* overflow: hidden; */
+    width: 765px;
     margin-top: 16px;
   }
 
   .splide__arrow--next {
-    margin-right: -15px;
-    width: 100px;
-    height: 140px;
+    margin-right: -16px;
+    width: 140px;
+    height: 100px;
     background: linear-gradient(250deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
   .splide__arrow--prev {
     margin-left: -16px;
-    width: 100px;
-    height: 140px;
+    width: 140px;
+    height: 100px;
     background: linear-gradient(90deg, #000 0%, rgba(67, 67, 67, 0.24) 90.1%, rgba(255, 255, 255, 0) 100%);
   }
 
@@ -378,7 +393,7 @@ export const Section = styled.div`
 
   .splide__arrow {
     opacity: 1;
-    border-radius: 0;
+    border-radius: 8px;
   }
 
   .splide__slide img {
