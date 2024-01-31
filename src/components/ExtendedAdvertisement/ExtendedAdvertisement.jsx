@@ -125,67 +125,71 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
       <Section>
         <div className="infoDIV">
           <div className="marg32">
-            <div className="brandBox">
-              <h2 className="brandTitle">{advertisement.car.brand}</h2>
-              <h2 className="brandTitle">{advertisement.car.model}</h2>
-              <h2 className="brandTitle">{advertisement.car.year}</h2>
-              <button className="svg" type="button">
-                <HeartSVG />
-              </button>
-            </div>
-            <p className="brandTitle">{advertisement.car.price.toLocaleString('uk-UA')} $</p>
-            <p className="publickDate">Опубліковано {result}</p>
-            <p className="region">
-              <BlueMap /> {advertisement.region} область
-            </p>
-            <div className="vinBox">
-              {advertisement.car.licensePlate && <p className="vin">{advertisement.car.licensePlate}</p>}
-              {advertisement.car.vin && <p className="vin">{advertisement.car.vin}</p>}
-            </div>
-            <div className="textInfoBOx">
-              <div className="textInfoBOxLeft">
-                <p className="infoText">
-                  <DateSVG />
-                  {advertisement.car.year}
-                </p>
-                <p className="infoText">
-                  <MapSVG />
-                  {advertisement.region}
-                </p>
-                <p className="infoText">
-                  <MileSVG />
-                  {advertisement.car.mileage.toLocaleString('uk-UA')}
-                </p>
-              </div>
-              <div className="textInfoBOxRight">
-                <p className="infoText">
-                  <PetrolSVG />
-                  {advertisement.car.engineType}
-                </p>
-                <p className="infoText">
-                  <InterSVG />
-                  {advertisement.car.transmissionType}
-                </p>
-                <p className="infoText">
-                  <NavSVG />
-                  {advertisement.car.driveType}
-                </p>
-              </div>
-            </div>
-            <div className="sellerDIV">
-              <h2 className="seller">
-                Продавець:
-                <span className="sellName"> {advertisement.contactName}</span>
-              </h2>
-              {showPhone ? (
-                <button className="btnNumber" type="button" onClick={changeShowPhone}>
-                  Показати номер
+            <div>
+              <div className="brandBox">
+                <h2 className="brandTitle">{advertisement.car.brand}</h2>
+                <h2 className="brandTitle">{advertisement.car.model}</h2>
+                <h2 className="brandTitle">{advertisement.car.year}</h2>
+                <button className="svg" type="button">
+                  <HeartSVG />
                 </button>
-              ) : (
-                <button className="number" type="button" onClick={changeShowPhone}>
-                  {advertisement.contactPhone}
-                </button>
-              )}
+              </div>
+              <p className="brandTitle">{advertisement.car.price.toLocaleString('uk-UA')} $</p>
+              <p className="publickDate">Опубліковано {result}</p>
+              <p className="region">
+                <BlueMap /> {advertisement.region} область
+              </p>
+              <div className="vinBox">
+                {advertisement.car.licensePlate && <p className="vin">{advertisement.car.licensePlate}</p>}
+                {advertisement.car.vin && <p className="vin">{advertisement.car.vin}</p>}
+              </div>
+              <div className="textInfoBOx">
+                <div className="textInfoBOxLeft">
+                  <p className="infoText">
+                    <DateSVG />
+                    {advertisement.car.year}
+                  </p>
+                  <p className="infoText">
+                    <MapSVG />
+                    {advertisement.region}
+                  </p>
+                  <p className="infoText">
+                    <MileSVG />
+                    {advertisement.car.mileage.toLocaleString('uk-UA')}
+                  </p>
+                </div>
+                <div className="textInfoBOxRight">
+                  <p className="infoText">
+                    <PetrolSVG />
+                    {advertisement.car.engineType}
+                  </p>
+                  <p className="infoText">
+                    <InterSVG />
+                    {advertisement.car.transmissionType}
+                  </p>
+                  <p className="infoText">
+                    <NavSVG />
+                    {advertisement.car.driveType}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="sellerDIV">
+                <h2 className="seller">
+                  Продавець:
+                  <span className="sellName"> {advertisement.contactName}</span>
+                </h2>
+                {showPhone ? (
+                  <button className="btnNumber" type="button" onClick={changeShowPhone}>
+                    Показати номер
+                  </button>
+                ) : (
+                  <button className="number" type="button" onClick={changeShowPhone}>
+                    {advertisement.contactPhone}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           <div className="photoDiv">

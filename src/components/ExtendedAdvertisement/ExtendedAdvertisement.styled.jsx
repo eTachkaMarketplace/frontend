@@ -19,13 +19,15 @@ export const Section = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
+    justify-content: space-between;
     margin-left: 32px;
     margin-top: 52px;
   }
   .brandBox {
+    width: 300px;
     display: flex;
+    flex-wrap: wrap;
     gap: 7px;
   }
   .brandTitle {
@@ -129,7 +131,6 @@ export const Section = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-top: 132px;
   }
   .sellName {
     color: var(--text-black-dark, #141414);
