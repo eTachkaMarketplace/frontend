@@ -5,11 +5,12 @@ export default function FilterInput({ name, nameUser, onSelectChange }) {
   const handleSelectChange = event => {
     const selectedValue = event.target.value;
     
-     if (/^\d+$/.test(selectedValue) && parseInt(selectedValue, 10) <= 1000000) {
-       onSelectChange(name, selectedValue);
-     } else {
-       Notify.warning('Введіть число від 0 до 1 000 000')
-     }
+    if (/^\d+$/.test(selectedValue) && parseInt(selectedValue, 10) <= 1000000) {
+      onSelectChange(name, selectedValue);
+    } else {
+      Notify.warning('Введіть число від 0 до 1 000 000');
+      onSelectChange(name, 0);
+    }
   };
   return (
     <input
