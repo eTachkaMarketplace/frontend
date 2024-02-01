@@ -15,6 +15,7 @@ import storage from 'redux-persist/lib/storage';
 import { authSlice } from './auth/authSlice';
 import { modalReducer } from './modal/modalSlice';
 import { adversSlice } from './advertisment/adverSlice';
+import { favoriteSlice } from './advertisment/favoriteSlice'; 
 
 const authPersistConfig = {
   key: 'auth',
@@ -22,11 +23,17 @@ const authPersistConfig = {
   whitelist: ['token', 'refToken', 'user'],
 };
 
+const favoritePersistConfig = { 
+  key: 'favorites',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     modal: modalReducer,
     adverstisement: adversSlice.reducer,
+    favorites: persistReducer(favoritePersistConfig, favoriteSlice.reducer), 
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

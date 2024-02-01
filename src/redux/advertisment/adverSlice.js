@@ -10,6 +10,10 @@ import {
   putFavoriteAdverstisementsByID,
 } from './operations';
 
+import { favoriteSlice } from './favoriteSlice';
+const { setFavoriteAdvertisements, setLoading: setLoadingFavorite, setError: setErrorFavorite } = favoriteSlice.actions;
+
+
 const initialState = {
   adverstisements: [],
   adverstisementsID: null,
@@ -48,16 +52,16 @@ export const adversSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(getAdverstisementsFavorite.fulfilled, (state, { payload }) => {
-        state.adverstisementsFavorite = payload;
-        state.isLoading = false;
-        state.error = null;
+        setFavoriteAdvertisements(state, payload);
+        setLoadingFavorite(state, false);
+        setErrorFavorite(state, null);
       })
       .addCase(getAdverstisementsFavorite.pending, state => {
-        state.isLoading = true;
+        setLoadingFavorite(state, true);
       })
       .addCase(getAdverstisementsFavorite.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload.error;
+        setLoadingFavorite(state, false);
+        setErrorFavorite(state, payload.error);
       })
       .addCase(deleteAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;

@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
+import { selectToken } from 'redux/auth/selectors'; 
+
 
 export const getAdverstisements = createAsyncThunk(
   'adverstisement/getAdverstisements',
@@ -27,12 +29,17 @@ export const getAdverstisementsByID = createAsyncThunk(
     }
   }
 );
-
 export const getAdverstisementsFavorite = createAsyncThunk(
   'adverstisements/getAdverstisementsFavorite',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const response = await instance.get(`advertisement/favorites`);
+      const state = getState(); 
+      const token = selectToken(state); 
+      const response = await instance.get(`advertisement/favorites`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log('getAdverstisementsFavorite is successful');
       return response.data;
     } catch (error) {
@@ -40,6 +47,8 @@ export const getAdverstisementsFavorite = createAsyncThunk(
     }
   }
 );
+
+
 
 export const deleteAdverstisementsByID = createAsyncThunk(
   'adverstisements/deleteAdverstisementsByID',
@@ -120,6 +129,25 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
 
       console.log('createFavoriteAdverstisementsByID is successful');
       return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const toggleFavorite = createAsyncThunk(
+  'adverstisements/toggleFavorite',
+  async ({ id, isFavorite }, { rejectWithValue }) => {
+    try {
+      if (isFavorite) {
+        const response = await instance.delete(`advertisement/favorite/${id}`);
+        console.log('Advertisement removed from favorites');
+        return response.data;
+      } else {
+        const response = await instance.post(`advertisement/favorite/${id}`);
+        console.log('Advertisement added to favorites');
+        return response.data;
+      }
     } catch (error) {
       return rejectWithValue(error.message);
     }
