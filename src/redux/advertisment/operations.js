@@ -29,24 +29,34 @@ export const getAdverstisementsByID = createAsyncThunk(
     }
   }
 );
-export const getAdverstisementsFavorite = createAsyncThunk(
-  'adverstisements/getAdverstisementsFavorite',
-  async (_, { rejectWithValue, getState }) => {
-    try {
-      const state = getState(); 
-      const token = selectToken(state); 
-      const response = await instance.get(`advertisement/favorites`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log('getAdverstisementsFavorite is successful');
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+// <<<<<<< Updated upstream
+// export const getAdverstisementsFavorite = createAsyncThunk(
+//   'adverstisements/getAdverstisementsFavorite',
+//   async (_, { rejectWithValue, getState }) => {
+//     try {
+//       const state = getState(); 
+//       const token = selectToken(state); 
+//       const response = await instance.get(`advertisement/favorites`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+//       console.log('getAdverstisementsFavorite is successful');
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+// =======
+
+export const getAdvFav = createAsyncThunk('adverstisements/getAdvFav', async (_, { rejectWithValue }) => {
+  try {
+    const response = await instance.get(`/advertisement/favorite`);
+    console.log('getAdvFav is successful');
+    return response.data.data;
+  } catch (error) {
+    return rejectWithValue(error.message);
   }
-);
+});
 
 
 

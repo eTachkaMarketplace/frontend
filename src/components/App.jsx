@@ -17,6 +17,7 @@ import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
 import HomePage from '../pages/HomePage/HomePage';
 import { getUser } from 'redux/auth/operations';
+import { getAdvFav } from 'redux/advertisment/operations';
 
 
 export function App() {
@@ -25,7 +26,9 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
     dispatch(getUser());
+    dispatch(getAdvFav());
   }, [dispatch]);
+
 
   return (
     <>
