@@ -133,21 +133,18 @@ import {
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
 
-export const SearchList = ({ setSort }) => {
+export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   const cars = useSelector(selectAdverstisements);
-  const favoritesFromState = useSelector(selectAdverstisementsFavorite) ; // Извлекаем избранные из Redux-состояния
+// Извлекаем избранные из Redux-состояния
   const dispatch = useDispatch();
-  const [favorites, setFavorites] = useState([]);
+  
   // useEffect(() => {
   //   if (Array.isArray(favoritesFromState)) {
   //     const favoriteIds = favoritesFromState.map(favorite => favorite.id);
   //     setFavorites(favoriteIds);
   //   }
   // }, [favoritesFromState]);
-  useEffect(() => {
-    const idFavorite = favoritesFromState.map(favorite => favorite.id);
-    setFavorites(idFavorite)
-},[favoritesFromState])
+
   
   const handleSelectChange = event => {
     const selectedValue = event.target.value;

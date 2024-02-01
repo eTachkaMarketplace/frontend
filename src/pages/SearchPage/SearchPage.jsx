@@ -9,9 +9,9 @@ import Modal from 'modal/modal';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import ConfirmModal from 'modal/confirmModal/confirmModal';
 
-const SearchPage = () => {
+const SearchPage = ({ favorites ,setFavorites}) => {
   const dispatch = useDispatch();
-  const [sort, setSort ] = useState("new");
+  const [sort, setSort] = useState('new');
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -48,11 +48,9 @@ const SearchPage = () => {
 
       dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
     } else {
-      firstRender.current = false; 
+      firstRender.current = false;
     }
   }, [dispatch, sort, valuesGen]);
-
-
 
   return (
     <>
@@ -60,10 +58,10 @@ const SearchPage = () => {
         <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
         <div className="searchList">
           <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
-          <SearchList setSort={setSort} />
+          <SearchList setSort={setSort} favorites={favorites} setFavorites={setFavorites} />
         </div>
       </Wraper>
-      <Modal >
+      <Modal>
         <ConfirmModal handleSearch={handleSearch} />
       </Modal>
     </>
