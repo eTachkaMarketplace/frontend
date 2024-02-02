@@ -35,6 +35,10 @@ export function App() {
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);
+    console.log(idFavorite)
+    console.log(favoritesFromState)
+  
+
   }, [favoritesFromState]);
 
   return (
@@ -74,7 +78,7 @@ export function App() {
               path="/account"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AccountPage favorites={favorites} setFavorites={setFavorites} />
+                  <AccountPage favoritesFromState={favoritesFromState}  />
                 </PrivateRoute>
               }
             />
