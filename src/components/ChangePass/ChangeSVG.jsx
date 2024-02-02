@@ -1,19 +1,22 @@
 export const SvgTreu = () => {
     return (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="45"
-        height="45"
-        viewBox="0 0 45 45"
+        width="33.183594"
+        height="23.894531"
+        viewBox="0 0 33.1836 23.8945"
         fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="45" height="45" rx="22.5" fill="#069024" />
+        <desc>Created with Pixso.</desc>
+        <defs />
         <path
-          d="M7.5 22.4999L16.7808 31.7807L36.6698 11.8936"
-          stroke="white"
-          strokeWidth="4"
-          strokeLinecap="round"
+          id="Vector"
+          d="M2.00781 12.6143L11.2891 21.895L31.1758 2.00781"
+          stroke="#FFFFFF"
+          strokeOpacity="1.000000"
+          strokeWidth="4.000000"
           strokeLinejoin="round"
+          strokeLinecap="round"
         />
       </svg>
     );

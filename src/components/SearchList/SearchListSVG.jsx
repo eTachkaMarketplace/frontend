@@ -172,3 +172,26 @@ export const CarSVG = () => {
     />
   </svg>;
 }
+
+export const BigPlus = () => {
+  return (
+    <svg
+      width="110.000000"
+      height="110.000000"
+      viewBox="0 0 110 110"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <desc>Created with Pixso.</desc>
+      <defs />
+      <path
+        id="Vector"
+        d="M55 0C51.6875 0 49 2.68652 49 6L49 49L6 49C2.6875 49 0 51.6865 0 55C0 58.3135 2.6875 61 6 61L49 61L49 104C49 107.313 51.6875 110 55 110C58.3125 110 61 107.313 61 104L61 61L104 61C107.312 61 110 58.3135 110 55C110 51.6865 107.312 49 104 49L61 49L61 6C61 2.68652 58.3125 0 55 0Z"
+        clip-rule="evenodd"
+        fill="#B9B9B9"
+        fillOpacity="1.000000"
+        fillRule="evenodd"
+      />
+    </svg>
+  );
+}
