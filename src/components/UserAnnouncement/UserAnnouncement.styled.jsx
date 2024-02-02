@@ -141,6 +141,15 @@ export const Wraper = styled.div`
     right: 20px;
     bottom: 14px;
   }
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 844px;
+    height: 240px;
+    background: rgb(241, 245, 255);
+    margin-top: 16px;
+  }
   .modelInfo {
     color: #141414;
 
