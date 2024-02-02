@@ -151,7 +151,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
                   </p>
                   <p className="infoText">
                     <MapSVG />
-                    {advertisement.region}
+                    {advertisement.city}
                   </p>
                   <p className="infoText">
                     <MileSVG />

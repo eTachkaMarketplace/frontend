@@ -35,7 +35,7 @@ const handleSelectChange = event => {
         </div>
         <div className="carsMainList">
           {cars && cars.length > 0  ? (
-            <ul>
+            <ul className='carsDiv'>
               {cars.map(car => {
                 const desc = car.car;
                 return (
