@@ -48,7 +48,7 @@ const userInfo = useSelector(selectUser)
       case 'favourites':
         return (
           <div>
-            <p>Любимые</p>
+            <p>Обрані оголошення </p>
           </div>
         );
       default:
