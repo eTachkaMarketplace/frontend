@@ -123,11 +123,11 @@
 //       .catch(error => console.error('Failed to fetch favorite advertisements', error));
 //   }, [dispatch]);
 
-import React, { useEffect, useState,  } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
 import { CarSVG, DateSVG, Favorit, FavoritFilled, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
-import { selectAdverstisements, selectAdverstisementsFavorite } from 'redux/advertisment/selectors'; // Подставьте свой селектор
+import { selectAdverstisements } from 'redux/advertisment/selectors'; 
 import {
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
@@ -135,17 +135,9 @@ import {
 
 export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   const cars = useSelector(selectAdverstisements);
-// Извлекаем избранные из Redux-состояния
   const dispatch = useDispatch();
   
-  // useEffect(() => {
-  //   if (Array.isArray(favoritesFromState)) {
-  //     const favoriteIds = favoritesFromState.map(favorite => favorite.id);
-  //     setFavorites(favoriteIds);
-  //   }
-  // }, [favoritesFromState]);
-
-  
+ 
   const handleSelectChange = event => {
     const selectedValue = event.target.value;
 
@@ -157,12 +149,6 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
       setSort('expensive');
     }
   };
-
-//   const handleToggleFavorite = (id) => {
-//     if (favorites.includes(id)) {
-//       dispatch(deleteFavoriteAdverstisementsByID({ id }))
-//         .then(() => setFavorites(favorites.filter(favoriteId => favoriteId !== id)))
-//         .catch(error => console.error('Failed to remove advertisement from favorites', error));
 
   const handleToggleFavorite = id => {
     if (Array.isArray(favorites)) {
@@ -195,15 +181,6 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
         </div>
         <div className="carsMainList">
 
-          {/* {cars && cars.length > 0 ? (
-            <ul>
-              {cars.map(car => (
-                <CarItem key={car.id} car={car} isFavorite={favorites.includes(car.id)} toggleFavorite={handleToggleFavorite} />
-              ))}
-            </ul>
-          ) : (
-            <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2> */}
-
           {cars &&
             cars.length > 0 && ( // Улучшенное условие отображения сообщения об ошибке
               <ul>
@@ -226,7 +203,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   );
 };
 
-const CarItem = ({ car, isFavorite, toggleFavorite }) => {
+export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
   const desc = car.car;
 
   return (

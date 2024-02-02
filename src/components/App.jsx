@@ -74,7 +74,7 @@ export function App() {
               path="/account"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AccountPage />
+                  <AccountPage favorites={favorites} setFavorites={setFavorites} />
                 </PrivateRoute>
               }
             />
