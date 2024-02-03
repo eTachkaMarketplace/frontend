@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
-import { selectToken } from 'redux/auth/selectors'; 
+// import { selectToken } from 'redux/auth/selectors'; 
 
 
 export const getAdverstisements = createAsyncThunk(

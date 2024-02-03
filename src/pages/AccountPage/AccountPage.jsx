@@ -189,7 +189,7 @@
 
 // export default AccountPage;
 import React, { useState, useEffect } from 'react';
-import { AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Subtitle, Container, UserContainer, AnnouncementContainer, } from './AccountPage.styled'
+import { AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Subtitle, Container, UserContainer, AnnouncementContainer, Favorites} from './AccountPage.styled'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
 import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement';
@@ -247,7 +247,7 @@ const AccountPage = ({ favoritesFromState }) => {
         );
       case 'favourites':
         return (
-          <div>
+          <Favorites>
             <p>Обрані оголошення:</p>
             {favoritesFromState.length > 0 ? (
               <ul>
@@ -264,7 +264,7 @@ const AccountPage = ({ favoritesFromState }) => {
             ) : (
               <p>Ви ще не обрали жодного оголошення в обране.</p>
             )}
-          </div>
+          </Favorites>
         );
       default:
         return null;

@@ -10,8 +10,8 @@ import {
   putFavoriteAdverstisementsByID,
 } from './operations';
 
-import { favoriteSlice } from './favoriteSlice';
-const { setFavoriteAdvertisements, setLoading: setLoadingFavorite, setError: setErrorFavorite } = favoriteSlice.actions;
+// import { favoriteSlice } from './favoriteSlice';
+// const { setFavoriteAdvertisements, setLoading: setLoadingFavorite, setError: setErrorFavorite } = favoriteSlice.actions;
 
 
 const initialState = {
