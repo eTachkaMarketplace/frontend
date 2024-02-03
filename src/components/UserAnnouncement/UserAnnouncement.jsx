@@ -56,6 +56,12 @@ const UserAnnouncement = ({ setModalContent }) => {
       ...prevState,
       [itemId]: !prevState[itemId],
     }));
+    setTimeout(() => {
+      setDropdownState(prevState => ({
+        ...prevState,
+        [itemId]: false,
+      }));
+    }, 5000);
   };
 
   const openModal = content => {
@@ -67,18 +73,18 @@ const UserAnnouncement = ({ setModalContent }) => {
     <>
       <Wraper>
         <div className="activeDIV">
-          <p
+          <button type='button'
             className={`activeBTN ${activeTab === 'active' ? 'activeClass' : ''}`}
             onClick={() => handleTabChange('active')}
           >
             Активні
-          </p>
-          <p
+          </button>
+          <button type='button'
             className={`activeBTN ${activeTab === 'inactive' ? 'activeClass' : ''}`}
             onClick={() => handleTabChange('inactive')}
           >
             Неактивні
-          </p>
+          </button>
         </div>
 
         <ToggleContent isActive={activeTab === 'active'}>
