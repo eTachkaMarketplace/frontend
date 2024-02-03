@@ -238,7 +238,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
               <div className="leftBox">
                 <div className="gapDIV">
                   <p className="leftText">Тип кузова</p>
-                  <p className="leftText">Двигун</p>
+                  <p className="leftText">Тип двигуна</p>
                   <p className="leftText">Об'єм двигуна (л)</p>
                   <p className="leftText"> Технічний стан</p>
                 </div>
@@ -253,7 +253,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
                 <div className="gapDIV">
                   <p className="leftText">Пробіг</p>
                   <p className="leftText">Коробка передач</p>
-                  <p className="leftText">Привід</p>
+                  <p className="leftText">Тип приводу</p>
                   <p className="leftText">Колір</p>
                 </div>
                 <div className="gapDIV">

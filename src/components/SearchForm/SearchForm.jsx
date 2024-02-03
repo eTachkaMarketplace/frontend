@@ -174,19 +174,31 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldTextShort"  min="0" type="number" name="yearMin" placeholder="Введіть рік від" />
+                <Field className="fieldTextShort" min="0" type="number" name="yearMin" placeholder="Введіть рік від" />
               </label>
               <label>
-                <Field className="fieldTextShort"  min="0" type="number" name="yearMax" placeholder="Введіть рік до" />
+                <Field className="fieldTextShort" min="0" type="number" name="yearMax" placeholder="Введіть рік до" />
               </label>
             </div>
             <div className="shortDiv">
               <label>
-                <Field className="fieldTextShort"  min="0" type="number" name="priceMin" placeholder="Введіть ціну від $" />
+                <Field
+                  className="fieldTextShort"
+                  min="0"
+                  type="number"
+                  name="priceMin"
+                  placeholder="Введіть ціну від $"
+                />
               </label>
 
               <label>
-                <Field className="fieldTextShort"  min="0" type="number" name="priceMax" placeholder="Введіть ціну до $" />
+                <Field
+                  className="fieldTextShort"
+                  min="0"
+                  type="number"
+                  name="priceMax"
+                  placeholder="Введіть ціну до $"
+                />
               </label>
             </div>
           </div>
@@ -210,7 +222,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <div className="arrowDiv">
               <label>
                 <Field className="fieldLong marg16" as="select" name="engineType">
-                  <option value="">Двигун</option>
+                  <option value="">Тип двигуна</option>
                   {Object.entries(engineType).map(([key, value]) => (
                     <option key={value} value={value}>
                       {key}
@@ -240,14 +252,21 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               <label>
                 <Field
                   className="fieldTextShort"
-                  type="number"  min="0"
+                  type="number"
+                  min="0"
                   name="engineVolumeMin"
                   placeholder="Об'єм двигуна від"
                 />
               </label>
 
               <label>
-                <Field className="fieldTextShort" type="number" name="engineVolumeMax"   min="0" placeholder="Об'єм двигуна до" />
+                <Field
+                  className="fieldTextShort"
+                  type="number"
+                  name="engineVolumeMax"
+                  min="0"
+                  placeholder="Об'єм двигуна до"
+                />
               </label>
             </div>
             <div>
@@ -264,7 +283,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             <div className="arrowDiv">
               <label>
                 <Field className="fieldLong marg16" as="select" name="driveType">
-                  <option value="">Привід</option>
+                  <option value="">Тип приводу</option>
                   {Object.entries(driveType).map(([key, value]) => (
                     <option key={value} value={value}>
                       {key}
