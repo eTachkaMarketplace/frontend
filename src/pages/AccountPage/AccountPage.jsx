@@ -77,7 +77,7 @@
 //                     />
 //                   </li>
 //                 ))}
-//               </ul> 
+//               </ul>
 //             ) : (
 //               <p>Ви ще не обрали жодного оголошення в обране.</p>
 //             )}
@@ -155,7 +155,19 @@
 
 // export default AccountPage;
 import React, { useState, useEffect } from 'react';
-import { AccountContainer, StyledUserSVG, StyledAnnouncementsSVG, StyledFavouritesSVG, StyledLogoutSVG, Title, Subtitle, Container, UserContainer, AnnouncementContainer, Favorites} from './AccountPage.styled'
+import {
+  AccountContainer,
+  StyledUserSVG,
+  StyledAnnouncementsSVG,
+  StyledFavouritesSVG,
+  StyledLogoutSVG,
+  Title,
+  Subtitle,
+  Container,
+  UserContainer,
+  AnnouncementContainer,
+  Favorites,
+} from './AccountPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
 import UserAnnouncement from '../../components/UserAnnouncement/UserAnnouncement';
@@ -171,7 +183,6 @@ import { CarItem } from 'components/SearchList/SearchList';
 
 import Modal from 'modal/modal';
 
-
 const AccountPage = ({ favoritesFromState }) => {
   const dispatch = useDispatch();
   const [favorites, setFavorites] = useState([]);
@@ -180,7 +191,6 @@ const AccountPage = ({ favoritesFromState }) => {
 
   const [selectedNavItem, setSelectedNavItem] = useState('personal');
   const [modalContent, setModalContent] = useState(null);
-
 
   useEffect(() => {
     dispatch(getUser());
@@ -226,9 +236,7 @@ const AccountPage = ({ favoritesFromState }) => {
       case 'announcements':
         return (
           <div>
-
             <UserAnnouncement setModalContent={setModalContent} />
-
           </div>
         );
       case 'favourites':
@@ -238,13 +246,12 @@ const AccountPage = ({ favoritesFromState }) => {
             {favorites.length > 0 ? (
               <ul>
                 {favorites.map(favorite => (
-                  <li key={favorite.id}>
-                    <CarItem
-                      car={favorite}
-                      isFavorite={favorites.some(fav => fav.id === favorite.id)}
-                      toggleFavorite={handleToggleFavorite}
-                    />
-                  </li>
+                  <CarItem
+                    key={favorite.id}
+                    car={favorite}
+                    isFavorite={favorites.some(fav => fav.id === favorite.id)}
+                    toggleFavorite={handleToggleFavorite}
+                  />
                 ))}
               </ul>
             ) : (

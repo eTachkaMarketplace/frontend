@@ -57,7 +57,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
         <div className="carsMainList">
           {cars &&
             cars.length > 0 && ( // Улучшенное условие отображения сообщения об ошибке
-              <ul>
+              <ul className="carsDiv">
                 {cars.map(car => (
                   <CarItem
                     key={car.id}
@@ -71,67 +71,66 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
           {(!cars || cars.length === 0) && ( // Улучшенное условие отображения сообщения об ошибке
             <h2 className="enotherONe">Нічого не знайдено, виберіть інший фільтр</h2>
 
-//           {cars && cars.length > 0  ? (
-//             <ul className='carsDiv'>
-//               {cars.map(car => {
-//                 const desc = car.car;
-//                 return (
-//                   <li key={car.id} className="carItem">
-//                     <div>
-//                       <img className="img" src={car.previewImage} alt="car" />
-//                     </div>
-//                     <div className="infoDiv">
-//                       <div className="modelInfoDIV">
-//                         <h2 className="modelInfo">
-//                           {desc.brand} {desc.model} {desc.year}
-//                         </h2>
-//                         <h2 className="modelInfo">{desc.price}$</h2>
-//                       </div>
-//                       <div className="numberDiv">
-//                         {desc.licensePlate &&<h3 className="number">{desc.licensePlate}</h3>}
-//                         {desc.vin && <h3 className="number">{desc.vin}</h3>}
-//                       </div>
-//                       <div className="listDIV">
-//                         <ul className="list">
-//                           <li className="itemLI">
-//                             <DateSVG />
-//                             {desc.year}
-//                           </li>
-//                           <li className="itemLI">
-//                             <LockSVG />
-//                             {car.region}
-//                           </li>
-//                           <li className="itemLI">
-//                             <SpeedometerSVG />
-//                             {desc.mileage}
-//                           </li>
-//                         </ul>
-//                         <ul className="list">
-//                           <li className="itemLI">
-//                             <PetrolSVG />
-//                             {desc.engineType}
-//                           </li>
-//                           <li className="itemLI">
-//                             <SlideSVG />
-//                             {desc.driveType}
-//                           </li>
-//                           <li className="itemLI">
-//                             <CarSVG />
-//                             {desc.transmissionType}
-//                           </li>
-//                         </ul>
-//                       </div>
-//                       <button className="favoriteBTN" type="button">
-//                         <Favorit />
-//                       </button>
-//                     </div>
-//                   </li>
-//                 );
-//               })}
-//             </ul>
-//           ) : (
-//             <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2>
-
+            //           {cars && cars.length > 0  ? (
+            //             <ul className='carsDiv'>
+            //               {cars.map(car => {
+            //                 const desc = car.car;
+            //                 return (
+            //                   <li key={car.id} className="carItem">
+            //                     <div>
+            //                       <img className="img" src={car.previewImage} alt="car" />
+            //                     </div>
+            //                     <div className="infoDiv">
+            //                       <div className="modelInfoDIV">
+            //                         <h2 className="modelInfo">
+            //                           {desc.brand} {desc.model} {desc.year}
+            //                         </h2>
+            //                         <h2 className="modelInfo">{desc.price}$</h2>
+            //                       </div>
+            //                       <div className="numberDiv">
+            //                         {desc.licensePlate &&<h3 className="number">{desc.licensePlate}</h3>}
+            //                         {desc.vin && <h3 className="number">{desc.vin}</h3>}
+            //                       </div>
+            //                       <div className="listDIV">
+            //                         <ul className="list">
+            //                           <li className="itemLI">
+            //                             <DateSVG />
+            //                             {desc.year}
+            //                           </li>
+            //                           <li className="itemLI">
+            //                             <LockSVG />
+            //                             {car.region}
+            //                           </li>
+            //                           <li className="itemLI">
+            //                             <SpeedometerSVG />
+            //                             {desc.mileage}
+            //                           </li>
+            //                         </ul>
+            //                         <ul className="list">
+            //                           <li className="itemLI">
+            //                             <PetrolSVG />
+            //                             {desc.engineType}
+            //                           </li>
+            //                           <li className="itemLI">
+            //                             <SlideSVG />
+            //                             {desc.driveType}
+            //                           </li>
+            //                           <li className="itemLI">
+            //                             <CarSVG />
+            //                             {desc.transmissionType}
+            //                           </li>
+            //                         </ul>
+            //                       </div>
+            //                       <button className="favoriteBTN" type="button">
+            //                         <Favorit />
+            //                       </button>
+            //                     </div>
+            //                   </li>
+            //                 );
+            //               })}
+            //             </ul>
+            //           ) : (
+            //             <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2>
           )}
         </div>
       </div>
@@ -143,7 +142,7 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
   const desc = car.car;
 
   return (
-    <div className="carItem">
+    <li className="carItem">
       <div>
         <img className="img" src={car.previewImage} alt="car" />
       </div>
@@ -192,7 +191,7 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
           {isFavorite ? <FavoritFilled /> : <Favorit />}
         </button>
       </div>
-    </div>
+    </li>
   );
 };
 
