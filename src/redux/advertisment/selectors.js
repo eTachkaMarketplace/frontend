@@ -7,6 +7,6 @@ export const selectFavorites = state => state.adverstisement.adverstisementsFavo
 
 
 export const selectMyADV = state => state.adverstisement.myAdvertisements;
-export const selectAdverstisementsFavorite = state =>
-  state.adverstisement.adverstisementsID;
+// export const selectAdverstisementsFavorite = state =>
+//   state.adverstisement.adverstisementsID;
 

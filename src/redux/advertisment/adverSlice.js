@@ -10,7 +10,7 @@ import {
 
   getAdvFav,
 
-  getAdverstisementsFavorite,
+  // getAdverstisementsFavorite,
   getMyAdv,
 
   postFavoriteAdverstisementsByID,
