@@ -66,6 +66,21 @@ export const FavoritFilled = () => {
   );
 }
 
+export const PenSvg = () => {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M16.2126 11.6813L8 19.8938V24L12.1063 24L20.3189 15.7875M16.2126 11.6813L19.1574 8.73645L19.1592 8.73471C19.5646 8.32934 19.7676 8.12629 20.0017 8.05024C20.2079 7.98325 20.43 7.98325 20.6362 8.05024C20.8701 8.12624 21.0729 8.32905 21.4777 8.73385L23.2637 10.5199C23.6702 10.9264 23.8736 11.1297 23.9498 11.3641C24.0168 11.5703 24.0167 11.7924 23.9497 11.9986C23.8736 12.2328 23.6706 12.4359 23.2646 12.8418L23.2637 12.8427L20.3189 15.7875M16.2126 11.6813L20.3189 15.7875"
+        stroke="#ABABAB"
+
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export const DateSVG = () => {
   return (
     <svg
@@ -181,4 +196,27 @@ export const CarSVG = () => {
       strokeLinejoin="round"
     />
   </svg>;
+}
+
+export const BigPlus = () => {
+  return (
+    <svg
+      width="110.000000"
+      height="110.000000"
+      viewBox="0 0 110 110"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <desc>Created with Pixso.</desc>
+      <defs />
+      <path
+        id="Vector"
+        d="M55 0C51.6875 0 49 2.68652 49 6L49 49L6 49C2.6875 49 0 51.6865 0 55C0 58.3135 2.6875 61 6 61L49 61L49 104C49 107.313 51.6875 110 55 110C58.3125 110 61 107.313 61 104L61 61L104 61C107.312 61 110 58.3135 110 55C110 51.6865 107.312 49 104 49L61 49L61 6C61 2.68652 58.3125 0 55 0Z"
+        clip-rule="evenodd"
+        fill="#B9B9B9"
+        fillOpacity="1.000000"
+        fillRule="evenodd"
+      />
+    </svg>
+  );
 }

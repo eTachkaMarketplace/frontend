@@ -3,9 +3,16 @@ import {
   createFavoriteAdverstisementsByID,
   deleteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
+  disableById,
+  enableById,
   getAdverstisements,
   getAdverstisementsByID,
+
   getAdvFav,
+
+  getAdverstisementsFavorite,
+  getMyAdv,
+
   postFavoriteAdverstisementsByID,
   putFavoriteAdverstisementsByID,
 } from './operations';
@@ -15,6 +22,7 @@ import {
 
 
 const initialState = {
+  myAdvertisements: [],
   adverstisements: [],
   adverstisementsID: null,
   adverstisementsFavorite: [],
@@ -77,6 +85,18 @@ export const adversSlice = createSlice({
         state.error = payload.error;
 
       })
+      .addCase(getMyAdv.fulfilled, (state, { payload }) => {
+        state.myAdvertisements = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getMyAdv.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getMyAdv.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
       .addCase(deleteAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
@@ -85,6 +105,28 @@ export const adversSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteAdverstisementsByID.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
+      .addCase(enableById.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(enableById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(enableById.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
+      .addCase(disableById.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(disableById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(disableById.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
       })

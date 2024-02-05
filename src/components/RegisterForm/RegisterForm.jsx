@@ -240,7 +240,7 @@ export const RegisterForm = () => {
               />
             </div>
             <Button type="submit" onClick={() => setFormSubmitted(true)}>
-              Зареєструватись
+              Зареєструватися
             </Button>
             {errorRedux && (
               <h2 className="ErrorRedux">Реєстрація не успішна</h2>

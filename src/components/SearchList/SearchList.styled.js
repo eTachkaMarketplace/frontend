@@ -46,7 +46,11 @@ export const SearchListDiv = styled.div`
   .carsMainList {
     margin-top: 20px;
   }
-  .carItem {
+  .carsDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  } .carItem {
     display: flex;
     gap: 20px;
     width: 844px;

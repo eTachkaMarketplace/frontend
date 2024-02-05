@@ -164,16 +164,23 @@ import { SVG1 } from './AccPageSVG';
 import { useLocation } from 'react-router-dom';
 import { selectUser } from 'redux/auth/selectors';
 import { getUser } from 'redux/auth/operations';
+
 import { deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
 import { CarItem } from 'components/SearchList/SearchList';
 
+import Modal from 'modal/modal';
+
+
 const AccountPage = ({ favoritesFromState }) => {
   const dispatch = useDispatch();
-  const [selectedNavItem, setSelectedNavItem] = useState('personal');
   const [favorites, setFavorites] = useState([]);
   const location = useLocation();
   const userInfo = useSelector(selectUser);
+
+  const [selectedNavItem, setSelectedNavItem] = useState('personal');
+  const [modalContent, setModalContent] = useState(null);
+
 
   useEffect(() => {
     dispatch(getUser());
@@ -219,7 +226,9 @@ const AccountPage = ({ favoritesFromState }) => {
       case 'announcements':
         return (
           <div>
-            <UserAnnouncement />
+
+            <UserAnnouncement setModalContent={setModalContent} />
+
           </div>
         );
       case 'favourites':
@@ -249,67 +258,60 @@ const AccountPage = ({ favoritesFromState }) => {
   };
 
   return (
-    <AccountContainer>
-      <Title>Особистий кабінет</Title>
-      <Container>
-        <UserContainer>
-          <div className="user-profile_container">
-            <div className='photoDIV'>
-              {userInfo.photo ? (
-                <img className="photo" src={userInfo.photo} alt="user" />
-              ) : (
-                <SVG1 />
-              )}
-            </div>
-            <div>
-              <div className="UserNameDiv">
-                <h3 className="user-profile_title">{userInfo.firstName}</h3>
-                <h3 className="user-profile_title">{userInfo.lastName}</h3>
+    <>
+      <AccountContainer>
+        <Title>Особистий кабінет</Title>
+        <Container>
+          <UserContainer>
+            <div className="user-profile_container">
+              <div className="photoDIV">
+                {userInfo.photo ? <img className="photo" src={userInfo.photo} alt="user" /> : <SVG1 />}
               </div>
-              <p className="user-profile_text">{userInfo.email}</p>
+              <div>
+                <div className="UserNameDiv">
+                  <h3 className="user-profile_title">{userInfo.firstName}</h3>
+                  <h3 className="user-profile_title">{userInfo.lastName}</h3>
+                </div>
+                <p className="user-profile_text">{userInfo.email}</p>
+              </div>
             </div>
-          </div>
 
-          <nav className="user-nav_container">
-            <ul className="user-nav_list">
-              <li
-                className={`user-nav_item ${
-                  selectedNavItem === 'personal' ? 'active' : ''
-                }`}
-                onClick={() => setSelectedNavItem('personal')}
-              >
-                <StyledUserSVG />
-                Особистий кабінет
-              </li>
-              <li
-                className={`user-nav_item ${
-                  selectedNavItem === 'announcements' ? 'active' : ''
-                }`}
-                onClick={() => setSelectedNavItem('announcements')}
-              >
-                <StyledAnnouncementsSVG />
-                Мої оголошення
-              </li>
-              <li
-                className={`user-nav_item ${
-                  selectedNavItem === 'favourites' ? 'active' : ''
-                }`}
-                onClick={() => setSelectedNavItem('favourites')}
-              >
-                <StyledFavouritesSVG />
-                Обране
-              </li>
-              <li className="user-nav_item" onClick={handleLogout}>
-                <StyledLogoutSVG />
-                Вихід з акаунту
-              </li>
-            </ul>
-          </nav>
-        </UserContainer>
+            <nav className="user-nav_container">
+              <ul className="user-nav_list">
+                <li
+                  className={`user-nav_item ${selectedNavItem === 'personal' ? 'active' : ''}`}
+                  onClick={() => setSelectedNavItem('personal')}
+                >
+                  <StyledUserSVG />
+                  Особистий кабінет
+                </li>
+                <li
+                  className={`user-nav_item ${selectedNavItem === 'announcements' ? 'active' : ''}`}
+                  onClick={() => setSelectedNavItem('announcements')}
+                >
+                  <StyledAnnouncementsSVG />
+                  Мої оголошення
+                </li>
+                <li
+                  className={`user-nav_item ${selectedNavItem === 'favourites' ? 'active' : ''}`}
+                  onClick={() => setSelectedNavItem('favourites')}
+                >
+                  <StyledFavouritesSVG />
+                  Обране
+                </li>
+                <li className="user-nav_item" onClick={handleLogout}>
+                  <StyledLogoutSVG />
+                  Вихід з акаунту
+                </li>
+              </ul>
+            </nav>
+          </UserContainer>
 
-        <AnnouncementContainer>{renderContent()}</AnnouncementContainer>
-      </Container>
-    </AccountContainer>
+          <AnnouncementContainer>{renderContent()}</AnnouncementContainer>
+        </Container>
+      </AccountContainer>
+      {modalContent && <Modal>{modalContent}</Modal>}
+    </>
   );
 };
 

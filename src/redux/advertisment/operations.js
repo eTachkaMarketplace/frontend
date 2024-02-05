@@ -60,6 +60,16 @@ export const getAdvFav = createAsyncThunk('adverstisements/getAdvFav', async (_,
 
 
 
+export const getMyAdv = createAsyncThunk('adverstisements/getMyAdv', async (_, { rejectWithValue }) => {
+  try {
+    const response = await instance.get(`advertisement/me`);
+    console.log('getMyAdv is successful');
+    return response.data.data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
 export const deleteAdverstisementsByID = createAsyncThunk(
   'adverstisements/deleteAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
@@ -73,13 +83,30 @@ export const deleteAdverstisementsByID = createAsyncThunk(
   }
 );
 
+export const enableById = createAsyncThunk('adverstisements/enableById', async ({ id }, { rejectWithValue }) => {
+  try {
+    await instance.post(`advertisement/enable/${id}`);
+    console.log('enableById is successful');
+    return;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+export const disableById = createAsyncThunk('adverstisements/disableById', async ({ id }, { rejectWithValue }) => {
+  try {
+    await instance.post(`advertisement/disable/${id}`);
+    console.log('disableById is successful');
+    return;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
 export const deleteFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/deleteFavoriteAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await instance.delete(
-        `advertisement/favorite/${id}`
-      );
+      const response = await instance.delete(`advertisement/favorite/${id}`);
       console.log('deleteFavoriteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
@@ -92,9 +119,7 @@ export const postFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/postFavoriteAdverstisementsByID',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const response = await instance.post(
-        `advertisement/favorite/${id}`
-      );
+      const response = await instance.post(`advertisement/favorite/${id}`);
       console.log('postFavoriteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
@@ -107,10 +132,7 @@ export const putFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/putFavoriteAdverstisementsByID',
   async ({ Adverstisements, id }, { rejectWithValue }) => {
     try {
-      const response = await instance.put(
-        `advertisement/favorite/${id}`,
-        Adverstisements
-      );
+      const response = await instance.put(`advertisement/favorite/${id}`, Adverstisements);
       console.log('putFavoriteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
@@ -119,23 +141,17 @@ export const putFavoriteAdverstisementsByID = createAsyncThunk(
   }
 );
 
-
-
 export const createFavoriteAdverstisementsByID = createAsyncThunk(
   'adverstisements/createFavoriteAdverstisementsByID',
-  async ({formData, token}, { rejectWithValue }) => {
+  async ({ formData, token }, { rejectWithValue }) => {
     console.log(formData);
     try {
-      const response = await instance.post(
-        `advertisement`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await instance.post(`advertisement`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       console.log('createFavoriteAdverstisementsByID is successful');
       return response.data;
