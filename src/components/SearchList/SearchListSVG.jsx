@@ -14,10 +14,6 @@ export const Favorit = () => {
   const svgStyle = {
     stroke: '#ABABAB',
     fill: 'none',
-    ':hover': {
-      stroke: '#0141BD',
-      fill: '#0141BD',
-    },
    
   };
 
@@ -42,12 +38,41 @@ export const Favorit = () => {
   );
 }
 
+export const FavoritFilled = () => {
+  const svgStyle = {
+    stroke: '#0141BD',
+    fill: '#0141BD',
+
+   
+  };
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 30 30"
+      style={svgStyle}
+
+    >
+      <path
+        d="M15 8.62752C12.5 2.74478 3.75 3.37135 3.75 10.8902C3.75 18.409 15 24.6748 15 24.6748C15 24.6748 26.25 18.409 26.25 10.8902C26.25 3.37135 17.5 2.74478 15 8.62752Z"
+        
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export const PenSvg = () => {
   return (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M16.2126 11.6813L8 19.8938V24L12.1063 24L20.3189 15.7875M16.2126 11.6813L19.1574 8.73645L19.1592 8.73471C19.5646 8.32934 19.7676 8.12629 20.0017 8.05024C20.2079 7.98325 20.43 7.98325 20.6362 8.05024C20.8701 8.12624 21.0729 8.32905 21.4777 8.73385L23.2637 10.5199C23.6702 10.9264 23.8736 11.1297 23.9498 11.3641C24.0168 11.5703 24.0167 11.7924 23.9497 11.9986C23.8736 12.2328 23.6706 12.4359 23.2646 12.8418L23.2637 12.8427L20.3189 15.7875M16.2126 11.6813L20.3189 15.7875"
         stroke="#ABABAB"
+
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

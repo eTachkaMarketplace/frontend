@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Spinner from './Spinner/spinner';
 import { PublickRoute } from './PublickRoute';
@@ -9,7 +9,7 @@ import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
 import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
@@ -17,15 +17,29 @@ import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
 import HomePage from '../pages/HomePage/HomePage';
 import { getUser } from 'redux/auth/operations';
+import { getAdvFav } from 'redux/advertisment/operations';
+import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 
 
 export function App() {
   const dispatch = useDispatch();
+  const [favorites, setFavorites] = useState([]);
+  const favoritesFromState = useSelector(selectAdverstisementsFavorite);
 
   useEffect(() => {
     dispatch(refresh());
     dispatch(getUser());
+     dispatch(getAdvFav());
   }, [dispatch]);
+
+  useEffect(() => {
+    const idFavorite = favoritesFromState.map(favorite => favorite.id);
+    setFavorites(idFavorite);
+    console.log(idFavorite)
+    console.log(favoritesFromState)
+  
+
+  }, [favoritesFromState]);
 
   return (
     <>
@@ -50,11 +64,8 @@ export function App() {
                 </PublickRoute>
               }
             />
-            <Route
-              path="/AdvertisementByID/:id"
-              element={<AdvertisementByID />}
-            />
-            <Route path="/search" element={<SearchPage />} />
+            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID />} />
+            <Route path="/search" element={<SearchPage favorites={favorites} setFavorites={setFavorites} />} />
             <Route
               path="/advertisementPage"
               element={
@@ -67,18 +78,11 @@ export function App() {
               path="/account"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AccountPage />
+                  <AccountPage favoritesFromState={favoritesFromState}  />
                 </PrivateRoute>
               }
             />
-            <Route
-              path="/advertisementDone"
-              element={
-                
-                  <AdvertisementPageDone />
-                
-              }
-            />
+            <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>

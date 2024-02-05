@@ -7,11 +7,19 @@ import {
   enableById,
   getAdverstisements,
   getAdverstisementsByID,
+
+  getAdvFav,
+
   getAdverstisementsFavorite,
   getMyAdv,
+
   postFavoriteAdverstisementsByID,
   putFavoriteAdverstisementsByID,
 } from './operations';
+
+// import { favoriteSlice } from './favoriteSlice';
+// const { setFavoriteAdvertisements, setLoading: setLoadingFavorite, setError: setErrorFavorite } = favoriteSlice.actions;
+
 
 const initialState = {
   myAdvertisements: [],
@@ -51,17 +59,31 @@ export const adversSlice = createSlice({
         state.isLoading = false;
         state.error = payload.error;
       })
-      .addCase(getAdverstisementsFavorite.fulfilled, (state, { payload }) => {
+
+      // .addCase(getAdverstisementsFavorite.fulfilled, (state, { payload }) => {
+      //   setFavoriteAdvertisements(state, payload);
+      //   setLoadingFavorite(state, false);
+      //   setErrorFavorite(state, null);
+      // })
+      // .addCase(getAdverstisementsFavorite.pending, state => {
+      //   setLoadingFavorite(state, true);
+      // })
+      // .addCase(getAdverstisementsFavorite.rejected, (state, { payload }) => {
+      //   setLoadingFavorite(state, false);
+      //   setErrorFavorite(state, payload.error);
+
+      .addCase(getAdvFav.fulfilled, (state, { payload }) => {
         state.adverstisementsFavorite = payload;
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getAdverstisementsFavorite.pending, state => {
+      .addCase(getAdvFav.pending, state => {
         state.isLoading = true;
       })
-      .addCase(getAdverstisementsFavorite.rejected, (state, { payload }) => {
+      .addCase(getAdvFav.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
+
       })
       .addCase(getMyAdv.fulfilled, (state, { payload }) => {
         state.myAdvertisements = payload;

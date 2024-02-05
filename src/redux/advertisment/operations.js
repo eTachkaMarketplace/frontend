@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
+// import { selectToken } from 'redux/auth/selectors'; 
+
 
 export const getAdverstisements = createAsyncThunk(
   'adverstisement/getAdverstisements',
@@ -27,19 +29,36 @@ export const getAdverstisementsByID = createAsyncThunk(
     }
   }
 );
+// <<<<<<< Updated upstream
+// export const getAdverstisementsFavorite = createAsyncThunk(
+//   'adverstisements/getAdverstisementsFavorite',
+//   async (_, { rejectWithValue, getState }) => {
+//     try {
+//       const state = getState(); 
+//       const token = selectToken(state); 
+//       const response = await instance.get(`advertisement/favorites`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+//       console.log('getAdverstisementsFavorite is successful');
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+// =======
 
-export const getAdverstisementsFavorite = createAsyncThunk(
-  'adverstisements/getAdverstisementsFavorite',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await instance.get(`advertisement/favorites`);
-      console.log('getAdverstisementsFavorite is successful');
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+export const getAdvFav = createAsyncThunk('adverstisements/getAdvFav', async (_, { rejectWithValue }) => {
+  try {
+    const response = await instance.get(`/advertisement/favorite`);
+    console.log('getAdvFav is successful');
+    return response.data.data;
+  } catch (error) {
+    return rejectWithValue(error.message);
   }
-);
+});
+
+
 
 export const getMyAdv = createAsyncThunk('adverstisements/getMyAdv', async (_, { rejectWithValue }) => {
   try {
@@ -136,6 +155,25 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
 
       console.log('createFavoriteAdverstisementsByID is successful');
       return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const toggleFavorite = createAsyncThunk(
+  'adverstisements/toggleFavorite',
+  async ({ id, isFavorite }, { rejectWithValue }) => {
+    try {
+      if (isFavorite) {
+        const response = await instance.delete(`advertisement/favorite/${id}`);
+        console.log('Advertisement removed from favorites');
+        return response.data;
+      } else {
+        const response = await instance.post(`advertisement/favorite/${id}`);
+        console.log('Advertisement added to favorites');
+        return response.data;
+      }
     } catch (error) {
       return rejectWithValue(error.message);
     }
