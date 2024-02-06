@@ -25,7 +25,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
     }
   };
 
-  const handleToggleFavorite = id => {
+ const handleToggleFavorite = id => {
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
@@ -56,7 +56,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
         </div>
         <div className="carsMainList">
           {cars &&
-            cars.length > 0 && ( // Улучшенное условие отображения сообщения об ошибке
+            cars.length > 0 && ( 
               <ul className="carsDiv">
                 {cars.map(car => (
                   <CarItem

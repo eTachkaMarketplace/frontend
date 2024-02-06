@@ -47,7 +47,7 @@ export function App() {
       <main>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage favorites={favorites} setFavorites={setFavorites}/>} />
             <Route
               path="/authorization"
               element={

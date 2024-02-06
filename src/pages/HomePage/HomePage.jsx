@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { useEffect } from 'react';
 
-export default function HomePage() {
+export default function HomePage({ favorites ,setFavorites}) {
 const dispatch = useDispatch()
 
   useEffect(() => {
@@ -15,8 +15,8 @@ const dispatch = useDispatch()
   return (
     <>
       <Hero />
-      <PopularCatalog />
-      <NewCatalog />
+      <PopularCatalog favorites={favorites} setFavorites={setFavorites}/>
+      <NewCatalog favorites={favorites} setFavorites={setFavorites}/>
     </>
   );
 }
