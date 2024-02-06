@@ -8,13 +8,11 @@ import Logo from '../../images/Header/LOGO.png';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 
 const Header = () => {
-  const dispatch = useDispatch();
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(getAdvFav());
-  }, [dispatch]);
+  }, [isLoggedIn]);
  
 
   return (

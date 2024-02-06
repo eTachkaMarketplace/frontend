@@ -31,16 +31,27 @@ export default function PopularCatalog({ favorites, setFavorites }) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => prevFavorites.filter(favoriteId => favoriteId !== id)))
           .catch(error => console.error('Failed to remove advertisement from favorites', error));
+        
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
       } else {
         dispatch(postFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => [...prevFavorites, id]))
           .catch(error => console.error('Failed to add advertisement to favorites', error));
+         setTimeout(() => {
+           dispatch(getAdvFav());
+         }, 500);
       }
     } else {
       dispatch(postFavoriteAdverstisementsByID({ id }))
         .then(() => setFavorites([...favorites, id]))
         .catch(error => console.error('Failed to add advertisement to favorites', error));
+       setTimeout(() => {
+         dispatch(getAdvFav());
+       }, 500);
     }
+    
   };
 
   return (

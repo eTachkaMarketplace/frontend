@@ -3,7 +3,6 @@ import { Favorit, FavoritFilled } from '../SearchList/SearchListSVG';
 
 export default function AdvertisementCard({ data, isFavorite, toggleFavorite }) {
   const { car } = data;
-
   return (
     <div className="relative">
       <Link
@@ -28,7 +27,7 @@ export default function AdvertisementCard({ data, isFavorite, toggleFavorite }) 
       <button
         className="bg-transparent border-0 absolute top-7 right-7"
         type="button"
-        onClick={toggleFavorite}
+        onClick={toggleFavorite} 
       >
         {isFavorite ? <FavoritFilled /> : <Favorit />}
       </button>
