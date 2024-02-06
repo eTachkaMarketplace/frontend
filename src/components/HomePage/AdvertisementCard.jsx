@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Favorit, FavoritFilled } from '../SearchList/SearchListSVG';
+import { Favorit } from '../SearchList/SearchListSVG';
+import {  FavoritFilled } from '../HomePage/AdvertisementCardSVG';
 
 export default function AdvertisementCard({ data, isFavorite, toggleFavorite }) {
   const { car } = data;
