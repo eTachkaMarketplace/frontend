@@ -84,6 +84,21 @@ export const Icon = styled.div`
 
 `;
 
+export const StyledSpan = styled.span`
+  position: absolute;
+  top: 10px;
+  right: -7px;
+  width: 20px; 
+  height: 20px; 
+  background-color: #0141BD;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 3px;
+  color: white;
+`;
+
 export const ButtonSale= styled.button`
     display: flex;
     width: 200px;

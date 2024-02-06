@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
 import { CarSVG, DateSVG, Favorit, FavoritFilled, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
 import { selectAdverstisements } from 'redux/advertisment/selectors'; 
 import {
+  getAdvFav,
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
@@ -12,6 +13,9 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   const cars = useSelector(selectAdverstisements);
   const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(getAdvFav());
+  }, [dispatch]);
  
   const handleSelectChange = event => {
     const selectedValue = event.target.value;
@@ -25,21 +29,30 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
     }
   };
 
-  const handleToggleFavorite = id => {
+ const handleToggleFavorite = id => {
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => prevFavorites.filter(favoriteId => favoriteId !== id))) // используйте функцию обновления состояния
-          .catch(error => console.error('Failed to remove advertisement from favorites', error)); // Обработка ошибки
+          .catch(error => console.error('Failed to remove advertisement from favorites', error));
+          setTimeout(() => {
+            dispatch(getAdvFav());
+          }, 500);
       } else {
         dispatch(postFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => [...prevFavorites, id])) // используйте функцию обновления состояния
-          .catch(error => console.error('Failed to add advertisement to favorites', error)); // Обработка ошибки
+          .catch(error => console.error('Failed to add advertisement to favorites', error));
+          setTimeout(() => {
+            dispatch(getAdvFav());
+          }, 500);
       }
     } else {
       dispatch(postFavoriteAdverstisementsByID({ id }))
         .then(() => setFavorites([...favorites, id]))
         .catch(error => console.error('Failed to add advertisement to favorites', error));
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
     }
   };
 
@@ -56,7 +69,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
         </div>
         <div className="carsMainList">
           {cars &&
-            cars.length > 0 && ( // Улучшенное условие отображения сообщения об ошибке
+            cars.length > 0 && ( 
               <ul className="carsDiv">
                 {cars.map(car => (
                   <CarItem
