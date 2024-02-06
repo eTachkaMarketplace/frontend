@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
 import { CarSVG, DateSVG, Favorit, FavoritFilled, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
 import { selectAdverstisements } from 'redux/advertisment/selectors'; 
 import {
+  getAdvFav,
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
@@ -12,6 +13,9 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   const cars = useSelector(selectAdverstisements);
   const dispatch = useDispatch();
   
+  useEffect(() => {
+    dispatch(getAdvFav());
+  }, [dispatch]);
  
   const handleSelectChange = event => {
     const selectedValue = event.target.value;
