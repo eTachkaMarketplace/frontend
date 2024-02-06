@@ -11,6 +11,8 @@ import {
   UserContainer,
   AnnouncementContainer,
   Favorites,
+  Text,
+  StyledNavLink,
 } from './AccountPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authSlice';
@@ -86,7 +88,7 @@ const AccountPage = ({ favoritesFromState }) => {
       case 'favourites':
         return (
           <Favorites>
-            <Subtitle>Обрані оголошення:</Subtitle>
+            <Subtitle>Обрані оголошення{favorites.length > 0 && <span  className="ml-1">({favorites.length})</span>}:</Subtitle>
             {favorites.length > 0 ? (
               <ul>
                 {favorites.map(favorite => (
@@ -99,7 +101,9 @@ const AccountPage = ({ favoritesFromState }) => {
                 ))}
               </ul>
             ) : (
-              <p>Ви ще не обрали жодного оголошення в обране.</p>
+              <Text>
+              Ви ще не додали оголошення в обране. Щоб розпочати пошук натисніть <StyledNavLink to="/search">тут</StyledNavLink>.
+            </Text>
             )}
           </Favorites>
         );
