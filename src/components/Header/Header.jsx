@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Container, HeaderWrapper, Navigation, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAdvFav } from 'redux/advertisment/operations';
+import { useSelector } from 'react-redux';
+// import { getAdvFav } from 'redux/advertisment/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import Logo from '../../images/Header/LOGO.png';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
