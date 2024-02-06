@@ -61,6 +61,9 @@ const AccountPage = ({ favoritesFromState }) => {
       .then(() => {
         const updatedFavorites = favorites.filter(favorite => favorite.id !== id);
         setFavorites(updatedFavorites);
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
       })
       .catch(error => console.error('Failed to remove advertisement from favorites', error));
   };

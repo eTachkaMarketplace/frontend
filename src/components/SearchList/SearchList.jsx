@@ -34,16 +34,25 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => prevFavorites.filter(favoriteId => favoriteId !== id))) // используйте функцию обновления состояния
-          .catch(error => console.error('Failed to remove advertisement from favorites', error)); // Обработка ошибки
+          .catch(error => console.error('Failed to remove advertisement from favorites', error));
+          setTimeout(() => {
+            dispatch(getAdvFav());
+          }, 500);
       } else {
         dispatch(postFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => [...prevFavorites, id])) // используйте функцию обновления состояния
-          .catch(error => console.error('Failed to add advertisement to favorites', error)); // Обработка ошибки
+          .catch(error => console.error('Failed to add advertisement to favorites', error));
+          setTimeout(() => {
+            dispatch(getAdvFav());
+          }, 500);
       }
     } else {
       dispatch(postFavoriteAdverstisementsByID({ id }))
         .then(() => setFavorites([...favorites, id]))
         .catch(error => console.error('Failed to add advertisement to favorites', error));
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
     }
   };
 
