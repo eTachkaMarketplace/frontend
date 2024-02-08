@@ -7,9 +7,12 @@ import { changeUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 
 const profileSchema = yup.object().shape({
-  lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Прізвище може містити лише літери, - і '),
-  firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Імʼя може містити лише літери, - і '),
-  phone: yup.string().matches(/^[0-9+]*$/, 'Номер телефону може містити лише цифри та +'),
+  lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
+  firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
+  phone: yup.string()
+  .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
+    return value.startsWith('+380') && value.length === 13;
+  })
 });
 
 const ProfileForm = ({ initialValues }) => {
@@ -22,7 +25,7 @@ const ProfileForm = ({ initialValues }) => {
     initialValues: {
       lastName: initialValues.lastName || '',
       firstName: initialValues.firstName || '',
-      phone: initialValues.phone || '',
+      phone: initialValues.phone || '+380',
     },
     onSubmit: async values => {
       console.log({
@@ -71,6 +74,7 @@ const ProfileForm = ({ initialValues }) => {
   };
 
   return (
+    
     <Container>
       <form onSubmit={formik.handleSubmit}>
         <div className="profilePhoto">
@@ -140,7 +144,7 @@ const ProfileForm = ({ initialValues }) => {
             <p className="profile-label-title">Номер телефону:</p>
             <input
               className="profile-input"
-              type="phone"
+              type="text"
               name="phone"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
