@@ -1,16 +1,25 @@
-import { Container, HomeButton, Pre, Title, ErrorContainer, ErrorIcon, Subtitle } from './NotFound.styled';
-import icon from '../../images/NotFoundPage/404-error.png';
+import { Container,  Title, ErrorContainer,  Subtitle } from './NotFound.styled';
+import { ErorSVG } from './SVG';
+import { NavLink } from 'react-router-dom';
 
 export default function NotFound() {
   return (
     <Container>
       <ErrorContainer>
-        <Pre>Упс, сталася помилка...</Pre>
-        <ErrorIcon src={`${icon}`}/>
-        <Title>Здається, ви загубилися?</Title>
-        <Subtitle>Ця сторінка не існує.</Subtitle>
-        <HomeButton href={"/"}>На головну</HomeButton>
+        <ErorSVG />
+        <Title>Ууупс!</Title>
+        <Subtitle>Помилка 404. Ця сторінка зараз на реконструкції.</Subtitle>
+        <NavLink to="/search">
+          <button type="button" className="confirm2">
+            Пошук оголошення
+          </button>
+        </NavLink>
+        <NavLink to="/advertisementPage">
+          <button type="button" className="cansel2">
+            Створити оголошення
+          </button>
+        </NavLink>
       </ErrorContainer>
     </Container>
-  )
+  );
 }
