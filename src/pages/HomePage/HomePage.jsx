@@ -6,7 +6,7 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 import { useEffect } from 'react';
 
 export default function HomePage({ favorites ,setFavorites}) {
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(setIsOpen(false));

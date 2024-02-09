@@ -3,7 +3,23 @@ import {Container, Title, RequiredMarker, Paragraph} from '../AdvertisementPage/
 
 import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementForm.jsx';
 
+
 const AdvertisementPage = () => {
+
+  return (
+    <Container>
+      <Title>Створити оголошення</Title>
+      <Paragraph>
+        <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
+      </Paragraph>
+
+      <AdvertisementForm  />
+    </Container>
+  );
+};
+
+export default AdvertisementPage;
+
   // const initialFormValues = {
   //     description: "",
   //     region: "",
@@ -36,16 +52,3 @@ const AdvertisementPage = () => {
   // useEffect(() => {
   //   console.log(formValues);
   // }, [formValues]);
-  return (
-    <Container>
-      <Title>Створити оголошення</Title>
-      <Paragraph>
-        <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
-      </Paragraph>
-
-      <AdvertisementForm  />
-    </Container>
-  );
-};
-
-export default AdvertisementPage;

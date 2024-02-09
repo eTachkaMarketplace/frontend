@@ -4,7 +4,9 @@ import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
 import { AuthNavigate } from '../../components/AuthNavigate/AuthNavigate';
 import { Container, FormBox} from './RegisterPage.styled';
 
+
 export default function RegisterPage() {
+
   return (
     <Container>
       <FormBox>

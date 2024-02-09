@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import {Container, Title, SectionContainer,SectionTitle,StyledArrowSVG,StyledCreateSVG,StyledPostSVG,StyledDoneSVG, } from './AdvertisementPageDone.styled';
 import { NavLink } from 'react-router-dom';
 
