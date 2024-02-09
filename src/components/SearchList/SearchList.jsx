@@ -8,6 +8,7 @@ import {
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
+import { Link } from 'react-router-dom';
 
 export const SearchList = ({ setSort, favorites ,setFavorites }) => {
   const cars = useSelector(selectAdverstisements);
@@ -161,9 +162,11 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
       </div>
       <div className="infoDiv">
         <div className="modelInfoDIV">
-          <h2 className="modelInfo">
-            {desc.brand} {desc.model} {desc.year}
-          </h2>
+          <Link to={`/AdvertisementByID/${car.id}`}>
+            <h2 className="modelInfo">
+              {desc.brand} {desc.model} {desc.year}
+            </h2>
+          </Link>
           <h2 className="modelInfo">{desc.price}$</h2>
         </div>
         <div className="numberDiv">
