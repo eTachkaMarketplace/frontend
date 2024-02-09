@@ -3,9 +3,9 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { AutoDiv } from './Authentication.styled';
 
+
 const Authentication = () => {
   const [curentPage, setCurrentPage] = useState(true);
-
   const changePageTrue = () => {
     setCurrentPage(true);
   };

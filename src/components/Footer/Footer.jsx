@@ -8,20 +8,20 @@ const Footer = () => {
   return (
     <Container>
       <FooterWrapper>
-      <NavLink to={'/'}>
-            <img src={Logo} alt="Logo" />
-          </NavLink>
+        <NavLink to={'/'}>
+          <img src={Logo} alt="Logo" />
+        </NavLink>
         <FooterContainer>
           <ListContainer>
             <ul className="footer_list">
               <li className="footer_item">
-              <NavLink to={'/search?status=New'}>Нові</NavLink>
+                <NavLink to={'/search?category=Нові'}>Нові</NavLink>
               </li>
               <li className="footer_item">
-              <NavLink to={'/search?status=Used'}>Вживані</NavLink>
+                <NavLink to={'/search?category=Вживані'}>Вживані</NavLink>
               </li>
               <li className="footer_item">
-              <NavLink to={'/search?status=Servitude'}>Під Пригон</NavLink>
+                <NavLink to={'/search?category=Під пригон'}>Під Пригон</NavLink>
               </li>
             </ul>
             <ul className="footer_list">
@@ -32,7 +32,8 @@ const Footer = () => {
             <ul className="footer_list">
               <li className="footer_item">FAQ</li>
               <li className="footer_item">
-                <NavLink to={'/account'}>Мій кабінет</NavLink></li>
+                <NavLink to={'/account'}>Мій кабінет</NavLink>
+              </li>
             </ul>
           </ListContainer>
           <ul className="footer-contact_list">
@@ -40,10 +41,7 @@ const Footer = () => {
               <b className="footer-contact_title">Зв’яжись з нами</b>
             </li>
             <li>
-              <a
-                href="mailto:support@gmail.com"
-                className="footer-contact_link"
-              >
+              <a href="mailto:support@gmail.com" className="footer-contact_link">
                 support@gmail.com
               </a>
             </li>

@@ -17,7 +17,7 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 import DisableModal from './modals/Disable';
 import DelitedModal from './modals/Delited';
 import ActivateModal from './modals/Activate';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const ToggleContent = ({ isActive, children }) => {
   return isActive ? <div>{children}</div> : null;
@@ -99,9 +99,11 @@ const UserAnnouncement = ({ setModalContent }) => {
                   </div>
                   <div className="infoDiv">
                     <div className="modelInfoDIV">
-                      <h2 className="modelInfo">
-                        {desc.brand} {desc.model} {desc.year}
-                      </h2>
+                      <Link to={`/AdvertisementByID/${itemId}`}>
+                        <h2 className="modelInfo">
+                          {desc.brand} {desc.model} {desc.year}
+                        </h2>
+                      </Link>
                       <h2 className="modelInfo">{desc.price}$</h2>
                     </div>
                     <div className="numberDiv">
@@ -186,9 +188,11 @@ const UserAnnouncement = ({ setModalContent }) => {
                   </div>
                   <div className="infoDiv">
                     <div className="modelInfoDIV">
-                      <h2 className="modelInfo">
-                        {desc.brand} {desc.model} {desc.year}
-                      </h2>
+                      <Link to={`/AdvertisementByID/${itemId}`}>
+                        <h2 className="modelInfo">
+                          {desc.brand} {desc.model} {desc.year}
+                        </h2>
+                      </Link>
                       <h2 className="modelInfo">{desc.price}$</h2>
                     </div>
                     <div className="numberDiv">

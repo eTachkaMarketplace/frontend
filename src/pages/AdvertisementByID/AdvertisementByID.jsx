@@ -16,7 +16,7 @@ export const AdvertisementByID = () => {
 
   const setImage = (image) => {
   setImgSrs(image);
-}
+  }
 
   useEffect(() => {
     dispatch(getAdverstisementsByID(id));
@@ -25,6 +25,7 @@ export const AdvertisementByID = () => {
   if (!Advertisement) {
     return <p>Loading...</p>;
   }
+  
 
   return (
     <>

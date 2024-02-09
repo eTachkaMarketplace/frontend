@@ -33,6 +33,7 @@ const AccountPage = ({ favoritesFromState }) => {
   const dispatch = useDispatch();
   const [favorites, setFavorites] = useState([]);
   const location = useLocation();
+
   const userInfo = useSelector(selectUser);
 
   const [selectedNavItem, setSelectedNavItem] = useState('personal');
@@ -91,7 +92,9 @@ const AccountPage = ({ favoritesFromState }) => {
       case 'favourites':
         return (
           <Favorites>
-            <Subtitle>Обрані оголошення{favorites.length > 0 && <span  className="ml-1">({favorites.length})</span>}:</Subtitle>
+            <Subtitle>
+              Обрані оголошення{favorites.length > 0 && <span className="ml-1">({favorites.length})</span>}:
+            </Subtitle>
             {favorites.length > 0 ? (
               <ul>
                 {favorites.map(favorite => (
@@ -105,8 +108,9 @@ const AccountPage = ({ favoritesFromState }) => {
               </ul>
             ) : (
               <Text>
-              Ви ще не додали оголошення в обране. Щоб розпочати пошук натисніть <StyledNavLink to="/search">тут</StyledNavLink>.
-            </Text>
+                Ви ще не додали оголошення в обране. Щоб розпочати пошук натисніть{' '}
+                <StyledNavLink to="/search">тут</StyledNavLink>.
+              </Text>
             )}
           </Favorites>
         );
@@ -155,7 +159,7 @@ const AccountPage = ({ favoritesFromState }) => {
                   onClick={() => setSelectedNavItem('favourites')}
                 >
                   <StyledFavouritesSVG />
-                  Обране{favorites.length > 0 && <span  className="ml-1">({favorites.length})</span>}
+                  Обране{favorites.length > 0 && <span className="ml-1">({favorites.length})</span>}
                 </li>
                 <li className="user-nav_item" onClick={handleLogout}>
                   <StyledLogoutSVG />

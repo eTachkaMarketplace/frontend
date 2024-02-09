@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { AuthNavigate } from '../../components/AuthNavigate/AuthNavigate';
 import { Container, FormBox} from './LoginPage.styled';

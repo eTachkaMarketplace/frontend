@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Spinner from './Spinner/spinner';
 import { PublickRoute } from './PublickRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -23,6 +23,7 @@ import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 
 export function App() {
   const dispatch = useDispatch();
+  
   const [favorites, setFavorites] = useState([]);
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
 
@@ -35,11 +36,13 @@ export function App() {
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);
-    console.log(idFavorite)
-    console.log(favoritesFromState)
-  
 
   }, [favoritesFromState]);
+  const navigate = useNavigate();
+  const location = useLocation();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [navigate, location]);
 
   return (
     <>

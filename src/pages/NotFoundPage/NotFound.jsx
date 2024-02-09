@@ -1,8 +1,9 @@
 import { Container,  Title, ErrorContainer,  Subtitle } from './NotFound.styled';
 import { ErorSVG } from './SVG';
-import { NavLink } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
 
 export default function NotFound() {
+
   return (
     <Container>
       <ErrorContainer>
