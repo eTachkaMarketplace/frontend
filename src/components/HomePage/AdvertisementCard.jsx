@@ -5,7 +5,7 @@ import {  FavoritFilled } from '../HomePage/AdvertisementCardSVG';
 export default function AdvertisementCard({ data, isFavorite, toggleFavorite }) {
   const { car } = data;
   return (
-    <div className="relative">
+    <div className="relative w-[410px]">
       <Link
         to={`/AdvertisementByID/${data.id}`}
         className="flex flex-col flex-1 p-4 gap-3 cursor-pointer bg-blue-50 border-2 border-transparent hover:border-blue-200 rounded transition duration-300"
