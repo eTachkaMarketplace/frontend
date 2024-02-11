@@ -3,7 +3,7 @@ import { Section } from './ExtendedAdvertisement.styled';
 import {
   BlueMap,
   DateSVG,
-  HeartSVG,
+  
   InterSVG,
   MapSVG,
   MileSVG,
@@ -16,8 +16,12 @@ import { setIsOpen } from 'redux/modal/modalSlice';
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { useNavigate } from 'react-router-dom';
+import { Favorit } from '../SearchList/SearchListSVG';
+import {  FavoritFilled } from '../HomePage/AdvertisementCardSVG';
+// import { getAdvFav, postFavoriteAdverstisementsByID, deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 
-export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImage }) => {
+
+export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImage, isFavorite, toggleFavorite}) => {
   const splideRef = useRef(null);
   const [smallImage, setSmallImage] = useState(null);
 
@@ -130,8 +134,8 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
                 <h2 className="brandTitle">{advertisement.car.brand}</h2>
                 <h2 className="brandTitle">{advertisement.car.model}</h2>
                 <h2 className="brandTitle">{advertisement.car.year}</h2>
-                <button className="svg" type="button">
-                  <HeartSVG />
+                <button className="svg" type="button" onClick={toggleFavorite} >
+                {isFavorite ? <FavoritFilled /> : <Favorit />}
                 </button>
               </div>
               <p className="brandTitle">{advertisement.car.price.toLocaleString('uk-UA')} $</p>

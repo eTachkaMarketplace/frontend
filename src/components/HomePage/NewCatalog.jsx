@@ -4,8 +4,7 @@ import { selectAdverstisements, selectNumberAdv } from '../../redux/advertisment
 import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
-import { getAdvFav } from 'redux/advertisment/operations';
-import { postFavoriteAdverstisementsByID, deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
+import { getAdvFav, postFavoriteAdverstisementsByID, deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import Pagination from '../Pagination/Pagination';
 
 export default function NewCatalog({ favorites, setFavorites }) {

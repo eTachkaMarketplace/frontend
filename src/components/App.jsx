@@ -67,7 +67,7 @@ export function App() {
                 </PublickRoute>
               }
             />
-            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID />} />
+            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID  favorites={favorites} setFavorites={setFavorites}/>} />
             <Route path="/search" element={<SearchPage favorites={favorites} setFavorites={setFavorites} />} />
             <Route
               path="/advertisementPage"
