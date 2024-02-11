@@ -7,7 +7,6 @@ export const SearchListDiv = styled.div`
 
   margin-top: 30px;
   width: 844px;
-  height: 2000px;
 
   border-radius: 8px;
   background: #fff;
@@ -46,11 +45,12 @@ export const SearchListDiv = styled.div`
   .carsMainList {
     margin-top: 20px;
   }
-  .carsDiv{
+  .carsDiv {
     display: flex;
     flex-direction: column;
     gap: 16px;
-  } .carItem {
+  }
+  .carItem {
     display: flex;
     gap: 20px;
     width: 844px;
@@ -140,5 +140,45 @@ export const SearchListDiv = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+  }
+  .paginDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    gap: 50px;
+    margin-top: 80px;
+    margin-bottom: 125px;
+  }
+
+  .pagination-button {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+    color: #b0a9a9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .active {
+    color: #10187e;
+  }
+  .hidden {
+    display: none;
+  }
+  .pagination-button-arrow {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .pagination-button-arrow.disabled {
+    color: grey;
+  }
+
+  .pagination-button.active {
+    color: black; /* або інший бажаний колір для активних стрілок */
   }
 `;

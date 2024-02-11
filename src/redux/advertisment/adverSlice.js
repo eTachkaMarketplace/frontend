@@ -23,6 +23,7 @@ import {
 
 const initialState = {
   myAdvertisements: [],
+  numberAdv:0,
   adverstisements: [],
   adverstisementsID: null,
   adverstisementsFavorite: [],
@@ -36,7 +37,8 @@ export const adversSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getAdverstisements.fulfilled, (state, { payload }) => {
-        state.adverstisements = payload;
+        state.numberAdv = payload.message;
+        state.adverstisements = payload.data;
         state.isLoading = false;
         state.error = null;
       })

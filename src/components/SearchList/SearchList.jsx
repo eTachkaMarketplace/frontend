@@ -1,23 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
 import { CarSVG, DateSVG, Favorit, FavoritFilled, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
-import { selectAdverstisements } from 'redux/advertisment/selectors'; 
+import { selectAdverstisements, selectNumberAdv } from 'redux/advertisment/selectors';
 import {
   getAdvFav,
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
 import { Link } from 'react-router-dom';
+import { leftArrow, rightArrow } from 'components/Main/New/NewCarsSvg';
 
-export const SearchList = ({ setSort, favorites ,setFavorites }) => {
+export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, totalPages, setPageIndex, pageIndex }) => {
   const cars = useSelector(selectAdverstisements);
   const dispatch = useDispatch();
-  
+
+  const [resultNum, setResultNum] = useState(0);
+  const paginPage = useSelector(selectNumberAdv);
+
+  const startPage = Math.max(1, pageIndex - 2);
+  const endPage = Math.min(totalPages, startPage + 4);
+
+  const visiblePages = Array.from({ length: 5 }, (_, index) => endPage - 4 + index).filter(
+    num => num > 0 && num <= totalPages
+  );
+
+  useEffect(() => {
+    if (paginPage) {
+      const match = paginPage.match(/\d+/);
+      const number = match ? match[0] : null;
+      setResultNum(number);
+      const calculatedTotalPages = Math.ceil(number / 8);
+
+      if (calculatedTotalPages !== totalPages) {
+        setTotalPages(calculatedTotalPages);
+      }
+    }
+  }, [paginPage, setTotalPages, totalPages]);
+
   useEffect(() => {
     dispatch(getAdvFav());
   }, [dispatch]);
- 
+
+  const nextPage = () => {
+    setPageIndex(pageIndex + 1);
+  };
+
+  const prevPage = () => {
+    if (pageIndex > 0) {
+      setPageIndex(pageIndex - 1);
+    }
+  };
+
   const handleSelectChange = event => {
     const selectedValue = event.target.value;
 
@@ -30,30 +64,30 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
     }
   };
 
- const handleToggleFavorite = id => {
+  const handleToggleFavorite = id => {
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => prevFavorites.filter(favoriteId => favoriteId !== id))) // используйте функцию обновления состояния
           .catch(error => console.error('Failed to remove advertisement from favorites', error));
-          setTimeout(() => {
-            dispatch(getAdvFav());
-          }, 500);
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
       } else {
         dispatch(postFavoriteAdverstisementsByID({ id }))
           .then(() => setFavorites(prevFavorites => [...prevFavorites, id])) // используйте функцию обновления состояния
           .catch(error => console.error('Failed to add advertisement to favorites', error));
-          setTimeout(() => {
-            dispatch(getAdvFav());
-          }, 500);
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
       }
     } else {
       dispatch(postFavoriteAdverstisementsByID({ id }))
         .then(() => setFavorites([...favorites, id]))
         .catch(error => console.error('Failed to add advertisement to favorites', error));
-        setTimeout(() => {
-          dispatch(getAdvFav());
-        }, 500);
+      setTimeout(() => {
+        dispatch(getAdvFav());
+      }, 500);
     }
   };
 
@@ -61,7 +95,7 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
     <SearchListDiv>
       <div>
         <div className="titleDiv">
-          <h2 className="title">Результати пошуку (2):</h2>
+          <h2 className="title">Результати пошуку ({resultNum}):</h2>
           <select className="select" name="select" onChange={handleSelectChange}>
             <option value="foData">За датою додавання</option>
             <option value="cheap">Від дешевших</option>
@@ -69,83 +103,46 @@ export const SearchList = ({ setSort, favorites ,setFavorites }) => {
           </select>
         </div>
         <div className="carsMainList">
-          {cars &&
-            cars.length > 0 && ( 
-              <ul className="carsDiv">
-                {cars.map(car => (
-                  <CarItem
-                    key={car.id}
-                    car={car}
-                    isFavorite={favorites.includes(car.id)}
-                    toggleFavorite={handleToggleFavorite}
-                  />
-                ))}
-              </ul>
-            )}
+          {cars && cars.length > 0 && (
+            <ul className="carsDiv">
+              {cars.map(car => (
+                <CarItem
+                  key={car.id}
+                  car={car}
+                  isFavorite={favorites.includes(car.id)}
+                  toggleFavorite={handleToggleFavorite}
+                />
+              ))}
+            </ul>
+          )}
           {(!cars || cars.length === 0) && ( // Улучшенное условие отображения сообщения об ошибке
             <h2 className="enotherONe">Нічого не знайдено, виберіть інший фільтр</h2>
-
-            //           {cars && cars.length > 0  ? (
-            //             <ul className='carsDiv'>
-            //               {cars.map(car => {
-            //                 const desc = car.car;
-            //                 return (
-            //                   <li key={car.id} className="carItem">
-            //                     <div>
-            //                       <img className="img" src={car.previewImage} alt="car" />
-            //                     </div>
-            //                     <div className="infoDiv">
-            //                       <div className="modelInfoDIV">
-            //                         <h2 className="modelInfo">
-            //                           {desc.brand} {desc.model} {desc.year}
-            //                         </h2>
-            //                         <h2 className="modelInfo">{desc.price}$</h2>
-            //                       </div>
-            //                       <div className="numberDiv">
-            //                         {desc.licensePlate &&<h3 className="number">{desc.licensePlate}</h3>}
-            //                         {desc.vin && <h3 className="number">{desc.vin}</h3>}
-            //                       </div>
-            //                       <div className="listDIV">
-            //                         <ul className="list">
-            //                           <li className="itemLI">
-            //                             <DateSVG />
-            //                             {desc.year}
-            //                           </li>
-            //                           <li className="itemLI">
-            //                             <LockSVG />
-            //                             {car.region}
-            //                           </li>
-            //                           <li className="itemLI">
-            //                             <SpeedometerSVG />
-            //                             {desc.mileage}
-            //                           </li>
-            //                         </ul>
-            //                         <ul className="list">
-            //                           <li className="itemLI">
-            //                             <PetrolSVG />
-            //                             {desc.engineType}
-            //                           </li>
-            //                           <li className="itemLI">
-            //                             <SlideSVG />
-            //                             {desc.driveType}
-            //                           </li>
-            //                           <li className="itemLI">
-            //                             <CarSVG />
-            //                             {desc.transmissionType}
-            //                           </li>
-            //                         </ul>
-            //                       </div>
-            //                       <button className="favoriteBTN" type="button">
-            //                         <Favorit />
-            //                       </button>
-            //                     </div>
-            //                   </li>
-            //                 );
-            //               })}
-            //             </ul>
-            //           ) : (
-            //             <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2>
           )}
+        </div>
+        <div className="paginDiv">
+          <button
+            className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
+            onClick={prevPage}
+            disabled={pageIndex === 0}
+          >
+            {leftArrow}
+          </button>
+          {visiblePages.map(pageNum => (
+            <button
+              key={pageNum}
+              className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
+              onClick={() => setPageIndex(pageNum - 1)}
+            >
+              {pageNum}
+            </button>
+          ))}
+          <button
+            className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
+            onClick={nextPage}
+            disabled={pageIndex === totalPages - 1}
+          >
+            {rightArrow}
+          </button>
         </div>
       </div>
     </SearchListDiv>
@@ -212,3 +209,64 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
 };
 
 export default SearchList;
+
+//           {cars && cars.length > 0  ? (
+//             <ul className='carsDiv'>
+//               {cars.map(car => {
+//                 const desc = car.car;
+//                 return (
+//                   <li key={car.id} className="carItem">
+//                     <div>
+//                       <img className="img" src={car.previewImage} alt="car" />
+//                     </div>
+//                     <div className="infoDiv">
+//                       <div className="modelInfoDIV">
+//                         <h2 className="modelInfo">
+//                           {desc.brand} {desc.model} {desc.year}
+//                         </h2>
+//                         <h2 className="modelInfo">{desc.price}$</h2>
+//                       </div>
+//                       <div className="numberDiv">
+//                         {desc.licensePlate &&<h3 className="number">{desc.licensePlate}</h3>}
+//                         {desc.vin && <h3 className="number">{desc.vin}</h3>}
+//                       </div>
+//                       <div className="listDIV">
+//                         <ul className="list">
+//                           <li className="itemLI">
+//                             <DateSVG />
+//                             {desc.year}
+//                           </li>
+//                           <li className="itemLI">
+//                             <LockSVG />
+//                             {car.region}
+//                           </li>
+//                           <li className="itemLI">
+//                             <SpeedometerSVG />
+//                             {desc.mileage}
+//                           </li>
+//                         </ul>
+//                         <ul className="list">
+//                           <li className="itemLI">
+//                             <PetrolSVG />
+//                             {desc.engineType}
+//                           </li>
+//                           <li className="itemLI">
+//                             <SlideSVG />
+//                             {desc.driveType}
+//                           </li>
+//                           <li className="itemLI">
+//                             <CarSVG />
+//                             {desc.transmissionType}
+//                           </li>
+//                         </ul>
+//                       </div>
+//                       <button className="favoriteBTN" type="button">
+//                         <Favorit />
+//                       </button>
+//                     </div>
+//                   </li>
+//                 );
+//               })}
+//             </ul>
+//           ) : (
+//             <h2 className='enotherONe'>Нічого не знайдено, виберіть другий фільтр</h2>

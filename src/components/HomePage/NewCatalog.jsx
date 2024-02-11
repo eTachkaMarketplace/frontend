@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAdverstisements } from '../../redux/advertisment/selectors';
+import { selectAdverstisements, selectNumberAdv } from '../../redux/advertisment/selectors';
 import { getAdverstisements } from '../../redux/advertisment/operations';
 import AdvertisementSection from './AdvertisementSection';
 import AdvertisementCard from './AdvertisementCard';
@@ -13,6 +13,7 @@ export default function NewCatalog({ favorites, setFavorites }) {
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
   const advertisements = useSelector(selectAdverstisements);
+  const paginPage = useSelector(selectNumberAdv);
 
   const firstList = advertisements.slice(0, 6);
   // const secondList = advertisements.slice(3, 6);
@@ -22,12 +23,16 @@ export default function NewCatalog({ favorites, setFavorites }) {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAdverstisements({ size: 6, page: pageIndex }))
-      .then(() => {
-        setTotalPages(Math.ceil(advertisements.length / 6));
-      });
+    // Отримуємо дані оголошень та оновлюємо totalPages з paginPage
+    dispatch(getAdverstisements({ size: 6, page: pageIndex })).then(() => {
+      if (paginPage) {
+        const match = paginPage.match(/\d+/);
+        const number = match ? match[0] : null;
+        setTotalPages(Math.ceil(number / 6));
+      }
+    });
     dispatch(getAdvFav());
-  }, [dispatch, pageIndex, advertisements.length]);
+  }, [dispatch, pageIndex, advertisements.length, paginPage]);
 
   const handleToggleFavorite = (id, event) => {
     event.stopPropagation(); 
@@ -69,19 +74,26 @@ export default function NewCatalog({ favorites, setFavorites }) {
           />
         ))}
       </div>
-      {/* <div className={'flex flex-col md:flex-row gap-6'}>
-        {secondList.map((advertisement, _) => (
-          <AdvertisementCard
-            key={advertisement.id}
-            data={advertisement}
-            isFavorite={favorites.includes(advertisement.id)}
-            toggleFavorite={(event) => handleToggleFavorite(advertisement.id, event)}
-          />
-        ))}
-      </div> */}
       <div className={'flex flex-row justify-center py-6'}>
         <Pagination totalPages={totalPages} pageIndex={pageIndex} onPageChange={page => setPageIndex(page)} />
       </div>
     </AdvertisementSection>
   );
 }
+
+
+
+
+
+      // {
+      //   /* <div className={'flex flex-col md:flex-row gap-6'}>
+      //   {secondList.map((advertisement, _) => (
+      //     <AdvertisementCard
+      //       key={advertisement.id}
+      //       data={advertisement}
+      //       isFavorite={favorites.includes(advertisement.id)}
+      //       toggleFavorite={(event) => handleToggleFavorite(advertisement.id, event)}
+      //     />
+      //   ))}
+      // </div> */
+      // }
