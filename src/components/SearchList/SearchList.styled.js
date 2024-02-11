@@ -175,7 +175,7 @@ export const SearchListDiv = styled.div`
   }
 
   .pagination-button-arrow.disabled {
-    color: grey;
+    color:transparent;
   }
 
   .pagination-button.active {
