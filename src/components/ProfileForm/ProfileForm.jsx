@@ -7,8 +7,8 @@ import { changeUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 
 const profileSchema = yup.object().shape({
-  lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
-  firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯіІ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
+  lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
+  firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
   phone: yup.string()
   .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
     return value.startsWith('+380') && value.length === 13;
