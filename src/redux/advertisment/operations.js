@@ -10,7 +10,7 @@ export const getAdverstisements = createAsyncThunk(
     try {
       const response = await instance.get(`advertisement/search?page=${page}&size=${size}&${queryParams}&sort=${sort}`);
       console.log('getAdverstisements is successful');
-      return response.data.data;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

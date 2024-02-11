@@ -12,6 +12,8 @@ import ConfirmModal from 'modal/confirmModal/confirmModal';
 const SearchPage = ({ favorites ,setFavorites}) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState('new');
+  const [pageIndex, setPageIndex] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -46,11 +48,11 @@ const SearchPage = ({ favorites ,setFavorites}) => {
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join('&');
 
-      dispatch(getAdverstisements({ size: 8, page: 0, queryParams, sort: sort }));
+      dispatch(getAdverstisements({ size: 8, page: pageIndex, queryParams, sort: sort }));
     } else {
       firstRender.current = false;
     }
-  }, [dispatch, sort, valuesGen]);
+  }, [dispatch, pageIndex, sort, valuesGen]);
 
   return (
     <>
@@ -58,7 +60,15 @@ const SearchPage = ({ favorites ,setFavorites}) => {
         <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
         <div className="searchList">
           <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
-          <SearchList setSort={setSort} favorites={favorites} setFavorites={setFavorites} />
+          <SearchList
+            totalPages={totalPages}
+            setTotalPages={setTotalPages}
+            setSort={setSort}
+            favorites={favorites}
+            setFavorites={setFavorites}
+            pageIndex={pageIndex}
+            setPageIndex={setPageIndex}
+          />
         </div>
       </Wraper>
       <Modal>
