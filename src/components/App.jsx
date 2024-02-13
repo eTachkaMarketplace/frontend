@@ -7,6 +7,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage/PrivacyPolicyPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
 import { useDispatch, useSelector } from 'react-redux';
@@ -85,6 +86,7 @@ export function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicyPage />} />
             <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>

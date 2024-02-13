@@ -25,7 +25,9 @@ const Footer = () => {
               </li>
             </ul>
             <ul className="footer_list">
-              <li className="footer_item">Умови використання</li>
+              <li className="footer_item">
+              <NavLink to={'/PrivacyPolicy'}>Умови використання</NavLink>
+              </li>
               <li className="footer_item">Політика конфіденційності</li>
               <li className="footer_item">Правила публікації оголошень</li>
             </ul>
