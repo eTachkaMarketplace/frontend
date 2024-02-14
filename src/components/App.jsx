@@ -19,6 +19,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import { getUser } from 'redux/auth/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
+import Main from './Main/Main';
 
 
 export function App() {
@@ -50,7 +51,7 @@ export function App() {
       <main>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<HomePage favorites={favorites} setFavorites={setFavorites}/>} />
+            <Route path="/" element={<Main favorites={favorites} setFavorites={setFavorites} />} />
             <Route
               path="/authorization"
               element={
@@ -81,7 +82,7 @@ export function App() {
               path="/account"
               element={
                 <PrivateRoute redirectTo="/authorization">
-                  <AccountPage favoritesFromState={favoritesFromState}  />
+                  <AccountPage favoritesFromState={favoritesFromState} />
                 </PrivateRoute>
               }
             />
