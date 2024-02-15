@@ -2,17 +2,28 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   font-family: 'Roboto', sans-serif;
-  padding: 20px;
-`;
+  margin: 80px 300px;
+ `
 
 export const Title = styled.h1`
-  color: #333;
-  text-align: center;
+  color: rgb(20, 20, 20);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 30px;
+`;
+
+export const SubTitle = styled.h2`
+  color: rgb(20, 20, 20);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
 `;
 
 export const Content = styled.div`
   p {
-    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
   }
 
   strong {
