@@ -9,6 +9,7 @@ import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
 import PrivacyPolicyPage from '../pages/FooterPage/PrivacyPolicyPage/PrivacyPolicyPage';
 import TermsOfUsePage from '../pages/FooterPage/TermsOfUsePage/TermsOfUsePage';
+import RulesPage from '../pages/FooterPage/RulesPage/RulesPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
 import { useDispatch, useSelector } from 'react-redux';
@@ -89,6 +90,7 @@ export function App() {
             />
             <Route path="/PrivacyPolicy" element={<PrivacyPolicyPage />} />
             <Route path="/TermsOfUse" element={<TermsOfUsePage />} />
+            <Route path="/Rules" element={<RulesPage />} />
             <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>
