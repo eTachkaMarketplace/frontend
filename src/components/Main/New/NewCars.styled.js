@@ -37,4 +37,5 @@ export const PagDiv = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;  }
+    
 `;

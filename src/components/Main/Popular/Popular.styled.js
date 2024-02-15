@@ -4,7 +4,7 @@ export const SectionCar = styled.section`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  /* width: 1280px; */
+  max-width: 1280px;
   margin-top: 120px;
 
   .carTitle {
@@ -83,6 +83,46 @@ export const SectionCar = styled.section`
     position: absolute;
     right: 36px;
     top: 35px;
+  }
+  .paginDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    gap: 50px;
+    margin-top: 80px;
+    margin-bottom: 125px;
+  }
+
+  .pagination-button {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+    color: #b0a9a9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .active {
+    color: #10187e;
+  }
+  .hidden {
+    display: none;
+  }
+  .pagination-button-arrow {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .pagination-button-arrow.disabled {
+    color:transparent;
+  }
+
+  .pagination-button.active {
+    color: black; 
   }
 `;
 

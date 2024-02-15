@@ -3,60 +3,91 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SectionCar } from '../Popular/Popular.styled';
 import { heartSvg1 } from '../Popular/PopularSvg';
 import { PagDiv } from './NewCars.styled';
-import { leftArrow, rightArrow } from './NewCarsSvg';
-import { getAdverstisements } from 'redux/advertisment/operations';
-import { selectAdverstisements } from 'redux/advertisment/selectors';
+import { deleteFavoriteAdverstisementsByID, getAdvFav, getAdverstisements, postFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { Link } from 'react-router-dom';
+import { selectAdverstisements, selectNumberAdv } from 'redux/advertisment/selectors';
+import { FavoritFilled } from 'components/HomePage/AdvertisementCardSVG';
+import { Favorit } from 'components/SearchList/SearchListSVG';
+import { leftArrow, rightArrow } from './NewCarsSvg';
 
-const NewCars = () => {
+const NewCars = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const advertisements = useSelector(selectAdverstisements);
-
-  const filteredAdvertisements = advertisements.filter(
-    advertisement => advertisement.description !== ''
+  const paginPage = useSelector(selectNumberAdv);
+  
+  const startPage = Math.max(1, pageIndex - 2);
+  const endPage = Math.min(totalPages, startPage + 4);
+  const visiblePages = Array.from({ length: 5 }, (_, index) => endPage - 4 + index).filter(
+    num => num > 0 && num <= totalPages
   );
-  console.log(filteredAdvertisements);
-  const limit = 6;
-  const totalPages = 6;
 
   useEffect(() => {
-    dispatch(getAdverstisements({}));
+    dispatch(getAdvFav());
   }, [dispatch]);
 
-  const nextPage = () => {
-    setPage(page + 1);
-  };
+   useEffect(() => {
+     // Отримуємо дані оголошень та оновлюємо totalPages з paginPage
+     dispatch(getAdverstisements({ size: 6, page: pageIndex })).then(() => {
+       if (paginPage) {
+         const match = paginPage.match(/\d+/);
+         const number = match ? match[0] : null;
+         setTotalPages(Math.ceil(number / 6));
+       }
+     });
+     dispatch(getAdvFav());
+   }, [dispatch, pageIndex, advertisements.length, paginPage]);
 
-  const prevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
+  const handleToggleFavorite = (id) => {
+    if (Array.isArray(favorites)) {
+      if (favorites.includes(id)) {
+        dispatch(deleteFavoriteAdverstisementsByID({ id }))
+          .then(() => setFavorites(prevFavorites => prevFavorites.filter(favoriteId => favoriteId !== id)))
+          .catch(error => console.error('Failed to remove advertisement from favorites', error));
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
+      } else {
+        dispatch(postFavoriteAdverstisementsByID({ id }))
+          .then(() => setFavorites(prevFavorites => [...prevFavorites, id]))
+          .catch(error => console.error('Failed to add advertisement to favorites', error));
+        setTimeout(() => {
+          dispatch(getAdvFav());
+        }, 500);
+      }
+    } else {
+      dispatch(postFavoriteAdverstisementsByID({ id }))
+        .then(() => setFavorites([...favorites, id]))
+        .catch(error => console.error('Failed to add advertisement to favorites', error));
+      setTimeout(() => {
+        dispatch(getAdvFav());
+      }, 500);
     }
   };
-  const startPage = Math.max(1, page - 2);
-  const endPage = Math.min(totalPages, startPage + 4);
 
-  const visiblePages = Array.from(
-    { length: 5 },
-    (_, index) => endPage - 4 + index
-  ).filter(num => num > 0 && num <= totalPages);
+   const nextPage = () => {
+     setPageIndex(pageIndex + 1);
+   };
+
+   const prevPage = () => {
+     if (pageIndex > 0) {
+       setPageIndex(pageIndex - 1);
+     }
+   };
 
   return (
     <PagDiv>
       <SectionCar>
         <h2 className="carTitle">Нові оголошення</h2>
         <ul className="carList">
-          {filteredAdvertisements
-            ? filteredAdvertisements.map(ad => {
+          {advertisements
+            ? advertisements.map(ad => {
                 let car = ad.car;
                 return (
                   <li className="carItem" key={ad.id}>
                     <Link to={`/AdvertisementByID/${ad.id}`}>
-                      <img
-                        className="imgCar"
-                        src={ad.previewImage}
-                        alt="Car "
-                      />
+                      <img className="imgCar" src={ad.previewImage} alt="Car " />
                       <h3 className="blackTitle ">
                         {car.brand} {car.model} {car.year}
                       </h3>
@@ -70,50 +101,45 @@ const NewCars = () => {
                       </ul>
                     </Link>
                     <button
-                      // onClick={() => {
-                      //   if (isCarInFav(car.id)) {
-                      //     removeFromFav(car.id);
-                      //   } else {
-                      //     addFavorite(car.id);
-                      //   }
-                      // }}
                       className="svg"
                       type="button"
+                      onClick={() => {
+                        handleToggleFavorite(ad.id);
+                      }}
                     >
-                      {heartSvg1}
-                      {/* {isCarInFav(car.id) ? heartSvg2 : heartSvg1}  */}
+                      {favorites.includes(ad.id) ? <FavoritFilled /> : <Favorit />}
                     </button>
                   </li>
                 );
               })
             : null}
         </ul>
-      </SectionCar>
-      <div className="paginDiv">
-        <button
-          className={`pagination-button-arrow `}
-          onClick={prevPage}
-          disabled={page === 1}
-        >
-          {leftArrow}
-        </button>
-        {visiblePages.map(pageNum => (
+        <div className="paginDiv">
           <button
-            key={pageNum}
-            className={`pagination-button ${page === pageNum ? 'active' : ''}`}
-            onClick={() => setPage(pageNum)}
+            className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
+            onClick={prevPage}
+            disabled={pageIndex === 0}
           >
-            {pageNum}
+            {leftArrow}
           </button>
-        ))}
-        <button
-          className={`pagination-button-arrow`}
-          onClick={nextPage}
-          disabled={page === totalPages}
-        >
-          {rightArrow}
-        </button>
-      </div>
+          {visiblePages.map(pageNum => (
+            <button
+              key={pageNum}
+              className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
+              onClick={() => setPageIndex(pageNum - 1)}
+            >
+              {pageNum}
+            </button>
+          ))}
+          <button
+            className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
+            onClick={nextPage}
+            disabled={pageIndex === totalPages - 1}
+          >
+            {rightArrow}
+          </button>
+        </div>
+      </SectionCar>
     </PagDiv>
   );
 };

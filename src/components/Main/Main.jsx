@@ -3,7 +3,7 @@ import { MainWrapper } from './Main.styled';
 import HeroSection from './HeroSection/HeroSection';
 
 import Catalog from './Popular/Popular';
-// import NewCars from './New/NewCars';
+import NewCars from './New/NewCars';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
@@ -18,7 +18,7 @@ const Main = ({ favorites, setFavorites }) => {
     <MainWrapper>
       <HeroSection />
       <Catalog favorites={favorites} setFavorites={setFavorites} />
-      {/* <NewCars/> */}
+      <NewCars favorites={favorites} setFavorites={setFavorites} />
     </MainWrapper>
   );
 };
