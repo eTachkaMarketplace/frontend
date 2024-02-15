@@ -3,24 +3,24 @@ import { MainWrapper } from './Main.styled';
 import HeroSection from './HeroSection/HeroSection';
 
 import Catalog from './Popular/Popular';
-import NewCars from './New/NewCars';
+// import NewCars from './New/NewCars';
 import { useDispatch } from 'react-redux';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
 
-const Main = () => {
+const Main = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
-  
- useEffect(() => {
-   dispatch(setIsOpen(false));
- }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setIsOpen(false));
+  }, [dispatch]);
   return (
     <MainWrapper>
       <HeroSection />
-      {/* <Catalog />
-      <NewCars/> */}
+      <Catalog favorites={favorites} setFavorites={setFavorites} />
+      {/* <NewCars/> */}
     </MainWrapper>
-    );
+  );
 };
 
 export default Main;
