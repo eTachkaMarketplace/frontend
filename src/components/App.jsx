@@ -7,6 +7,10 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Authentication from 'pages/Autorithation/Authentication';
 import AccountPage from '../pages/AccountPage/AccountPage';
+import PrivacyPolicyPage from '../pages/FooterPage/PrivacyPolicyPage/PrivacyPolicyPage';
+import TermsOfUsePage from '../pages/FooterPage/TermsOfUsePage/TermsOfUsePage';
+import RulesPage from '../pages/FooterPage/RulesPage/RulesPage';
+import FAQPage from '../pages/FooterPage/FAQPage/FAQPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,7 +71,7 @@ export function App() {
                 </PublickRoute>
               }
             />
-            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID />} />
+            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID  favorites={favorites} setFavorites={setFavorites}/>} />
             <Route path="/search" element={<SearchPage favorites={favorites} setFavorites={setFavorites} />} />
             <Route
               path="/advertisementPage"
@@ -85,6 +89,10 @@ export function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicyPage />} />
+            <Route path="/TermsOfUse" element={<TermsOfUsePage />} />
+            <Route path="/Rules" element={<RulesPage />} />
+            <Route path="/FAQ" element={<FAQPage />} />
             <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>
