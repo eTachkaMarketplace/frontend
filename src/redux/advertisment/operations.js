@@ -16,6 +16,18 @@ export const getAdverstisements = createAsyncThunk(
     }
   }
 );
+export const getPopAdvers = createAsyncThunk(
+  'adverstisement/getPopAdvers',
+  async ({ page = 0, size = 10, queryParams = '', sort = 'new' }, { rejectWithValue }) => {
+    try {
+      const response = await instance.get(`advertisement/search?page=${page}&size=${size}&${queryParams}&sort=${sort}`);
+      console.log('getPopAdvers is successful');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const getAdverstisementsByID = createAsyncThunk(
   'adverstisements/getAdverstisementsByID',

@@ -5,21 +5,22 @@ import HeroSection from './HeroSection/HeroSection';
 import Catalog from './Popular/Popular';
 import NewCars from './New/NewCars';
 import { useDispatch } from 'react-redux';
-import { getAdverstisements } from 'redux/advertisment/operations';
+import { setIsOpen } from 'redux/modal/modalSlice';
 
 
-const Main = () => {
-const dispatch = useDispatch();
+const Main = ({ favorites, setFavorites }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getAdverstisements({}));
+    dispatch(setIsOpen(false));
   }, [dispatch]);
   return (
     <MainWrapper>
       <HeroSection />
-      <Catalog />
-      <NewCars/>
+      <Catalog favorites={favorites} setFavorites={setFavorites} />
+      <NewCars favorites={favorites} setFavorites={setFavorites} />
     </MainWrapper>
-    );
+  );
 };
 
 export default Main;

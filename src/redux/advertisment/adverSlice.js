@@ -13,6 +13,8 @@ import {
   // getAdverstisementsFavorite,
   getMyAdv,
 
+  getPopAdvers,
+
   postFavoriteAdverstisementsByID,
   putFavoriteAdverstisementsByID,
 } from './operations';
@@ -23,8 +25,9 @@ import {
 
 const initialState = {
   myAdvertisements: [],
-  numberAdv:0,
+  numberAdv: 0,
   adverstisements: [],
+  popAdvers: [],
   adverstisementsID: null,
   adverstisementsFavorite: [],
   isLoading: false,
@@ -46,6 +49,18 @@ export const adversSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAdverstisements.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload.error;
+      })
+      .addCase(getPopAdvers.fulfilled, (state, { payload }) => {
+        state.popAdvers = payload.data;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getPopAdvers.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getPopAdvers.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
       })
@@ -85,7 +100,6 @@ export const adversSlice = createSlice({
       .addCase(getAdvFav.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
-
       })
       .addCase(getMyAdv.fulfilled, (state, { payload }) => {
         state.myAdvertisements = payload;

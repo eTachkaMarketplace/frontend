@@ -1,4 +1,5 @@
 export const selectAdverstisements = state => state.adverstisement.adverstisements;
+export const selectPopAdvers = state => state.adverstisement.popAdvers;
 export const selectNumberAdv = state => state.adverstisement.numberAdv;
 export const selectError = state => state.adverstisement.error;
 export const selectIsLoading = state => state.adverstisement.isLoading;

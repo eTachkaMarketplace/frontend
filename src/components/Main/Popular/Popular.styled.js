@@ -4,7 +4,7 @@ export const SectionCar = styled.section`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  /* width: 1280px; */
+  max-width: 1280px;
   margin-top: 120px;
 
   .carTitle {
@@ -32,7 +32,7 @@ export const SectionCar = styled.section`
     align-items: flex-start;
     flex-direction: column;
     border-radius: 8px;
-    background: #F1F5FF;
+    background: #f1f5ff;
   }
   .imgCar {
     width: 373px;
@@ -83,6 +83,52 @@ export const SectionCar = styled.section`
     position: absolute;
     right: 36px;
     top: 35px;
+  }
+  .paginDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    gap: 50px;
+    margin-top: 80px;
+    margin-bottom: 125px;
+  }
+
+  .pagination-button {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .active {
+    color: rgb(171, 171, 171);
+  }
+  .hidden {
+    display: none;
+  }
+  .pagination-button-arrow {
+    display: flex;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .pagination-button-arrow.disabled {
+    color: rgb(171, 171, 171);
+  }
+
+  .pagination-button.active {
+    color: rgb(171, 171, 171);
+  }
+  .centrDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

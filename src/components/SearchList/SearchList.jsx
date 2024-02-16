@@ -119,31 +119,33 @@ export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, to
             <h2 className="enotherONe">Нічого не знайдено, виберіть інший фільтр</h2>
           )}
         </div>
-        <div className="paginDiv">
-          <button
-            className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
-            onClick={prevPage}
-            disabled={pageIndex === 0}
-          >
-            {leftArrow}
-          </button>
-          {visiblePages.map(pageNum => (
+        { cars.length > 0 ? (
+          <div className="paginDiv">
             <button
-              key={pageNum}
-              className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
-              onClick={() => setPageIndex(pageNum - 1)}
+              className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
+              onClick={prevPage}
+              disabled={pageIndex === 0}
             >
-              {pageNum}
+              {leftArrow}
             </button>
-          ))}
-          <button
-            className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
-            onClick={nextPage}
-            disabled={pageIndex === totalPages - 1}
-          >
-            {rightArrow}
-          </button>
-        </div>
+            {visiblePages.map(pageNum => (
+              <button
+                key={pageNum}
+                className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
+                onClick={() => setPageIndex(pageNum - 1)}
+              >
+                {pageNum}
+              </button>
+            ))}
+            <button
+              className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
+              onClick={nextPage}
+              disabled={pageIndex === totalPages - 1}
+            >
+              {rightArrow}
+            </button>
+          </div>
+        ) : null}
       </div>
     </SearchListDiv>
   );
