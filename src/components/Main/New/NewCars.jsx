@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SectionCar } from '../Popular/Popular.styled';
-import { heartSvg1 } from '../Popular/PopularSvg';
 import { PagDiv } from './NewCars.styled';
 import { deleteFavoriteAdverstisementsByID, getAdvFav, getAdverstisements, postFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { Link } from 'react-router-dom';
@@ -80,64 +79,66 @@ const NewCars = ({ favorites, setFavorites }) => {
     <PagDiv>
       <SectionCar>
         <h2 className="carTitle">Нові оголошення</h2>
-        <ul className="carList">
-          {advertisements
-            ? advertisements.map(ad => {
-                let car = ad.car;
-                return (
-                  <li className="carItem" key={ad.id}>
-                    <Link to={`/AdvertisementByID/${ad.id}`}>
-                      <img className="imgCar" src={ad.previewImage} alt="Car " />
-                      <h3 className="blackTitle ">
-                        {car.brand} {car.model} {car.year}
-                      </h3>
-                      <ul className="carDescrList">
-                        <li>
-                          <p className="carDescrPrice">$ {car.price}</p>
-                        </li>
-                        <li className="cityRight">
-                          <p className="carDescrCity">{ad.region}</p>
-                        </li>
-                      </ul>
-                    </Link>
-                    <button
-                      className="svg"
-                      type="button"
-                      onClick={() => {
-                        handleToggleFavorite(ad.id);
-                      }}
-                    >
-                      {favorites.includes(ad.id) ? <FavoritFilled /> : <Favorit />}
-                    </button>
-                  </li>
-                );
-              })
-            : null}
-        </ul>
-        <div className="paginDiv">
-          <button
-            className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
-            onClick={prevPage}
-            disabled={pageIndex === 0}
-          >
-            {leftArrow}
-          </button>
-          {visiblePages.map(pageNum => (
+        <div className='centrDiv'>
+          <ul className="carList">
+            {advertisements
+              ? advertisements.map(ad => {
+                  let car = ad.car;
+                  return (
+                    <li className="carItem" key={ad.id}>
+                      <Link to={`/AdvertisementByID/${ad.id}`}>
+                        <img className="imgCar" src={ad.previewImage} alt="Car " />
+                        <h3 className="blackTitle ">
+                          {car.brand} {car.model} {car.year}
+                        </h3>
+                        <ul className="carDescrList">
+                          <li>
+                            <p className="carDescrPrice">$ {car.price}</p>
+                          </li>
+                          <li className="cityRight">
+                            <p className="carDescrCity">{ad.region}</p>
+                          </li>
+                        </ul>
+                      </Link>
+                      <button
+                        className="svg"
+                        type="button"
+                        onClick={() => {
+                          handleToggleFavorite(ad.id);
+                        }}
+                      >
+                        {favorites.includes(ad.id) ? <FavoritFilled /> : <Favorit />}
+                      </button>
+                    </li>
+                  );
+                })
+              : null}
+          </ul>
+          <div className="paginDiv">
             <button
-              key={pageNum}
-              className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
-              onClick={() => setPageIndex(pageNum - 1)}
+              className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}
+              onClick={prevPage}
+              disabled={pageIndex === 0}
             >
-              {pageNum}
+              {leftArrow}
             </button>
-          ))}
-          <button
-            className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
-            onClick={nextPage}
-            disabled={pageIndex === totalPages - 1}
-          >
-            {rightArrow}
-          </button>
+            {visiblePages.map(pageNum => (
+              <button
+                key={pageNum}
+                className={`pagination-button ${pageIndex === pageNum - 1 ? 'active' : ''}`}
+                onClick={() => setPageIndex(pageNum - 1)}
+              >
+                {pageNum}
+              </button>
+            ))}
+            <button
+              className={`pagination-button-arrow ${pageIndex === totalPages - 1 ? 'disabled' : ''}`}
+              onClick={nextPage}
+              disabled={pageIndex === totalPages - 1}
+            >
+              {rightArrow}
+            </button>
+          </div>
         </div>
       </SectionCar>
     </PagDiv>

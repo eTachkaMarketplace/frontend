@@ -155,7 +155,7 @@ export const SearchListDiv = styled.div`
     display: flex;
     border: 0;
     background-color: transparent;
-    color: #b0a9a9;
+    color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-style: normal;
@@ -163,7 +163,7 @@ export const SearchListDiv = styled.div`
     line-height: normal;
   }
   .active {
-    color: #10187e;
+    color: rgb(171, 171, 171);
   }
   .hidden {
     display: none;
@@ -175,10 +175,10 @@ export const SearchListDiv = styled.div`
   }
 
   .pagination-button-arrow.disabled {
-    color:transparent;
+    color: rgb(171, 171, 171);
   }
 
   .pagination-button.active {
-    color: black; /* або інший бажаний колір для активних стрілок */
+    color: rgb(171, 171, 171);
   }
 `;

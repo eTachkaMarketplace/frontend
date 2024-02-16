@@ -32,7 +32,7 @@ export const SectionCar = styled.section`
     align-items: flex-start;
     flex-direction: column;
     border-radius: 8px;
-    background: #F1F5FF;
+    background: #f1f5ff;
   }
   .imgCar {
     width: 373px;
@@ -98,7 +98,7 @@ export const SectionCar = styled.section`
     display: flex;
     border: 0;
     background-color: transparent;
-    color: #b0a9a9;
+    color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
     font-style: normal;
@@ -106,7 +106,7 @@ export const SectionCar = styled.section`
     line-height: normal;
   }
   .active {
-    color: #10187e;
+    color: rgb(171, 171, 171);
   }
   .hidden {
     display: none;
@@ -118,11 +118,17 @@ export const SectionCar = styled.section`
   }
 
   .pagination-button-arrow.disabled {
-    color:transparent;
+    color: rgb(171, 171, 171);
   }
 
   .pagination-button.active {
-    color: black; 
+    color: rgb(171, 171, 171);
+  }
+  .centrDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
