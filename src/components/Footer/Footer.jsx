@@ -35,7 +35,9 @@ const Footer = () => {
               <NavLink to={'/Rules'}>Правила публікації оголошень</NavLink></li>
             </ul>
             <ul className="footer_list">
-              <li className="footer_item">FAQ</li>
+              <li className="footer_item">
+              <NavLink to={'/FAQ'}>FAQ</NavLink>
+              </li>
               <li className="footer_item">
                 <NavLink to={'/account'}>Мій кабінет</NavLink>
               </li>
