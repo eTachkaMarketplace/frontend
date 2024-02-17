@@ -9,6 +9,7 @@ import {
   forgotPass,
   changePass,
   acceptCode,
+  clearToken,
 } from './operations';
   
 
@@ -29,6 +30,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.token = '';
       state.refToken = '';
+      clearToken()
     },
     refresh: state => {
       if (state.token) state.isLoggedIn = true;

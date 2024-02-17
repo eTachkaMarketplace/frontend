@@ -35,7 +35,7 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
     dispatch(getUser());
-     dispatch(getAdvFav());
+    dispatch(getAdvFav());
   }, [dispatch]);
 
   useEffect(() => {

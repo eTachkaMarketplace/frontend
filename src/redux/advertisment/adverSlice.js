@@ -98,6 +98,7 @@ export const adversSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAdvFav.rejected, (state, { payload }) => {
+        state.adverstisementsFavorite = [];
         state.isLoading = false;
         state.error = payload.error;
       })

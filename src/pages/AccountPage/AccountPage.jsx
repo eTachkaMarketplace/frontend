@@ -71,7 +71,7 @@ const AccountPage = ({ favoritesFromState }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    console.log('logout');
+    dispatch(getAdvFav());
   };
 
   const renderContent = () => {
