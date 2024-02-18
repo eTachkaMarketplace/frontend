@@ -24,6 +24,7 @@ import { selectUser } from 'redux/auth/selectors';
 
 import { deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
+import { deleteUser } from 'redux/auth/operations';
 import { CarItem } from 'components/SearchList/SearchList';
 
 import Modal from 'modal/modal';
@@ -72,13 +73,23 @@ const AccountPage = ({ favoritesFromState }) => {
     dispatch(getAdvFav());
   };
 
+  const handleDeleteAccount = () => {
+    
+      dispatch(deleteUser())
+        
+      console.log('User account deleted successfully');
+      
+       
+    }
+
+  
   const renderContent = () => {
     switch (selectedNavItem) {
       case 'personal':
         return (
           <div>
             <Subtitle>Основна інформація</Subtitle>
-            <ProfileForm initialValues={userInfo} />
+            <ProfileForm initialValues={userInfo} handleDeleteAccount={handleDeleteAccount}/>
           </div>
         );
       case 'announcements':

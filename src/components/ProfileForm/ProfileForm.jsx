@@ -3,6 +3,9 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
+import Modal from 'modal/modal';
+import ConfirmModalDeleteAcc from "../../modal/confirmModal/confirmModalDeleteAcc"
+import { setIsOpen } from 'redux/modal/modalSlice';
 import { changeUser, changeUserPhoto, getUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 import  { Notify } from 'notiflix';
@@ -15,9 +18,12 @@ const profileSchema = yup.object().shape({
   }),
 });
 
-const ProfileForm = ({ initialValues }) => {
+const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
   const dispatch = useDispatch();
 
+  const openModal = () => {
+    dispatch(setIsOpen(true));
+  };
   // const [load, setLoad] = useState(false);
 
   const formik = useFormik({
@@ -75,6 +81,9 @@ const ProfileForm = ({ initialValues }) => {
   return (
     <Container>
       <form onSubmit={formik.handleSubmit}>
+      <Modal>
+              <ConfirmModalDeleteAcc handleDeleteAccount={handleDeleteAccount} />
+            </Modal>
         <div className="profilePhoto">
           <label className="photoLable">
             <input
@@ -156,6 +165,7 @@ const ProfileForm = ({ initialValues }) => {
           <button type="submit" className="profile-btn">
             Зберегти
           </button>
+          <button  onClick={openModal} type="button">Delete Account</button>
         </div>
       </form>
     </Container>

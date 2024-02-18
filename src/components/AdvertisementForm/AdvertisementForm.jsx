@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'modal/modal';
-import ConfirmModalAdvertisement from "../../modal/confirmModal/confirmModalAdvertisement"
+import ConfirmModalAdvertisement from "../../modal/confirmModal/confirmModalAdvertisement";
 import DataAccessor from '../Class/DataAccessor';
 import ImageUploadComponent from './imgUpload';
 import { Paragraph, RequiredMarker } from 'pages/AdvertisementPage/AdvertisementPage.styled';
