@@ -19,7 +19,7 @@ import SearchPage from 'pages/SearchPage/SearchPage';
 import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
-import HomePage from '../pages/HomePage/HomePage';
+// import HomePage from '../pages/HomePage/HomePage';
 import { getUser } from 'redux/auth/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
@@ -35,7 +35,7 @@ export function App() {
   useEffect(() => {
     dispatch(refresh());
     dispatch(getUser());
-     dispatch(getAdvFav());
+    dispatch(getAdvFav());
   }, [dispatch]);
 
   useEffect(() => {

@@ -21,7 +21,6 @@ import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import { SVG1 } from './AccPageSVG';
 import { useLocation } from 'react-router-dom';
 import { selectUser } from 'redux/auth/selectors';
-import { getUser } from 'redux/auth/operations';
 
 import { deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
@@ -40,7 +39,6 @@ const AccountPage = ({ favoritesFromState }) => {
   const [modalContent, setModalContent] = useState(null);
 
   useEffect(() => {
-    dispatch(getUser());
     const searchParams = new URLSearchParams(location.search);
     const favouritesParam = searchParams.get('favourites');
 
@@ -71,7 +69,7 @@ const AccountPage = ({ favoritesFromState }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    console.log('logout');
+    dispatch(getAdvFav());
   };
 
   const renderContent = () => {

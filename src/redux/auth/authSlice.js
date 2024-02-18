@@ -9,6 +9,7 @@ import {
   forgotPass,
   changePass,
   acceptCode,
+  clearToken,
 } from './operations';
   
 
@@ -19,6 +20,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   error: null,
+  errorLog: null,
 };
 
 export const authSlice = createSlice({
@@ -29,6 +31,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.token = '';
       state.refToken = '';
+      clearToken()
     },
     refresh: state => {
       if (state.token) state.isLoggedIn = true;
@@ -55,7 +58,7 @@ export const authSlice = createSlice({
         state.refToken = payload.data.jwtRefreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
-        state.error = null;
+        state.errorLog = null;
       })
       .addCase(login.pending, state => {
         state.isLoading = true;
@@ -63,7 +66,7 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.error = payload;
+        state.errorLog = payload;
       })
       .addCase(getUser.fulfilled, (state, { payload }) => {
         state.user = { ...payload };

@@ -69,6 +69,18 @@ export const changeUser = createAsyncThunk('user/changeUser', async (credentials
   }
 });
 
+
+export const changeUserPhoto = createAsyncThunk('user/changeUserPhoto', async (credentials, { rejectWithValue }) => {
+  try {
+    await instance.put('user/me/photo', credentials);
+    console.log(`User changed successfully`);
+    return;
+  } catch (error) {
+    console.log(`Change failed. Try again`);
+    return rejectWithValue(error.message);
+  }
+});
+
 export const deleteUser = createAsyncThunk('user/deleteUser', async (_, { rejectWithValue }) => {
   try {
     await instance.delete(`user/me`);
