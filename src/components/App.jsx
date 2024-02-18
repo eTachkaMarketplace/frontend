@@ -25,12 +25,12 @@ import { getAdvFav } from 'redux/advertisment/operations';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 import Main from './Main/Main';
 
-
 export function App() {
   const dispatch = useDispatch();
-  
   const [favorites, setFavorites] = useState([]);
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(refresh());
@@ -41,13 +41,11 @@ export function App() {
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);
-
   }, [favoritesFromState]);
-  const navigate = useNavigate();
-  const location = useLocation();
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [navigate, location]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [navigate, location]);
 
   return (
     <>
@@ -72,7 +70,10 @@ export function App() {
                 </PublickRoute>
               }
             />
-            <Route path="/AdvertisementByID/:id" element={<AdvertisementByID  favorites={favorites} setFavorites={setFavorites}/>} />
+            <Route
+              path="/AdvertisementByID/:id"
+              element={<AdvertisementByID favorites={favorites} setFavorites={setFavorites} />}
+            />
             <Route path="/search" element={<SearchPage favorites={favorites} setFavorites={setFavorites} />} />
             <Route
               path="/advertisementPage"

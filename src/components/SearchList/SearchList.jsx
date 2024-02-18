@@ -8,19 +8,19 @@ import {
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { leftArrow, rightArrow } from 'components/Main/New/NewCarsSvg';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, totalPages, setPageIndex, pageIndex }) => {
   const cars = useSelector(selectAdverstisements);
   const dispatch = useDispatch();
-
+   const LogedIn = useSelector(selectIsLoggedIn);
+   const navigate = useNavigate();
   const [resultNum, setResultNum] = useState(0);
   const paginPage = useSelector(selectNumberAdv);
-
   const startPage = Math.max(1, pageIndex - 2);
   const endPage = Math.min(totalPages, startPage + 4);
-
   const visiblePages = Array.from({ length: 5 }, (_, index) => endPage - 4 + index).filter(
     num => num > 0 && num <= totalPages
   );
@@ -65,6 +65,10 @@ export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, to
   };
 
   const handleToggleFavorite = id => {
+    if (!LogedIn) {
+      navigate('/authorization');
+      return;
+    }
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))

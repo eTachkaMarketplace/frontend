@@ -10,6 +10,7 @@ export const Search = styled.div`
 
   border-radius: 8px;
   background: #f1f5ff;
+  margin-bottom: 69px;
 
   select {
     appearance: none;

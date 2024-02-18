@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SectionCar } from './Popular.styled';
 
 import { selectPopAdvers } from 'redux/advertisment/selectors';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   deleteFavoriteAdverstisementsByID,
   getAdvFav,
@@ -12,9 +12,12 @@ import {
 import { useEffect } from 'react';
 import { FavoritFilled } from 'components/HomePage/AdvertisementCardSVG';
 import { Favorit } from 'components/SearchList/SearchListSVG';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 const Catalog = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
+  const LogedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
   const advertisements = useSelector(selectPopAdvers).slice(0, 3);
 
   useEffect(() => {
@@ -26,6 +29,10 @@ const Catalog = ({ favorites, setFavorites }) => {
   }, [dispatch]);
 
   const handleToggleFavorite = id => {
+    if (!LogedIn) {
+      navigate('/authorization');
+      return;
+    }
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))
