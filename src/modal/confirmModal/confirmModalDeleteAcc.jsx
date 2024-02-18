@@ -2,6 +2,9 @@ import { useDispatch } from 'react-redux';
 import { ConfDiv } from './confirmModal.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import { XBTN } from './confirmModalSVG';
+import { logout } from 'redux/auth/authSlice';
+import { getAdvFav } from 'redux/advertisment/operations';
+
 
 const ConfirmModalDeleteAcc = ({ handleDeleteAccount }) => {
   const dispatch = useDispatch();
@@ -12,6 +15,8 @@ const ConfirmModalDeleteAcc = ({ handleDeleteAccount }) => {
 
   const confirmModalDeleteAcc = () => {
     handleDeleteAccount();
+    dispatch(logout());
+    dispatch(getAdvFav());
     dispatch(setIsOpen(false));
   };
 

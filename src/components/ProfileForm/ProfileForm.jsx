@@ -162,10 +162,12 @@ const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
             <div className="error-message">{formik.errors.phone}</div>
           ) : null}
 
+          <div className="flex">
           <button type="submit" className="profile-btn">
             Зберегти
           </button>
-          <button  onClick={openModal} type="button">Delete Account</button>
+          <button  onClick={openModal} className="delete-btn" type="button">Видалити профіль</button>
+          </div>
         </div>
       </form>
     </Container>

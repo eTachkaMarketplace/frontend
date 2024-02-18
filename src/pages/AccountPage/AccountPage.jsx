@@ -79,7 +79,7 @@ const AccountPage = ({ favoritesFromState }) => {
         
       console.log('User account deleted successfully');
       
-       
+      
     }
 
   
