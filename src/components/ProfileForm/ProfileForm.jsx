@@ -3,6 +3,9 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
+import Modal from 'modal/modal';
+import ConfirmModalDeleteAcc from "../../modal/confirmModal/confirmModalDeleteAcc"
+import { setIsOpen } from 'redux/modal/modalSlice';
 import { changeUser, changeUserPhoto, getUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 import  { Notify } from 'notiflix';
@@ -11,13 +14,17 @@ const profileSchema = yup.object().shape({
   lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
   firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
   phone: yup.string().test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-    return value.startsWith('+380') && value.length === 13;
-  }),
+    return value && value.startsWith('+380') && value.length === 13;
+}),
+
 });
 
-const ProfileForm = ({ initialValues }) => {
+const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
   const dispatch = useDispatch();
 
+  const openModal = () => {
+    dispatch(setIsOpen(true));
+  };
   // const [load, setLoad] = useState(false);
 
   const formik = useFormik({
@@ -49,7 +56,7 @@ const ProfileForm = ({ initialValues }) => {
     formik.setValues({
       lastName: initialValues.lastName || '',
       firstName: initialValues.firstName || '',
-      phone: initialValues.phone || '',
+      phone: initialValues.phone || '+380',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues]);
@@ -75,6 +82,9 @@ const ProfileForm = ({ initialValues }) => {
   return (
     <Container>
       <form onSubmit={formik.handleSubmit}>
+      <Modal>
+              <ConfirmModalDeleteAcc handleDeleteAccount={handleDeleteAccount} />
+            </Modal>
         <div className="profilePhoto">
           <label className="photoLable">
             <input
@@ -147,15 +157,24 @@ const ProfileForm = ({ initialValues }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.phone}
+              onKeyDown={(e) => {
+                const newValue = e.target.value;
+                if ((e.key === 'Delete' || e.key === 'Backspace') && newValue === '+380') {
+                  e.preventDefault();
+                }
+              }}
             />
           </label>
           {formik.touched.phone && formik.errors.phone ? (
             <div className="error-message">{formik.errors.phone}</div>
           ) : null}
 
+          <div className="flex">
           <button type="submit" className="profile-btn">
             Зберегти
           </button>
+          <button  onClick={openModal} className="delete-btn" type="button">Видалити профіль</button>
+          </div>
         </div>
       </form>
     </Container>

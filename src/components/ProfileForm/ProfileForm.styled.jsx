@@ -113,6 +113,17 @@ export const Container = styled.div`
     font-weight: 400;
     line-height: normal;
   }
+
+  .flex{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .delete-btn{
+    color:black;
+    text-decoration: underline;
+  }
+
   .profile-btn {
     display: flex;
     width: 200px;
