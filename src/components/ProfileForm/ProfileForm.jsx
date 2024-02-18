@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
-import { changeUser } from 'redux/auth/operations';
+import { changeUser, changeUserPhoto, getUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 
 const profileSchema = yup.object().shape({
@@ -17,7 +17,6 @@ const profileSchema = yup.object().shape({
 
 const ProfileForm = ({ initialValues }) => {
   const dispatch = useDispatch();
-  const [cloudinaryImage, setCloudinaryImage] = useState(initialValues.photo || '');
 
   // const [load, setLoad] = useState(false);
 
@@ -30,16 +29,18 @@ const ProfileForm = ({ initialValues }) => {
     onSubmit: async values => {
       console.log({
         ...values,
+        
         email: initialValues.email,
-        photo: cloudinaryImage,
       });
       dispatch(
         changeUser({
           ...values,
           email: initialValues.email,
-          photo: cloudinaryImage,
         })
       );
+      setTimeout(() => {
+        dispatch(getUser());
+      }, 500);
     },
     validationSchema: profileSchema,
   });
@@ -50,7 +51,6 @@ const ProfileForm = ({ initialValues }) => {
       firstName: initialValues.firstName || '',
       phone: initialValues.phone || '',
     });
-    setCloudinaryImage(initialValues.photo || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues]);
 
@@ -59,22 +59,16 @@ const ProfileForm = ({ initialValues }) => {
 
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'ml_default');
+      formData.append('image', file);
 
-      const response = await fetch('https://api.cloudinary.com/v1_1/dsjxx9exc/image/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await response.json();
-
-      console.log(data);
-      setCloudinaryImage(data.secure_url);
+      dispatch(changeUserPhoto(formData));
+      setTimeout(() => {
+        dispatch(getUser());
+      }, 500)
     }
   };
 
   return (
-    
     <Container>
       <form onSubmit={formik.handleSubmit}>
         <div className="profilePhoto">
@@ -90,9 +84,9 @@ const ProfileForm = ({ initialValues }) => {
               style={{ display: 'none' }}
             />
             <div className="posit">
-              {cloudinaryImage ? (
+              {initialValues.photo ? (
                 <div className="photoIMG">
-                  <img className="photp" src={cloudinaryImage} alt="user" />
+                  <img className="photp" src={initialValues.photo} alt="user" />
                 </div>
               ) : (
                 <div>
