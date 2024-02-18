@@ -14,8 +14,9 @@ const profileSchema = yup.object().shape({
   lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
   firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
   phone: yup.string().test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-    return value.startsWith('+380') && value.length === 13;
-  }),
+    return value && value.startsWith('+380') && value.length === 13;
+}),
+
 });
 
 const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
@@ -55,7 +56,7 @@ const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
     formik.setValues({
       lastName: initialValues.lastName || '',
       firstName: initialValues.firstName || '',
-      phone: initialValues.phone || '',
+      phone: initialValues.phone || '+380',
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialValues]);
@@ -156,6 +157,12 @@ const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.phone}
+              onKeyDown={(e) => {
+                const newValue = e.target.value;
+                if ((e.key === 'Delete' || e.key === 'Backspace') && newValue === '+380') {
+                  e.preventDefault();
+                }
+              }}
             />
           </label>
           {formik.touched.phone && formik.errors.phone ? (

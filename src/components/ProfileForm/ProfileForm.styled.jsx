@@ -120,8 +120,6 @@ export const Container = styled.div`
   }
 
   .delete-btn{
-    padding: 0;
-    margin: 0;
     color:black;
     text-decoration: underline;
   }
