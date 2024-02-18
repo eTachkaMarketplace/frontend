@@ -86,7 +86,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
       rewind: true,
       fixedWidth: 140,
       fixedHeight: 100,
-      // isNavigation: true,
+      isNavigation: true,
       gap: 16,
       // focus: 'center',
       pagination: false,

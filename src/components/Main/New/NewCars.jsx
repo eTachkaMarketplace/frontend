@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SectionCar } from '../Popular/Popular.styled';
 import { PagDiv } from './NewCars.styled';
 import { deleteFavoriteAdverstisementsByID, getAdvFav, getAdverstisements, postFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { selectAdverstisements, selectNumberAdv } from 'redux/advertisment/selectors';
 import { FavoritFilled } from 'components/HomePage/AdvertisementCardSVG';
 import { Favorit } from 'components/SearchList/SearchListSVG';
 import { leftArrow, rightArrow } from './NewCarsSvg';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 const NewCars = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
+  const LogedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
   const [pageIndex, setPageIndex] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const advertisements = useSelector(selectAdverstisements);
@@ -39,6 +42,10 @@ const NewCars = ({ favorites, setFavorites }) => {
    }, [dispatch, pageIndex, advertisements.length, paginPage]);
 
   const handleToggleFavorite = (id) => {
+    if (!LogedIn) {
+      navigate('/authorization');
+      return;
+    }
     if (Array.isArray(favorites)) {
       if (favorites.includes(id)) {
         dispatch(deleteFavoriteAdverstisementsByID({ id }))

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Container } from './ProfileForm.styled';
 import { IconSVG, IconSvg2 } from './ProfileSVG';
 import { changeUser, changeUserPhoto, getUser } from 'redux/auth/operations';
 import * as yup from 'yup';
+import  { Notify } from 'notiflix';
 
 const profileSchema = yup.object().shape({
   lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
   firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
-  phone: yup.string()
-  .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
+  phone: yup.string().test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
     return value.startsWith('+380') && value.length === 13;
-  })
+  }),
 });
 
 const ProfileForm = ({ initialValues }) => {
@@ -29,7 +29,7 @@ const ProfileForm = ({ initialValues }) => {
     onSubmit: async values => {
       console.log({
         ...values,
-        
+
         email: initialValues.email,
       });
       dispatch(
@@ -58,13 +58,17 @@ const ProfileForm = ({ initialValues }) => {
     const file = e.target.files[0];
 
     if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        Notify.warning('Файл занадто великий. Максимальний розмір: 10 МБ');
+        return;
+      }
       const formData = new FormData();
       formData.append('image', file);
 
       dispatch(changeUserPhoto(formData));
       setTimeout(() => {
         dispatch(getUser());
-      }, 500)
+      }, 500);
     }
   };
 
