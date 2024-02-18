@@ -16,7 +16,7 @@ import {
   HidePassword,
 } from './LoginForm.styled';
 import { ErrorSVG, ViewSVG } from './chackBox';
-import { selectError, selectIsLoading } from 'redux/auth/selectors';
+import {  selectErrorLog, selectIsLoading } from 'redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
 
 
@@ -38,19 +38,16 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [refError, setRefError] = useState(false);
-  const requestError = useSelector(selectError);
+  const requestError = useSelector(selectErrorLog);
   const loader = useSelector(selectIsLoading);
 
 
-const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+const handleSubmit = (values, { resetForm, setSubmitting }) => {
   const { email, password } = values;
-try {
-  await dispatch(login({ email, password }));
-  resetForm();
-  setSubmitting(false);
-  } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+  dispatch(login({ email, password })).then(() => {
+    resetForm();
+    setSubmitting(false);
+  });
 };
 
   const handleShowPassword = () => {
