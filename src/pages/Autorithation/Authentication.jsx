@@ -5,6 +5,8 @@ import { AutoDiv } from './Authentication.styled';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { activateCode } from 'redux/auth/operations';
+import Modal from 'modal/modal';
+import { SuccesModal } from 'modal/SuccesModal/SuccesModal';
 
 const Authentication = () => {
   const [curentPage, setCurrentPage] = useState(true);
@@ -38,6 +40,9 @@ const Authentication = () => {
         </div>
         {curentPage ? <LoginForm /> : <RegisterForm />}
       </AutoDiv>
+      <Modal>
+        <SuccesModal />
+      </Modal>
     </>
   );
 };

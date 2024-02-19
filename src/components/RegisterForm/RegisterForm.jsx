@@ -9,8 +9,9 @@ import { Form, Label, Field, ErrorMessage, Input, PasswordInput, Button, HidePas
 import { Box1, Box2 } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
 import { PulseLoader } from 'react-spinners';
-import { selectErrorReg, selectIsLoading } from 'redux/auth/selectors';
+import { selectErrorReg, selectIsLoading, selectSuccerReg } from 'redux/auth/selectors';
 import { redirect } from 'react-router-dom';
+import { setIsOpen } from 'redux/modal/modalSlice';
 
 const userSchema = Yup.object().shape({
   name: Yup.string()
@@ -45,13 +46,18 @@ export const RegisterForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const loader = useSelector(selectIsLoading);
   const errorRedux = useSelector(selectErrorReg);
+  const SuccesRedux = useSelector(selectSuccerReg);
 
   useEffect(() => {
     setShowChecked(false);
     setFormSubmitted(false);
   }, []);
 
-  useEffect(() => {}, [errorRedux]);
+  useEffect(() => {
+    if (SuccesRedux) {
+      dispatch(setIsOpen(true));
+    }
+  }, [SuccesRedux, dispatch, errorRedux]);
 
   const handleSubmit = (values, { setFieldValue, setSubmitting, resetForm }) => {
     const { name, email, password, acceptTerms } = values;
@@ -64,6 +70,7 @@ export const RegisterForm = () => {
       return;
     }
     dispatch(register({ name, email, password }));
+
     // setTimeout(() => {
     //   dispatch(login({ email, password }));
     // }, 500);

@@ -23,6 +23,7 @@ const initialState = {
   error: null,
   errorLog: null,
   errorReg: null,
+  succerReg: false,
 };
 
 export const authSlice = createSlice({
@@ -46,6 +47,7 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = null;
+        state.succerReg = true;
       })
       .addCase(register.pending, state => {
         state.isLoading = true;
@@ -54,6 +56,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = false;
         state.errorReg = payload;
+        state.succerReg = false;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.token = payload.data.jwtAccessToken;
