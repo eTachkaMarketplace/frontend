@@ -3,7 +3,6 @@ import { LoginForm } from 'components/LoginForm/LoginForm';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { AutoDiv } from './Authentication.styled';
 
-
 const Authentication = () => {
   const [curentPage, setCurrentPage] = useState(true);
   const changePageTrue = () => {
@@ -17,18 +16,10 @@ const Authentication = () => {
     <>
       <AutoDiv>
         <div>
-          <button
-            type="button"
-            className={`authBtn ${curentPage ? 'active' : ''}`}
-            onClick={changePageTrue}
-          >
+          <button type="button" className={`authBtn ${curentPage ? 'active' : ''}`} onClick={changePageTrue}>
             Увійти
           </button>
-          <button
-            type="button"
-            className={`authBtn ${!curentPage ? 'active' : ''}`}
-            onClick={changePageFalse}
-          >
+          <button type="button" className={`authBtn ${!curentPage ? 'active' : ''}`} onClick={changePageFalse}>
             Зареєструватися
           </button>
         </div>

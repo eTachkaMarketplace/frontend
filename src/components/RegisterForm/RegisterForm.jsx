@@ -18,7 +18,7 @@ import {
 import { Box1, Box2 } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
 import { PulseLoader } from 'react-spinners';
-import { selectError, selectIsLoading } from 'redux/auth/selectors';
+import { selectErrorReg, selectIsLoading } from 'redux/auth/selectors';
 import { redirect } from 'react-router-dom';
 
 const userSchema = Yup.object().shape({
@@ -70,7 +70,7 @@ export const RegisterForm = () => {
   const [showChecked, setShowChecked] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const loader = useSelector(selectIsLoading);
-  const errorRedux = useSelector(selectError);
+  const errorRedux = useSelector(selectErrorReg);
 
   useEffect(() => {
     setShowChecked(false);
@@ -95,7 +95,7 @@ export const RegisterForm = () => {
     await dispatch(register({ name, email, password }));
     setTimeout(() => {
       dispatch(login({ email, password }));
-    });
+    },500);
     redirect('/account');
     setSubmitting(false);
   };
@@ -243,7 +243,7 @@ export const RegisterForm = () => {
               Зареєструватися
             </Button>
             {errorRedux && (
-              <h2 className="ErrorRedux">Реєстрація не успішна</h2>
+              <h2 className="ErrorRedux">Відбулася помилка, спробуйте ще раз.</h2>
             )}
           </Form>
         );

@@ -21,6 +21,7 @@ const initialState = {
   isLoading: false,
   error: null,
   errorLog: null,
+  errorReg: null,
 };
 
 export const authSlice = createSlice({
@@ -51,7 +52,7 @@ export const authSlice = createSlice({
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.error = payload;
+        state.errorReg = payload;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.token = payload.data.jwtAccessToken;
