@@ -12,6 +12,7 @@ import TermsOfUsePage from '../pages/FooterPage/TermsOfUsePage/TermsOfUsePage';
 import RulesPage from '../pages/FooterPage/RulesPage/RulesPage';
 import FAQPage from '../pages/FooterPage/FAQPage/FAQPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
+import EditAdvertisementPage from '../pages/EditAdvertisementPage/EditAdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
 import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
@@ -96,6 +97,7 @@ export function App() {
             <Route path="/Rules" element={<RulesPage />} />
             <Route path="/FAQ" element={<FAQPage />} />
             <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
+            <Route path="/editAdvertisement/:id" element={<EditAdvertisementPage />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>

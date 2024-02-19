@@ -19,36 +19,3 @@ const AdvertisementPage = () => {
 };
 
 export default AdvertisementPage;
-
-  // const initialFormValues = {
-  //     description: "",
-  //     region: "",
-  //     category: "",
-  //     car: {
-  //       brand: "",
-  //       model: "",
-  //       vin: "",
-  //       year: 0,
-  //       price: 0,
-  //       licensePlate: "",
-  //       mileage: 0,
-  //       transmissionType: "",
-  //       engineType: "",
-  //       engineVolume: 0,
-  //       technicalState: "",
-  //       bodyType: "",
-  //       driveType: "",
-  //       color: ""
-  //     },
-  //     contactName: "",
-  //     contactPhone: "",
-  //     isActive: true,  
-  // }
-
-  // const [formValues, setFormValues] = useState(initialFormValues);
-  // console.log(formValues);
-
-
-  // useEffect(() => {
-  //   console.log(formValues);
-  // }, [formValues]);

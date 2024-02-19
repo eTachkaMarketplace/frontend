@@ -1,5 +1,4 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-// import { NavLink, redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -23,7 +22,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
-
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
@@ -120,17 +118,10 @@ export const AdvertisementForm = () => {
 
       console.log('adverse created');
       navigate('/advertisementDone');
-      // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
-  // useEffect(() => {
-  //   if (formikRef.current) {
-  //     formikRef.current.resetForm({ values: initialValues });
-  //   }
-  // }, [initialValues]);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -208,7 +199,6 @@ export const AdvertisementForm = () => {
                 Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
                 кількість фотографій - 6.
               </Paragraph>
-              {/* <ImageUploadComponent onImagesChange={handleImagesChange} /> */}
               <ImageUploadComponent
                 setImg={formImages}
                 onImagesChange={newImages => {
@@ -358,9 +348,7 @@ export const AdvertisementForm = () => {
                   </div>
                   <ErrorMessage name="city" component="div" />
                 </div>
-              </label>
-            
-                 
+              </label>                          
 
               <label className="marg16">
                 <div className="containerLong">
@@ -667,7 +655,6 @@ export const AdvertisementForm = () => {
               >
                 Опублікувати оголошення
               </button>
-              {/* <NavLink to="/advertisementDone">confirm</NavLink> */}
             </div>
           </Form>
         );
