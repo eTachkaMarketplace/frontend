@@ -1,5 +1,4 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-// import { NavLink, redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -23,7 +22,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
-
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
@@ -54,11 +52,9 @@ const userSchema = Yup.object().shape({
     return value.startsWith('+380') && value.length === 13;
   })
   .required('це поле обов`язкове для заповнення')
-  // description: Yup.string().required('це поле обов`язкове для заповнення'),
-  
 });
 
-export const AdvertisementForm = () => {
+export const EditAdvertisementForm = ({ formInitialValues}) => {
   const dispatch = useDispatch();
   const formikRef = useRef(null);
   const navigate = useNavigate();
@@ -72,31 +68,6 @@ export const AdvertisementForm = () => {
   const token = useSelector(selectToken);
   console.log(formImages);
 
-  const initialValues = {
-        description: "",
-        region: "",
-        city: "",
-        category: "",
-        car: {
-          brand: "",
-          model: "",
-          vin: "",
-          year: 0,
-          price: 0,
-          licensePlate: "",
-          mileage: 0,
-          transmissionType: "",
-          engineType: "",
-          engineVolume: 0,
-          technicalState: "",
-          bodyType: "",
-          driveType: "",
-          color: ""
-        },
-        contactName: "",
-        contactPhone: '+380',
-        isActive: true,  
-    }
 
   const handleImagesChange = newImages => {
     setFormImages(newImages);
@@ -120,17 +91,10 @@ export const AdvertisementForm = () => {
 
       console.log('adverse created');
       navigate('/advertisementDone');
-      // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
-  // useEffect(() => {
-  //   if (formikRef.current) {
-  //     formikRef.current.resetForm({ values: initialValues });
-  //   }
-  // }, [initialValues]);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -162,7 +126,7 @@ export const AdvertisementForm = () => {
   };
   
   const resetForm = () => {
-    formikRef.current.resetForm({ values: initialValues });
+    formikRef.current.resetForm({ values: formInitialValues });
     setFormImages([]);
     setSelectedRegion('')
   };
@@ -170,12 +134,14 @@ export const AdvertisementForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formInitialValues}
       validationSchema={userSchema}
-      onSubmit={values => {
-        onSubmit(values);
-      }}
+      onSubmit={onSubmit}
+      // onSubmit={values => {
+      //   onSubmit(values);
+      // }}
       innerRef={formik => (formikRef.current = formik)}
+      enableReinitialize
     >
       {({ values, isValid, errors, touched, dirty, handleChange }) => {
         return (
@@ -187,16 +153,16 @@ export const AdvertisementForm = () => {
               Очистити все
             </button>
             <SectionContainer>
-              <SectionTitle>Етапи розміщення оголошення</SectionTitle>
+              <SectionTitle>Етапи редагування оголошення</SectionTitle>
               <div className="styled">
                 <StyledArrowSVG />
                 <div className="create">
                   <StyledCreateSVG />
-                  <p className="create_text">1. Створення</p>
+                  <p className="create_text">1. Редагування</p>
                 </div>
                 <div className="post">
                   <StyledPostSVG />
-                  <p className="post_text">2. Публікація</p>
+                  <p className="post_text">2. Оновлення</p>
                 </div>
               </div>
             </SectionContainer>
@@ -208,7 +174,6 @@ export const AdvertisementForm = () => {
                 Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
                 кількість фотографій - 6.
               </Paragraph>
-              {/* <ImageUploadComponent onImagesChange={handleImagesChange} /> */}
               <ImageUploadComponent
                 setImg={formImages}
                 onImagesChange={newImages => {
@@ -296,7 +261,7 @@ export const AdvertisementForm = () => {
                   <ErrorMessage name="car.model" component="div" />
                 </div>
               </label>
-              <label className="marg16">
+              {/* <label className="marg16">
                 <div className="containerLong">Номерний знак</div>
                 <div className="flex">
                   <Field
@@ -307,7 +272,7 @@ export const AdvertisementForm = () => {
                   />
                   <ErrorMessage name="car.licensePlate" component="div" />
                 </div>
-              </label>
+              </label> */}
 
               <label className="marg16">
                 <div className="containerLong">
@@ -358,9 +323,7 @@ export const AdvertisementForm = () => {
                   </div>
                   <ErrorMessage name="city" component="div" />
                 </div>
-              </label>
-            
-                 
+              </label>                          
 
               <label className="marg16">
                 <div className="containerLong">
@@ -667,7 +630,6 @@ export const AdvertisementForm = () => {
               >
                 Опублікувати оголошення
               </button>
-              {/* <NavLink to="/advertisementDone">confirm</NavLink> */}
             </div>
           </Form>
         );

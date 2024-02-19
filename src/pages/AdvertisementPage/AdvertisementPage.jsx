@@ -5,7 +5,6 @@ import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementFor
 
 
 const AdvertisementPage = () => {
-
   return (
     <Container>
       <Title>Створити оголошення</Title>
@@ -13,7 +12,7 @@ const AdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      <AdvertisementForm  />
+      <AdvertisementForm />
     </Container>
   );
 };

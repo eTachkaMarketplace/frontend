@@ -4,15 +4,16 @@ import { useParams } from 'react-router-dom';
 import { Container, Title, RequiredMarker, Paragraph } from '../AdvertisementPage/AdvertisementPage.styled.jsx';
 import { getAdverstisementsByID, putFavoriteAdverstisementsByID } from '../../redux/advertisment/operations.js'; 
 
-import { AdvertisementForm } from 'components/AdvertisementForm/AdvertisementForm.jsx';
+import {EditAdvertisementForm} from 'components/AdvertisementForm/EditAdvertisementForm.jsx';
 
 const EditAdvertisementPage = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const advertisement = useSelector(state => state.adverstisement.myAdvertisements);
+  console.log(advertisement);
 
   useEffect(() => {
-    dispatch(getAdverstisementsByID(id));
+    dispatch(getAdverstisementsByID({ id }));
   }, [dispatch, id]);
 
   const handleSubmit = (updatedAdvertisement) => {
@@ -26,7 +27,7 @@ const EditAdvertisementPage = () => {
         <RequiredMarker>*</RequiredMarker>поля обовʼязкові для заповнення
       </Paragraph>
 
-      {advertisement && <AdvertisementForm initialValues={advertisement} onSubmit={handleSubmit} />}
+      {advertisement && <EditAdvertisementForm formInitialValues={advertisement} onSubmit={handleSubmit} />}
     </Container>
   );
 };
