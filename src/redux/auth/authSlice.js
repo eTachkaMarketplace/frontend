@@ -10,6 +10,7 @@ import {
   changePass,
   acceptCode,
   clearToken,
+  activateCode,
 } from './operations';
   
 
@@ -136,6 +137,17 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(acceptCode.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(activateCode.fulfilled, (state,) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(activateCode.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(activateCode.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

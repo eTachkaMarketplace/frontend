@@ -3,18 +3,9 @@ import { Formik } from 'formik';
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, register } from '../../redux/auth/operations';
+import { register } from '../../redux/auth/operations';
 
-import {
-  Form,
-  Label,
-  Field,
-  ErrorMessage,
-  Input,
-  PasswordInput,
-  Button,
-  HidePassword,
-} from './RegisterForm.styled';
+import { Form, Label, Field, ErrorMessage, Input, PasswordInput, Button, HidePassword } from './RegisterForm.styled';
 import { Box1, Box2 } from 'components/LoginForm/chackBox';
 import { CorrectSVG, EyeSVG, InCorrectSVG } from './RegisterSVG';
 import { PulseLoader } from 'react-spinners';
@@ -26,41 +17,24 @@ const userSchema = Yup.object().shape({
     .required("Введіть ім'я")
     .min(2, "Ім'я повинно бути принаймні 2 символи")
     .matches(/^[^\d]+$/, "Ім'я не повинно містити цифри")
-    .matches(
-      /^[a-zA-Zа-яА-ЯіІїЇєЄёЁ\s]*$/,
-      "Ім'я не повинно містити знаки або спецсимволи"
-    )
+    .matches(/^[a-zA-Zа-яА-ЯіІїЇєЄёЁ\s]*$/, "Ім'я не повинно містити знаки або спецсимволи")
     .test('name-validation', '', value => {
       return value && value.replace(/\s/g, '').length >= 2;
     }),
   email: Yup.string()
     .test('is-valid-email', 'Невірна email адреса.', value => {
-      return (
-        value && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)
-      );
+      return value && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
     })
     .required('Введіть Email'),
   password: Yup.string()
     .required('Введіть пароль')
     .min(5, 'Пароль повинен містити принаймні 5 символів')
-    .matches(
-      /^[^\u0400-\u04FF]*$/,
-      'Пароль не повинен містити кириличні символи'
-    )
-    .matches(
-      /^(?=.*[A-Z])/,
-      'Пароль повинен містити принаймні одну велику літеру'
-    )
-    .matches(
-      /^(?=.*[a-z])/,
-      'Пароль повинен містити принаймні одну малу літеру'
-    )
+    .matches(/^[^\u0400-\u04FF]*$/, 'Пароль не повинен містити кириличні символи')
+    .matches(/^(?=.*[A-Z])/, 'Пароль повинен містити принаймні одну велику літеру')
+    .matches(/^(?=.*[a-z])/, 'Пароль повинен містити принаймні одну малу літеру')
     .matches(/^(?=.*\d)/, 'Пароль повинен містити принаймні одну цифру')
     .matches(/^[^\s]*$/, 'Пароль не повинен містити пробіли'),
-  acceptTerms: Yup.boolean().oneOf(
-    [true],
-    'You must accept the terms and conditions'
-  ),
+  acceptTerms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
 });
 
 export const RegisterForm = () => {
@@ -79,10 +53,7 @@ export const RegisterForm = () => {
 
   useEffect(() => {}, [errorRedux]);
 
-  const handleSubmit = async (
-    values,
-    { setFieldValue, setSubmitting, resetForm }
-  ) => {
+  const handleSubmit = (values, { setFieldValue, setSubmitting, resetForm }) => {
     const { name, email, password, acceptTerms } = values;
     setFieldValue('acceptTerms', false);
     resetForm();
@@ -92,10 +63,10 @@ export const RegisterForm = () => {
       setShowChecked(false);
       return;
     }
-    await dispatch(register({ name, email, password }));
-    setTimeout(() => {
-      dispatch(login({ email, password }));
-    },500);
+    dispatch(register({ name, email, password }));
+    // setTimeout(() => {
+    //   dispatch(login({ email, password }));
+    // }, 500);
     redirect('/account');
     setSubmitting(false);
   };
@@ -114,20 +85,8 @@ export const RegisterForm = () => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({
-        values,
-        errors,
-        touched,
-        setFieldValue,
-        resetForm,
-        isSubmitting,
-      }) => {
-        const isValid = field =>
-          touched[field] && errors[field]
-            ? 'is-invalid'
-            : touched[field]
-            ? 'is-valid'
-            : '';
+      {({ values, errors, touched, setFieldValue, resetForm, isSubmitting }) => {
+        const isValid = field => (touched[field] && errors[field] ? 'is-invalid' : touched[field] ? 'is-valid' : '');
         // const isFormValid =
         //   Object.keys(errors).length === 0 && Object.keys(touched).length > 0;
 
@@ -135,12 +94,7 @@ export const RegisterForm = () => {
           <Form>
             <Label className={`${isValid('name')} marg24`}>
               <Input>
-                <Field
-                  className={isValid('name')}
-                  type="text"
-                  name="name"
-                  placeholder="Ім'я"
-                />
+                <Field className={isValid('name')} type="text" name="name" placeholder="Ім'я" />
                 {isValid('name') === 'is-valid' && (
                   <span className="errorSVGemail">
                     <CorrectSVG />
@@ -202,11 +156,7 @@ export const RegisterForm = () => {
               </PasswordInput>
               <ErrorMessage name="password" component="div" />
             </Label>
-            <label
-              className={`checkLab ${
-                showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
-              }`}
-            >
+            <label className={`checkLab ${showChecked ? 'checked' : formSubmitted ? 'unchecked' : null}`}>
               <input
                 type="checkbox"
                 name="acceptTerms"
@@ -219,9 +169,7 @@ export const RegisterForm = () => {
                 style={{ position: 'absolute', opacity: 0 }}
               />
               <span
-                className={`customCheckbox ${
-                  showChecked ? 'checked' : formSubmitted ? 'unchecked' : null
-                }`}
+                className={`customCheckbox ${showChecked ? 'checked' : formSubmitted ? 'unchecked' : null}`}
                 onClick={() => {
                   setFieldValue('acceptTerms', !values.acceptTerms);
                 }}
@@ -242,9 +190,7 @@ export const RegisterForm = () => {
             <Button type="submit" onClick={() => setFormSubmitted(true)}>
               Зареєструватися
             </Button>
-            {errorRedux && (
-              <h2 className="ErrorRedux">Відбулася помилка, спробуйте ще раз.</h2>
-            )}
+            {errorRedux && <h2 className="ErrorRedux">Відбулася помилка, спробуйте ще раз.</h2>}
           </Form>
         );
       }}

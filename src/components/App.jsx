@@ -55,7 +55,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Main favorites={favorites} setFavorites={setFavorites} />} />
             <Route
-              path="/authorization"
+              path="/authorization/:code?"
               element={
                 <PublickRoute redirectTo="/account">
                   <Authentication />
