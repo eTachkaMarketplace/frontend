@@ -10,6 +10,7 @@ import {
   changePass,
   acceptCode,
   clearToken,
+  activateCode,
 } from './operations';
   
 
@@ -21,6 +22,7 @@ const initialState = {
   isLoading: false,
   error: null,
   errorLog: null,
+  errorReg: null,
 };
 
 export const authSlice = createSlice({
@@ -51,7 +53,7 @@ export const authSlice = createSlice({
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.error = payload;
+        state.errorReg = payload;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.token = payload.data.jwtAccessToken;
@@ -135,6 +137,17 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(acceptCode.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(activateCode.fulfilled, (state,) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(activateCode.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(activateCode.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       });

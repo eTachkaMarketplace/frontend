@@ -127,6 +127,17 @@ export const acceptCode = createAsyncThunk('user/acceptCode', async ({ code }, {
   }
 });
 
+export const activateCode = createAsyncThunk('user/activateCode', async ({ code }, { rejectWithValue }) => {
+  try {
+    const codeApi = `auth/activate/${code}`;
+    const response = await instance.post(codeApi);
+    console.log('code accepted');
+    return response.data;
+  } catch (error) {
+    console.log(`Code failed. Try again`);
+    return rejectWithValue(error.message);
+  }
+});
 
 
 
