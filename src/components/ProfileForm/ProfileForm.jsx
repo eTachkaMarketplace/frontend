@@ -10,12 +10,18 @@ import { changeUser, changeUserPhoto, getUser } from 'redux/auth/operations';
 import * as yup from 'yup';
 import  { Notify } from 'notiflix';
 
+const phoneRegExp = /^(\+380)[0-9]{9}$/;
+
+yup.addMethod(yup.string, 'isPhone', function () {
+  return this.test('is-valid-phone', 'Номер должен начинаться с +380 и содержать 12 цифр', function (value) {
+    return phoneRegExp.test(value);
+  });
+});
+
 const profileSchema = yup.object().shape({
   lastName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле “Прізвище“ може містити лише літери та знак “-“'),
   firstName: yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“'),
-  phone: yup.string().test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-    return value && value.startsWith('+380') && value.length === 13;
-}),
+  phone: yup.string().isPhone(),
 
 });
 

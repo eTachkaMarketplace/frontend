@@ -24,6 +24,13 @@ import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
+const phoneRegExp = /^(\+380)[0-9]{9}$/;
+
+Yup.addMethod(Yup.string, 'isPhone', function () {
+  return this.test('is-valid-phone', 'Номер должен начинаться с +380 и содержать 12 цифр', function (value) {
+    return phoneRegExp.test(value);
+  });
+});
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
@@ -50,9 +57,7 @@ const userSchema = Yup.object().shape({
   city: Yup.string().required('це поле обов`язкове для заповнення'),
   contactName: Yup.string().required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.string()
-  .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-    return value.startsWith('+380') && value.length === 13;
-  })
+  .isPhone()
   .required('це поле обов`язкове для заповнення')
   // description: Yup.string().required('це поле обов`язкове для заповнення'),
   
