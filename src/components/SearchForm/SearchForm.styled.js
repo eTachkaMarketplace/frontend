@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Search = styled.div`
   display: flex;
   width: 412px;
-  height: 1252px;
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
@@ -185,6 +184,7 @@ export const Search = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-bottom: 16px;
 
     display: flex;
     width: 200px;
