@@ -62,7 +62,12 @@ const userSchema = Yup.object().shape({
   category: Yup.string().required('це поле обов`язкове для заповнення'),
   region: Yup.string().required('це поле обов`язкове для заповнення'),
   city: Yup.string().required('це поле обов`язкове для заповнення'),
-  contactName: Yup.string().matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' ]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“').max(40, 'Максимум 40 символів').required('це поле обов`язкове для заповнення'),
+  contactName: Yup.string()
+  .matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' -]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“')
+  // .min(2, 'Мінімум 2 літери')
+  .max(40, 'Максимум 40 літер')
+  .test('is-not-empty', 'Поле "Ім`я" не може бути пустим', value => value.trim() !== '')
+  .required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.string()
   .isPhone()
   .required('це поле обов`язкове для заповнення')
