@@ -1,8 +1,10 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'modal/modal';
+import {  putAdverstisementsByID } from '../../redux/advertisment/operations.js'; 
+
 import ConfirmModalAdvertisement from "../../modal/confirmModal/confirmModalAdvertisement";
 import DataAccessor from '../Class/DataAccessor';
 import ImageUploadComponent from './imgUpload';
@@ -19,7 +21,7 @@ import {
 } from './AdvertisementForm.styled';
 import {  useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
+// import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
@@ -58,6 +60,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
   const dispatch = useDispatch();
   const formikRef = useRef(null);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [availableModels, setAvailableModels] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -73,10 +76,13 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
     setFormImages(newImages);
   };
 
+
+
   const onSubmit = async values => {
     try {
       console.log('values', values);
       values.car.year = Number(values.car.year);
+      values.id = id;
 
       const formData = new FormData();
       formImages.forEach((image, index) => {
@@ -87,14 +93,16 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
-      dispatch(createFavoriteAdverstisementsByID({ formData, token }));
-
-      console.log('adverse created');
+      console.log('values after add id', values);
+      dispatch(putAdverstisementsByID({  formData, token }));
+      
+      console.log('Advertisement updated');
       navigate('/advertisementDone');
     } catch (error) {
       console.error('Error:', error);
     }
   };
+  
 
   const openModal = () => {
     dispatch(setIsOpen(true));
