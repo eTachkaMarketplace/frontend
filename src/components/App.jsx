@@ -42,7 +42,8 @@ export function App() {
 
   useEffect(() => {
     if (jwtRefreshToken) dispatch(refreshToken({ jwtRefreshToken }));
-  }, [dispatch, jwtRefreshToken]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);
