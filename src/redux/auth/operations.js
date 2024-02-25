@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
@@ -31,14 +32,26 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk(
-  'auth/login',
-  async (credentials, { rejectWithValue }) => {
+export const login = createAsyncThunk('auth/login', async ({ credentials, showChecked }, { rejectWithValue }) => {
+  try {
+    const response = await instance.post(`auth/login?rememberMe=${showChecked}`, credentials);
+    setToken(response.data.data.jwtAccessToken);
+    console.log(response);
+    console.log(`Welcome back!!!`);
+    return response.data;
+  } catch (error) {
+    console.log(`Login failed. Try again`);
+    return rejectWithValue(error.message);
+  }
+});
+
+export const refreshToken = createAsyncThunk(
+  'auth/refreshToken',
+  async ( credentials , { rejectWithValue }) => {
     try {
-      const response = await instance.post('auth/login', credentials);
+      const response = await instance.post(`auth/refresh/refresh-token`, credentials);
       setToken(response.data.data.jwtAccessToken);
-      console.log(response);
-      console.log(`Welcome back!!!`);
+      console.log("🚀 ~ response:", response)
       return response.data;
     } catch (error) {
       console.log(`Login failed. Try again`);
@@ -46,6 +59,7 @@ export const login = createAsyncThunk(
     }
   }
 );
+
 
 
 export const getUser = createAsyncThunk('api/user/getUser', async (_, { rejectWithValue }) => {
