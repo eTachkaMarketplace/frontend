@@ -20,10 +20,11 @@ import ChangePassPage from 'pages/ChangePassPage/ChangePassPage';
 import NotFound from '../pages/NotFoundPage/NotFound';
 import { AdvertisementByID } from 'pages/AdvertisementByID/AdvertisementByID';
 // import HomePage from '../pages/HomePage/HomePage';
-import { getUser } from 'redux/auth/operations';
+import { getUser, refreshToken } from 'redux/auth/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 import Main from './Main/Main';
+import { selectRefToken } from 'redux/auth/selectors';
 
 export function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export function App() {
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
   const navigate = useNavigate();
   const location = useLocation();
+  const jwtRefreshToken = useSelector(selectRefToken);
 
   useEffect(() => {
     dispatch(refresh());
@@ -38,6 +40,9 @@ export function App() {
     dispatch(getAdvFav());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (jwtRefreshToken) dispatch(refreshToken({ jwtRefreshToken }));
+  }, [dispatch, jwtRefreshToken]);
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);

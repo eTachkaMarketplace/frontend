@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  Form as FormikForm,
-  Field as FormikField,
-  ErrorMessage as FormikErrorMessage,
-} from 'formik';
+import { Form as FormikForm, Field as FormikField, ErrorMessage as FormikErrorMessage } from 'formik';
 
 export const Form = styled(FormikForm)`
   display: flex;
@@ -27,6 +23,7 @@ export const Form = styled(FormikForm)`
     border-bottom: 1px solid #000;
     margin-bottom: 32px;
     width: 119px;
+    height: 19px;
   }
   .marg24 {
     margin-bottom: 24px;
@@ -61,8 +58,27 @@ export const Form = styled(FormikForm)`
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .checkLab {
+    color: rgba(13, 12, 12, 0.7);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .customCheckbox {
+    pointer-events: none;
+  }
+  .linkDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 `;
-
 
 export const Label = styled.label`
   &.is-valid {
@@ -103,7 +119,7 @@ export const Field = styled(FormikField)`
   line-height: normal;
   border-radius: 8px;
   border: 1px solid rgba(13, 12, 12, 0.3);
-  color:  #141414;
+  color: #141414;
   background: #fff;
 
   transition: var(--transition);
@@ -141,7 +157,6 @@ export const Input = styled.div`
   position: relative;
   margin-top: 8px;
   transition: var(--transition);
-  
 `;
 
 export const Button = styled.button`
@@ -182,8 +197,8 @@ export const ErrorMessage = styled(FormikErrorMessage)`
 `;
 
 export const HidePassword = styled.button`
-border: 0;
-background-color: transparent;
+  border: 0;
+  background-color: transparent;
   color: black;
   position: absolute;
   right: 16px;

@@ -4,6 +4,6 @@ export const selectErrorLog = state => state.auth.errorLog;
 export const selectErrorReg = state => state.auth.errorReg;
 export const selectSuccerReg = state => state.auth.succerReg;
 export const selectIsLoading = state => state.auth.isLoading;
-// export const selectToken = state => state.auth.refToken;
+export const selectRefToken = state => state.auth.refToken;
 export const selectToken = state => state.auth.token;
 export const selectUser = state => state.auth.user;

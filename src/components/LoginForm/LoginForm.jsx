@@ -15,7 +15,7 @@ import {
   Button,
   HidePassword,
 } from './LoginForm.styled';
-import { ErrorSVG, ViewSVG } from './chackBox';
+import { Box1, Box2, ErrorSVG, ViewSVG } from './chackBox';
 import {  selectErrorLog, selectIsLoading } from 'redux/auth/selectors';
 import { NavLink } from 'react-router-dom';
 
@@ -36,6 +36,7 @@ const userSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showChecked, setShowChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [refError, setRefError] = useState(false);
   const requestError = useSelector(selectErrorLog);
@@ -44,8 +45,10 @@ export const LoginForm = () => {
 
 const handleSubmit = (values, { resetForm, setSubmitting }) => {
   const { email, password } = values;
-  dispatch(login({ email, password })).then(() => {
+  const credentials = { email, password };
+  dispatch(login({credentials, showChecked})).then(() => {
     resetForm();
+    setShowChecked(false);
     setSubmitting(false);
   });
 };
@@ -58,6 +61,11 @@ const handleSubmit = (values, { resetForm, setSubmitting }) => {
     if (requestError) setRefError(true);
   }, [requestError]);
 
+   const checkedIvent = () => {
+     if (showChecked) setShowChecked(false);
+     else setShowChecked(true);
+   };
+
 
   return (
     <Formik
@@ -65,7 +73,7 @@ const handleSubmit = (values, { resetForm, setSubmitting }) => {
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values, isValid, errors, handleSubmit }) => {
+      {({ values,setFieldValue}) => {
         return (
           <>
             <Form>
@@ -110,9 +118,35 @@ const handleSubmit = (values, { resetForm, setSubmitting }) => {
                 <ErrorMessage name="password" component="div" />
               </Label>
               {refError ? <p className="errorMes">Недійсна пошта або пароль</p> : null}
-              <NavLink className="remPassBtn" to="/forgot-password">
-                Забули пароль?
-              </NavLink>
+
+              <div className='linkDiv'>
+                <label className={`checkLab`}>
+                  <input
+                    type="checkbox"
+                    name="acceptTerms"
+                    checked={values.acceptTerms}
+                    onChange={e => {
+                      setFieldValue('acceptTerms', e.target.checked);
+                      console.log(e.target.checked);
+                      checkedIvent();
+                    }}
+                    style={{ position: 'absolute', opacity: 0 }}
+                  />
+                  <span
+                    className={`customCheckbox`}
+                    onClick={() => {
+                      setFieldValue('acceptTerms', !values.acceptTerms);
+                    }}
+                  >
+                    {values.acceptTerms ? <Box2 /> : <Box1 />}
+                  </span>
+                  Запам'ятати мене
+                </label>
+                <NavLink className="remPassBtn" to="/forgot-password">
+                  Забули пароль?
+                </NavLink>
+              </div>
+
               <div className="loader">
                 <PulseLoader
                   color="#0040bd"

@@ -11,6 +11,7 @@ import {
   acceptCode,
   clearToken,
   activateCode,
+  refreshToken,
 } from './operations';
   
 
@@ -69,6 +70,21 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.errorLog = payload;
+      })
+      .addCase(refreshToken.fulfilled, (state, { payload }) => {
+        state.token = payload.data.jwtAccessToken;
+        state.refToken = payload.data.jwtRefreshToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.errorLog = null;
+      })
+      .addCase(refreshToken.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(refreshToken.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
         state.errorLog = payload;
@@ -143,7 +159,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(activateCode.fulfilled, (state,) => {
+      .addCase(activateCode.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
       })
