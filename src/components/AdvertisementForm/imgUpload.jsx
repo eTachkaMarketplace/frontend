@@ -9,11 +9,29 @@ import {
 } from './imgUpload.styled';
 import { nanoid } from '@reduxjs/toolkit';
 
-const ImageUploadComponent = ({ onImagesChange, setImg }) => {
-  const [images, setImages] = useState(setImg);
+const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
+  const [images, setImages] = useState(setImg || []);
   useEffect(() => {
-    setImages(setImg);
-  }, [setImg]);
+    const fetchAndConvertImages = async () => {
+      if (initImages) {
+        const imageFiles = await Promise.all(
+          initImages.map(async imageUrl => {
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+
+            // Create a File object from the Blob
+            return new File([blob], imageUrl.substring(imageUrl.lastIndexOf('/') + 1), {
+              type: blob.type,
+            });
+          })
+        );
+        setImages(prevImages => [...prevImages, ...imageFiles]);
+      }
+    };
+
+    fetchAndConvertImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleImageChange = e => {
     const selectedImages = Array.from(e.target.files);
@@ -31,8 +49,9 @@ const ImageUploadComponent = ({ onImagesChange, setImg }) => {
   const renderImages = () => {
     return images.map((image, index) => (
       <ImageContainer key={index}>
+        {console.log(index)}
         <img src={URL.createObjectURL(image)} alt={`img-${index}`} />
-        <button onClick={() => handleImageRemove(index)} className="transpatent_button">
+        <button type='button' onClick={() => handleImageRemove(index)} className="transpatent_button">
           <StyledCloseImgSVG />
         </button>
       </ImageContainer>

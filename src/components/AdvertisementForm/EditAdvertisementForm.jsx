@@ -1,11 +1,11 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'modal/modal';
-import {  putAdverstisementsByID } from '../../redux/advertisment/operations.js'; 
+import { putAdverstisementsByID } from '../../redux/advertisment/operations.js';
 
-import ConfirmModalAdvertisement from "../../modal/confirmModal/confirmModalAdvertisement";
+import ConfirmModalAdvertisement from '../../modal/confirmModal/confirmModalAdvertisement';
 import DataAccessor from '../Class/DataAccessor';
 import ImageUploadComponent from './imgUpload';
 import { Paragraph, RequiredMarker } from 'pages/AdvertisementPage/AdvertisementPage.styled';
@@ -19,7 +19,7 @@ import {
   StyledEditSVG,
   StyledRefreshSVG,
 } from './AdvertisementForm.styled';
-import {  useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
@@ -30,33 +30,33 @@ const userSchema = Yup.object().shape({
     licensePlate: Yup.string().max(10, 'Номер до 10 символів').notRequired(),
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
-    mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    mileage: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
     year: Yup.number().required('це поле обов`язкове для заповнення').min(1999, 'Виберіть рік'),
-    price:Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    price: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
     bodyType: Yup.string().required('це поле обов`язкове для заповнення'),
     engineType: Yup.string().required('це поле обов`язкове для заповнення'),
-    engineVolume: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
+    engineVolume: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
     driveType: Yup.string().required('це поле обов`язкове для заповнення'),
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string().matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри').notRequired(),
-   
-    
-
+    vin: Yup.string()
+      .matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри')
+      .notRequired(),
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
   region: Yup.string().required('це поле обов`язкове для заповнення'),
   city: Yup.string().required('це поле обов`язкове для заповнення'),
   contactName: Yup.string().required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.string()
-  .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-    return value.startsWith('+380') && value.length === 13;
-  })
-  .required('це поле обов`язкове для заповнення')
+    .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
+      return value.startsWith('+380') && value.length === 13;
+    })
+    .required('це поле обов`язкове для заповнення'),
 });
 
-export const EditAdvertisementForm = ({ formInitialValues}) => {
+export const EditAdvertisementForm = ({ formInitialValues }) => {
+  console.log(formInitialValues);
   const dispatch = useDispatch();
   const formikRef = useRef(null);
   const navigate = useNavigate();
@@ -69,40 +69,56 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
   const token = useSelector(selectToken);
-  console.log(formImages);
-
 
   const handleImagesChange = newImages => {
     setFormImages(newImages);
   };
 
-
-
   const onSubmit = async values => {
     try {
       console.log('values', values);
-      values.car.year = Number(values.car.year);
-      values.id = id;
+       const updatedValues = {
+         ...values,
+         car: {
+           ...values.car,
+           year: Number(values.car.year),
+         },
+         id: id,
+       };
 
       const formData = new FormData();
       formImages.forEach((image, index) => {
         formData.append(`images`, image);
       });
-      
-      formData.append('payload', new Blob([JSON.stringify(values)], { type: 'application/json' }));
+
+      formData.append('payload', new Blob([JSON.stringify(updatedValues)], { type: 'application/json' }));
       for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
       }
       console.log('values after add id', values);
-      dispatch(putAdverstisementsByID({  formData, token }));
-      
+      dispatch(putAdverstisementsByID({ formData, token }));
+
       console.log('Advertisement updated');
       navigate('/advertisementDoneEdit');
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
+  useEffect(() => {
+    // Set values from formInitialValues
+    formikRef.current.setFieldValue('car.brand', formInitialValues.car.brand);
+    formikRef.current.setFieldValue('car.model', formInitialValues.car.model);
+    formikRef.current.setFieldValue('region', formInitialValues.region);
+    formikRef.current.setFieldValue('city', formInitialValues.city);
+
+    // Update states accordingly
+    setAvailableModels(dataAccessor.getModelsByBrand(formInitialValues.car.brand));
+    setSelectedRegion(formInitialValues.region);
+    setSelectedCity(formInitialValues.city);
+    setFormImages(formInitialValues.images || []); // Assuming images is an array in formInitialValues
+    setPhotosSelected((formInitialValues.images || []).length > 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formInitialValues ]);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -110,7 +126,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
 
   const handleBrandChange = event => {
     const selectedBrand = event.target.value;
-   
+
     const models = dataAccessor.getModelsByBrand(selectedBrand);
 
     setAvailableModels(models);
@@ -122,21 +138,21 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
   const handleRegionChange = e => {
     const regionValue = e.target.value;
     setSelectedRegion(regionValue);
-    setSelectedCity(''); 
+    setSelectedCity('');
     formikRef.current.setFieldValue('region', regionValue);
-    formikRef.current.setFieldValue('city', ''); 
+    formikRef.current.setFieldValue('city', '');
   };
-  
+
   const handleCityChange = e => {
     const cityValue = e.target.value;
-    setSelectedCity(cityValue); 
+    setSelectedCity(cityValue);
     formikRef.current.setFieldValue('city', cityValue);
   };
-  
+
   const resetForm = () => {
     formikRef.current.resetForm({ values: formInitialValues });
     setFormImages([]);
-    setSelectedRegion('')
+    setSelectedRegion('');
   };
   useEffect(() => {}, [formImages]);
 
@@ -183,6 +199,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
                 кількість фотографій - 6.
               </Paragraph>
               <ImageUploadComponent
+                initImages={formInitialValues.images}
                 setImg={formImages}
                 onImagesChange={newImages => {
                   handleImagesChange(newImages);
@@ -313,12 +330,13 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
                   Місто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field  
+                  <Field
                     className={`${touched.city && !values.city && !isValid ? 'is-invalid' : ''}  fieldLong `}
-                    component="select" 
-                    name="city" 
-                    onChange={handleCityChange} 
-                    value={selectedCity}>
+                    component="select"
+                    name="city"
+                    onChange={handleCityChange}
+                    value={selectedCity}
+                  >
                     <option value="">Оберіть</option>
                     {dataAccessor.getCitiesByRegion(selectedRegion).map(city => (
                       <option key={city} value={city}>
@@ -331,7 +349,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
                   </div>
                   <ErrorMessage name="city" component="div" />
                 </div>
-              </label>                          
+              </label>
 
               <label className="marg16">
                 <div className="containerLong">
@@ -561,7 +579,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                   <Field
-                  className={`${errors.car && errors.car.vin  ? 'is-invalid' : ''} fieldTextLong`}
+                    className={`${errors.car && errors.car.vin ? 'is-invalid' : ''} fieldTextLong`}
                     // className={`${values.car.vin.length > 17 ? 'is-invalid' : ''} fieldTextLong`}
                     type="text"
                     name="car.vin"
@@ -610,12 +628,12 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
                 </div>
                 <div className="flex">
                   <Field
-                    className={`${touched.contactPhone && errors.contactPhone  ? 'is-invalid' : ''}  fieldLong `}
+                    className={`${touched.contactPhone && errors.contactPhone ? 'is-invalid' : ''}  fieldLong `}
                     type="text"
                     name="contactPhone"
                     value={values.contactPhone}
                     onChange={handleChange}
-                    onKeyDown={(e) => {
+                    onKeyDown={e => {
                       const newValue = e.target.value;
                       if ((e.key === 'Delete' || e.key === 'Backspace') && newValue === '+380') {
                         e.preventDefault();
