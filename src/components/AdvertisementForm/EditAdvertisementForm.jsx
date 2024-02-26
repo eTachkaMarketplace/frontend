@@ -16,8 +16,8 @@ import {
   Field,
   ErrorMessage,
   StyledArrowSVG,
-  StyledCreateSVG,
-  StyledPostSVG,
+  StyledEditSVG,
+  StyledRefreshSVG,
 } from './AdvertisementForm.styled';
 import {  useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -165,11 +165,11 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
               <div className="styled">
                 <StyledArrowSVG />
                 <div className="create">
-                  <StyledCreateSVG />
+                  <StyledEditSVG />
                   <p className="create_text">1. Редагування</p>
                 </div>
                 <div className="post">
-                  <StyledPostSVG />
+                  <StyledRefreshSVG />
                   <p className="post_text">2. Оновлення</p>
                 </div>
               </div>

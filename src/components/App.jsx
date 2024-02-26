@@ -14,6 +14,7 @@ import FAQPage from '../pages/FooterPage/FAQPage/FAQPage';
 import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import EditAdvertisementPage from '../pages/EditAdvertisementPage/EditAdvertisementPage';
 import AdvertisementPageDone from '../pages/AdvertisementPageDone/AdvertisementPageDone';
+import EditAdvertisementPageDone from '../pages/EditAdvertisementPageDone/EditAdvertisementPageDone';
 import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from 'redux/auth/authSlice';
 import SearchPage from 'pages/SearchPage/SearchPage';
@@ -97,6 +98,7 @@ export function App() {
             <Route path="/Rules" element={<RulesPage />} />
             <Route path="/FAQ" element={<FAQPage />} />
             <Route path="/advertisementDone" element={<AdvertisementPageDone />} />
+            <Route path="/advertisementDoneEdit" element={<EditAdvertisementPageDone />} />
             <Route path="/editAdvertisement/:id" element={<EditAdvertisementPage />} />
             <Route path={'*'} element={<NotFound />} />
           </Routes>
