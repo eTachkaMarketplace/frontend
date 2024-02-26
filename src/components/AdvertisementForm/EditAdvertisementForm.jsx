@@ -97,7 +97,7 @@ export const EditAdvertisementForm = ({ formInitialValues}) => {
       dispatch(putAdverstisementsByID({  formData, token }));
       
       console.log('Advertisement updated');
-      navigate('/advertisementDone');
+      navigate('/advertisementDoneEdit');
     } catch (error) {
       console.error('Error:', error);
     }
