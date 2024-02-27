@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import Modal from 'modal/modal';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import ConfirmModal from 'modal/confirmModal/confirmModal';
+import { Thumbnails } from './Svg';
 
 const SearchPage = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -55,17 +57,23 @@ const SearchPage = ({ favorites, setFavorites }) => {
     };
   }, [screenWidth]);
 
-  const handleSelectChange = event => {
-    const selectedValue = event.target.value;
-
-    if (selectedValue === 'foData') {
-      setSort('new');
-    } else if (selectedValue === 'cheap') {
-      setSort('cheap');
-    } else if (selectedValue === 'expensive') {
-      setSort('expensive');
-    }
+  const handleThumbnailsClick = () => {
+    setIsDropdownVisible(prev => !prev);
   };
+
+   const handleSelectChange = (value) => {
+
+     if (value === 'foData') {
+       setSort('new');
+     } else if (value === 'cheap') {
+       setSort('cheap');
+     } else if (value === 'expensive') {
+       setSort('expensive');
+     }
+
+     // Hide the dropdown after selection
+     setIsDropdownVisible(false);
+   };
 
   useEffect(() => {
     if (!firstRender.current) {
@@ -84,13 +92,22 @@ const SearchPage = ({ favorites, setFavorites }) => {
     <>
       <Wraper>
         {screenWidth <= 390 ? (
-          <div>
-            <h3 className="title">Розширений пошук</h3>
-            <select className="select" name="select" onChange={handleSelectChange}>
-              <option value="foData">За датою додавання</option>
-              <option value="cheap">Від дешевших</option>
-              <option value="expensive">Від дорожчих</option>
-            </select>
+          <div className='menuDiv'>
+            <button type='button' className="title">Розширений пошук</button>
+            <div className="thumbnails-container" onClick={handleThumbnailsClick}>
+              <Thumbnails />
+            </div>
+              <div className="dropBox" style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('new');}}>
+                  За датою додавання
+                </button>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('cheap');}}>
+                  Від дешевших
+                </button>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('expensive');}}>
+                  Від дорожчих
+                </button>
+              </div>
           </div>
         ) : null}
         <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
