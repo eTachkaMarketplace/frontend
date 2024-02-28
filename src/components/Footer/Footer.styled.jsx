@@ -106,6 +106,7 @@ export const StyledYoutubeSVG = styled(YoutubeSVG)`
   fill: #F1F1F1;
   &:hover {
     fill: #0141BD;
+    cursor: pointer;
     }
 `;
 
@@ -113,6 +114,7 @@ export const StyledInstagramSVG = styled(InstagramSVG)`
   fill: #F1F1F1;
   &:hover {
     fill: #0141BD;
+    cursor: pointer;
     }
 `;
 
@@ -120,6 +122,7 @@ export const StyledFacebookSVG = styled(FacebookSVG)`
   fill: #F1F1F1;
   &:hover {
     fill: #0141BD;
+    cursor: pointer;
     }
 `;
 

@@ -48,20 +48,26 @@ const Footer = () => {
               <b className="footer-contact_title">Зв’яжись з нами</b>
             </li>
             <li>
-              <a href="mailto:support@gmail.com" className="footer-contact_link">
+            <NavLink to="/404page" className="footer-contact_link">
                 support@gmail.com
-              </a>
+            </NavLink>
             </li>
             <li>
               <ul className="footer-contact_list-svg">
                 <li>
+                <NavLink to="/404page">
                   <StyledYoutubeSVG />
+                  </NavLink>
                 </li>
                 <li>
+                <NavLink to="/404page">
                   <StyledFacebookSVG />
+                  </NavLink>
                 </li>
                 <li>
+                <NavLink to="/404page">
                   <StyledInstagramSVG />
+                  </NavLink>
                 </li>
               </ul>
             </li>
