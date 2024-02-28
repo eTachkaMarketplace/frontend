@@ -23,7 +23,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { selectToken } from 'redux/auth/selectors';
-import { setIsOpen } from 'redux/modal/modalSlice';
+// import { setIsOpen } from 'redux/modal/modalSlice';
 
 const userSchema = Yup.object().shape({
   car: Yup.object().shape({
@@ -120,9 +120,9 @@ export const EditAdvertisementForm = ({ formInitialValues }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formInitialValues ]);
 
-  const openModal = () => {
-    dispatch(setIsOpen(true));
-  };
+  // const openModal = () => {
+  //   dispatch(setIsOpen(true));
+  // };
 
   const handleBrandChange = event => {
     const selectedBrand = event.target.value;
@@ -173,9 +173,9 @@ export const EditAdvertisementForm = ({ formInitialValues }) => {
             <Modal>
               <ConfirmModalAdvertisement resetForm={resetForm} />
             </Modal>
-            <button className="clearButton" onClick={openModal} type="button">
+            {/* <button className="clearButton" onClick={openModal} type="button">
               Очистити все
-            </button>
+            </button> */}
             <SectionContainer>
               <SectionTitle>Етапи редагування оголошення</SectionTitle>
               <div className="styled">
