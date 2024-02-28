@@ -16,7 +16,7 @@ import {
   getPopAdvers,
 
   postFavoriteAdverstisementsByID,
-  putFavoriteAdverstisementsByID,
+  putAdverstisementsByID,
 } from './operations';
 
 // import { favoriteSlice } from './favoriteSlice';
@@ -169,14 +169,14 @@ export const adversSlice = createSlice({
         state.isLoading = false;
         state.error = payload.error;
       })
-      .addCase(putFavoriteAdverstisementsByID.fulfilled, state => {
+      .addCase(putAdverstisementsByID.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(putFavoriteAdverstisementsByID.pending, state => {
+      .addCase(putAdverstisementsByID.pending, state => {
         state.isLoading = true;
       })
-      .addCase(putFavoriteAdverstisementsByID.rejected, (state, { payload }) => {
+      .addCase(putAdverstisementsByID.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload.error;
       })
