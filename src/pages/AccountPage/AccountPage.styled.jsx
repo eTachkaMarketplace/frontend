@@ -305,6 +305,10 @@ export const UserContainer = styled.div`
     .user-nav_item.active::before {
       opacity: 0;
     }
+
+    .user-nav_item:hover::before {
+      opacity: 0;
+    }
   }
   @media only screen and (min-width: 768px) {
    .short-name{
