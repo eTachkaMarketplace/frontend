@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, HeaderWrapper, Navigation, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
+import { Container, HeaderWrapper, Navigation,StyledAddMobSVG,StyledMenuOpenSVG,StyledMenuCloseSVG, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { getAdvFav } from 'redux/advertisment/operations';
@@ -41,7 +41,9 @@ const Header = () => {
               <ButtonText>Продати</ButtonText>
             </ButtonSale>
           </NavLink>
+
           <UserIcon>
+            <StyledAddMobSVG/>
             <NavLink to="/account?favourites=true">
               <div style={{ position: 'relative' }}>
                 <StyledHeartSVG />
@@ -52,9 +54,11 @@ const Header = () => {
                 )}
               </div>
             </NavLink>
+
             <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
               <StyledUserSVG />
             </NavLink>
+            <StyledMenuOpenSVG/>
           </UserIcon>
         </User>
       </HeaderWrapper>

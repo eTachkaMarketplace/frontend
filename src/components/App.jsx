@@ -58,7 +58,7 @@ export function App() {
   return (
     <>
       <Header />
-      <main>
+      {/* <main>
         <Suspense fallback={<Spinner />}>
           <Routes>
             <Route path="/" element={<Main favorites={favorites} setFavorites={setFavorites} />} />
@@ -109,8 +109,8 @@ export function App() {
             <Route path={'*'} element={<NotFound />} />
           </Routes>
         </Suspense>
-      </main>
-      <Footer />
+      </main> */}
+      {/* <Footer /> */}
     </>
   );
 }
