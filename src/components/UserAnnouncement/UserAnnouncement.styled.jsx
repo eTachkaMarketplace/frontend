@@ -52,6 +52,11 @@ export const Wraper = styled.div`
     letter-spacing: 0%;
     text-align: left;
     margin-bottom: 24px;
+
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+      margin-top: 1px;
+    }
   }
   .activeClass {
     color: rgb(1, 65, 189);
@@ -146,6 +151,11 @@ export const Wraper = styled.div`
     justify-content: center;
     align-items: center;
     width: 844px;
+
+     @media (max-width: 767px) {
+      width: 100%;
+    }
+
     height: 240px;
     background: rgb(241, 245, 255);
     margin-top: 16px;

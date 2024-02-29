@@ -145,6 +145,7 @@ export const UserContainer = styled.div`
   width: 410px;
   @media (max-width: 767px) {
     width: 330px;
+    flex-direction: column-reverse;
     }
   overflow: hidden;
   .photo {
@@ -195,6 +196,10 @@ export const UserContainer = styled.div`
     padding: 20px 15px 20px 0;
     border-radius: 8px;
     background: #F1F5FF;
+
+    @media (max-width: 767px) {
+      padding: 12px 15px 0 0;
+    }
   }
 
   .user-nav_item {
@@ -279,7 +284,33 @@ export const UserContainer = styled.div`
     line-height: normal;
   }
 
+  @media only screen and (max-width: 767px) {
+    .user-nav_list{
+      display:flex;
 
+      li{
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        width: 25%;
+      }
+    }
+    .long-name{
+      display: none;
+   }
+   .user-nav_item:last-child {
+      margin-top: 0;
+    }
+
+    .user-nav_item.active::before {
+      opacity: 0;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+   .short-name{
+      display: none;
+   }
+  }
 `;
 
 export const AnnouncementContainer = styled.div`
@@ -331,6 +362,10 @@ export const Title = styled.h2`
   color: #141414;
   margin-bottom: 32px;
 
+  @media (max-width: 767px) {
+      margin-bottom: 0;
+    }
+
   font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-weight: 500;
@@ -347,13 +382,18 @@ export const Subtitle = styled.h3`
 
    @media (max-width: 767px) {
     visibility:hidden;
-    height: 5px;
+    height: 0;
+    margin-bottom:15px;
   }
 `;
 
 export const Text = styled.p`
   color: #6F6F6F;
   margin-top: 150px;
+
+  @media (max-width: 767px) {
+      margin-top: 5px;
+    }
 
   font-family: 'Roboto', sans-serif;
   font-size: 18px;

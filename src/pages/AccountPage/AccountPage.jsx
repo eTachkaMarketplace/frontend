@@ -135,7 +135,7 @@ const AccountPage = ({ favoritesFromState }) => {
   return (
     <>
       <AccountContainer>
-        <Title>Особистий кабінет</Title>
+        <Title >Особистий кабінет</Title>
         <Container>
           <UserContainer>
             <div className="user-profile_container">
@@ -158,14 +158,16 @@ const AccountPage = ({ favoritesFromState }) => {
                   onClick={() => setSelectedNavItem('personal')}
                 >
                   <StyledUserSVG />
-                  Особистий кабінет
+                  <div class="long-name">Особистий кабінет</div>
+                  <div class="short-name">Профіль</div>
                 </li>
                 <li
                   className={`user-nav_item ${selectedNavItem === 'announcements' ? 'active' : ''}`}
                   onClick={() => setSelectedNavItem('announcements')}
                 >
                   <StyledAnnouncementsSVG />
-                  Мої оголошення
+                  <div class="long-name">Мої оголошення</div>
+                  <div class="short-name">Оголошення</div>
                 </li>
                 <li
                   className={`user-nav_item ${selectedNavItem === 'favourites' ? 'active' : ''}`}
@@ -176,7 +178,8 @@ const AccountPage = ({ favoritesFromState }) => {
                 </li>
                 <li className="user-nav_item" onClick={handleLogout}>
                   <StyledLogoutSVG />
-                  Вихід з акаунту
+                  <div class="long-name">Вихід з акаунту</div>
+                  <div class="short-name">Вихід</div>
                 </li>
               </ul>
             </nav>

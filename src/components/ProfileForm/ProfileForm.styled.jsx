@@ -12,6 +12,10 @@ export const Container = styled.div`
     margin-bottom: 24px;
     display: flex;
     align-items: center;
+
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+    }
   }
   .photoLable {
     position: relative;
