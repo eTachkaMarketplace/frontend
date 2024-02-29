@@ -10,14 +10,23 @@ export const AccountContainer = styled.section`
   align-items: flex-start;
   flex-direction: column;
 
+  min-width:330px;
   max-width: 1440px;
   padding: 80px 80px 120px 80px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 767px) {
+    padding: 20px 20px 120px 20px;
+  }
 `;
 
 export const Container = styled.div`
-  display: flex;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+  
   gap: 30px;
   width: 100%;
 `;
@@ -134,6 +143,9 @@ export const UserContainer = styled.div`
   gap: 25px;
 
   width: 410px;
+  @media (max-width: 767px) {
+    width: 330px;
+    }
   overflow: hidden;
   .photo {
     width: 41px;
@@ -271,7 +283,12 @@ export const UserContainer = styled.div`
 `;
 
 export const AnnouncementContainer = styled.div`
-  width: 100%;
+
+ width: 100%;
+@media only screen and (max-width: 767px) {
+ width: 330px;
+}
+ 
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
@@ -317,6 +334,7 @@ export const Title = styled.h2`
   font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-weight: 500;
+  min-width: 330px;
 `;
 
 export const Subtitle = styled.h3`
@@ -326,6 +344,11 @@ export const Subtitle = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 500;
+
+   @media (max-width: 767px) {
+    visibility:hidden;
+    height: 5px;
+  }
 `;
 
 export const Text = styled.p`
