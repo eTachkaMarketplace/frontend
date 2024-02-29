@@ -24,7 +24,7 @@ import { getUser, refreshToken } from 'redux/auth/operations';
 import { getAdvFav } from 'redux/advertisment/operations';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 import Main from './Main/Main';
-import { selectRefToken } from 'redux/auth/selectors';
+import { selectRefToken, selectToken } from 'redux/auth/selectors';
 
 export function App() {
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const jwtRefreshToken = useSelector(selectRefToken);
+  const jwtToken = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(refresh());
@@ -41,9 +42,9 @@ export function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (jwtRefreshToken) dispatch(refreshToken({ jwtRefreshToken }));
+    if (jwtRefreshToken && jwtToken===false) dispatch(refreshToken({ jwtRefreshToken }));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch,jwtToken]);
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);

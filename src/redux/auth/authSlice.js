@@ -100,6 +100,7 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.rejected, (state, { payload }) => {
         state.isLoading = false;
+        state.token = '';
         state.error = payload;
         state.isLoggedIn = false;
       })
