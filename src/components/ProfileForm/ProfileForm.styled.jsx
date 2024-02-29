@@ -74,6 +74,12 @@ export const Container = styled.div`
 
     border-radius: 8px;
     background: #f1f5ff;
+
+    @media only screen and (max-width: 767px) {
+      .flex{
+        flex-direction:column;
+      }
+    }
   }
 
   .profile-label {
@@ -122,11 +128,18 @@ export const Container = styled.div`
   .delete-btn{
     color:black;
     text-decoration: underline;
+     @media only screen and (max-width: 767px) {
+      margin-top: 15px;
+    }
   }
 
   .profile-btn {
     display: flex;
     width: 200px;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      font-size:18px;
+    }
     height: 56px;
     padding: 14px 24px;
     align-items: center;
