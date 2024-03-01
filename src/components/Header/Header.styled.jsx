@@ -254,11 +254,11 @@ align-items: center;
 }
 
 ${MOB} {
-  gap: 10px;
+  gap: 15px;
 }
 
 ${TAB} {
-  gap: 13px;
+  gap: 15px;
 }
 
 ${DESK1} {
