@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MOB, TAB } from '../../../constants';
+import { MOB, TAB, DESK1,DESK2 } from '../../../constants';
 
 export const BlockWrapper = styled.div`
   position: relative;
@@ -12,7 +12,13 @@ export const BlockWrapper = styled.div`
   ${TAB} {
     display: none;
   }
+  ${DESK1} {
+    display: none;
+  }
 
+  ${DESK2} {
+    display: block;
+  }
 
   .circle {
     position: absolute;

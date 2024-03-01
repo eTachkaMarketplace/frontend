@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SectionCar } from '../Popular/Popular.styled';
-import { PagDiv } from './NewCars.styled';
+import { SectionCar, PagDiv } from '../Popular/Popular.styled';
 import { deleteFavoriteAdverstisementsByID, getAdvFav, getAdverstisements, postFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 import { Link, useNavigate } from 'react-router-dom';
 import { selectAdverstisements, selectNumberAdv } from 'redux/advertisment/selectors';
@@ -87,40 +86,41 @@ const NewCars = ({ favorites, setFavorites }) => {
       <SectionCar>
         <h2 className="carTitle">Нові оголошення</h2>
         <div className='centrDiv'>
-          <ul className="carList">
-            {advertisements
-              ? advertisements.map(ad => {
-                  let car = ad.car;
-                  return (
-                    <li className="carItem" key={ad.id}>
-                      <Link to={`/AdvertisementByID/${ad.id}`}>
-                        <img className="imgCar" src={ad.previewImage} alt="Car " />
-                        <h3 className="blackTitle ">
-                          {car.brand} {car.model} {car.year}
-                        </h3>
-                        <ul className="carDescrList">
-                          <li>
-                            <p className="carDescrPrice">$ {car.price}</p>
-                          </li>
-                          <li className="cityRight">
-                            <p className="carDescrCity">{ad.region}</p>
-                          </li>
-                        </ul>
-                      </Link>
-                      <button
-                        className="svg"
-                        type="button"
-                        onClick={() => {
-                          handleToggleFavorite(ad.id);
-                        }}
-                      >
-                        {favorites.includes(ad.id) ? <FavoritFilled /> : <Favorit />}
-                      </button>
-                    </li>
-                  );
-                })
-              : null}
-          </ul>
+        <ul className="carList" >
+        {advertisements
+          ? advertisements.map(ad => {
+              let car = ad.car;
+              return (
+                <li className="carItem" key={ad.id}>
+                  <Link className='carLink' to={`/AdvertisementByID/${ad.id}`} >
+                     <img className="imgCar" src={ad.previewImage} alt="Car " />      
+  
+                    <h3 className="blackTitle ">
+                      {car.brand} {car.model} {car.year}
+                    </h3>
+                    <ul className="carDescrList">
+                      <li>
+                        <p className="carDescrPrice">$ {car.price}</p>
+                      </li>
+                      <li className="cityRight">
+                        <p className="carDescrCity">{ad.region}</p>
+                      </li>
+                    </ul>
+                  </Link>
+                  <button
+                    className="button-fav"
+                    type="button"
+                    onClick={() => {
+                      handleToggleFavorite(ad.id);
+                    }}
+                  >
+                    {favorites.includes(ad.id) ? <FavoritFilled /> : <Favorit />}
+                  </button>
+                </li>
+              );
+            })
+          : null}
+      </ul>
           <div className="paginDiv">
             <button
               className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}

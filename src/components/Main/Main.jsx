@@ -18,7 +18,7 @@ const Main = ({ favorites, setFavorites }) => {
     <MainWrapper>
       <HeroSection />
       <Catalog favorites={favorites} setFavorites={setFavorites} />
-      {/* <NewCars favorites={favorites} setFavorites={setFavorites} /> */}
+      <NewCars favorites={favorites} setFavorites={setFavorites} />
     </MainWrapper>
   );
 };

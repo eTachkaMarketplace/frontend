@@ -22,10 +22,10 @@ export const SectionCar = styled.section`
     margin: 100px 80px 50px 80px;
   }
 
-  ${DESK2} {
+  /* ${DESK2} {
     margin: 120px 80px 60px 80px;
 
-  }
+  } */
 
   .carTitle {
     color: #141414;
@@ -50,11 +50,12 @@ export const SectionCar = styled.section`
 
   }
   }
+
   .carList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-top: 24px;
    
 
@@ -250,7 +251,7 @@ export const SectionCar = styled.section`
     height: 40px;
     gap: 50px;
     margin-top: 80px;
-    margin-bottom: 125px;
+    margin-bottom: 30px;
   }
 
   .pagination-button {
@@ -291,9 +292,9 @@ export const SectionCar = styled.section`
   }
 `;
 
-export const pagDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+export const PagDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
