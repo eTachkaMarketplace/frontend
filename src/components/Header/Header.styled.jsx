@@ -46,11 +46,11 @@ export const HeaderWrapper = styled.div`
 
 export const LogoImage = styled.img`
 ${MOB} {
-  width: 100px;
+  width: 120px;
   }
 
   ${TAB} {
-
+    width: 120px;
   }
 
   ${DESK1} {
@@ -106,6 +106,7 @@ export const Menu = styled.div`
   justify-content: end;
   padding: 20px;
   background: #fff;
+  overflow-y: auto;
   z-index: 999;
 
 
