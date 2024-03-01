@@ -1,88 +1,248 @@
 import { styled } from 'styled-components';
+import { MOB, TAB, DESK1, DESK2 } from '../../constants';
+
 
 export const SectionCar = styled.section`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 1280px;
-  margin-top: 120px;
+  
+
+  ${MOB} {
+    margin: 60px 30px 30px 30px;
+    
+  }
+
+  ${TAB} {
+    margin: 60px 50px 30px 50px;
+  }
+
+  ${DESK1} {
+    margin: 100px 80px 50px 80px;
+  }
+
+  /* ${DESK2} {
+    margin: 120px 80px 60px 80px;
+
+  } */
 
   .carTitle {
     color: #141414;
     font-family: 'Roboto', sans-serif;
-    font-size: 32px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+
+  ${MOB} {
+      font-size: 20px;
   }
+
+  ${TAB} {
+    font-size: 25px;
+  }
+
+  ${DESK1} {
+    font-size: 32px;
+  }
+
+  ${DESK2} {
+
+  }
+  }
+
   .carList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-top: 24px;
+   
+
+    ${MOB} {
+      gap: 16px;
+  }
+
+  ${TAB} {
+    gap: 16px;
+
+  }
+
+  ${DESK1} {
     gap: 20px;
+  }
+
+  ${DESK2} {
+
+  }
   }
   .carItem {
     position: relative;
-    width: 413px;
-    height: 383px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     border-radius: 8px;
     background: #f1f5ff;
+    overflow: hidden;
+
+    ${MOB} {
+      width: 280px;
+      height: 260px;
+      padding: 15px;
+
   }
+
+  ${TAB} {
+       width: 320px;
+      height: 290px;
+      padding: 15px;
+
+  }
+
+  ${DESK1} {
+    width: 413px;
+    height: 383px;
+    padding: 20px;
+
+  }
+
+  ${DESK2} {
+
+  }
+  }
+
+  .carLink{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+
   .imgCar {
-    width: 373px;
-    height: 267px;
     border-radius: 8px;
     object-fit: cover;
-    margin-left: 20px;
+
+    ${MOB} {
+    width: 100%;
+    height: 150px;
+  }
+
+  ${TAB} {
+    width: 100%;
+    height: 190px;
+  }
+
+  ${DESK1} {
+    width: 100%;
+    height: 265px;
+  }
+
+  ${DESK2} {
+
+  }
   }
   .blackTitle {
     font-family: 'Roboto', sans-serif;
     color: #141414;
-    font-size: 22px;
+    
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  
+
+    ${MOB} {
+      font-size: 18px;
+      margin-top: 16px;
+  }
+
+  ${TAB} {
+    font-size: 18px;
+    margin-top: 16px;
+
+  }
+
+  ${DESK1} {
+    font-size: 22px;
     margin-top: 20px;
-    margin-left: 20px;
+
+  }
+
+  ${DESK2} {
+
+  }
   }
   .carDescrList {
     display: flex;
-    width: 373px;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 8px;
-    margin-left: 20px;
-    align-items: flex-end;
   }
+
   .carDescrPrice {
     color: #141414;
     font-family: 'Roboto', sans-serif;
-    font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
+    ${MOB} {
+      font-size: 20px;
   }
-  .cityRight {
+
+  ${TAB} {
+    font-size: 20px;
+  }
+
+  ${DESK1} {
+    font-size: 22px;
+  }
+  }
+
+  /* .cityRight {
     margin-left: auto;
-  }
+  } */
+  
   .carDescrCity {
     color: #141414;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
+    ${MOB} {
+      font-size: 14px;
   }
-  .svg {
+
+  ${TAB} {
+    font-size: 14px;
+  }
+
+  ${DESK1} {
+    font-size: 16px;
+  }
+  }
+  .button-fav {
     background-color: transparent;
     border: 1px;
     position: absolute;
+  
+
+    ${MOB} {
+      right: 25px;
+    top: 25px;
+  }
+
+  ${TAB} {
+    right: 25px;
+    top: 25px;
+  }
+
+  ${DESK1} {
     right: 36px;
     top: 35px;
+    
+  }
   }
   .paginDiv {
     display: flex;
@@ -91,7 +251,7 @@ export const SectionCar = styled.section`
     height: 40px;
     gap: 50px;
     margin-top: 80px;
-    margin-bottom: 125px;
+    margin-bottom: 30px;
   }
 
   .pagination-button {
@@ -132,10 +292,9 @@ export const SectionCar = styled.section`
   }
 `;
 
-
-export const pagDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`
+export const PagDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

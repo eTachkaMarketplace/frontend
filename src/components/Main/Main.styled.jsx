@@ -8,6 +8,7 @@ export const MainWrapper = styled.main`
   
   box-sizing: border-box;
   max-width: 1440px;
+  min-width: 320px;
   margin-left: auto;
   margin-right: auto;
 `;

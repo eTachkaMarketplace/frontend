@@ -1,29 +1,66 @@
 import styled from 'styled-components';
+import { MOB, TAB, DESK1, DESK2 } from '../../../constants';
+
 
 export const FormContainer = styled.form`
   display: flex;
-  width: 520px;
-  /* height: 590px; */
-  padding: 30px;
-  box-sizing: border-box;
-
   flex-direction: column;
+  box-sizing: border-box;
+  background: rgba(20, 20, 20, 0.7);
+
+  ${MOB} {
+    width: 100%;
+    min-width: 260px;
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    gap: 15px;
+    border-radius: 8px;
+  }
+
+  ${TAB} {
+    width: 100%;
+    min-width: 280px;
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    gap: 15px;
+    border-radius: 8px;
+  }
+
+  ${DESK1} {
+  width: 520px;
+  padding: 30px;
   gap: 25px;
   border-radius: 16px;
-  background: rgba(20, 20, 20, 0.7);
+  }
+
+  ${DESK2} {
+    
+  }
 
   .form-flex {
     display: flex;
+    
+
+  ${MOB} {
+      gap: 12px;
+  }
+
+  ${TAB} {
+    gap: 12px;
+  }
+
+  ${DESK1} {
     gap: 25px;
   }
+
+  ${DESK2} {
+    
+  }
+  }
   .Sbtn {
-    width: 200px;
-    height: 56px;
-    padding: 14px 24px;
-
-    font-size: 22px;
     font-weight: 500;
-
     background: linear-gradient(160deg, #0040bd 19.1%, #19015b 78.89%);
     color: #fff;
     border: none;
@@ -39,14 +76,53 @@ export const FormContainer = styled.form`
       background: linear-gradient(160deg, rgba(5, 0, 20, 0.6) 19.1%, #050014 78.89%);
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
     }
+
+  ${MOB} {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  ${TAB} {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  ${DESK1} {
+    width: 200px;
+    height: 56px;
+    padding: 14px 24px;
+
+    font-size: 22px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
   .Rbtn {
     color: #fff;
     text-decoration: underline;
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
-    font-size: 22px;
     font-weight: 500;
+
+    ${MOB} {
+    font-size: 16px;
+  }
+
+  ${TAB} {
+    font-size: 16px;
+  }
+
+  ${DESK1} {
+    font-size: 22px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
   .error-message {
     /* Subtitle 3 */
@@ -63,33 +139,85 @@ export const FormContainer = styled.form`
 
 export const FormTitle = styled.h2`
   color: #FFF;
-  font-family: 'Roboto', sans-serif;
-  font-size: 24px;
   font-weight: 500;
-  padding-bottom: 5px;
+  font-family: 'Roboto', sans-serif;
+
+  ${MOB} {
+  font-size: 20px;
+  }
+
+  ${TAB} {
+    font-size: 20px;
+  }
+
+  ${DESK1} {
+    font-size: 24px;
+    padding-bottom: 5px;
+  }
+
+  ${DESK2} {
+    
+  }
   `;
 
 export const InputContainer = styled.div`
   width: 100%;
   .select {
     width: 100%;
-    height: 56px;
     padding: 8px;
-    /* border: 1px solid #FFF; */
     color: #b9b9b9;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.13);
     border: none;
+
+  ${MOB} {
+    font-size: 14px;
+    height: 46px;
+  }
+
+  ${TAB} {
+    font-size: 14px;
+    height: 46px;
+  }
+
+  ${DESK1} {
+    font-size: 18px;
+    height: 56px;
+
+
+  }
+
+  ${DESK2} {
+    
+  }
   }
 `;
 
 export const DivContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  
   width: 100%;
   padding-top: 5px;
+
+  ${MOB} {
+    flex-direction: column-reverse;
+    gap:20px;
+    }
+
+  ${TAB} {
+    flex-direction: column-reverse;
+    gap:20px;
+  }
+
+  ${DESK1} {
+    justify-content: space-between;
+  }
+
+  ${DESK2} {
+    
+  }
 `;
 

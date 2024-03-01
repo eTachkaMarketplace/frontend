@@ -98,7 +98,7 @@ ${MOB} {
 
 export const Menu = styled.div`
   position: fixed;
-  top: 61px;
+  top: 67px;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -254,11 +254,11 @@ align-items: center;
 }
 
 ${MOB} {
-  gap: 10px;
+  gap: 15px;
 }
 
 ${TAB} {
-  gap: 13px;
+  gap: 15px;
 }
 
 ${DESK1} {

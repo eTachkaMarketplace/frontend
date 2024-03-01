@@ -1,8 +1,24 @@
 import styled from 'styled-components';
+import { MOB, TAB, DESK1,DESK2 } from '../../../constants';
 
 export const BlockWrapper = styled.div`
   position: relative;
   flex-grow: 1;
+
+  ${MOB} {
+    display: none;
+  }
+
+  ${TAB} {
+    display: none;
+  }
+  ${DESK1} {
+    display: none;
+  }
+
+  ${DESK2} {
+    display: block;
+  }
 
   .circle {
     position: absolute;

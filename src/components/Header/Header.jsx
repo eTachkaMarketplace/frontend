@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, HeaderWrapper, Navigation, Menu, StyledMobLink, LogoImage, StyledAddMobSVG, StyledMenuOpenSVG, StyledMenuCloseSVG, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
-import { NavLink } from 'react-router-dom';
+import { NavLink , useLocation} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Logo from '../../images/Header/LOGO.png';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
@@ -10,6 +10,7 @@ const Header = () => {
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +20,11 @@ const Header = () => {
       document.body.classList.remove('no-scroll');
     }
   };
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('no-scroll');
+  }, [location]);
 
   return (
     <Container>
@@ -77,7 +83,7 @@ const Header = () => {
                 </li>
                 <li className='menu_item'>
                   <div className='flex'>
-                    <NavLink className='menu_link' to="/">пошук</NavLink>
+                    <NavLink className='menu_link' to="/search">пошук</NavLink>
                     <ul  className='submenu_list'>
                       <li className='submenu_item'>
                         <NavLink to="/search?category=Нові">Нові</NavLink>
@@ -92,7 +98,7 @@ const Header = () => {
                   </div>
                 </li>
                 <li className='menu_item'>
-                  <NavLink to="/">створити оголошення</NavLink>
+                  <NavLink to="/advertisementPage">створити оголошення</NavLink>
                 </li>
                 <li className='menu_item'>
                   <NavLink to={isLoggedIn ? '/account' : '/authorization'}>Мій кабінет</NavLink>
