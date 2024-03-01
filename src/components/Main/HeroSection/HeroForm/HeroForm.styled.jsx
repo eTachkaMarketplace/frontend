@@ -10,7 +10,7 @@ export const FormContainer = styled.form`
 
   ${MOB} {
     width: 100%;
-    min-width: 280px;
+    min-width: 260px;
     max-width: 400px;
     margin: 20px;
     padding: 20px;
