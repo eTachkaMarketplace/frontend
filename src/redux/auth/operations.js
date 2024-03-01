@@ -51,7 +51,7 @@ export const refreshToken = createAsyncThunk(
     try {
       const response = await instance.post(`auth/refresh/refresh-token`, credentials);
       setToken(response.data.data.jwtAccessToken);
-      console.log("🚀 ~ response:", response)
+      console.log('refreshToken', response);
       return response.data;
     } catch (error) {
       console.log(`Login failed. Try again`);

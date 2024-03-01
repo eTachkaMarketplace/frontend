@@ -9,7 +9,7 @@ export const Wraper = styled.div`
   margin-left: 80px;
   margin-right: 80px;
 
-  @media (max-width: 390px) {
+  @media (max-width: 391px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -41,25 +41,25 @@ export const Wraper = styled.div`
       background-color: #fff;
       box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
     }
-  }
-  .title {
-    width: 196px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    box-sizing: border-box;
-    /* buttons/accent */
-    border: 1px solid #0040bd;
-    border-radius: 8px;
+    .title {
+      width: 196px;
+      height: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      box-sizing: border-box;
+      /* buttons/accent */
+      border: 1px solid #0040bd;
+      border-radius: 8px;
 
-    color: rgb(20, 20, 20);
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    text-align: center;
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      text-align: center;
+    }
   }
 `;

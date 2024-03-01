@@ -91,7 +91,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   return (
     <>
       <Wraper>
-        {screenWidth <= 390 ? (
+        {screenWidth < 391 ? (
           <div className='menuDiv'>
             <button type='button' className="title">Розширений пошук</button>
             <div className="thumbnails-container" onClick={handleThumbnailsClick}>
