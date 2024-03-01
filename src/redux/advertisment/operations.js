@@ -140,15 +140,32 @@ export const postFavoriteAdverstisementsByID = createAsyncThunk(
   }
 );
 
-export const putFavoriteAdverstisementsByID = createAsyncThunk(
-  'adverstisements/putFavoriteAdverstisementsByID',
-  async ({ Adverstisements, id }, { rejectWithValue }) => {
+// export const putFavoriteAdverstisementsByID = createAsyncThunk(
+//   'adverstisements/putFavoriteAdverstisementsByID',
+//   async ({ Adverstisements, id }, { rejectWithValue }) => {
+//     try {
+//       const response = await instance.put(`advertisement/favorite/${id}`, Adverstisements);
+//       console.log('putFavoriteAdverstisementsByID is successful');
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const putAdverstisementsByID = createAsyncThunk(
+  'adverstisements/putAdverstisementsByID',
+  async ({ formData, token }, { rejectWithValue }) => {
     try {
-      const response = await instance.put(`advertisement/favorite/${id}`, Adverstisements);
-      console.log('putFavoriteAdverstisementsByID is successful');
+      const response = await instance.put(`advertisement`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );

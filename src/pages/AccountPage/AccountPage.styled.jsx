@@ -10,14 +10,23 @@ export const AccountContainer = styled.section`
   align-items: flex-start;
   flex-direction: column;
 
+  min-width:330px;
   max-width: 1440px;
   padding: 80px 80px 120px 80px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 767px) {
+    padding: 20px 20px 120px 20px;
+  }
 `;
 
 export const Container = styled.div`
-  display: flex;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+  
   gap: 30px;
   width: 100%;
 `;
@@ -134,6 +143,10 @@ export const UserContainer = styled.div`
   gap: 25px;
 
   width: 410px;
+  @media (max-width: 767px) {
+    width: 330px;
+    flex-direction: column-reverse;
+    }
   overflow: hidden;
   .photo {
     width: 41px;
@@ -183,6 +196,10 @@ export const UserContainer = styled.div`
     padding: 20px 15px 20px 0;
     border-radius: 8px;
     background: #F1F5FF;
+
+    @media (max-width: 767px) {
+      padding: 12px 15px 0 0;
+    }
   }
 
   .user-nav_item {
@@ -267,11 +284,46 @@ export const UserContainer = styled.div`
     line-height: normal;
   }
 
+  @media only screen and (max-width: 767px) {
+    .user-nav_list{
+      display:flex;
 
+      li{
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        width: 25%;
+      }
+    }
+    .long-name{
+      display: none;
+   }
+   .user-nav_item:last-child {
+      margin-top: 0;
+    }
+
+    .user-nav_item.active::before {
+      opacity: 0;
+    }
+
+    .user-nav_item:hover::before {
+      opacity: 0;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+   .short-name{
+      display: none;
+   }
+  }
 `;
 
 export const AnnouncementContainer = styled.div`
-  width: 100%;
+
+ width: 100%;
+@media only screen and (max-width: 767px) {
+ width: 330px;
+}
+ 
 `;
 
 export const StyledUserSVG = styled(UserSVG)`
@@ -314,9 +366,14 @@ export const Title = styled.h2`
   color: #141414;
   margin-bottom: 32px;
 
+  @media (max-width: 767px) {
+      margin-bottom: 0;
+    }
+
   font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-weight: 500;
+  min-width: 330px;
 `;
 
 export const Subtitle = styled.h3`
@@ -326,11 +383,21 @@ export const Subtitle = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 500;
+
+   @media (max-width: 767px) {
+    visibility:hidden;
+    height: 0;
+    margin-bottom:15px;
+  }
 `;
 
 export const Text = styled.p`
   color: #6F6F6F;
   margin-top: 150px;
+
+  @media (max-width: 767px) {
+      margin-top: 5px;
+    }
 
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
