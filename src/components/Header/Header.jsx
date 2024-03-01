@@ -1,25 +1,28 @@
-import React, { useEffect } from 'react';
-import { Container, HeaderWrapper, Navigation,StyledAddMobSVG,StyledMenuOpenSVG,StyledMenuCloseSVG, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
+import React, { useEffect, useState } from 'react';
+import { Container, HeaderWrapper,NavigationMobile, Navigation,StyledMobLink,LogoImage,StyledAddMobSVG,StyledMenuOpenSVG,StyledMenuCloseSVG, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import  Logo  from '../../images/Header/LOGO.png';
 // import { getAdvFav } from 'redux/advertisment/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import Logo from '../../images/Header/LOGO.png';
 import { selectAdverstisementsFavorite } from 'redux/advertisment/selectors';
 
 const Header = () => {
   const favoritesFromState = useSelector(selectAdverstisementsFavorite);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
   }, [isLoggedIn]);
- 
-
   return (
     <Container>
       <HeaderWrapper>
         <NavLink to={'/'}>
-          <img src={Logo} alt="Logo" />
+          <LogoImage src={Logo} alt="Logo" />
         </NavLink>
         <Navigation>
           <ul>
@@ -43,23 +46,35 @@ const Header = () => {
           </NavLink>
 
           <UserIcon>
-            <StyledAddMobSVG/>
-            <NavLink to="/account?favourites=true">
-              <div style={{ position: 'relative' }}>
-                <StyledHeartSVG />
-                {favoritesFromState.length > 0 && (
-                  <StyledSpan>
-                    {favoritesFromState.length}
-                  </StyledSpan>
-                )}
-              </div>
-            </NavLink>
+  {!isMenuOpen && (
+    <>
+      <StyledMobLink to="/advertisementPage">
+        <StyledAddMobSVG />
+      </StyledMobLink>
+      <NavLink to="/account?favourites=true">
+        <div style={{ position: 'relative' }}>
+          <StyledHeartSVG />
+          {favoritesFromState.length > 0 && (
+            <StyledSpan>
+              {favoritesFromState.length}
+            </StyledSpan>
+          )}
+        </div>
+      </NavLink>
 
-            <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
-              <StyledUserSVG />
-            </NavLink>
-            <StyledMenuOpenSVG/>
-          </UserIcon>
+      <NavLink to={isLoggedIn ? '/account' : '/authorization'}>
+        <StyledUserSVG />
+      </NavLink>
+    </>
+  )}
+  {/* Отображаем иконку меню */}
+  {isMenuOpen ? (
+    <StyledMenuCloseSVG onClick={toggleMenu} />
+  ) : (
+    <StyledMenuOpenSVG onClick={toggleMenu} />
+  )}
+</UserIcon>
+
         </User>
       </HeaderWrapper>
     </Container>

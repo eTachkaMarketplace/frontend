@@ -8,6 +8,7 @@ import { ReactComponent as MenuOpenSVG } from '../../images/Header/MenuOpenSVG.s
 import { ReactComponent as MenuCloseSVG } from '../../images/Header/MenuCloseSVG.svg';
 import { MOB, TAB, DESK1, DESK2 } from '../constants';
 
+
 export const Container = styled.header`
   border-bottom: 1px solid #D0D0D0;
 
@@ -19,10 +20,11 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   box-sizing: border-box;
   max-width: 1440px;
+  min-width: 300px;
   margin-left: auto;
   margin-right: auto;
 
-${MOB} {
+  ${MOB} {
   padding: 15px 30px;
   }
 
@@ -42,8 +44,23 @@ ${MOB} {
 
 `;
 
-export const Logo = styled.div`
+export const LogoImage = styled.img`
+${MOB} {
+  width: 100px;
+  }
 
+  ${TAB} {
+
+  }
+
+  ${DESK1} {
+    
+  }
+
+
+  ${DESK2} {
+    
+  }
 `;
 
 export const Navigation = styled.nav`
@@ -78,6 +95,8 @@ ${MOB} {
     
   }
 `;
+
+
 export const StyledLink = styled(Link)`
     color: #0D0C0C;
     font-family: 'Roboto', sans-serif;
@@ -89,6 +108,10 @@ export const StyledLink = styled(Link)`
 
   }
 
+`;
+
+export const StyledMobLink = styled(Link)`
+   
   ${MOB} {
   
 }
@@ -100,13 +123,14 @@ ${TAB} {
 
 
 ${DESK1} {
-  
+  display: none;
 
 }
 
 
 ${DESK2} {
-  
+  display: none;
+
 }
 `;
 
@@ -151,7 +175,7 @@ ${MOB} {
 }
 
 ${TAB} {
-
+  gap: 13px;
 }
 
 ${DESK1} {
@@ -218,15 +242,33 @@ ${DESK2} {
 `;
 
 export const StyledAddMobSVG = styled(AddMobSVG)`
+
 stroke:#141414;
   &:hover {
     stroke: #0141BD;
     }
+
 `;
 export const StyledMenuOpenSVG = styled(MenuOpenSVG)`
 stroke:#141414;
   &:hover {
     stroke: #0141BD;
+    }
+
+    ${MOB} {
+
+    }
+
+    ${TAB} {
+
+    }
+
+    ${DESK1} {
+      display: none;
+    }
+
+    ${DESK2} {
+      display: none;
     }
 `;
 
@@ -234,6 +276,22 @@ export const StyledMenuCloseSVG = styled(MenuCloseSVG)`
 stroke:#141414;
   &:hover {
     stroke: #0141BD;
+    }
+
+    ${MOB} {
+
+    }
+
+    ${TAB} {
+
+    }
+
+    ${DESK1} {
+      display: none;
+    }
+
+    ${DESK2} {
+      display: none;
     }
 `;
 
