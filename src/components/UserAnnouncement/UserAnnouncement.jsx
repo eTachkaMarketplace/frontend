@@ -141,9 +141,7 @@ const UserAnnouncement = ({ setModalContent }) => {
                       </ul>
                     </div>
                     <div className="dropBox" style={{ display: dropdownState[itemId] ? 'flex' : 'none' }}>
-                      <button className="dropBTN" type="button">
-                        Редагувати
-                      </button>
+                      <Link to={`/editAdvertisement/${itemId}`} className="dropBTN">Редагувати</Link>
                       <button
                         className="dropBTN"
                         type="button"
@@ -230,9 +228,7 @@ const UserAnnouncement = ({ setModalContent }) => {
                       </ul>
                     </div>
                     <div className="dropBox" style={{ display: dropdownState[itemId] ? 'flex' : 'none' }}>
-                      <button className="dropBTN" type="button">
-                        Редагувати
-                      </button>
+                    <Link to={`/editAdvertisement/${itemId}`} className="dropBTN">Редагувати</Link>
                       <button
                         className="dropBTN"
                         type="button"

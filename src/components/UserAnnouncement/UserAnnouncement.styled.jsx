@@ -52,6 +52,11 @@ export const Wraper = styled.div`
     letter-spacing: 0%;
     text-align: left;
     margin-bottom: 24px;
+
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+      margin-top: 1px;
+    }
   }
   .activeClass {
     color: rgb(1, 65, 189);
@@ -76,6 +81,12 @@ export const Wraper = styled.div`
     border-radius: 8px;
     background: #f1f5ff;
     position: relative;
+
+    @media only screen and (max-width: 767px) {
+      flex-direction:column;
+      width:100%;
+      height: 100%;
+    }
   }
   .img {
     width: 284px;
@@ -84,14 +95,28 @@ export const Wraper = styled.div`
     object-fit: cover;
     margin-left: 20px;
     margin-top: 20px;
+
+    @media only screen and (max-width: 767px) {
+       margin-left: 22px;
+    }
   }
   .infoDiv {
     margin-top: 20px;
+
+    @media only screen and (max-width: 767px) {
+      margin-top: 0;
+      margin-left:20px;
+    }
   }
   .modelInfoDIV {
     display: flex;
     width: 500px;
     justify-content: space-between;
+
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+      padding-right: 20px;
+    }
   }
   .numberDiv {
     display: flex;
@@ -139,25 +164,39 @@ export const Wraper = styled.div`
     border: 0;
     position: absolute;
     right: 20px;
-    bottom: 14px;
+    @media (min-width: 768px) {
+      bottom: 14px;
+    }
+
+    @media (max-width: 767px) {
+       top: 14px;
+    }
   }
   .link {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 844px;
+
+     @media (max-width: 767px) {
+      width: 100%;
+    }
+
     height: 240px;
     background: rgb(241, 245, 255);
     margin-top: 16px;
   }
   .modelInfo {
     color: #141414;
-
     font-family: 'Roboto', sans-serif;
     font-size: 26px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    @media only screen and (max-width: 767px) {
+      font-size: 18px;
+    }
   }
   .enotherONe {
     color: var(--Text-black-2, #4b4b4b);
