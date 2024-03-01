@@ -77,7 +77,7 @@ const Header = () => {
                 </li>
                 <li className='menu_item'>
                   <div className='flex'>
-                    <NavLink className='menu_link' to="/">пошук</NavLink>
+                    <NavLink className='menu_link' to="/search">пошук</NavLink>
                     <ul  className='submenu_list'>
                       <li className='submenu_item'>
                         <NavLink to="/search?category=Нові">Нові</NavLink>
@@ -92,7 +92,7 @@ const Header = () => {
                   </div>
                 </li>
                 <li className='menu_item'>
-                  <NavLink to="/">створити оголошення</NavLink>
+                  <NavLink to="/advertisementPage">створити оголошення</NavLink>
                 </li>
                 <li className='menu_item'>
                   <NavLink to={isLoggedIn ? '/account' : '/authorization'}>Мій кабінет</NavLink>
