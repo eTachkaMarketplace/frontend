@@ -69,9 +69,9 @@ const Catalog = ({ favorites, setFavorites }) => {
               let car = ad.car;
               return (
                 <li className="carItem" key={ad.id}>
-                  <Link to={`/AdvertisementByID/${ad.id}`} >
-                    <img className="imgCar" src={ad.previewImage} alt="Car " />
-
+                  <Link className='carLink' to={`/AdvertisementByID/${ad.id}`} >
+                     <img className="imgCar" src={ad.previewImage} alt="Car " />      
+  
                     <h3 className="blackTitle ">
                       {car.brand} {car.model} {car.year}
                     </h3>
@@ -80,12 +80,12 @@ const Catalog = ({ favorites, setFavorites }) => {
                         <p className="carDescrPrice">$ {car.price}</p>
                       </li>
                       <li className="cityRight">
-                        <p className="carDescrCity">{car.region}</p>
+                        <p className="carDescrCity">{ad.region}</p>
                       </li>
                     </ul>
                   </Link>
                   <button
-                    className="svg"
+                    className="button-fav"
                     type="button"
                     onClick={() => {
                       handleToggleFavorite(ad.id);
