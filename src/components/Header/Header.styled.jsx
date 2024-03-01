@@ -96,6 +96,53 @@ ${MOB} {
   }
 `;
 
+export const Menu = styled.div`
+  position: fixed;
+  top: 61px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  a:hover {
+    color: #ffd700; /* измените цвет при наведении, если нужно */
+  }
+${MOB} {
+
+}
+
+${TAB} {
+
+}
+
+${DESK1} {
+  display: none;
+}
+
+${DESK2} {
+  display: none;
+}
+`;
 
 export const StyledLink = styled(Link)`
     color: #0D0C0C;
@@ -250,6 +297,7 @@ stroke:#141414;
 
 `;
 export const StyledMenuOpenSVG = styled(MenuOpenSVG)`
+margin-left: 10px;
 stroke:#141414;
   &:hover {
     stroke: #0141BD;
