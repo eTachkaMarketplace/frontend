@@ -37,15 +37,29 @@ export function App() {
   const jwtRefreshToken = useSelector(selectRefToken);
 
   useEffect(() => {
+    if (jwtRefreshToken) dispatch(refreshToken({ jwtRefreshToken }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(
+      () => {
+        if (jwtRefreshToken) {
+          dispatch(refreshToken({ jwtRefreshToken }));
+        }
+      },
+      9 * 60 * 1000 + 30 * 1000
+    ); // 9.5 хвилини
+
+    return () => clearInterval(intervalId); // Очищаємо інтервал при виході з компоненту або при перерендерингу
+  }, [jwtRefreshToken, dispatch]);
+
+  useEffect(() => {
     dispatch(refresh());
     dispatch(getUser());
     dispatch(getAdvFav());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (jwtRefreshToken) dispatch(refreshToken({ jwtRefreshToken }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
   useEffect(() => {
     const idFavorite = favoritesFromState.map(favorite => favorite.id);
     setFavorites(idFavorite);

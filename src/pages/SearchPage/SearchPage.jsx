@@ -8,12 +8,15 @@ import { useDispatch } from 'react-redux';
 import Modal from 'modal/modal';
 import { getAdverstisements } from 'redux/advertisment/operations';
 import ConfirmModal from 'modal/confirmModal/confirmModal';
+import { Thumbnails } from './Svg';
 
-const SearchPage = ({ favorites ,setFavorites}) => {
+const SearchPage = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState('new');
   const [pageIndex, setPageIndex] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -40,8 +43,39 @@ const SearchPage = ({ favorites ,setFavorites}) => {
   };
 
   useEffect(() => {
-    console.log('useEffect is called');
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
 
+    resizeObserver.observe(window.document.body);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
+  const handleThumbnailsClick = () => {
+    setIsDropdownVisible(prev => !prev);
+  };
+
+   const handleSelectChange = (value) => {
+
+     if (value === 'foData') {
+       setSort('new');
+     } else if (value === 'cheap') {
+       setSort('cheap');
+     } else if (value === 'expensive') {
+       setSort('expensive');
+     }
+
+     // Hide the dropdown after selection
+     setIsDropdownVisible(false);
+   };
+
+  useEffect(() => {
     if (!firstRender.current) {
       const queryParams = Object.entries(valuesGen)
         .filter(([key, value]) => value !== '')
@@ -57,6 +91,25 @@ const SearchPage = ({ favorites ,setFavorites}) => {
   return (
     <>
       <Wraper>
+        {screenWidth < 391 ? (
+          <div className='menuDiv'>
+            <button type='button' className="title">Розширений пошук</button>
+            <div className="thumbnails-container" onClick={handleThumbnailsClick}>
+              <Thumbnails />
+            </div>
+              <div className="dropBox" style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('new');}}>
+                  За датою додавання
+                </button>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('cheap');}}>
+                  Від дешевших
+                </button>
+                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('expensive');}}>
+                  Від дорожчих
+                </button>
+              </div>
+          </div>
+        ) : null}
         <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
         <div className="searchList">
           <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />

@@ -69,11 +69,11 @@ const handleSubmit = (values, { resetForm, setSubmitting }) => {
 
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
+      initialValues={{ email: '', password: '', acceptTerms: false }}
       validationSchema={userSchema}
       onSubmit={handleSubmit}
     >
-      {({ values,setFieldValue}) => {
+      {({ values, setFieldValue }) => {
         return (
           <>
             <Form>
@@ -119,7 +119,7 @@ const handleSubmit = (values, { resetForm, setSubmitting }) => {
               </Label>
               {refError ? <p className="errorMes">Недійсна пошта або пароль</p> : null}
 
-              <div className='linkDiv'>
+              <div className="linkDiv">
                 <label className={`checkLab`}>
                   <input
                     type="checkbox"

@@ -13,6 +13,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   const formikRef = useRef(null);
   const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const dataAccessor = new DataAccessor();
 
   const carMark = dataAccessor.getModels();
@@ -41,6 +42,23 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
   };
 
   useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
+
+    // Attach ResizeObserver to the window
+    resizeObserver.observe(window.document.body);
+
+    // Cleanup the ResizeObserver when the component unmounts
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
+  useEffect(() => {
     if (formikRef.current) {
       formikRef.current.resetForm({ values: initialValues });
     }
@@ -62,7 +80,16 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       formikRef.current.setFieldValue('category', favouritesParam);
       onSubmit({ ...initialValues, category: favouritesParam });
     }
-    if (brandParam || modelParam || regionParam || yearMaxParam || yearMinParam || priceMaxParam || priceMinParam || priceMaxParam) {
+    if (
+      brandParam ||
+      modelParam ||
+      regionParam ||
+      yearMaxParam ||
+      yearMinParam ||
+      priceMaxParam ||
+      priceMinParam ||
+      priceMaxParam
+    ) {
       formikRef.current.setFieldValue('brand', brandParam);
       formikRef.current.setFieldValue('model', modelParam);
       formikRef.current.setFieldValue('region', regionParam);
@@ -97,7 +124,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       >
         <Form>
           <div className="topWraper">
-            <h3 className="title">Розширений пошук</h3>
+            {screenWidth > 390 ? <h3 className="title">Розширений пошук</h3> : null}
             <h5 className="underTitle">Основні характеристики</h5>
             <div className="arrowDiv">
               <label>
@@ -341,7 +368,6 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
               </div>
             </div>
           </div>
-
           <div className="btnWraper">
             <button className="clearButton" onClick={clearForm} type="button">
               Очистити все <Arrow />
