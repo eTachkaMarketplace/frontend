@@ -4,6 +4,7 @@ import HeroForm from './HeroForm/HeroForm'
 import { Rblock } from './Rblock/Rblock';
 
 const HeroSectionComponent = () => {
+
   return (
     <HeroSection>
              
