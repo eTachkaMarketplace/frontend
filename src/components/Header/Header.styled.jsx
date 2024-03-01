@@ -144,6 +144,7 @@ flex-direction:column
 .submenu_list{
   display: flex;
   flex-direction: column;
+  align-items: end;
   gap: 12px;
 
 }
