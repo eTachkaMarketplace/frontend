@@ -14,6 +14,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState('new');
   const [pageIndex, setPageIndex] = useState(0);
+  const [openMenu, setOpenMenu] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -37,6 +38,11 @@ const SearchPage = ({ favorites, setFavorites }) => {
     color: '',
   });
   const firstRender = useRef(true);
+
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu)
+    console.log(openMenu)
+  }
 
   const handleSearch = values => {
     setValuesGen(values);
@@ -91,38 +97,75 @@ const SearchPage = ({ favorites, setFavorites }) => {
   return (
     <>
       <Wraper>
-        {screenWidth < 391 ? (
-          <div className='menuDiv'>
-            <button type='button' className="title">Розширений пошук</button>
+        {screenWidth < 769 ? (
+          <div className="menuDiv">
+            <button type="button" className="title" onClick={toggleMenu}>
+              Розширений пошук
+            </button>
             <div className="thumbnails-container" onClick={handleThumbnailsClick}>
               <Thumbnails />
             </div>
-              <div className="dropBox" style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
-                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('new');}}>
-                  За датою додавання
-                </button>
-                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('cheap');}}>
-                  Від дешевших
-                </button>
-                <button className="dropBTN" type="button" onClick={() => {handleSelectChange('expensive');}}>
-                  Від дорожчих
-                </button>
-              </div>
+            <div className="dropBox" style={{ display: isDropdownVisible ? 'flex' : 'none' }}>
+              <button
+                className="dropBTN"
+                type="button"
+                onClick={() => {
+                  handleSelectChange('new');
+                }}
+              >
+                За датою додавання
+              </button>
+              <button
+                className="dropBTN"
+                type="button"
+                onClick={() => {
+                  handleSelectChange('cheap');
+                }}
+              >
+                Від дешевших
+              </button>
+              <button
+                className="dropBTN"
+                type="button"
+                onClick={() => {
+                  handleSelectChange('expensive');
+                }}
+              >
+                Від дорожчих
+              </button>
+            </div>
           </div>
         ) : null}
-        <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />
-        <div className="searchList">
-          <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
-          <SearchList
-            totalPages={totalPages}
-            setTotalPages={setTotalPages}
-            setSort={setSort}
-            favorites={favorites}
-            setFavorites={setFavorites}
-            pageIndex={pageIndex}
-            setPageIndex={setPageIndex}
-          />
-        </div>
+        {screenWidth < 769 && openMenu && <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />}
+        {screenWidth < 769 && !openMenu && (
+          <div className="searchList">
+            <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
+            <SearchList
+              totalPages={totalPages}
+              setTotalPages={setTotalPages}
+              setSort={setSort}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
+          </div>
+        )}
+        {screenWidth > 769 && <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />}
+        {screenWidth > 769 && (
+          <div className="searchList">
+            <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
+            <SearchList
+              totalPages={totalPages}
+              setTotalPages={setTotalPages}
+              setSort={setSort}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              pageIndex={pageIndex}
+              setPageIndex={setPageIndex}
+            />
+          </div>
+        )}
       </Wraper>
       <Modal>
         <ConfirmModal handleSearch={handleSearch} />

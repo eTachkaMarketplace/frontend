@@ -124,7 +124,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       >
         <Form>
           <div className="topWraper">
-            {screenWidth > 390 ? <h3 className="title">Розширений пошук</h3> : null}
+            {screenWidth > 769 ? <h3 className="title">Розширений пошук</h3> : null}
             <h5 className="underTitle">Основні характеристики</h5>
             <div className="arrowDiv">
               <label>
@@ -369,12 +369,19 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
           </div>
           <div className="btnWraper">
-            <button className="clearButton" onClick={clearForm} type="button">
-              Очистити все <Arrow />
-            </button>
+            {screenWidth > 769 && (
+              <button className="clearButton" onClick={clearForm} type="button">
+                Очистити все <Arrow />
+              </button>
+            )}
             <button className="submitButton" type="submit">
               Пошук
             </button>
+            {screenWidth < 769 && (
+              <button className="clearButton" onClick={clearForm} type="button">
+                Очистити все <Arrow />
+              </button>
+            )}
           </div>
         </Form>
       </Formik>

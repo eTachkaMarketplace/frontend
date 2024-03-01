@@ -9,7 +9,7 @@ export const Wraper = styled.div`
   margin-left: 80px;
   margin-right: 80px;
 
-  @media (max-width: 391px) {
+  @media (max-width: 769px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
