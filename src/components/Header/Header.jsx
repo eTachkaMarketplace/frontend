@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, HeaderWrapper, Navigation, Menu, StyledMobLink, LogoImage, StyledAddMobSVG, StyledMenuOpenSVG, StyledMenuCloseSVG, User, StyledSpan, StyledLink, UserIcon, ButtonSale, StyledUserSVG, StyledHeartSVG, StyledAddSVG, ButtonText } from './Header.styled';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -66,15 +66,31 @@ const Header = () => {
           )}          
           {isMenuOpen && (
             <Menu>
-              <ul>
-                <li>
-                  <NavLink to="/example1">Example 1</NavLink>
+              <ul className='menu_list'>
+                <li className='menu_item'>
+                  <NavLink  to="/">головна</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/example2">Example 2</NavLink>
+                <li className='menu_item'>
+                  <div className='flex'>
+                    <NavLink className='menu_link' to="/">пошук</NavLink>
+                    <ul  className='submenu_list'>
+                      <li className='submenu_item'>
+                        <NavLink to="/search?category=Нові">Нові</NavLink>
+                      </li>
+                      <li className='submenu_item'>
+                        <NavLink to="/search?category=Вживані">Вживані</NavLink>
+                      </li>
+                      <li className='submenu_item'>
+                        <NavLink to="/search?category=Під пригон">Під пригон</NavLink>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
-                <li>
-                  <NavLink to="/example3">Example 3</NavLink>
+                <li className='menu_item'>
+                  <NavLink to="/">створити оголошення</NavLink>
+                </li>
+                <li className='menu_item'>
+                  <NavLink to={isLoggedIn ? '/account' : '/authorization'}>Мій кабінет</NavLink>
                 </li>
               </ul>
             </Menu>

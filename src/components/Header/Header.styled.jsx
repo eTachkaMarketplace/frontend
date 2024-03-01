@@ -29,7 +29,7 @@ export const HeaderWrapper = styled.div`
   }
 
   ${TAB} {
-
+    padding: 20px 50px;
   }
 
   ${DESK1} {
@@ -102,31 +102,63 @@ export const Menu = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: bisque;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  padding: 20px;
+  background: #fff;
+  z-index: 999;
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+
+  .menu_list{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   }
 
-  li {
-    margin-bottom: 1rem;
-  }
+  .menu_item {
+  display: flex;
+  justify-content: end;
+  padding: 20px 0px;
+  width: 100%;
+  color: rgb(20, 20, 20);
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgb(241, 241, 241);
+}
 
-  a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.5rem;
-  }
+.menu_link{
+text-align:end;
+margin-bottom:20px;
+}
 
-  a:hover {
-    color: #ffd700; /* измените цвет при наведении, если нужно */
-  }
+.flex{
+display: flex;
+flex-direction:column
+}
+
+.submenu_list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+}
+
+.submenu_item {
+
+color: rgb(75, 75, 75);
+font-family: 'Roboto', sans-serif;
+font-size: 14px;
+font-weight: 500;
+line-height: 16px;
+letter-spacing: 0%;
+text-transform: uppercase;
+}
+
 ${MOB} {
 
 }
@@ -144,6 +176,8 @@ ${DESK2} {
 }
 `;
 
+
+
 export const StyledLink = styled(Link)`
     color: #0D0C0C;
     font-family: 'Roboto', sans-serif;
@@ -158,8 +192,8 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledMobLink = styled(Link)`
-   
-  ${MOB} {
+
+${MOB} {
   
 }
 
