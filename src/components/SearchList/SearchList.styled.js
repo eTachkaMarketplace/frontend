@@ -293,6 +293,7 @@ export const SearchListDiv = styled.div`
     }
   }
   @media (min-width: 770px) {
+    margin-left: 24px;
     .favoriteBTN {
       background-color: transparent;
       border: 0;

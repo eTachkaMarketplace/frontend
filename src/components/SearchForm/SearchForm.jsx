@@ -7,7 +7,7 @@ import { Arrow, DropArrow } from './SearchFormSVG';
 import { useLocation } from 'react-router-dom';
 import DataAccessor from 'components/Class/DataAccessor';
 
-export const SearchForm = ({ initialValues,toggleMenu, onSubmit }) => {
+export const SearchForm = ({ initialValues, toggleMenu, onSubmit }) => {
   const distatch = useDispatch();
   const location = useLocation();
   const formikRef = useRef(null);
@@ -97,19 +97,18 @@ export const SearchForm = ({ initialValues,toggleMenu, onSubmit }) => {
       formikRef.current.setFieldValue('yearMax', yearMaxParam);
       formikRef.current.setFieldValue('priceMin', priceMinParam);
       formikRef.current.setFieldValue('priceMax', priceMaxParam);
-      onSubmit(
-        {
-          ...initialValues,
-          brand: brandParam,
-          model: modelParam,
-          region: regionParam,
-          yearMin: yearMinParam,
-          yearMax: yearMaxParam,
-          priceMin: priceMinParam,
-          priceMax: priceMaxParam,
-        }
-      );
+      onSubmit({
+        ...initialValues,
+        brand: brandParam,
+        model: modelParam,
+        region: regionParam,
+        yearMin: yearMinParam,
+        yearMax: yearMaxParam,
+        priceMin: priceMinParam,
+        priceMax: priceMaxParam,
+      });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
@@ -121,7 +120,10 @@ export const SearchForm = ({ initialValues,toggleMenu, onSubmit }) => {
     <Search>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => onSubmit(values)}
+        onSubmit={values => {
+          toggleMenu();
+          onSubmit(values);
+        }}
         innerRef={formik => (formikRef.current = formik)}
       >
         <Form>
@@ -376,7 +378,7 @@ export const SearchForm = ({ initialValues,toggleMenu, onSubmit }) => {
                 Очистити все <Arrow />
               </button>
             )}
-            <button className="submitButton" type="submit" onClick={toggleMenu}>
+            <button className="submitButton" type="submit">
               Пошук
             </button>
             {screenWidth < 769 && (

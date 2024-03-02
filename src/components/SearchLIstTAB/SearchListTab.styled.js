@@ -34,4 +34,7 @@ export const Button = styled.button`
     height: 30px;
     gap: 12px;
   }
+  @media (min-width: 770px) {
+    margin-left: 24px;
+  }
 `;
