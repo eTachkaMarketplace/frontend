@@ -22,14 +22,6 @@ export const Search = styled.div`
     position: relative;
   }
 
-  /* label:after {
-    content: '▼';
-    position: absolute;
-    top: 20px;
-    right: 16px;
-    pointer-events: none;
-  } */
-
   .title {
     margin-left: 4px;
     margin-bottom: 24px;
@@ -109,6 +101,7 @@ export const Search = styled.div`
     padding-inline: 0;
     padding: 4px 16px;
   }
+
   .greyOption {
     color: var(--Text-grey-2, #b9b9b9);
     /* Subtitle 3 */
@@ -133,6 +126,7 @@ export const Search = styled.div`
     display: flex;
     gap: 14px;
   }
+
   .marg16 {
     margin-bottom: 16px;
   }
@@ -143,6 +137,7 @@ export const Search = styled.div`
     margin-left: 16px;
     margin-top: 24px;
   }
+
   .titleB {
     color: #000;
     margin-bottom: 8px;
@@ -154,6 +149,7 @@ export const Search = styled.div`
     font-weight: 500;
     line-height: normal;
   }
+
   .btnWraper {
     margin-left: 16px;
     margin-top: 24px;
@@ -196,5 +192,109 @@ export const Search = styled.div`
 
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
+  }
+  @media (max-width: 769px) {
+    width: 332px;
+    .underTitle {
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .topWraper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-left: 24px;
+      margin-top: 24px;
+    }
+    .fieldLong {
+      width: 282px;
+      height: 46px;
+      padding: 11px 11px 11px 16px;
+      justify-content: space-between;
+    }
+
+    .fieldShort {
+      width: 135px;
+      height: 46px;
+      padding: 11px 11px 11px 16px;
+    }
+    .fieldTextShort {
+      width: 135px;
+      height: 46px;
+      padding: 15px 11px 15px 16px;
+    }
+    .shortDiv {
+      gap: 12px;
+    }
+    .bottomWraper {
+      margin-left: 24px;
+      margin-top: 26px;
+    }
+    .titleB {
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .fieldTextLong {
+      width: 282px;
+      height: 46px;
+      padding: 11px 11px 11px 16px;
+    }
+    .btnWraper {
+      margin-left: 24px;
+      margin-top: 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .clearButton {
+      display: flex;
+      gap: 2px;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      background-color: transparent;
+      margin-bottom: 27px;
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+      /* Text/black 2 */
+      border-bottom: 1px solid rgb(75, 75, 75);
+    }
+    .submitButton {
+      color: rgb(255, 255, 255);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+
+      display: flex;
+      width: 284px;
+      height: 48px;
+      padding: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+
+      border-radius: 8px;
+      background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
+    }
   }
 `;

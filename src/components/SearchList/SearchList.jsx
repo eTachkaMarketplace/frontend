@@ -12,11 +12,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { leftArrow, rightArrow } from 'components/Main/New/NewCarsSvg';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
-export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, totalPages, setPageIndex, pageIndex }) => {
+export const SearchList = ({
+  setSort,
+  favorites,
+  setFavorites,
+  setTotalPages,
+  totalPages,
+  setPageIndex,
+  pageIndex,
+}) => {
   const cars = useSelector(selectAdverstisements);
   const dispatch = useDispatch();
-   const LogedIn = useSelector(selectIsLoggedIn);
-   const navigate = useNavigate();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const LogedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
   const [resultNum, setResultNum] = useState(0);
   const paginPage = useSelector(selectNumberAdv);
   const startPage = Math.max(1, pageIndex - 2);
@@ -95,16 +104,31 @@ export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, to
     }
   };
 
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
+
+    resizeObserver.observe(window.document.body);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
   return (
     <SearchListDiv>
       <div>
         <div className="titleDiv">
           <h2 className="title">Результати пошуку ({resultNum}):</h2>
-          <select className="select" name="select" onChange={handleSelectChange}>
+          {screenWidth > 769&&<select className="select" name="select" onChange={handleSelectChange}>
             <option value="foData">За датою додавання</option>
             <option value="cheap">Від дешевших</option>
             <option value="expensive">Від дорожчих</option>
-          </select>
+          </select>}
         </div>
         <div className="carsMainList">
           {cars && cars.length > 0 && (
@@ -123,7 +147,7 @@ export const SearchList = ({ setSort, favorites, setFavorites, setTotalPages, to
             <h2 className="enotherONe">Нічого не знайдено, виберіть інший фільтр</h2>
           )}
         </div>
-        { cars.length > 0 ? (
+        {cars.length > 0 ? (
           <div className="paginDiv">
             <button
               className={`pagination-button-arrow ${pageIndex === 0 ? 'disabled' : ''} `}

@@ -7,7 +7,7 @@ import { Arrow, DropArrow } from './SearchFormSVG';
 import { useLocation } from 'react-router-dom';
 import DataAccessor from 'components/Class/DataAccessor';
 
-export const SearchForm = ({ initialValues, onSubmit }) => {
+export const SearchForm = ({ initialValues,toggleMenu, onSubmit }) => {
   const distatch = useDispatch();
   const location = useLocation();
   const formikRef = useRef(null);
@@ -97,16 +97,18 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       formikRef.current.setFieldValue('yearMax', yearMaxParam);
       formikRef.current.setFieldValue('priceMin', priceMinParam);
       formikRef.current.setFieldValue('priceMax', priceMaxParam);
-      onSubmit({
-        ...initialValues,
-        brand: brandParam,
-        model: modelParam,
-        region: regionParam,
-        yearMin: yearMinParam,
-        yearMax: yearMaxParam,
-        priceMin: priceMinParam,
-        priceMax: priceMaxParam,
-      });
+      onSubmit(
+        {
+          ...initialValues,
+          brand: brandParam,
+          model: modelParam,
+          region: regionParam,
+          yearMin: yearMinParam,
+          yearMax: yearMaxParam,
+          priceMin: priceMinParam,
+          priceMax: priceMaxParam,
+        }
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
@@ -124,7 +126,7 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
       >
         <Form>
           <div className="topWraper">
-            {screenWidth > 390 ? <h3 className="title">Розширений пошук</h3> : null}
+            {screenWidth > 769 ? <h3 className="title">Розширений пошук</h3> : null}
             <h5 className="underTitle">Основні характеристики</h5>
             <div className="arrowDiv">
               <label>
@@ -369,12 +371,19 @@ export const SearchForm = ({ initialValues, onSubmit }) => {
             </div>
           </div>
           <div className="btnWraper">
-            <button className="clearButton" onClick={clearForm} type="button">
-              Очистити все <Arrow />
-            </button>
-            <button className="submitButton" type="submit">
+            {screenWidth > 769 && (
+              <button className="clearButton" onClick={clearForm} type="button">
+                Очистити все <Arrow />
+              </button>
+            )}
+            <button className="submitButton" type="submit" onClick={toggleMenu}>
               Пошук
             </button>
+            {screenWidth < 769 && (
+              <button className="clearButton" onClick={clearForm} type="button">
+                Очистити все <Arrow />
+              </button>
+            )}
           </div>
         </Form>
       </Formik>
