@@ -26,6 +26,7 @@ const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
           })
         );
         setImages(prevImages => [...prevImages, ...imageFiles]);
+        onImagesChange([...images, ...imageFiles]);
       }
     };
 
@@ -51,7 +52,7 @@ const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
       <ImageContainer key={index}>
         {console.log(index)}
         <img src={URL.createObjectURL(image)} alt={`img-${index}`} />
-        <button type='button' onClick={() => handleImageRemove(index)} className="transpatent_button">
+        <button type="button" onClick={() => handleImageRemove(index)} className="transpatent_button">
           <StyledCloseImgSVG />
         </button>
       </ImageContainer>
