@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
-display: flex;
-flex-wrap: wrap;
-gap: 8px;
-width: 854px;
-`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 854px;
+  @media (max-width: 769px) {
+    width: 330px;
+  }
+`;
 
 export const Button = styled.button`
   display: inline-flex;
@@ -20,11 +23,15 @@ export const Button = styled.button`
   border-radius: 8px;
   background: #0141bd;
 
-  color:  #fff;
+  color: #fff;
 
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  @media (max-width: 769px) {
+    height: 30px;
+    gap: 12px;
+  }
 `;

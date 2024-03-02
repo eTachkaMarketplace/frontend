@@ -45,6 +45,7 @@ export const SearchListDiv = styled.div`
   .carsMainList {
     margin-top: 20px;
   }
+
   .carsDiv {
     display: flex;
     flex-direction: column;
@@ -53,8 +54,9 @@ export const SearchListDiv = styled.div`
   .carItem {
     display: flex;
     gap: 20px;
+    padding: 16px 16px 20px 16px;
     width: 844px;
-    height: 240px;
+    max-height: 240px;
     border-radius: 8px;
     background: #f1f5ff;
     position: relative;
@@ -64,9 +66,8 @@ export const SearchListDiv = styled.div`
     height: 200px;
     border-radius: 8px;
     object-fit: cover;
-    margin-left: 20px;
-    margin-top: 20px;
   }
+
   .infoDiv {
     margin-top: 20px;
   }
@@ -75,6 +76,16 @@ export const SearchListDiv = styled.div`
     width: 500px;
     justify-content: space-between;
   }
+  .modelInfo {
+    color: #141414;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
   .numberDiv {
     display: flex;
     width: auto;
@@ -95,6 +106,7 @@ export const SearchListDiv = styled.div`
     border: 1px solid #ababab;
     border-radius: 4px;
   }
+
   .listDIV {
     display: flex;
     gap: 60px;
@@ -121,17 +133,8 @@ export const SearchListDiv = styled.div`
     border: 0;
     position: absolute;
     right: 20px;
-    bottom: 14px;
   }
-  .modelInfo {
-    color: #141414;
 
-    font-family: 'Roboto', sans-serif;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
   .enotherONe {
     color: var(--Text-black-2, #4b4b4b);
     /* Subtitle 1.1 */
@@ -180,5 +183,122 @@ export const SearchListDiv = styled.div`
 
   .pagination-button.active {
     color: rgb(171, 171, 171);
+  }
+  @media (max-width: 769px) {
+    width: 330px;
+    .titleDiv {
+      width: 330px;
+      display: flex;
+    }
+    .title {
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .carsMainList {
+      margin-top: 16px;
+    }
+    .carItem {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 330px;
+      max-height: 454px;
+      padding: 16px 16px 20px 16px;
+      border-radius: 8px;
+      background: #f1f5ff;
+      position: relative;
+    }
+    .img {
+      width: 298px;
+      height: 213px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .infoDiv {
+      margin-top: 16px;
+    }
+    .modelInfoDIV {
+      display: flex;
+      width: 298px;
+      justify-content: space-between;
+    }
+    .modelInfo {
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .numberDiv {
+      display: flex;
+      width: auto;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .number {
+      align-self: flex-start;
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+
+      padding: 2px 4px 2px 4px;
+      border: 1px solid #ababab;
+      border-radius: 4px;
+    }
+
+    .listDIV {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      gap: 11px;
+      justify-content: space-around;
+    }
+    .itemLI {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto' sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      overflow-x: hidden;
+    }
+    .favoriteBTN {
+      background-color: transparent;
+      border: 0;
+      position: absolute;
+      right: 30px;
+      top: 30px;
+    }
+  }
+  @media (min-width: 770px) {
+    .favoriteBTN {
+      background-color: transparent;
+      border: 0;
+      position: absolute;
+      right: 20px;
+      bottom: 14px;
+    }
   }
 `;

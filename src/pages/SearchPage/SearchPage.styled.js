@@ -41,7 +41,7 @@ export const Wraper = styled.div`
       background-color: #fff;
       box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
     }
-    .title {
+    .titlePage {
       width: 196px;
       height: 40px;
       display: flex;

@@ -17,7 +17,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [valuesGen, setValuesGen] = useState({
     category: '',
     brand: '',
@@ -40,9 +40,9 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const firstRender = useRef(true);
 
   const toggleMenu = () => {
-    setOpenMenu(!openMenu)
-    console.log(openMenu)
-  }
+    setOpenMenu(!openMenu);
+    console.log(openMenu);
+  };
 
   const handleSearch = values => {
     setValuesGen(values);
@@ -67,19 +67,18 @@ const SearchPage = ({ favorites, setFavorites }) => {
     setIsDropdownVisible(prev => !prev);
   };
 
-   const handleSelectChange = (value) => {
+  const handleSelectChange = value => {
+    if (value === 'foData') {
+      setSort('new');
+    } else if (value === 'cheap') {
+      setSort('cheap');
+    } else if (value === 'expensive') {
+      setSort('expensive');
+    }
 
-     if (value === 'foData') {
-       setSort('new');
-     } else if (value === 'cheap') {
-       setSort('cheap');
-     } else if (value === 'expensive') {
-       setSort('expensive');
-     }
-
-     // Hide the dropdown after selection
-     setIsDropdownVisible(false);
-   };
+    // Hide the dropdown after selection
+    setIsDropdownVisible(false);
+  };
 
   useEffect(() => {
     if (!firstRender.current) {
@@ -97,9 +96,9 @@ const SearchPage = ({ favorites, setFavorites }) => {
   return (
     <>
       <Wraper>
-        {screenWidth < 769 ? (
+        {screenWidth <= 769 ? (
           <div className="menuDiv">
-            <button type="button" className="title" onClick={toggleMenu}>
+            <button type="button" className="titlePage" onClick={toggleMenu}>
               Розширений пошук
             </button>
             <div className="thumbnails-container" onClick={handleThumbnailsClick}>
@@ -136,8 +135,10 @@ const SearchPage = ({ favorites, setFavorites }) => {
             </div>
           </div>
         ) : null}
-        {screenWidth < 769 && openMenu && <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />}
-        {screenWidth < 769 && !openMenu && (
+        {screenWidth <= 769 && openMenu && (
+          <SearchForm toggleMenu={toggleMenu} initialValues={valuesGen} onSubmit={handleSearch} />
+        )}
+        {screenWidth <= 769 && !openMenu && (
           <div className="searchList">
             <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
             <SearchList
