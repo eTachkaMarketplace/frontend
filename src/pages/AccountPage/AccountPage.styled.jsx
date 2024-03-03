@@ -19,7 +19,7 @@ export const AccountContainer = styled.section`
   margin-right: auto;
 
   @media (max-width: 767px) {
-    padding: 20px 20px 120px 20px;
+    padding: 20px 30px 80px 30px;
   }
 `;
 
@@ -40,11 +40,16 @@ export const Favorites = styled.div`
   
   width: 100%;
 
-  
-  .carsMainList {
-    margin-top: 20px;
+  .carsDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
-  .carItem {
+  
+  /* .carsMainList {
+    margin-top: 20px;
+  } */
+  /* .carItem {
     display: flex;
     margin-top: 15px;
     gap: 20px;
@@ -129,13 +134,12 @@ export const Favorites = styled.div`
   }
   .enotherONe {
     color: var(--Text-black-2, #4b4b4b);
-    /* Subtitle 1.1 */
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-  }
+  } */
 `;
 
 
@@ -144,12 +148,14 @@ export const UserContainer = styled.div`
   flex-direction: column;
   gap: 25px;
 
-  width: 410px;
+  width: 600px;
+  overflow: hidden;
+
   @media (max-width: 767px) {
     width: 330px;
     flex-direction: column-reverse;
     }
-  overflow: hidden;
+
   .photo {
     width: 41px;
     height: 41px;
@@ -169,10 +175,7 @@ export const UserContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap: 4px;
-    /* align-items: flex-start;
-        gap: 14px;
-        flex: 1 0 0; */
-
+ 
     padding: 20px 15px;
     border-radius: 8px;
     background: #F1F5FF;
