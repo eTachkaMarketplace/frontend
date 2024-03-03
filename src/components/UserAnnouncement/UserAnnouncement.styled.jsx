@@ -1,31 +1,56 @@
 import styled from 'styled-components';
+import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
+
 
 export const Wraper = styled.div`
 
 @media (max-width: 769px) {
     width: 330px;
   }
-  
+
   .activeDIV {
     display: flex;
     gap: 16px;
   }
 
+
+
   .dropBox {
     position: absolute;
-    width: 134px;
-    height: 108px;
-    right: 60px;
-    bottom: 0;
+    width: 130px;
+    /* height: 108px; */
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    gap: 5px;
     padding: 0px;
 
     border-radius: 8px;
+    
 
-    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25); */
+
+    ${MOB} {
+    top: 30px;
+    left: 130px;
+  }
+
+  ${TAB} {
+    top: 30px;
+    left: 130px;
+  }
+
+  ${DESK1} {
+    right: 55px;
+    bottom: 20px;
+  }
+
+
+  ${DESK2} {
+    
+  }
   }
   .dropBTN {
     color: rgb(75, 75, 75);
@@ -40,6 +65,7 @@ export const Wraper = styled.div`
     padding: 10px 12px 10px 12px;
     background: rgb(255, 255, 255);
     border-radius: 8px;
+    border: 1px solid black;
     &:hover,
     &:focus {
       background: rgb(241, 241, 241);
@@ -56,8 +82,8 @@ export const Wraper = styled.div`
     margin-bottom: 24px;
 
     @media (max-width: 767px) {
-      margin-bottom: 10px;
-      margin-top: 1px;
+      margin-bottom: 16px;
+      margin-top: 16px;
     }
   }
   .activeClass {

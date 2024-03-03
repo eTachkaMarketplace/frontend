@@ -84,6 +84,11 @@ export const CarItemStyled = styled.li`
         right: 20px;
     }
 
+    .center{
+        display: flex;
+        align-items: center;
+    }
+
     @media (max-width: 769px) {
         display: flex;
         flex-direction: column;

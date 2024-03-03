@@ -185,7 +185,7 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
 
   return (
     <CarItemStyled>
-      <div>
+      <div className="center">
         <img className="img" src={car.previewImage} alt="car" />
       </div>
       <div className="infoDiv">

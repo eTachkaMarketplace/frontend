@@ -62,7 +62,7 @@ const UserAnnouncement = ({ setModalContent }) => {
         ...prevState,
         [itemId]: false,
       }));
-    }, 5000);
+    }, 10000);
   };
 
   const openModal = content => {
@@ -95,7 +95,7 @@ const UserAnnouncement = ({ setModalContent }) => {
               const itemId = car.id;
               return (
                 <CarItemStyled key={car.id}>
-                  <div>
+                  <div className="center">
                     <img className="img" src={car.previewImage} alt="car" />
                   </div>
                   <div className="infoDiv">
@@ -182,7 +182,7 @@ const UserAnnouncement = ({ setModalContent }) => {
               const itemId = car.id;
               return (
                 <CarItemStyled key={car.id}>
-                  <div>
+                  <div className="center">
                     <img className="img" src={car.previewImage} alt="car" />
                   </div>
                   <div className="infoDiv">
