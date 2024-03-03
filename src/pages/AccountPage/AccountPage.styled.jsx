@@ -4,7 +4,7 @@ import { ReactComponent as UserSVG } from '../../images/AccountPage/user.svg';
 import { ReactComponent as AnnouncementsSVG } from '../../images/AccountPage/announcements.svg';
 import { ReactComponent as FavouritesSVG } from '../../images/AccountPage/favourites.svg';
 import { ReactComponent as LogoutSVG } from '../../images/AccountPage/logout.svg';
-import { MOB, TAB, DESK1, DESK2 } from '../constants';
+// import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
 
 
 export const AccountContainer = styled.section`

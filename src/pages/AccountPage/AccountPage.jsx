@@ -27,6 +27,7 @@ import { getAdvFav } from 'redux/advertisment/operations';
 import { deleteUser, getUser } from 'redux/auth/operations';
 import { CarItem } from 'components/SearchList/SearchList';
 
+
 import Modal from 'modal/modal';
 
 const AccountPage = ({ favoritesFromState }) => {
