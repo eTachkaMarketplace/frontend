@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMyAdv } from 'redux/advertisment/operations';
 import { selectMyADV } from 'redux/advertisment/selectors';
 import { Wraper } from './UserAnnouncement.styled';
+import { CarItemStyled } from '../UserAnnouncement/CarItem.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
 import DisableModal from './modals/Disable';
 import DelitedModal from './modals/Delited';
@@ -61,7 +62,7 @@ const UserAnnouncement = ({ setModalContent }) => {
         ...prevState,
         [itemId]: false,
       }));
-    }, 5000);
+    }, 10000);
   };
 
   const openModal = content => {
@@ -93,8 +94,8 @@ const UserAnnouncement = ({ setModalContent }) => {
               const desc = car.car;
               const itemId = car.id;
               return (
-                <li key={car.id} className="carItem">
-                  <div>
+                <CarItemStyled key={car.id}>
+                  <div className="center">
                     <img className="img" src={car.previewImage} alt="car" />
                   </div>
                   <div className="infoDiv">
@@ -165,7 +166,7 @@ const UserAnnouncement = ({ setModalContent }) => {
                       <PenSvg />
                     </button>
                   </div>
-                </li>
+                </CarItemStyled>
               );
             })}
           </ul>
@@ -180,8 +181,8 @@ const UserAnnouncement = ({ setModalContent }) => {
               const desc = car.car;
               const itemId = car.id;
               return (
-                <li key={car.id} className="carItem">
-                  <div>
+                <CarItemStyled key={car.id}>
+                  <div className="center">
                     <img className="img" src={car.previewImage} alt="car" />
                   </div>
                   <div className="infoDiv">
@@ -252,7 +253,7 @@ const UserAnnouncement = ({ setModalContent }) => {
                       <PenSvg />
                     </button>
                   </div>
-                </li>
+                </CarItemStyled>
               );
             })}
           </ul>

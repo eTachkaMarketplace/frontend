@@ -26,6 +26,8 @@ import { deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations
 import { getAdvFav } from 'redux/advertisment/operations';
 import { deleteUser, getUser } from 'redux/auth/operations';
 import { CarItem } from 'components/SearchList/SearchList';
+// import { CarItemStyled } from '../../components/UserAnnouncement/CarItem.styled';
+
 
 import Modal from 'modal/modal';
 
@@ -109,7 +111,7 @@ const AccountPage = ({ favoritesFromState }) => {
               Обрані оголошення{favorites.length > 0 && <span className="ml-1">({favorites.length})</span>}:
             </Subtitle>
             {favorites.length > 0 ? (
-              <ul>
+              <ul className="carsDiv">
                 {favorites.map(favorite => (
                   <CarItem
                     key={favorite.id}

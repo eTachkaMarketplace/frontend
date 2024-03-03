@@ -70,9 +70,11 @@ export const SectionCar = styled.section`
 
   ${DESK1} {
     gap: 20px;
+    
   }
 
   ${DESK2} {
+    justify-content: start;
 
   }
   }
@@ -87,24 +89,25 @@ export const SectionCar = styled.section`
     overflow: hidden;
 
     ${MOB} {
-      width: 280px;
-      height: 260px;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      /* width: 330px; */
+      /* height: 290px; */
       padding: 15px;
 
   }
 
   ${TAB} {
-       width: 320px;
-      height: 290px;
-      padding: 15px;
-
+    width: 320px;
+    height: 290px;
+    padding: 15px;
   }
 
   ${DESK1} {
-    width: 413px;
-    height: 383px;
+    width: 400px;
+    height: 380px;
     padding: 20px;
-
   }
 
   ${DESK2} {
