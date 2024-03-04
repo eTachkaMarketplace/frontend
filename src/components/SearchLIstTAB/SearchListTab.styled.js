@@ -8,6 +8,9 @@ export const Div = styled.div`
   @media (max-width: 769px) {
     width: 330px;
   }
+  @media (min-width: 770px) {
+    margin-left: 24px;
+  }
 `;
 
 export const Button = styled.button`
@@ -33,8 +36,5 @@ export const Button = styled.button`
   @media (max-width: 769px) {
     height: 30px;
     gap: 12px;
-  }
-  @media (min-width: 770px) {
-    margin-left: 24px;
   }
 `;

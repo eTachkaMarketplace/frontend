@@ -121,7 +121,9 @@ export const SearchForm = ({ initialValues, toggleMenu, onSubmit }) => {
       <Formik
         initialValues={initialValues}
         onSubmit={values => {
-          toggleMenu();
+          if (screenWidth <= 769) {
+            toggleMenu();
+          }
           onSubmit(values);
         }}
         innerRef={formik => (formikRef.current = formik)}
@@ -176,7 +178,7 @@ export const SearchForm = ({ initialValues, toggleMenu, onSubmit }) => {
                   value={selectedModel}
                   onChange={handleModelChange}
                 >
-                  <option value="">Виберіть марку</option>
+                  <option value="">Виберіть модель</option>
                   {carMark[selectedBrand]?.map(model => (
                     <option key={model} value={model}>
                       {model}
