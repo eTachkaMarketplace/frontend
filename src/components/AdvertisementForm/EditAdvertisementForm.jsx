@@ -30,29 +30,42 @@ const userSchema = Yup.object().shape({
     licensePlate: Yup.string().max(10, 'Номер до 10 символів').notRequired(),
     brand: Yup.string().required('це поле обов`язкове для заповнення'),
     model: Yup.string().required('це поле обов`язкове для заповнення'),
-    mileage: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
+    mileage: Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число"),
     year: Yup.number().required('це поле обов`язкове для заповнення').min(1999, 'Виберіть рік'),
-    price: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
+    price:Yup.number().required("це поле обов`язкове для заповнення").positive("Введіть додатне число").max(999999, 'Максимальна ціна - 999999 тисяч'),
     bodyType: Yup.string().required('це поле обов`язкове для заповнення'),
     engineType: Yup.string().required('це поле обов`язкове для заповнення'),
-    engineVolume: Yup.number().required('це поле обов`язкове для заповнення').positive('Введіть додатне число'),
+    engineVolume: Yup.number().required("це поле обов`язкове для заповнення")
+        .test('max-digits', 'Максимум 6 символів', value => {
+          if (value) {
+            const stringValue = value.toString();
+            return stringValue.length <= 6;
+          }
+          return true;})
+        .positive("Введіть додатне число"),
     driveType: Yup.string().required('це поле обов`язкове для заповнення'),
     transmissionType: Yup.string().required('це поле обов`язкове для заповнення'),
     technicalState: Yup.string().required('це поле обов`язкове для заповнення'),
     color: Yup.string().required('це поле обов`язкове для заповнення'),
-    vin: Yup.string()
-      .matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри')
-      .notRequired(),
+    vin: Yup.string().matches(/^[a-zA-Z0-9]{1,17}$/, 'VIN код до 17 символів. Тільки латинські букви та цифри').notRequired(),
+   
+    
+
   }),
   category: Yup.string().required('це поле обов`язкове для заповнення'),
   region: Yup.string().required('це поле обов`язкове для заповнення'),
   city: Yup.string().required('це поле обов`язкове для заповнення'),
-  contactName: Yup.string().required('це поле обов`язкове для заповнення'),
+  contactName: Yup.string()
+  .matches(/^[a-zA-Zа-яА-ЯєЄіІїЇґҐ' -]*$/, 'Поле "Ім`я" може містити лише літери та знак “-“')
+  // .min(2, 'Мінімум 2 літери')
+  .max(40, 'Максимум 40 літер')
+  .test('is-not-empty', 'Поле "Ім`я" не може бути пустим', value => value.trim() !== '')
+  .required('це поле обов`язкове для заповнення'),
   contactPhone: Yup.string()
-    .test('is-valid-phone', 'Номер починається з +380 і містить 12 цифр', value => {
-      return value.startsWith('+380') && value.length === 13;
-    })
-    .required('це поле обов`язкове для заповнення'),
+  .isPhone()
+  .required('це поле обов`язкове для заповнення')
+  // description: Yup.string().required('це поле обов`язкове для заповнення'),
+  
 });
 
 export const EditAdvertisementForm = ({ formInitialValues }) => {
