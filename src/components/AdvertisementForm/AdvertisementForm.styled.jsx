@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
 
 import { ReactComponent as ArrowSVG } from '../../images/AccountPage/Arrow.svg';
 import { ReactComponent as CreateSVG } from '../../images/AccountPage/create.svg';
