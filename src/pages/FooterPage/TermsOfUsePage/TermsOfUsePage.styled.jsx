@@ -15,7 +15,6 @@ export const Container = styled.div`
     margin: 60px 150px;
   }
 
-
   ${DESK2} {
     margin-left: auto;
     margin-right: auto;

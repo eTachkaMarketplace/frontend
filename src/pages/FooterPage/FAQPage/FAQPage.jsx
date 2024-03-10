@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Container,SubTitle, Question, Answer ,NavLinkStyled, StyledArrowIcon} from './FAQPage.styled'; // Импорт стилизованных компонентов
+import {Container,SubTitle, Question, Answer ,NavLinkStyled, StyledArrowIcon} from './FAQPage.styled';
 
 const FAQPage = () =>  {
   const [openIndex, setOpenIndex] = useState(null);
@@ -109,7 +109,7 @@ const FAQPage = () =>  {
         {faqData.map((item, index) => (
           <li key={index}>
             <Question onClick={() => toggleQuestion(index)}>
-              {item.question}
+              <p className='question'>{item.question}</p>
               <StyledArrowIcon rotate={openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)'} />
             </Question>
             {openIndex === index && <Answer>{item.answer}</Answer>}
