@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as ArrowSvg  } from 'images/Footer/FAQ_Arrow.svg';
 import { NavLink } from 'react-router-dom';
+import { MOB, TAB, DESK1, DESK2 } from '../../../components/constants';
 
 
 export const StyledArrowIcon = styled(ArrowSvg)`
@@ -16,13 +17,29 @@ export const NavLinkStyled = styled(NavLink)`
 
 export const Container = styled.div`
   font-family: 'Roboto', sans-serif;
-  margin: 80px 500px;
-  max-width: 750px;
+  max-width: 750px; 
+  ${MOB} {
+   margin: 30px 30px 80px 30px;
+   
+  }
+
+  ${TAB} {
+    margin: 60px 100px;
+  }
+
+  ${DESK1} {
+    margin: 80px auto;
+
+  }
+
+  ${DESK2} {
+
+  }
  `
 
 export const SubTitle = styled.h2`
 color: rgb(20, 20, 20);
-font-size: 16px;
+font-size: 22px;
 font-weight: 500;
 margin-top: 30px;
 margin-bottom: 15px;
@@ -37,15 +54,22 @@ export const Question = styled.button`
     margin-bottom: 15px;
     padding-bottom: 20px;
     
+    
+    border-bottom: 2px solid rgb(241, 241, 241);
+
+    cursor: pointer;
+    
+    .question{
     text-align: left;
     font-size: 18px;
     font-weight: 500;
     line-height: 21px;
 
     color: rgb(20, 20, 20);
-    border-bottom: 2px solid rgb(241, 241, 241);
-
-    cursor: pointer;
+    ${MOB} {
+      max-width: 280px;
+  }
+    }
   `;
 
 export const Answer = styled.div`
