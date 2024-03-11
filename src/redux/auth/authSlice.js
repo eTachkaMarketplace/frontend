@@ -87,7 +87,7 @@ export const authSlice = createSlice({
       .addCase(refreshToken.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.errorLog = payload;
+        state.error = payload;
       })
       .addCase(getUser.fulfilled, (state, { payload }) => {
         state.user = { ...payload };

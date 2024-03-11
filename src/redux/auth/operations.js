@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 export const instance = axios.create({
-  baseURL: "https://api.etachka-marketplace.space",
+  baseURL: 'https://api.etachka-marketplace.me',
 });
 
 
@@ -54,7 +54,7 @@ export const refreshToken = createAsyncThunk(
       console.log('refreshToken', response);
       return response.data;
     } catch (error) {
-      console.log(`Login failed. Try again`);
+      console.log(`Refresh failed. Try again`);
       return rejectWithValue(error.message);
     }
   }
