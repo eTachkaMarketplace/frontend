@@ -18,6 +18,7 @@ import '@splidejs/splide/dist/css/splide.min.css';
 import { useNavigate } from 'react-router-dom';
 import { Favorit } from '../SearchList/SearchListSVG';
 import {  FavoritFilled } from '../HomePage/AdvertisementCardSVG';
+import { MobilePhoto } from './MobilePhoto/MobilePhoto';
 // import { getAdvFav, postFavoriteAdverstisementsByID, deleteFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
 
 
@@ -26,7 +27,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
   const [smallImage, setSmallImage] = useState(null);
 
   const navigate = useNavigate();
-
+const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [showPhone, setShowPhone] = useState(true);
   const dispatch = useDispatch();
 
@@ -81,6 +82,23 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
   },[setSelectedImage, smallImage])
 
   useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
+
+    // Attach ResizeObserver to the window
+    resizeObserver.observe(window.document.body);
+
+    // Cleanup the ResizeObserver when the component unmounts
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
+  useEffect(() => {
     // Initialize Splide.js
     const splide = new Splide('.splide', {
       rewind: true,
@@ -88,6 +106,10 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
       fixedHeight: 100,
       isNavigation: true,
       gap: 16,
+      breakpoints: {
+        768: { fixedWidth: 390, fixedHeight: 225, cover: true, isNavigation: false, gap: 0 },
+        425: { fixedWidth: 390, fixedHeight: 225, cover: true, isNavigation: false, gap: 0 },
+      },
       // focus: 'center',
       pagination: false,
       cover: true,
@@ -127,6 +149,7 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
   return (
     <>
       <Section>
+        {screenWidth <= 769 && <MobilePhoto photos={advertisement.images} />}
         <div className="infoDIV">
           <div className="marg32">
             <div>
@@ -134,8 +157,8 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
                 <h2 className="brandTitle">{advertisement.car.brand}</h2>
                 <h2 className="brandTitle">{advertisement.car.model}</h2>
                 <h2 className="brandTitle">{advertisement.car.year}</h2>
-                <button className="svg" type="button" onClick={toggleFavorite} >
-                {isFavorite ? <FavoritFilled /> : <Favorit />}
+                <button className="svg" type="button" onClick={toggleFavorite}>
+                  {isFavorite ? <FavoritFilled /> : <Favorit />}
                 </button>
               </div>
               <p className="brandTitle">{advertisement.car.price.toLocaleString('uk-UA')} $</p>
@@ -196,44 +219,46 @@ export const ExtendedAdvertisement = ({ advertisement, setImage, setSelectedImag
               </div>
             </div>
           </div>
-          <div className="photoDiv">
-            <p className="id">№{advertisement.id}</p>
-            <div className="loopDiv">
-              <img className="imgCar" src={smallImage ? smallImage : advertisement.previewImage} alt="Car " />
-              <button
-                onClick={() => {
-                  setImageModal(advertisement.images);
-                }}
-                type="button"
-                className="loop"
-              >
-                <SearchLoop />
-              </button>
-            </div>
-            <div className="splide">
-              <div className="splide__track">
-                <ul className="splide__list">
-                  {advertisement.images
-                    ? advertisement.images.map(image => {
-                        return (
-                          <li className="splide__slide" key={image}>
-                            <img
-                              key={image}
-                              onClick={() => {
-                                handlerSmallImage(image);
-                              }}
-                              className="imgCarCarousel"
-                              src={image}
-                              alt="Car "
-                            />
-                          </li>
-                        );
-                      })
-                    : null}
-                </ul>
+          {screenWidth > 769 && (
+            <div className="photoDiv">
+              <p className="id">№{advertisement.id}</p>
+              <div className="loopDiv">
+                <img className="imgCar" src={smallImage ? smallImage : advertisement.previewImage} alt="Car " />
+                <button
+                  onClick={() => {
+                    setImageModal(advertisement.images);
+                  }}
+                  type="button"
+                  className="loop"
+                >
+                  <SearchLoop />
+                </button>
+              </div>
+              <div className="splide">
+                <div className="splide__track">
+                  <ul className="splide__list">
+                    {advertisement.images
+                      ? advertisement.images.map(image => {
+                          return (
+                            <li className="splide__slide" key={image}>
+                              <img
+                                key={image}
+                                onClick={() => {
+                                  handlerSmallImage(image);
+                                }}
+                                className="imgCarCarousel"
+                                src={image}
+                                alt="Car "
+                              />
+                            </li>
+                          );
+                        })
+                      : null}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="secondInfoBox">
           <div className="secondMargBox">
