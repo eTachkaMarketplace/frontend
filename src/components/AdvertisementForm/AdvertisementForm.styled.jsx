@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
+import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
 
 import { ReactComponent as ArrowSVG } from '../../images/AccountPage/Arrow.svg';
 import { ReactComponent as CreateSVG } from '../../images/AccountPage/create.svg';
@@ -16,11 +16,28 @@ import {
 
 export const SectionContainer = styled.div`
   /* max-width: 1440px; */
-  padding: 50px 100px;
+  
   margin: 0;
 
   border-radius: 8px;
   background: #F1F5FF;
+
+  ${MOB} {
+    padding: 20px;
+  }
+
+  ${TAB} {
+    padding: 35px;
+  }
+
+  ${DESK1} {
+    padding: 50px 100px;
+  }
+
+  ${DESK2} {
+    
+  }
+
 
 .flex{
 display: flex;
@@ -31,11 +48,28 @@ flex-direction: column;
 export const SectionTitle = styled.h3`
   color: #141414;
 
-  margin-bottom: 32px;
-
   font-family: 'Roboto', sans-serif;
-  font-size: 24px;
   font-weight: 500;
+
+  ${MOB} {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  ${TAB} {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  ${DESK1} {
+    font-size: 24px;
+    margin-bottom: 22px;
+  }
+
+  ${DESK2} {
+    margin-bottom: 32px;
+    
+  }
 `;
 
 
@@ -127,15 +161,24 @@ export const Form = styled(FormikForm)`
   label {
     display: flex;
     position: relative;
+    width: min-content;
+    ${MOB} {
+      flex-direction: column;
   }
 
-  /* label:after {
-    content: '▼';
-    position: absolute;
-    top: 20px;
-    right: 16px;
-    pointer-events: none;
-  } */
+  ${TAB} {
+    flex-direction: column;
+  }
+
+  ${DESK1} {
+  
+  }
+
+  ${DESK2} {
+    
+  }
+  }
+
 
   .title {
     margin-left: 4px;
@@ -162,10 +205,25 @@ export const Form = styled(FormikForm)`
   }
 
   .containerLong{
+   font-family: 'Roboto', sans-serif;
+   
+  ${MOB} {
+    font-size: 14px; 
+  }
+
+  ${TAB} {
+  
+  }
+
+  ${DESK1} {
   width: 220px;
   padding-top: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 22px;  
+  font-size: 22px; 
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
   .arrowDiv {
@@ -187,16 +245,35 @@ export const Form = styled(FormikForm)`
   }
   .fieldLong {
     display: flex;
-
-    width: 450px;
-    height: 56px;
-    padding: 4px 16px;
     justify-content: space-between;
     align-items: center;
 
     border-radius: 8px;
     background: #fff;
     border: 1px solid #b9b9b9;
+
+  ${MOB} {
+    width: 290px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${TAB} {
+    width: 290px;
+    height: 46px;
+    padding: 4px 10px;
+  
+  }
+
+  ${DESK1} {
+    width: 450px;
+    height: 56px;
+    padding: 4px 16px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
 .transparent{
@@ -209,20 +286,36 @@ export const Form = styled(FormikForm)`
   .fieldShort {
     display: flex;
 
-    width: 215px;
-    height: 56px;
-    padding: 4px 16px;
     justify-content: space-between;
     align-items: center;
     border: 1px solid #b9b9b9;
 
     border-radius: 8px;
     background: #fff;
+
+    ${MOB} {
+    width: 150px;
+    height: 46px;
+    padding: 4px 10px;
   }
 
-label{
-  width: min-content;
-}
+  ${TAB} {
+    width: 150px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${DESK1} {
+    width: 215px;
+    height: 56px;
+    padding: 4px 16px;    
+  }
+
+  ${DESK2} {
+    
+  }
+  }
+
 
 .description{
   width: auto;
@@ -245,36 +338,86 @@ label{
 
   .fieldTextShort {
     box-sizing: border-box;
-
-    width: 215px;
-    height: 56px;
-    padding: 0;
     border-radius: 8px;
     background: #fff;
     border: 1px solid #b9b9b9;
     
-    padding: 4px 16px;
+    ${MOB} {
+    width: 150px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${TAB} {
+    width: 150px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${DESK1} {
+    width: 215px;
+    height: 56px;
+    padding: 4px 16px;    
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
   .fieldTextLong {
     box-sizing: border-box;
-
-    width: 450px;
-    height: 56px;
     padding: 0;
     border-radius: 8px;
     background: #fff;
     border: 1px solid #b9b9b9;
     
+  ${MOB} {
+    width: 290px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${TAB} {
+    width: 290px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  ${DESK1} {
+    width: 450px;
+    height: 56px;
     padding: 4px 16px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
   .shortDiv {
     display: flex;
     gap: 14px;
   }
+
   .marg16 {
-    margin-top: 16px;
+    ${MOB} {
+      margin-top: 8px;
+
+  }
+
+  ${TAB} {
+    margin-top: 12px;
+
+  }
+
+  ${DESK1} {
+   margin-top: 16px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
   .bottomWraper {
     display: flex;

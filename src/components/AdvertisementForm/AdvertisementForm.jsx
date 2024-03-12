@@ -1,5 +1,4 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-// import { NavLink, redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -137,17 +136,11 @@ export const AdvertisementForm = () => {
 
       console.log('adverse created');
       navigate('/advertisementDone');
-      // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
-  // useEffect(() => {
-  //   if (formikRef.current) {
-  //     formikRef.current.resetForm({ values: initialValues });
-  //   }
-  // }, [initialValues]);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -203,7 +196,7 @@ export const AdvertisementForm = () => {
             <button className="clearButton" onClick={openModal} type="button">
               Очистити все
             </button>
-            <SectionContainer>
+            {/* <SectionContainer>
               <SectionTitle>Етапи розміщення оголошення</SectionTitle>
               <div className="styled">
                 <StyledArrowSVG />
@@ -216,7 +209,7 @@ export const AdvertisementForm = () => {
                   <p className="post_text">2. Публікація</p>
                 </div>
               </div>
-            </SectionContainer>
+            </SectionContainer> */}
             <SectionContainer>
               <SectionTitle>
                 Фото автомобілю<RequiredMarker>*</RequiredMarker>
@@ -225,7 +218,6 @@ export const AdvertisementForm = () => {
                 Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
                 кількість фотографій - 6.
               </Paragraph>
-              {/* <ImageUploadComponent onImagesChange={handleImagesChange} /> */}
               <ImageUploadComponent
                 setImg={formImages}
                 onImagesChange={newImages => {
