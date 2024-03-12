@@ -1,28 +1,21 @@
 import React from 'react';
-import Slider from 'react-slick';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css/core'; // Import core styles
 import { PhotoWraper } from './MobilePhoto.style';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
 
 export const MobilePhoto = ({ photos }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <PhotoWraper>
-      <Slider {...settings}>
+      <Splide className='splideBox' options={{ perPage: 1, pagination: false, arrows: true }}>
         {photos.map((photo, index) => (
-          <div key={index}>
-            <img src={photo.url} alt={` ${index}`} />
-          </div>
+          <SplideSlide className='splidePhoto' key={`${index}car`}>
+            <img src={photo} alt={`car ${index + 1}`} />
+          </SplideSlide>
         ))}
-      </Slider>
+      </Splide>
     </PhotoWraper>
   );
 };
+

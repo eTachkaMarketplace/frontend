@@ -106,6 +106,10 @@ const [screenWidth, setScreenWidth] = useState(window.innerWidth);
       fixedHeight: 100,
       isNavigation: true,
       gap: 16,
+      breakpoints: {
+        768: { fixedWidth: 390, fixedHeight: 225, cover: true, isNavigation: false, gap: 0 },
+        425: { fixedWidth: 390, fixedHeight: 225, cover: true, isNavigation: false, gap: 0 },
+      },
       // focus: 'center',
       pagination: false,
       cover: true,
