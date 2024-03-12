@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SearchListDiv } from './SearchList.styled';
+import { CarItemStyled } from '../UserAnnouncement/CarItem.styled';
 import { CarSVG, DateSVG, Favorit, FavoritFilled, LockSVG, PetrolSVG, SlideSVG, SpeedometerSVG } from './SearchListSVG';
 import { selectAdverstisements, selectNumberAdv } from 'redux/advertisment/selectors';
 import {
@@ -183,8 +184,8 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
   const desc = car.car;
 
   return (
-    <li className="carItem">
-      <div>
+    <CarItemStyled>
+      <div className="center">
         <img className="img" src={car.previewImage} alt="car" />
       </div>
       <div className="infoDiv">
@@ -234,7 +235,7 @@ export const CarItem = ({ car, isFavorite, toggleFavorite }) => {
           {isFavorite ? <FavoritFilled /> : <Favorit />}
         </button>
       </div>
-    </li>
+    </CarItemStyled>
   );
 };
 
