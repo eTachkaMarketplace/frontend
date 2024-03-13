@@ -51,9 +51,11 @@ const HeroForm = () => {
               onChange={event => handleSelectChange('brand', event.target.value, setFieldValue)}
             >
               <option value="">Марка</option>
-              <option value="BMW">BMW</option>
-              <option value="Toyota">Toyota</option>
-              <option value="Mercedes-Benz">Mercedes-Benz</option>
+              {Object.keys(carMark).map(brand => (
+                <option key={brand} value={brand}>
+                  {brand}
+                </option>
+              ))}
             </select>
           </InputContainer>
           <InputContainer>
@@ -98,10 +100,10 @@ const HeroForm = () => {
               >
                 <option value="">Рік від</option>
                 {dataAccessor.getYears().map(year => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
               </select>
             </InputContainer>
             <InputContainer>
