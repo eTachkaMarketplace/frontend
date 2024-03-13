@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import {
-  Form as FormikForm,
-  Field as FormikField,
-  ErrorMessage as FormikErrorMessage,
-} from 'formik';
+import { Form as FormikForm, Field as FormikField, ErrorMessage as FormikErrorMessage } from 'formik';
 
 export const Wraper = styled.div`
   display: flex;
@@ -14,8 +10,8 @@ export const Wraper = styled.div`
   height: 100vh;
   .circle {
     display: flex;
-    width: 45px;
-    height: 45px;
+    width: 58px;
+    height: 58px;
     padding: 17px;
     justify-content: center;
     align-items: center;
@@ -44,6 +40,7 @@ export const Wraper = styled.div`
     line-height: normal;
     margin-top: 16px;
   }
+
   .login {
     color: var(--Text-White, #fff);
     text-align: center;
@@ -63,10 +60,7 @@ export const Wraper = styled.div`
     gap: 4px;
 
     border-radius: 8px;
-    background: var(
-      --buttons-accent,
-      linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%)
-    );
+    background: var(--buttons-accent, linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%));
     &:hover,
     &:focus {
       background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
@@ -167,13 +161,112 @@ export const Wraper = styled.div`
     align-items: center;
     gap: 4px;
     border-radius: 8px;
-    background: var(
-      --buttons-accent,
-      linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%)
-    );
+    background: var(--buttons-accent, linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%));
     &:hover,
     &:focus {
       background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
+    }
+  }
+  @media (max-width: 768px) {
+    .title {
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: center;
+      padding-bottom: 10px;
+      width: 330px;
+      border-bottom: 1px solid #b9b9b9;
+    }
+    .text {
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      width: 330px;
+    }
+    .textBig {
+      color: var(--text-black-dark, #141414);
+      /* Subtitle 2.2 */
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .mainBtn {
+      width: 330px;
+      height: 48px;
+      padding: 8px;
+
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .link {
+      width: 330px;
+      height: 48px;
+
+      color: rgb(255, 255, 255);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .titleChack {
+      color: rgb(6, 144, 36);
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 23px;
+      letter-spacing: 0%;
+      text-align: left;
+      margin-top: 24px;
+    }
+    .text2 {
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+      margin-top: 16px;
+    }
+    .login {
+      width: 330px;
+      height: 48px;
+      color: rgb(255, 255, 255);
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .toMain {
+      width: 330px;
+      height: 48px;
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto',sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
     }
   }
 `;
@@ -184,12 +277,18 @@ export const Form = styled(FormikForm)`
 
   background-color: white;
   border-radius: 8px;
-  margin-top: 24px;
 
   .errorSVGemail {
     position: absolute;
     right: 16px;
     top: 16px;
+  }
+  @media (max-width: 768px) {
+    width: 330px;
+    .errorSVGemail {
+      right: 14px;
+      top: 14px;
+    }
   }
 `;
 
@@ -242,6 +341,11 @@ export const Field = styled(FormikField)`
 
   &.is-invalid {
     border: 1px solid red;
+  }
+
+  @media (max-width: 768px) {
+    width: 330px;
+    height: 48px;
   }
 `;
 
@@ -300,5 +404,17 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
+  }
+  @media (max-width: 768px) {
+    width: 330px;
+    height: 48px;
+
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
   }
 `;
