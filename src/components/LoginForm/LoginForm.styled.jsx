@@ -78,6 +78,68 @@ export const Form = styled(FormikForm)`
     justify-content: space-between;
     align-items: flex-start;
   }
+  @media (max-width: 768px) {
+    width: 330px;
+    .ErrorRedux {
+      color: rgb(250, 102, 102);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .checkLab {
+      margin-top: 24px;
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+      width: 330px;
+      display: flex;
+
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .marg24 {
+      margin-bottom: 12px;
+    }
+    .errorSVGemail {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+    }
+    .errorSVGpass {
+      position: absolute;
+      right: 48px;
+      top: 14px;
+    }
+    .linkDiv {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .remPassBtn {
+      color: #0d0c0c;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid #000;
+      margin-bottom: 32px;
+      width: auto;
+      height: 19px;
+    }
+  }
 `;
 
 export const Label = styled.label`
@@ -145,6 +207,16 @@ export const Field = styled(FormikField)`
   &.is-invalid {
     border: 1px solid red;
   }
+  @media (max-width: 768px) {
+    height: 48px;
+    color: rgb(20, 20, 20);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
 `;
 
 export const PasswordInput = styled.div`
@@ -182,6 +254,12 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
+  }
+  @media (max-width: 768px) {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 330px;
+    height: 48px;
   }
 `;
 

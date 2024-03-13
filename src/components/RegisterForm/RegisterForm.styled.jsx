@@ -13,7 +13,7 @@ export const Form = styled(FormikForm)`
   background-color: white;
   margin-top: 24px;
   .ErrorRedux {
-    color:  #ff0000;
+    color: #ff0000;
     text-align: center;
     /* H2 */
     font-family: 'Roboto', sans-serif;
@@ -77,6 +77,46 @@ export const Form = styled(FormikForm)`
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 330px;
+    .ErrorRedux {
+      color: rgb(250, 102, 102);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+    .checkLab {
+      margin-top: 24px;
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+      width: 330px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .marg24 {
+      margin-bottom: 12px;
+    }
+    .errorSVGemail {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+    }
+    .errorSVGpass {
+      position: absolute;
+      right: 48px;
+      top: 14px;
+    }
   }
 `;
 
@@ -145,6 +185,16 @@ export const Field = styled(FormikField)`
   &.is-invalid {
     border: 1px solid red;
   }
+  @media (max-width: 768px) {
+    height: 48px;
+    color: rgb(20, 20, 20);
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
 `;
 
 export const PasswordInput = styled.div`
@@ -185,6 +235,12 @@ export const Button = styled.button`
   &:focus {
     background: linear-gradient(144deg, #0040bd 19.34%, #195b01 80.66%);
   }
+  @media (max-width: 768px) {
+    margin-top: 24px;
+    margin-bottom: 0;
+    width: 330px;
+    height: 48px;
+  }
 `;
 
 export const ErrorMessage = styled(FormikErrorMessage)`
@@ -204,6 +260,10 @@ export const HidePassword = styled.span`
   right: 16px;
   top: 16px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    right: 14px;
+    top: 14px;
+  }
 `;
 
 export const StrDiv = styled.div`
