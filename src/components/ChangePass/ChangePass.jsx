@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage as FormikErrorMessage } from 'formik';
 import { useEffect, useState } from 'react';
 import { selectError, selectUser } from 'redux/auth/selectors';
 import { Button, ErrorMessage, Field, Form, Label, Wraper } from 'components/ForgotPass/ForgotPass.styled';
@@ -41,7 +41,6 @@ export default function ChangePass() {
   const [chacked, setChacked] = useState(false);
   const dispatch = useDispatch();
   const [refError, setRefError] = useState(false);
-  const requestError = useSelector(selectError);
   const userInfo = useSelector(selectUser);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
@@ -63,9 +62,6 @@ export default function ChangePass() {
       setShowPassword2(!showPassword2);
     };
 
-  useEffect(() => {
-    if (requestError) setRefError(true);
-  }, [requestError]);
 
   return (
     <>
@@ -93,21 +89,19 @@ export default function ChangePass() {
             return (
               <Wraper>
                 <h4 className="title">Заміна паролю</h4>
-                <p className="text">
-                  Спочатку введіть новий пароль. А потім повторіть його
-                </p>
+                <p className="text">Спочатку введіть новий пароль. А потім повторіть його</p>
                 <Form>
                   <Label className={` marg8`}>
                     <PasswordInput>
                       <Field
                         type={showPassword ? 'text' : 'password'}
-                        className={refError ? 'is-invalid' : ''}
+                        className={FormikErrorMessage.password ? 'is-invalid' : ''}
                         name="password"
                         placeholder="Ввеліть новий пароль"
                         value={values.password}
                       />
 
-                      {refError ? (
+                      {FormikErrorMessage.password ? (
                         <span className="errorSVG">
                           <ErrorSVG />
                         </span>
@@ -123,13 +117,13 @@ export default function ChangePass() {
                     <PasswordInput>
                       <Field
                         type={showPassword2 ? 'text' : 'password'}
-                        className={refError ? 'is-invalid' : ''}
+                        className={FormikErrorMessage.password2 ? 'is-invalid' : ''}
                         name="password2"
                         placeholder="Повторіть новий пароль"
                         value={values.password2}
                       />
 
-                      {refError ? (
+                      {FormikErrorMessage.password2 ? (
                         <span className="errorSVG">
                           <ErrorSVG />
                         </span>
