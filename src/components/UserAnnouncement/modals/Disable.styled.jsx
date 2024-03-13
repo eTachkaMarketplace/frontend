@@ -167,4 +167,32 @@ export const WraperDiv = styled.div`
     border-radius: 50px;
     background: var(--green, #069024);
   }
+  @media (max-width: 768px) {
+    width: 332px;
+    padding: 20px 24px 35px 24px;
+  }
+  .xBtn {
+    right: 24px;
+    top: 20px;
+  }
+  .title2 {
+    color: green;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .content {
+    margin-top: 6px;
+    color: #4b4b4b;
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
 `;
