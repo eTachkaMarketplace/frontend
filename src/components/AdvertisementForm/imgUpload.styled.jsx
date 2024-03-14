@@ -32,6 +32,7 @@ export const Container = styled.div`
     border: 1px dashed #0141BD;
     background: #FFF;
     cursor: pointer;
+    
     ${MOB} {
       margin: 8px;
       width: 135px;
