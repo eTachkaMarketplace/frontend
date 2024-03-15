@@ -160,16 +160,16 @@ const AccountPage = ({ favoritesFromState }) => {
                   onClick={() => setSelectedNavItem('personal')}
                 >
                   <StyledUserSVG />
-                  <div class="long-name">Особистий кабінет</div>
-                  <div class="short-name">Профіль</div>
+                  <div className="long-name">Особистий кабінет</div>
+                  <div className="short-name">Профіль</div>
                 </li>
                 <li
                   className={`user-nav_item ${selectedNavItem === 'announcements' ? 'active' : ''}`}
                   onClick={() => setSelectedNavItem('announcements')}
                 >
                   <StyledAnnouncementsSVG />
-                  <div class="long-name">Мої оголошення</div>
-                  <div class="short-name">Оголошення</div>
+                  <div className="long-name">Мої оголошення</div>
+                  <div className="short-name">Оголошення</div>
                 </li>
                 <li
                   className={`user-nav_item ${selectedNavItem === 'favourites' ? 'active' : ''}`}
@@ -180,8 +180,8 @@ const AccountPage = ({ favoritesFromState }) => {
                 </li>
                 <li className="user-nav_item" onClick={handleLogout}>
                   <StyledLogoutSVG />
-                  <div class="long-name">Вихід з акаунту</div>
-                  <div class="short-name">Вихід</div>
+                  <div className="long-name">Вихід з акаунту</div>
+                  <div className="short-name">Вихід</div>
                 </li>
               </ul>
             </nav>

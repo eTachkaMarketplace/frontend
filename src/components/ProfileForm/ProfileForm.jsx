@@ -81,7 +81,7 @@ const ProfileForm = ({ initialValues,handleDeleteAccount }) => {
       dispatch(changeUserPhoto(formData));
       setTimeout(() => {
         dispatch(getUser());
-      }, 500);
+      }, 1000);
     }
   };
 
