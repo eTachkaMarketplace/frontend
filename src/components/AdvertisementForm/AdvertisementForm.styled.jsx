@@ -53,7 +53,7 @@ export const SectionTitle = styled.h3`
   font-weight: 500;
 
   ${MOB} {
-    font-size: 20px;
+    font-size: 19px;
     margin-bottom: 10px;
   }
 
