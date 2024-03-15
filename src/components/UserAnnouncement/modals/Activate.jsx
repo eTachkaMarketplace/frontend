@@ -1,14 +1,15 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setIsOpen } from "redux/modal/modalSlice";
-import { WraperDiv } from "./Disable.styled";
-import { XBTN } from "modal/confirmModal/confirmModalSVG";
-import { SvgTreu } from "components/ChangePass/ChangeSVG";
-import { enableById } from "redux/advertisment/operations";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsOpen } from 'redux/modal/modalSlice';
+import { WraperDiv } from './Disable.styled';
+import { SmallXBTN, XBTN } from 'modal/confirmModal/confirmModalSVG';
+import { SvgTreu } from 'components/ChangePass/ChangeSVG';
+import { enableById } from 'redux/advertisment/operations';
 
 const ActivateModal = ({ id, refreshMyAdv }) => {
   const dispatch = useDispatch();
   const [complite, setComplite] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const closeModal = () => {
     dispatch(setIsOpen(false));
@@ -24,12 +25,27 @@ const ActivateModal = ({ id, refreshMyAdv }) => {
     }
   };
 
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
+
+    resizeObserver.observe(window.document.body);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
   return (
     <>
       {complite ? (
         <WraperDiv>
           <button type="button" onClick={closeModal} className="xBtn">
-            <XBTN />
+            {screenWidth > 768 ? <XBTN /> : <SmallXBTN />}
           </button>
           <div className="circle">
             <SvgTreu />
@@ -45,7 +61,7 @@ const ActivateModal = ({ id, refreshMyAdv }) => {
       ) : (
         <WraperDiv>
           <button type="button" onClick={closeModal} className="xBtn">
-            <XBTN />
+            {screenWidth > 768 ? <XBTN /> : <SmallXBTN />}
           </button>
           <h4 className="title">Ви впевнені що хочете активувати оголошення? </h4>
           <p className="content">
