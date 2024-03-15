@@ -7,7 +7,7 @@ import { Arrow, DropArrow } from './SearchFormSVG';
 import { useLocation } from 'react-router-dom';
 import DataAccessor from 'components/Class/DataAccessor';
 
-export const SearchForm = ({ initialValues, toggleMenu, onSubmit }) => {
+export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
   const distatch = useDispatch();
   const location = useLocation();
   const formikRef = useRef(null);
@@ -115,9 +115,13 @@ export const SearchForm = ({ initialValues, toggleMenu, onSubmit }) => {
   const clearForm = () => {
     distatch(setIsOpen(true));
   };
+  
+  const hiddenStyle = {
+    display: 'none',
+  };
 
   return (
-    <Search>
+    <Search style={hidden ? hiddenStyle : {}}>
       <Formik
         initialValues={initialValues}
         onSubmit={values => {
