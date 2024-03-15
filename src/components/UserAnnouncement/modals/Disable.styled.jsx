@@ -68,6 +68,7 @@ export const WraperDiv = styled.div`
     margin-top: 58px;
     gap: 20px;
   }
+
   .cansel {
     color: #0d0c0c;
     background-color: transparent;
@@ -176,7 +177,7 @@ export const WraperDiv = styled.div`
     top: 20px;
   }
   .title2 {
-    color: green;
+    color: rgb(6, 144, 36);
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -186,13 +187,87 @@ export const WraperDiv = styled.div`
     margin-top: 20px;
   }
   .content {
-    margin-top: 6px;
-    color: #4b4b4b;
-    font-family: 'Roboto',sans-serif;
+    margin-top: 16px;
+    color: rgb(75, 75, 75);
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0%;
     text-align: center;
+  }
+  .buttonBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+    gap: 12px;
+  }
+  .title {
+    color: rgb(20, 20, 20);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  .cansel {
+    width: 204px;
+    height: 48px;
+
+    color: rgb(20, 20, 20);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  .confirm {
+    width: 204px;
+    height: 48px;
+
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  .buttonStrangeBox {
+    margin-top: 36px;
+    gap: 12px;
+  }
+  .cansel2 {
+    width: 204px;
+    height: 48px;
+
+    color: rgb(20, 20, 20);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  .confirm2 {
+    width: 204px;
+    height: 48px;
+
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  .circle {
+    display: flex;
+    width: 58px;
+    height: 58px;
   }
 `;

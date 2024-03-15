@@ -1,10 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { ConfDiv } from './confirmModal.styled';
 import { setIsOpen } from 'redux/modal/modalSlice';
-import { XBTN } from './confirmModalSVG';
+import { SmallXBTN, XBTN } from './confirmModalSVG';
+import { useEffect, useState } from 'react';
 
 const ConfirmModal = ({ handleSearch }) => {
   const distatch = useDispatch();
+   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const closeModal = () => {
     distatch(setIsOpen(false));
@@ -33,17 +35,30 @@ const ConfirmModal = ({ handleSearch }) => {
     distatch(setIsOpen(false));
   };
 
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      const newWidth = entries[0]?.contentRect?.width;
+      if (newWidth && newWidth !== screenWidth) {
+        setScreenWidth(newWidth);
+      }
+    });
+
+    resizeObserver.observe(window.document.body);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [screenWidth]);
+
   return (
     <ConfDiv>
       <button type="button" onClick={closeModal} className="xBtn">
-        <XBTN />
+        {screenWidth > 768 ? <XBTN /> : <SmallXBTN />}
       </button>
       <h4 className="title">
         Ви впевнені що хочете <span className="cringe">очистити</span> фільтри?
       </h4>
-      <p className="content">
-        Натискаючи на кнопку “підтвердити” фільтри повністю очистяться
-      </p>
+      <p className="content">Натискаючи на кнопку “підтвердити” фільтри повністю очистяться</p>
       <div className="buttonBox">
         <button type="button" onClick={closeModal} className="cansel">
           Відмінити

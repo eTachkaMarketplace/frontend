@@ -95,4 +95,71 @@ export const ConfDiv = styled.div`
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
   }
+  @media (max-width: 768px) {
+    width: 332px;
+    height: 356px;
+    padding: 20px 24px 35px 24px;
+    .xBtn {
+      right: 24px;
+      top: 20px;
+    }
+    .title {
+      margin-top: 64px;
+      color: rgb(20, 20, 20);
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+
+    .cringe {
+      color: #000;
+      font-family: 'Roboto', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .content {
+      margin-top: 16px;
+      color: rgb(75, 75, 75);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .buttonBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 36px;
+      gap: 12px;
+    }
+    .cansel {
+      width: 204px;
+      height: 48px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+    .confirm {
+      width: 204px;
+      height: 48px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      letter-spacing: 0%;
+      text-align: center;
+    }
+  }
 `;
