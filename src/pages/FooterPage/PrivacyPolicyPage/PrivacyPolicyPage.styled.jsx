@@ -1,8 +1,29 @@
 import styled from 'styled-components';
+import { MOB, TAB, DESK1, DESK2 } from '../../../components/constants';
+
 
 export const Container = styled.div`
   font-family: 'Roboto', sans-serif;
-  margin: 80px 300px;
+ 
+  ${MOB} {
+   margin: 30px 30px 80px 30px;
+  }
+
+  ${TAB} {
+    margin: 60px 100px;
+  }
+
+  ${DESK1} {
+    margin: 60px 150px;
+  }
+
+
+  ${DESK2} {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    
+  }
  `
 
 export const Title = styled.h1`

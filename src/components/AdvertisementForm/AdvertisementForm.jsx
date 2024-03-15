@@ -1,5 +1,4 @@
 import { DropArrow } from 'components/SearchForm/SearchFormSVG';
-// import { NavLink, redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -15,6 +14,7 @@ import {
   Field,
   ErrorMessage,
   StyledArrowSVG,
+  StyledArrowMobSVG,
   StyledCreateSVG,
   StyledPostSVG,
 } from './AdvertisementForm.styled';
@@ -86,6 +86,7 @@ export const AdvertisementForm = () => {
   const [formImages, setFormImages] = useState([]);
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const token = useSelector(selectToken);
   console.log(formImages);
 
@@ -137,17 +138,22 @@ export const AdvertisementForm = () => {
 
       console.log('adverse created');
       navigate('/advertisementDone');
-      // window.location.href = '/advertisementDone';
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
-  // useEffect(() => {
-  //   if (formikRef.current) {
-  //     formikRef.current.resetForm({ values: initialValues });
-  //   }
-  // }, [initialValues]);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -206,7 +212,7 @@ export const AdvertisementForm = () => {
             <SectionContainer>
               <SectionTitle>Етапи розміщення оголошення</SectionTitle>
               <div className="styled">
-                <StyledArrowSVG />
+                {windowWidth <= 1000 ? <StyledArrowMobSVG /> : <StyledArrowSVG />}
                 <div className="create">
                   <StyledCreateSVG />
                   <p className="create_text">1. Створення</p>
@@ -225,7 +231,6 @@ export const AdvertisementForm = () => {
                 Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
                 кількість фотографій - 6.
               </Paragraph>
-              {/* <ImageUploadComponent onImagesChange={handleImagesChange} /> */}
               <ImageUploadComponent
                 setImg={formImages}
                 onImagesChange={newImages => {
