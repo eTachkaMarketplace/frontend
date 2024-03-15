@@ -14,6 +14,7 @@ import {
   Field,
   ErrorMessage,
   StyledArrowSVG,
+  StyledArrowMobSVG,
   StyledCreateSVG,
   StyledPostSVG,
 } from './AdvertisementForm.styled';
@@ -85,6 +86,7 @@ export const AdvertisementForm = () => {
   const [formImages, setFormImages] = useState([]);
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const token = useSelector(selectToken);
   console.log(formImages);
 
@@ -141,6 +143,17 @@ export const AdvertisementForm = () => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const openModal = () => {
     dispatch(setIsOpen(true));
@@ -196,10 +209,10 @@ export const AdvertisementForm = () => {
             <button className="clearButton" onClick={openModal} type="button">
               Очистити все
             </button>
-            {/* <SectionContainer>
+            <SectionContainer>
               <SectionTitle>Етапи розміщення оголошення</SectionTitle>
               <div className="styled">
-                <StyledArrowSVG />
+                {windowWidth <= 1000 ? <StyledArrowMobSVG /> : <StyledArrowSVG />}
                 <div className="create">
                   <StyledCreateSVG />
                   <p className="create_text">1. Створення</p>
@@ -209,7 +222,7 @@ export const AdvertisementForm = () => {
                   <p className="post_text">2. Публікація</p>
                 </div>
               </div>
-            </SectionContainer> */}
+            </SectionContainer>
             <SectionContainer>
               <SectionTitle>
                 Фото автомобілю<RequiredMarker>*</RequiredMarker>

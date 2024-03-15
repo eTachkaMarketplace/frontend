@@ -16,6 +16,7 @@ import {
   Field,
   ErrorMessage,
   StyledArrowSVG,
+  StyledArrowMobSVG,
   StyledEditSVG,
   StyledRefreshSVG,
 } from './AdvertisementForm.styled';
@@ -79,6 +80,7 @@ export const EditAdvertisementForm = ({ formInitialValues }) => {
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [formImages, setFormImages] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [photosSelected, setPhotosSelected] = useState(false);
   const dataAccessor = new DataAccessor();
   const token = useSelector(selectToken);
@@ -169,6 +171,19 @@ export const EditAdvertisementForm = ({ formInitialValues }) => {
   };
   useEffect(() => {}, [formImages]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   return (
     <Formik
       initialValues={formInitialValues}
@@ -192,14 +207,14 @@ export const EditAdvertisementForm = ({ formInitialValues }) => {
             <SectionContainer>
               <SectionTitle>Етапи редагування оголошення</SectionTitle>
               <div className="styled">
-                <StyledArrowSVG />
+                {windowWidth <= 1000 ? <StyledArrowMobSVG /> : <StyledArrowSVG />}
                 <div className="create">
                   <StyledEditSVG />
-                  <p className="create_text">1. Редагування</p>
+                  <p className="create_text">1. Створення</p>
                 </div>
                 <div className="post">
                   <StyledRefreshSVG />
-                  <p className="post_text">2. Оновлення</p>
+                  <p className="post_text">2. Публікація</p>
                 </div>
               </div>
             </SectionContainer>

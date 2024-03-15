@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { MOB, TAB, DESK1, DESK2 } from '../../components/constants';
 
 import { ReactComponent as ArrowSVG } from '../../images/AccountPage/Arrow.svg';
+import { ReactComponent as ArrowMobSVG } from '../../images/AccountPage/ArrowMob.svg';
 import { ReactComponent as CreateSVG } from '../../images/AccountPage/create.svg';
 import { ReactComponent as PostSVG } from '../../images/AccountPage/post.svg';
 
@@ -77,9 +78,33 @@ export const StyledArrowSVG = styled(ArrowSVG)`
   margin-top: -1px ;
 `;
 
+export const StyledArrowMobSVG = styled(ArrowMobSVG)`
+  margin-top: -1px ;
+`;
+
 export const StyledCreateSVG = styled(CreateSVG)`
   stroke: #fff;
   margin-right: 5px;
+
+  ${MOB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${TAB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${DESK1} {
+    width: 30px;
+  height: 30px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 `;
 
 
@@ -87,11 +112,51 @@ export const StyledPostSVG = styled(PostSVG)`
   stroke:#4B4B4B;
   margin-right: 5px;
 
+  ${MOB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${TAB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${DESK1} {
+    width: 30px;
+  height: 30px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
+
   `;
 
 export const StyledEditSVG = styled(EditSVG)`
 stroke: #fff;
 margin-right: 5px;
+
+${MOB} {
+  width: auto;
+  height: 18px;
+  }
+
+  ${TAB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${DESK1} {
+    width: 25px;
+  height: 25px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 `;
 
 
@@ -99,6 +164,25 @@ export const StyledRefreshSVG = styled(RefreshSVG)`
 stroke:#4B4B4B;
 margin-right: 5px;
 
+${MOB} {
+  width: auto;
+  height: 18px;
+  }
+
+  ${TAB} {
+    width: auto;
+  height: 18px;
+  }
+
+  ${DESK1} {
+    width: 25px;
+  height: 25px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 `;
 
 export const Form = styled(FormikForm)`
@@ -113,10 +197,29 @@ export const Form = styled(FormikForm)`
   position: relative;
   display: block;
   background: #FFF;
-  width: 1000px;
-  height: 74px;
+ 
+  
   border: 1px solid #B9B9B9;
   border-radius: 10px;
+  ${MOB} {
+  width: 290px;
+  height: 40px;
+  }
+
+  ${TAB} {
+    width: 300px;
+  height: 40px;
+  }
+
+  ${DESK1} {
+    max-width: 1000px;
+  height: 74px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 }
 
 .create{
@@ -127,6 +230,7 @@ export const Form = styled(FormikForm)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .post{
@@ -137,19 +241,61 @@ export const Form = styled(FormikForm)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .create_text{
   color: #FFF;
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
+
+  ${MOB} {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  ${TAB} {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  ${DESK1} {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 }
 .post_text{
   color: #4B4B4B;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 500;
+  width: max-content;
+
+
+  
+  ${MOB} {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  ${TAB} {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  ${DESK1} {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  ${DESK2} {
+  
+    
+  }
 
 }
   select {

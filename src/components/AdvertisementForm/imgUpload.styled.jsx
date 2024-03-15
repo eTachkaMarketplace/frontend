@@ -147,8 +147,8 @@ export const ImageContainer = styled.div`
   }
 
   ${DESK1} {
-    top: 5px;
-    right: 5px;
+    top: 20px;
+    right: 20px;
   }
 
   ${DESK2} {
