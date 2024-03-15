@@ -232,9 +232,27 @@ export const Form = styled(FormikForm)`
   .arrow {
     position: absolute;
     z-index: 1;
+
+    pointer-events: none;
+    ${MOB} {
+      right: 2px;
+    top: 8px;
+  }
+
+  ${TAB} {
+    right: 2px;
+    top: 8px;
+  }
+
+  ${DESK1} {
     right: 16px;
     top: 12px;
-    pointer-events: none;
+
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
   .topWraper {
@@ -446,11 +464,10 @@ export const Form = styled(FormikForm)`
   }
   .clearButton {
     position: absolute;
-    top: -1.2%;
     right: 0%;
     
     display: flex;
-    width: 125px;
+    
     justify-content: center;
     align-items: center;
     border: 0;
@@ -458,32 +475,74 @@ export const Form = styled(FormikForm)`
     color: #ABABAB;
 
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.4px;
+
+    ${MOB} {
+      top: -1%;
+    font-size: 16px;
+  }
+
+  ${TAB} {
+    top: -1%;
+    font-size: 16px;
+  }
+
+  ${DESK1} {
+    top: -1.2%;
+    font-size: 20px;
+    width: 125px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
 
   .submitButton {
     color: #fff;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    font-size: 22px;
+    
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 
     display: flex;
-    width: 450px;
-    height: 56px;
-    padding: 14px 24px;
+    
     justify-content: center;
     align-items: center;
     
 
     border-radius: 8px;
     background: linear-gradient(144deg, #0040bd 19.1%, #19015b 78.89%);
+    ${MOB} {
+      font-size: 18px;
+    height: 48px;
+    padding: 10px 20px;
+  }
+
+  ${TAB} {
+    font-size: 18px;
+
+    height: 48px;
+    padding: 10px 20px;
+  }
+
+  ${DESK1} {
+    font-size: 22px;
+    width: 450px;
+    height: 56px;
+    padding: 14px 24px;
+  }
+
+  ${DESK2} {
+    
+  }
+    
   }
 
   .submitButton:disabled {
@@ -530,8 +589,23 @@ export const Form = styled(FormikForm)`
  display: flex;
  align-items: center;
  flex-direction: column;
- margin-top: 40px;
+ 
  gap: 20px;
+ ${MOB} {
+  margin-top: 10px;
+  }
+
+  ${TAB} {
+    margin-top: 20px;
+  }
+
+  ${DESK1} {
+    margin-top: 40px;
+  }
+
+  ${DESK2} {
+    
+  }
 }
 `;
 

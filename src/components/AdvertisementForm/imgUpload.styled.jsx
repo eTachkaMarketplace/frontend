@@ -95,7 +95,7 @@ export const AddPhotoText = styled.p`
 
 export const ImageContainer = styled.div`
   position: relative;
-  margin: 12px;
+  
 
   img {
     /* width: 335px;
@@ -104,18 +104,21 @@ export const ImageContainer = styled.div`
     border: 1px solid #ddd;
     border-radius: 4px;
     ${MOB} {
+      margin: 8px;
 
       width: 135px;
     height: 100px;
   }
 
   ${TAB} {
+    margin: 8px;
 
     width: 200px;
       height: 150px;
   }
 
   ${DESK1} {
+    margin: 12px;
     width: 335px;
     height: 185px;
   }
@@ -127,12 +130,30 @@ export const ImageContainer = styled.div`
 
   button {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    
     background-color: #fff;
     border: none;
     padding: 5px;
     cursor: pointer;
+
+    ${MOB} {
+      top: 10px;
+      right: 10px;
+     }
+
+  ${TAB} {
+    top: 10px;
+    right: 10px;
+  }
+
+  ${DESK1} {
+    top: 5px;
+    right: 5px;
+  }
+
+  ${DESK2} {
+    
+  }
   }
 `;
 
