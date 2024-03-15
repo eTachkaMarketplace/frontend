@@ -14,7 +14,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState('new');
   const [pageIndex, setPageIndex] = useState(0);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
