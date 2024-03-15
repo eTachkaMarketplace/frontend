@@ -14,7 +14,7 @@ const SearchPage = ({ favorites, setFavorites }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState('new');
   const [pageIndex, setPageIndex] = useState(0);
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -136,23 +136,26 @@ const SearchPage = ({ favorites, setFavorites }) => {
           </div>
         ) : null}
         {screenWidth <= 769 && openMenu && (
-          <SearchForm toggleMenu={toggleMenu} initialValues={valuesGen} onSubmit={handleSearch} />
+          <SearchForm hidden={false} toggleMenu={toggleMenu} initialValues={valuesGen} onSubmit={handleSearch} />
         )}
         {screenWidth <= 769 && !openMenu && (
-          <div className="searchList">
-            <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
-            <SearchList
-              totalPages={totalPages}
-              setTotalPages={setTotalPages}
-              setSort={setSort}
-              favorites={favorites}
-              setFavorites={setFavorites}
-              pageIndex={pageIndex}
-              setPageIndex={setPageIndex}
-            />
-          </div>
+          <>
+            <SearchForm hidden={true} toggleMenu={toggleMenu} initialValues={valuesGen} onSubmit={handleSearch} />
+            <div className="searchList">
+              <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
+              <SearchList
+                totalPages={totalPages}
+                setTotalPages={setTotalPages}
+                setSort={setSort}
+                favorites={favorites}
+                setFavorites={setFavorites}
+                pageIndex={pageIndex}
+                setPageIndex={setPageIndex}
+              />
+            </div>
+          </>
         )}
-        {screenWidth > 769 && <SearchForm initialValues={valuesGen} onSubmit={handleSearch} />}
+        {screenWidth > 769 && <SearchForm hidden={false} initialValues={valuesGen} onSubmit={handleSearch} />}
         {screenWidth > 769 && (
           <div className="searchList">
             <SearchListTab initialValues={valuesGen} onSubmit={handleSearch} />
