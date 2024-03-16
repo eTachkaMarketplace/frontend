@@ -65,6 +65,7 @@ export const SearchListDiv = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom:30px;
   }
   .paginDiv {
     display: flex;
