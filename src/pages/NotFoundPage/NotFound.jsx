@@ -9,7 +9,7 @@ export default function NotFound() {
       <ErrorContainer>
         <ErorSVG />
         <Title>Ууупс!</Title>
-        <Subtitle>Помилка 404. Ця сторінка зараз на реконструкції.</Subtitle>
+        <Subtitle>Помилка 404.<br/>Ця сторінка зараз на реконструкції.</Subtitle>
         <NavLink to="/search">
           <button type="button" className="confirm2">
             Пошук оголошення

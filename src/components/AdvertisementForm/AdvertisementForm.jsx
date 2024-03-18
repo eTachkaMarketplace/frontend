@@ -21,7 +21,7 @@ import {
 import {  useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createFavoriteAdverstisementsByID } from 'redux/advertisment/operations';
-import { selectToken } from 'redux/auth/selectors';
+import { selectToken, selectUser } from 'redux/auth/selectors';
 import { setIsOpen } from 'redux/modal/modalSlice';
 
 const phoneRegExp = /^(\+380)[0-9]{9}$/;
@@ -90,6 +90,9 @@ export const AdvertisementForm = () => {
   const token = useSelector(selectToken);
   console.log(formImages);
 
+  const authUser = useSelector(selectUser);
+  const { firstName, phone } = authUser;
+
   const initialValues = {
         description: "",
         region: "",
@@ -111,8 +114,8 @@ export const AdvertisementForm = () => {
           driveType: "",
           color: ""
         },
-        contactName: "",
-        contactPhone: '+380',
+        contactName: firstName || '',
+        contactPhone: phone || '+380',
         isActive: true,  
     }
 
