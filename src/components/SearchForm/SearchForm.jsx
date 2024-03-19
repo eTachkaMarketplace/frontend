@@ -211,10 +211,10 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
             </div>
             <div className="shortDiv marg16">
               <label>
-                <Field className="fieldTextShort" min="0" type="number" name="yearMin" placeholder="Введіть рік від" />
+                <Field className="fieldTextShort" min="0" type="number" name="yearMin" placeholder="Рік від" />
               </label>
               <label>
-                <Field className="fieldTextShort" min="0" type="number" name="yearMax" placeholder="Введіть рік до" />
+                <Field className="fieldTextShort" min="0" type="number" name="yearMax" placeholder="Рік до" />
               </label>
             </div>
             <div className="shortDiv">
@@ -224,7 +224,7 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
                   min="0"
                   type="number"
                   name="priceMin"
-                  placeholder="Введіть ціну від $"
+                  placeholder="Ціна від ($)"
                 />
               </label>
 
@@ -234,7 +234,7 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
                   min="0"
                   type="number"
                   name="priceMax"
-                  placeholder="Введіть ціну до $"
+                  placeholder="Ціна до ($)"
                 />
               </label>
             </div>
@@ -312,7 +312,7 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
                   className="fieldTextLong marg16"
                   type="number"
                   name="mileageMax"
-                  placeholder="Введіть пробіг до"
+                  placeholder="Пробіг до"
                   min="0"
                 />
               </label>
