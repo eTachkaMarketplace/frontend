@@ -231,8 +231,8 @@ export const AdvertisementForm = () => {
                 Фото автомобілю<RequiredMarker>*</RequiredMarker>
               </SectionTitle>
               <Paragraph>
-                Перше фото є головним. Максимальний розмір фотографії до 5 МБ. Формат фотографії: JPG, PNG. Мінімальна
-                кількість фотографій - 6.
+                Перше фото є головним. Максимальний розмір всіх фотографій до 10 МБ. Формат фотографії: JPG, PNG.
+                Мінімальна кількість фотографій - 6.
               </Paragraph>
               <ImageUploadComponent
                 setImg={formImages}
@@ -365,12 +365,13 @@ export const AdvertisementForm = () => {
                   Місто<RequiredMarker>*</RequiredMarker>
                 </div>
                 <div className="arrowDiv">
-                  <Field  
+                  <Field
                     className={`${touched.city && !values.city && !isValid ? 'is-invalid' : ''}  fieldLong `}
-                    component="select" 
-                    name="city" 
-                    onChange={handleCityChange} 
-                    value={selectedCity}>
+                    component="select"
+                    name="city"
+                    onChange={handleCityChange}
+                    value={selectedCity}
+                  >
                     <option value="">Оберіть</option>
                     {dataAccessor.getCitiesByRegion(selectedRegion).map(city => (
                       <option key={city} value={city}>
@@ -384,8 +385,6 @@ export const AdvertisementForm = () => {
                   <ErrorMessage name="city" component="div" />
                 </div>
               </label>
-            
-                 
 
               <label className="marg16">
                 <div className="containerLong">
@@ -615,7 +614,7 @@ export const AdvertisementForm = () => {
                 <div className="containerLong">VIN код</div>
                 <div className="flex">
                   <Field
-                  className={`${errors.car && errors.car.vin  ? 'is-invalid' : ''} fieldTextLong`}
+                    className={`${errors.car && errors.car.vin ? 'is-invalid' : ''} fieldTextLong`}
                     // className={`${values.car.vin.length > 17 ? 'is-invalid' : ''} fieldTextLong`}
                     type="text"
                     name="car.vin"
@@ -664,12 +663,12 @@ export const AdvertisementForm = () => {
                 </div>
                 <div className="flex">
                   <Field
-                    className={`${touched.contactPhone && errors.contactPhone  ? 'is-invalid' : ''}  fieldLong `}
+                    className={`${touched.contactPhone && errors.contactPhone ? 'is-invalid' : ''}  fieldLong `}
                     type="text"
                     name="contactPhone"
                     value={values.contactPhone}
                     onChange={handleChange}
-                    onKeyDown={(e) => {
+                    onKeyDown={e => {
                       const newValue = e.target.value;
                       if ((e.key === 'Delete' || e.key === 'Backspace') && newValue === '+380') {
                         e.preventDefault();

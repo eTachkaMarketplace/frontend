@@ -8,6 +8,7 @@ import {
   StyledCloseImgSVG,
 } from './imgUpload.styled';
 import { nanoid } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
 
 const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
   const [images, setImages] = useState(setImg || []);
@@ -34,12 +35,26 @@ const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const MAX_TOTAL_SIZE = 10 * 1024 * 1024; // 10 MB in bytes
+
   const handleImageChange = e => {
     const selectedImages = Array.from(e.target.files);
+    const totalSize = selectedImages.reduce((acc, image) => acc + image.size, 0);
 
-    setImages(prevImages => [...prevImages, ...selectedImages]);
+    if (totalSize > MAX_TOTAL_SIZE) {
+      Notify.warning('Total size of images exceeds 10 MB');
+      return;
+    }
 
-    onImagesChange([...images, ...selectedImages]);
+    const validImages = selectedImages.filter(image => image.size <= 10 * 1024 * 1024);
+
+    if (validImages.length < selectedImages.length) {
+      Notify.warning('Some images are too large');
+      return;
+    }
+
+    setImages(prevImages => [...prevImages, ...validImages]);
+    onImagesChange([...images, ...validImages]);
   };
 
   const handleImageRemove = index => {
@@ -50,7 +65,6 @@ const ImageUploadComponent = ({ initImages, onImagesChange, setImg }) => {
   const renderImages = () => {
     return images.map((image, index) => (
       <ImageContainer key={index}>
-        {console.log(index)}
         <img src={URL.createObjectURL(image)} alt={`img-${index}`} />
         <button type="button" onClick={() => handleImageRemove(index)} className="transpatent_button">
           <StyledCloseImgSVG />

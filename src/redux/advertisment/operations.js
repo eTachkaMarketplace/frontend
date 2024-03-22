@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { instance } from 'redux/auth/operations';
 // import { selectToken } from 'redux/auth/selectors'; 
@@ -185,6 +186,7 @@ export const createFavoriteAdverstisementsByID = createAsyncThunk(
       console.log('createFavoriteAdverstisementsByID is successful');
       return response.data;
     } catch (error) {
+      Notify.warning('Оголошення не створено спробуйте ще раз')
       return rejectWithValue(error.message);
     }
   }
