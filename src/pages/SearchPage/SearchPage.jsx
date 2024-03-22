@@ -93,6 +93,10 @@ const SearchPage = ({ favorites, setFavorites }) => {
     }
   }, [dispatch, pageIndex, sort, valuesGen]);
 
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [pageIndex]);
+
   return (
     <>
       <Wraper>

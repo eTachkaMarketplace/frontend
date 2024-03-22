@@ -66,6 +66,8 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
     setSelectedModel(initialValues.model);
   }, [initialValues]);
 
+
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const favouritesParam = searchParams.get('category');
