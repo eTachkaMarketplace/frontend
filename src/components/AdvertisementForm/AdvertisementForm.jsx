@@ -687,7 +687,7 @@ export const AdvertisementForm = () => {
               <button
                 className="submitButton"
                 type="submit"
-                disabled={!isValid || !dirty || !photosSelected || formImages.length < 6}
+                disabled={!isValid || !dirty || !photosSelected || formImages.length < 3}
               >
                 Опублікувати оголошення
               </button>
