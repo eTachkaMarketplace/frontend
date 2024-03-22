@@ -232,7 +232,7 @@ export const AdvertisementForm = () => {
               </SectionTitle>
               <Paragraph>
                 Перше фото є головним. Максимальний розмір всіх фотографій до 10 МБ. Формат фотографії: JPG, PNG.
-                Мінімальна кількість фотографій - 6.
+                Мінімальна кількість фотографій - 3.
               </Paragraph>
               <ImageUploadComponent
                 setImg={formImages}
@@ -241,8 +241,8 @@ export const AdvertisementForm = () => {
                   setPhotosSelected(newImages.length > 0);
                 }}
               />
-              {formImages.length > 0 && formImages.length < 6 && (
-                <div className="error-message">Мінімальна кількість фото - 6</div>
+              {formImages.length > 0 && formImages.length < 3 && (
+                <div className="error-message">Мінімальна кількість фото - 3</div>
               )}
             </SectionContainer>
 

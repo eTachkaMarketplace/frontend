@@ -445,6 +445,7 @@ export const Section = styled.div`
     .infoDIV {
       width: 330px;
       height: 484px;
+      overflow: hidden;
       border-radius: 8px;
       background: var(--Text-Grey-1, #f1f5ff);
       display: flex;
@@ -741,7 +742,7 @@ export const Section = styled.div`
     }
     .sellerBottom {
       color: var(--Text-black-2, #4b4b4b);
-      font-family: 'Roboto',sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 16px;
       font-weight: 400;
       line-height: 19px;
