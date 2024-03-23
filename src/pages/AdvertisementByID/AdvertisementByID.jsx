@@ -10,7 +10,7 @@ import {
   postFavoriteAdverstisementsByID,
   deleteFavoriteAdverstisementsByID,
 } from 'redux/advertisment/operations';
-import { selectAdverstisementsID } from 'redux/advertisment/selectors';
+import { selectAdverstisementsID, selectErrorGetId } from 'redux/advertisment/selectors';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 export const AdvertisementByID = ({ favorites, setFavorites }) => {
@@ -20,6 +20,8 @@ export const AdvertisementByID = ({ favorites, setFavorites }) => {
   const id = useParams();
   const Advertisement = useSelector(selectAdverstisementsID);
   const LogedIn = useSelector(selectIsLoggedIn);
+  const ErrorGetId = useSelector(selectErrorGetId);
+  
   const navigate = useNavigate();
 
   const setImage = image => {
@@ -28,11 +30,19 @@ export const AdvertisementByID = ({ favorites, setFavorites }) => {
 
   useEffect(() => {
     dispatch(getAdverstisementsByID(id));
-  }, [dispatch, id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   useEffect(() => {
     dispatch(getAdvFav());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (ErrorGetId) {
+      navigate('/*');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ErrorGetId]);
 
   const handleToggleFavorite = (id, event) => {
     if (!LogedIn) {

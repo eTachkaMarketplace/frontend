@@ -2,6 +2,7 @@ export const selectAdverstisements = state => state.adverstisement.adverstisemen
 export const selectPopAdvers = state => state.adverstisement.popAdvers;
 export const selectNumberAdv = state => state.adverstisement.numberAdv;
 export const selectError = state => state.adverstisement.error;
+export const selectErrorGetId = state => state.adverstisement.errorGetId;
 export const selectIsLoading = state => state.adverstisement.isLoading;
 export const selectAdverstisementsID = state => state.adverstisement.adverstisementsID;
 export const selectAdverstisementsFavorite = state => state.adverstisement.adverstisementsFavorite;

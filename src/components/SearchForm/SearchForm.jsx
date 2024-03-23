@@ -60,13 +60,11 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
 
   useEffect(() => {
     if (formikRef.current) {
-      formikRef.current.resetForm({ values: initialValues });
+      formikRef.current.resetForm(); 
     }
     setSelectedBrand(initialValues.brand);
     setSelectedModel(initialValues.model);
   }, [initialValues]);
-
-
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -117,7 +115,7 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
   const clearForm = () => {
     distatch(setIsOpen(true));
   };
-  
+
   const hiddenStyle = {
     display: 'none',
   };
@@ -221,23 +219,11 @@ export const SearchForm = ({ hidden, initialValues, toggleMenu, onSubmit }) => {
             </div>
             <div className="shortDiv">
               <label>
-                <Field
-                  className="fieldTextShort"
-                  min="0"
-                  type="number"
-                  name="priceMin"
-                  placeholder="Ціна від ($)"
-                />
+                <Field className="fieldTextShort" min="0" type="number" name="priceMin" placeholder="Ціна від ($)" />
               </label>
 
               <label>
-                <Field
-                  className="fieldTextShort"
-                  min="0"
-                  type="number"
-                  name="priceMax"
-                  placeholder="Ціна до ($)"
-                />
+                <Field className="fieldTextShort" min="0" type="number" name="priceMax" placeholder="Ціна до ($)" />
               </label>
             </div>
           </div>
