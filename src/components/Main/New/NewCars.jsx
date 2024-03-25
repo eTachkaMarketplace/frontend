@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SectionCar, PagDiv } from '../Popular/Popular.styled';
+import { SectionCar } from '../Popular/Popular.styled';
 import {
   deleteFavoriteAdverstisementsByID,
   getAdvFav,
@@ -89,10 +89,8 @@ const NewCars = ({ favorites, setFavorites, setChangePage }) => {
   };
 
   return (
-    <PagDiv>
       <SectionCar>
         <h2 className="carTitle">Нові оголошення</h2>
-        <div className="centrDiv">
           <ul className="carList">
             {advertisements
               ? advertisements.map(ad => {
@@ -156,9 +154,7 @@ const NewCars = ({ favorites, setFavorites, setChangePage }) => {
               {rightArrow}
             </button>
           </div>
-        </div>
       </SectionCar>
-    </PagDiv>
   );
 };
 export default NewCars;

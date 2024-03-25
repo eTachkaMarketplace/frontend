@@ -6,7 +6,7 @@ export const SectionCar = styled.section`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 1280px;
+  /* max-width: 1240px; */
   
 
   ${MOB} {
@@ -20,6 +20,8 @@ export const SectionCar = styled.section`
 
   ${DESK1} {
     margin: 100px 80px 50px 80px;
+      max-width: 1240px;
+
   }
 
   /* ${DESK2} {
@@ -89,17 +91,15 @@ export const SectionCar = styled.section`
     overflow: hidden;
 
     ${MOB} {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      /* width: 330px; */
-      /* height: 290px; */
+      width: 330px;
+    height: 290px;
+
       padding: 15px;
 
   }
 
   ${TAB} {
-    width: 320px;
+    width: 330px;
     height: 290px;
     padding: 15px;
   }
@@ -128,7 +128,7 @@ export const SectionCar = styled.section`
 
     ${MOB} {
     width: 100%;
-    height: 150px;
+    height: 190px;
   }
 
   ${TAB} {
@@ -251,10 +251,26 @@ export const SectionCar = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
     height: 40px;
-    gap: 50px;
+    
     margin-top: 80px;
     margin-bottom: 30px;
+
+    ${MOB} {
+      gap: 25px;
+  }
+
+  ${TAB} {
+    gap: 35px;
+  }
+
+  ${DESK1} {
+    gap: 50px;
+
+    
+  }
   }
 
   .pagination-button {
@@ -287,17 +303,5 @@ export const SectionCar = styled.section`
   .pagination-button.active {
     color: rgb(171, 171, 171);
   }
-  .centrDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`;
 
-export const PagDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
