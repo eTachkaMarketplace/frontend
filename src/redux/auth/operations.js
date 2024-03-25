@@ -38,6 +38,7 @@ export const login = createAsyncThunk('auth/login', async ({ credentials, showCh
     setToken(response.data.data.jwtAccessToken);
     console.log(response);
     console.log(`Welcome back!!!`);
+    localStorage.setItem('isLoggedIn', true);
     return response.data;
   } catch (error) {
     console.log(`Login failed. Try again`);

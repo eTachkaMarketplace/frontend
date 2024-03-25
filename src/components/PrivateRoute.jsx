@@ -4,6 +4,10 @@ import { selectIsLoggedIn } from '../redux/auth/selectors';
 
 export const PrivateRoute = ({ children, redirectTo = '/' }) => {
   const IsLoggedIn = useSelector(selectIsLoggedIn);
+  const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
 
-  return IsLoggedIn ? children : <Navigate to={redirectTo} />;
+  const isUserLoggedIn = IsLoggedIn || storedIsLoggedIn;
+
+  console.log(IsLoggedIn)
+  return isUserLoggedIn ? children : <Navigate to={redirectTo} />;
 };
