@@ -70,7 +70,7 @@ const Catalog = ({ favorites, setFavorites }) => {
               return (
                 <li className="carItem" key={ad.id}>
                   <Link className='carLink' to={`/AdvertisementByID/${ad.id}`} >
-                     <img className="imgCar" src={ad.previewImage} alt="Car " />      
+                    <img className="imgCar" src={ad.previewImage} alt="Car " />      
   
                     <h3 className="blackTitle ">
                       {car.brand} {car.model} {car.year}
