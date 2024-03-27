@@ -33,6 +33,7 @@ export const authSlice = createSlice({
   reducers: {
     logout: state => {
       state.isLoggedIn = false;
+      localStorage.removeItem('isLoggedIn');
       state.token = '';
       state.refToken = '';
       clearToken()
